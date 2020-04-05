@@ -105,19 +105,18 @@ https://github.com/ClementDums/ThreeJsStarter
 # Charnière design/dev
 
 - Les modèles 3D doivent être exportés en **.glb** ou en **.gltf** ce format permet  d’optimiser la  taille et le temps de chargement.
-<br>
 - Création de modèles 3D avec une **taille cohérente** (pas plus grand ou plus petit qu’il ne faut).
-<br>
+
 - Tous les modèles 3D du site doivent être exportés en utilisant une **échelle commune** afin de faciliter l’intégration des développeurs sans avoir à les redimensionner.
-<br>
+
 - Les **textures exportées** doivent avoir une taille correspondant à une **puissance de 2** (256*256 par exemple). Cela permet d’appliquer les textures en utilisant le MipMapping afin d’éviter les problèmes d’aliasing.
-<br>
+
 - **Ne pas modéliser** ce qui ne sera **pas visible** afin de gagner en performance. Par exemple l’extérieur et les autres salles du musée ou la face du personnage si l’on ne voit que son dos dans l'expérience.
-<br>
+
 - **Minimiser** autant que possible le **nombre de polygones** qui composent un objet 3D afin de gagner en performance.
-<br>
+
 - Faire attention à la position du **point d’ancrage** ou **point de pivot**. L’objet 3D va tourner autour de celui-ci lors de la rotation.
-<br>
+
 - Seule l’**animation intrinsèque** : personnage qui marche, court, bat des ailes… doit être réalisée par les **designers**.
 L’animation **extrinsèque** : déplacement du personnage dans le monde 3D est à la charge du **développeur**.
 
