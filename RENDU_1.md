@@ -100,7 +100,7 @@ Enfin nous allons également permettre à l'utilisateur d'utiliser son **télép
 # Structure de projet et prototypage
 
 Racine du projet : 
-https://github.com/ClementDums/ThreeJsProject/blob/master/README.md
+https://github.com/ClementDums/ThreeJsProject
 
 # Charnière design/dev
 
