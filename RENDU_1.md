@@ -64,8 +64,8 @@ Ceci permettra à l'utilisateur d'avoir comme seul interaction avec l'expérienc
 
 # Choix de la plateforme
 
-Pour cette expérience, nous utiliserons un **site web** destiné aux ordinateur (reste à déterminer la puissance de l'ordinateur ciblé en fonction des premiers tests que nous effectuerons) pour permettre une expérience **plus immersive** que sur un téléphone.
-Le choix d'une expérience web est également renforcé car nous allons utiliser différentes **API** pour permettre de passer un message avec plus de poids à l'utilisateur.
+Pour cette expérience, nous utiliserons un **site web** destiné aux ordinateur (reste à déterminer la puissance de l'ordinateur ciblé en fonction des premiers tests que nous effectuerons) pour permettre une expérience **plus immersive** que sur un téléphone. <br>
+Le choix d'une expérience web est également renforcé car nous allons utiliser différentes **API** pour permettre de passer un message avec plus de poids à l'utilisateur.<br>
 Enfin nous allons également permettre à l'utilisateur d'utiliser son **téléphone** comme **seul outil d'interaction** avec l'expérience. Cela permet une nouvelle fois de rendre le contenu plus **immersif** et est également en **accord avec notre sujet** basé sur **les réseaux sociaux**.
 
 
