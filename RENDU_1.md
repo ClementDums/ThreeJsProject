@@ -120,6 +120,8 @@ https://github.com/ClementDums/ThreeJsProject
 - Seule l’**animation intrinsèque** : personnage qui marche, court, bat des ailes… doit être réalisée par les **designers**.
 L’animation **extrinsèque** : déplacement du personnage dans le monde 3D est à la charge du **développeur**.
 
+- Les éléments seront fournis aux développeurs sur un **Trello** dédié. Plusieurs cartes seront présentes (todo, en cours, à validé, done).
+
 # Proofs of concept
 
 http://pierrebrelaud.fr/webgl/poc/
