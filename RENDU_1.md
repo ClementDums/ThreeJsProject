@@ -7,22 +7,22 @@
 
 ### Helpers
 Fonctions génériques mises à disposition pour les différentes classes du projet :
-> **Math** : conversion de matrices, trigonométrie...
-> **Audio**
-> **Lights**
-> **User Interaction** : eventListener, récupération de la position de la souris...
-> **Mouvement**
-> **Camera**
-> **Particles**
-> **3D** : import/implémentation des modèles 3D, position...
+> **Math** : conversion de matrices, trigonométrie...<br>
+> **Audio**<br>
+> **Lights**<br>
+> **User Interaction** : eventListener, récupération de la position de la souris...<br>
+> **Mouvement**<br>
+> **Camera**<br>
+> **Particles**<br>
+> **3D** : import/implémentation des modèles 3D, position...<br>
 
 
 ### API
 Classes de réception des données API et de traitement. API utilisées pour le projet notamment utilisées pour la transformation des œuvres d'art  pour immersion plus forte pour l'utilisateur :
->**Twitter**
-> **Facebook**
-> **Snapchat**
-> ...
+>**Twitter** <br>
+> **Facebook**<br>
+> **Snapchat**<br>
+> ...<br>
 
 ### Librairies
 Librairies externes utilisées pour le développement
@@ -43,11 +43,11 @@ Mise en place des différentes scènes : Extérieur, intérieur et chambre.
 
 ### 3D
 Gestion des différents modèles 3D utilisés dans l'expérience notamment les déplacements, sons, lumières...
-> **Character**
-> **Phone**
-> **Work of art**
-> **Airship**
-> **Sets/Decors**
+> **Character**<br>
+> **Phone**<br>
+> **Work of art**<br>
+> **Airship**<br>
+> **Sets/Decors**<br>
 
 
 ### UI
