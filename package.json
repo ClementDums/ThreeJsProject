@@ -24,6 +24,9 @@
     "sass-loader": "^7.0.1"
   },
   "dependencies": {
-    "three": "^0.115.0"
+    "fs": "0.0.1-security",
+    "three": "^0.115.0",
+    "three-fbx-loader": "^1.0.3",
+    "zlib": "^1.0.5"
   }
 }
