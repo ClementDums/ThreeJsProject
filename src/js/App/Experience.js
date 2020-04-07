@@ -9,6 +9,14 @@ export default class Experience {
         console.log("Experience constructor");
         this.cameraManager = new CameraManager();
         this.sceneManager = new SceneManager();
+        window.addEventListener('resize', () => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            this.renderer.setSize(width, height);
+
+            this.camera.aspect = width / height;
+            this.camera.updateProjectionMatrix();
+        });
 
         this.init();
         this._animate();
@@ -42,7 +50,6 @@ export default class Experience {
         this.renderer.render(this.scene, this.camera);
 
     }
-
 
 
 }
