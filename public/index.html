@@ -7,14 +7,27 @@
 
     <!-- TODO add og, canonical, robots -->
 
-    <link rel="icon" href="favicon.ico" />
+    <link rel="icon" href="favicon.ico"/>
     <link rel="stylesheet" href="build/app.css">
 </head>
 <body>
 
 <div id="game"></div>
-
-
+<script>
+    javascript:(function () {
+        var script = document.createElement('script');
+        script.onload = function () {
+            var stats = new Stats();
+            document.body.appendChild(stats.dom);
+            requestAnimationFrame(function loop() {
+                stats.update();
+                requestAnimationFrame(loop)
+            });
+        };
+        script.src = '//mrdoob.github.io/stats.js/build/stats.min.js';
+        document.head.appendChild(script);
+    })()
+</script>
 <script src="build/runtime.js"></script>
 <script src="build/app.js"></script>
 </body>

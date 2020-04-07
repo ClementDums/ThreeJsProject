@@ -5,8 +5,9 @@ import CameraManager from "./Camera/CameraManager";
 
 export default class Experience {
 
-    constructor() {
+    constructor(isDebug) {
         console.log("Experience constructor");
+        this._isDebug = isDebug;
         this.cameraManager = new CameraManager();
         this.sceneManager = new SceneManager();
         window.addEventListener('resize', () => {
