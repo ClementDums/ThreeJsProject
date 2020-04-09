@@ -24,11 +24,6 @@ export default class OutSideScene {
         var ambientLight = new THREE.AmbientLight(0x404040);
         this._scene.add(ambientLight);
         this._scene.add(plane);
-        // const objPromise = Loader.loadFbx('./assets/3DModels/Zeppelin.fbx');
-        // objPromise.then(obj => {
-        //     obj.position.y = 1000;
-        //     this._scene.add(obj);
-        // });
 
         const objsPromise = Loader.loadGLTF('./assets/3DModels/LowPoly_head_2.glb');
         objsPromise.then(obj => {
@@ -38,6 +33,24 @@ export default class OutSideScene {
 
     get scene() {
         return this._scene
+    }
+
+
+    createDebrisFromBreakableObject(object) {
+
+        object.castShadow = true;
+        object.receiveShadow = true;
+
+        var shape = createConvexHullPhysicsShape(object.geometry.attributes.position.array);
+        shape.setMargin(margin);
+
+        var body = createRigidBody(object, shape, object.userData.mass, null, null, object.userData.velocity, object.userData.angularVelocity);
+
+        // Set pointer back to the three object only in the debris objects
+        var btVecUserData = new Ammo.btVector3(0, 0, 0);
+        btVecUserData.threeObject = object;
+        body.setUserPointer(btVecUserData);
+
     }
 
 }
