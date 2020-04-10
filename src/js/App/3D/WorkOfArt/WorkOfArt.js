@@ -13,6 +13,7 @@ export default class WorkOfArt {
     }
 
     setup(){
+        this._object.name = "Work of Art";
         this._object.position.set(this._position.x,this._position.y,this._position.z);
     }
 

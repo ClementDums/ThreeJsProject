@@ -13,6 +13,7 @@ export default class Airship {
     }
 
     setup() {
+        this._object.name = "Airship"
         this._object.position.set(this._position.x, this._position.y, this._position.z);
     }
 

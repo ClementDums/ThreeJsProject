@@ -10,7 +10,6 @@ export default class OutSideScene {
         this.airShipInsta = new AirShip(new THREE.Vector3(0,1000,0));
         this.statue = new WorkOfArt(new THREE.Vector3(0,10,0));
         this.objects = [];
-        this.init()
     }
 
     init() {

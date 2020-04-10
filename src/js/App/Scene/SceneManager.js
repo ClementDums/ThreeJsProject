@@ -8,12 +8,13 @@ export default class SceneManager {
 
     init() {
         this._threeScene = this.currentScene.scene;
+        this._sceneObjects = this.currentScene.objects;
         this.currentScene.init();
         this.loadSceneModels()
     }
 
     loadSceneModels() {
-        this.currentScene.objects.forEach((item) => {
+        this._sceneObjects.forEach((item) => {
             item.load().then((obj) => {
                 item._object = obj;
                 item.setup();
