@@ -8,6 +8,9 @@ export default class MainCamera {
         this._camera.position.y = 30;
 
     }
+    init(){
+
+    }
     get camera(){
         return this._camera
     }

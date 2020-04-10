@@ -38,14 +38,11 @@ export default class Experience {
         const instructions = document.getElementById('instructions');
 
         instructions.addEventListener('click', () => {
-            console.log("ok")
             this.controls.lock();
         }, false);
         this.controls.addEventListener('lock', function () {
-
             instructions.style.display = 'none';
             blocker.style.display = 'none';
-
         });
 
 

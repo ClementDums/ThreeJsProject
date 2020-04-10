@@ -1,19 +1,19 @@
 //Setup Camera position, rotation, attaché au personnage
 import * as THREE from 'three'
-import Loader from '../../../Helpers/Loader'
+import AirShip from '../../3D/Airship/Airship'
+import WorkOfArt from '../../3D/WorkOfArt/WorkOfArt'
 
 export default class OutSideScene {
     constructor() {
         this._scene = new THREE.Scene();
         this._scene.name = "Outside";
-
+        this.airShipInsta = new AirShip(new THREE.Vector3(0,1000,0));
+        this.statue = new WorkOfArt(new THREE.Vector3(0,10,0));
+        this.objects = [];
         this.init()
     }
 
     init() {
-
-        const geometry = new THREE.BoxGeometry(10000, 10000, 10000);
-
         var geo = new THREE.PlaneBufferGeometry(2000, 2000, 8, 8);
         var mat = new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide});
         var plane = new THREE.Mesh(geo, mat);
@@ -25,32 +25,12 @@ export default class OutSideScene {
         this._scene.add(ambientLight);
         this._scene.add(plane);
 
-        const objsPromise = Loader.loadGLTF('./assets/3DModels/LowPoly_head_2.glb');
-        objsPromise.then(obj => {
-            this._scene.add(obj);
-        });
+
+        this.objects.push(this.airShipInsta);
+        this.objects.push(this.statue);
     }
 
     get scene() {
         return this._scene
     }
-
-
-    createDebrisFromBreakableObject(object) {
-
-        object.castShadow = true;
-        object.receiveShadow = true;
-
-        var shape = createConvexHullPhysicsShape(object.geometry.attributes.position.array);
-        shape.setMargin(margin);
-
-        var body = createRigidBody(object, shape, object.userData.mass, null, null, object.userData.velocity, object.userData.angularVelocity);
-
-        // Set pointer back to the three object only in the debris objects
-        var btVecUserData = new Ammo.btVector3(0, 0, 0);
-        btVecUserData.threeObject = object;
-        body.setUserPointer(btVecUserData);
-
-    }
-
 }

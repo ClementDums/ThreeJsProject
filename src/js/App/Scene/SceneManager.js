@@ -2,20 +2,31 @@ import OutSideScene from "./OutSide/OutSideScene";
 
 export default class SceneManager {
     constructor() {
-        this.outSide = new OutSideScene();
+        this.currentScene = new OutSideScene();
         this.init()
     }
 
     init() {
-        this._scene = this.outSide.scene;
-        this.setupLights()
+        this._threeScene = this.currentScene.scene;
+        this.currentScene.init();
+        this.loadSceneModels()
     }
 
-    setupLights(){
+    loadSceneModels() {
+        this.currentScene.objects.forEach((item) => {
+            item.load().then((obj) => {
+                item._object = obj;
+                item.setup();
+                this._threeScene.add(obj)
+            })
+        })
+    }
+
+    setupLights() {
 
     }
 
     get scene() {
-        return this._scene;
+        return this._threeScene;
     }
 }
