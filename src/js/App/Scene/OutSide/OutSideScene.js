@@ -1,31 +1,72 @@
-//Setup Camera position, rotation, attaché au personnage
 import * as THREE from 'three'
 import AirShip from '../../3D/Airship/Airship'
-import WorkOfArt from '../../3D/WorkOfArt/WorkOfArt'
+import WorkOfArt from '../../3D/WorkOfArt/FilterWorkOfArt'
+import Skybox from "../../Environment/Skybox";
+import Thunder from "../../Environment/Thunder";
 
 export default class OutSideScene {
     constructor() {
+
         this._scene = new THREE.Scene();
         this._scene.name = "Outside";
-        this.airShipInsta = new AirShip(new THREE.Vector3(0,1000,0));
-        this.statue = new WorkOfArt(new THREE.Vector3(0,10,0));
+        this.airShipInsta = new AirShip(
+            new THREE.Vector3(0, 1000, 0),
+            new THREE.Vector3(0.3, 0.3, 0.3));
+        this.statue = new WorkOfArt(new THREE.Vector3(0, 1, 0));
+        this.thunder = new Thunder();
         this.objects = [];
+        this.meteo = [];
+
+        this.skybox = new Skybox("outside");
     }
 
     init() {
-        var geo = new THREE.PlaneBufferGeometry(2000, 2000, 8, 8);
-        var mat = new THREE.MeshBasicMaterial({color: 0xFFFFFF, side: THREE.DoubleSide});
-        var plane = new THREE.Mesh(geo, mat);
-        plane.position.y = -10;
-        plane.rotateX(-Math.PI / 2);
 
+        const flash = new THREE.PointLight(0xffffff, 30, 500, 1.7);
+        flash.position.set(0, 200, 30);
+        flash.power = 100
+        this._scene.add(flash)
+
+        const spotLight = new THREE.SpotLight(0xffffff, 1);
+        spotLight.position.set(15, 40, 35);
+        spotLight.angle = Math.PI / 4;
+        spotLight.penumbra = 0.05;
+        spotLight.decay = 2;
+        spotLight.distance = 200;
+
+        spotLight.castShadow = true;
+        spotLight.shadow.mapSize.width = 1024;
+        spotLight.shadow.mapSize.height = 1024;
+        spotLight.shadow.camera.near = 10;
+        spotLight.shadow.camera.far = 200;
+        this._scene.add(spotLight);
+
+
+        var material = new THREE.MeshPhongMaterial({color: 0x808080, dithering: true});
+        var geometry = new THREE.PlaneBufferGeometry(2000, 2000);
+        var mesh = new THREE.Mesh(geometry, material);
+        mesh.position.set(0, -1, 0);
+        mesh.rotation.x = -Math.PI * 0.5;
+        mesh.receiveShadow = true;
+        this._scene.add(mesh);
+
+        var material = new THREE.MeshPhongMaterial({color: 0x4080ff, dithering: true});
+
+        var geometry = new THREE.BoxBufferGeometry(30, 10, 20);
+
+        var mesh = new THREE.Mesh(geometry, material);
+        mesh.position.set(40, 2, 0);
+        mesh.castShadow = true;
+        this._scene.add(mesh);
+
+        this._scene.add(this.skybox.skybox);
 
         var ambientLight = new THREE.AmbientLight(0x404040);
         this._scene.add(ambientLight);
-        this._scene.add(plane);
 
 
-        this.objects.push(this.airShipInsta);
+        this.meteo.push(this.thunder);
+
         this.objects.push(this.statue);
     }
 

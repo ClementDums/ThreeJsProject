@@ -3,6 +3,7 @@ import * as THREE from 'three'
 import SceneManager from './Scene/SceneManager'
 import CameraManager from "./Camera/CameraManager";
 
+
 import {PointerLockControls} from 'three/examples/jsm/controls/PointerLockControls.js';
 
 export default class Experience {
@@ -13,7 +14,7 @@ export default class Experience {
         this.mouse = new THREE.Vector2();
         this._isDebug = isDebug;
         this.cameraManager = new CameraManager();
-        this.sceneManager = new SceneManager();
+        this.sceneManager = new SceneManager(this.cameraManager);
 
         this.init();
         this._animate();
@@ -29,36 +30,16 @@ export default class Experience {
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setPixelRatio(window.devicePixelRatio);
         this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.renderer.shadowMap.enabled = true;
+        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
         this.camera = this.cameraManager.camera;
         console.log(this.camera);
 
-        this.controls = new PointerLockControls(this.camera, document.body);
-        const blocker = document.getElementById('blocker');
-        const instructions = document.getElementById('instructions');
-
-        instructions.addEventListener('click', () => {
-            this.controls.lock();
-        }, false);
-        this.controls.addEventListener('lock', function () {
-            instructions.style.display = 'none';
-            blocker.style.display = 'none';
-        });
-
-
-
-        this.controls.addEventListener('unlock', function () {
-
-            blocker.style.display = 'block';
-            instructions.style.display = '';
-
-        });
-        this.scene.add(this.controls.getObject());
+        this.manageLock()
 
         this.container.appendChild(this.renderer.domElement);
-        document.addEventListener('mousemove', this.onDocumentMouseMove.bind(this), false);
         window.addEventListener('resize', this.onResize.bind(this));
-
     }
 
     _animate() {
@@ -67,12 +48,38 @@ export default class Experience {
     }
 
     render() {
+        this.sceneManager.animateSceneModels();
         this.renderer.render(this.scene, this.camera);
     }
 
-    onDocumentMouseMove() {
-        this.mouse.x = (event.clientX - this.windowHalf.x);
-        this.mouse.y = (event.clientY - this.windowHalf.x);
+
+    manageLock() {
+        if (this.cameraManager.isLock) {
+
+            this.controls = new PointerLockControls(this.camera, document.body);
+            const blocker = document.getElementById('blocker');
+            const instructions = document.getElementById('instructions');
+
+            blocker.style.display = 'block';
+
+            instructions.addEventListener('click', () => {
+                this.controls.lock();
+            }, false);
+            this.controls.addEventListener('lock', function () {
+                instructions.style.display = 'none';
+                blocker.style.display = 'none';
+            });
+
+
+            this.controls.addEventListener('unlock', function () {
+
+                blocker.style.display = 'block';
+                instructions.style.display = '';
+
+            });
+
+            this.scene.add(this.controls.getObject());
+        }
     }
 
     onResize() {
