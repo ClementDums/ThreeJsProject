@@ -2,6 +2,7 @@ import * as THREE from 'three'
 
 import SceneManager from './Scene/SceneManager'
 import CameraManager from "./Camera/CameraManager";
+import CameraMoveManager from "./Camera/CameraMovementManager";
 
 
 import {PointerLockControls} from 'three/examples/jsm/controls/PointerLockControls.js';
@@ -14,7 +15,9 @@ export default class Experience {
         this.mouse = new THREE.Vector2();
         this._isDebug = isDebug;
         this.cameraManager = new CameraManager();
-        this.sceneManager = new SceneManager(this.cameraManager);
+        this.cameraMoveManager = new CameraMoveManager(this.cameraManager.camera);
+        this.sceneManager = new SceneManager(this.cameraManager, this.cameraMoveManager);
+
 
         this.init();
         this._animate();
@@ -35,8 +38,7 @@ export default class Experience {
 
         this.camera = this.cameraManager.camera;
         console.log(this.camera);
-
-        this.manageLock()
+        this.manageLock();
 
         this.container.appendChild(this.renderer.domElement);
         window.addEventListener('resize', this.onResize.bind(this));
@@ -48,15 +50,21 @@ export default class Experience {
     }
 
     render() {
+        // animate camera along spline
+        this.cameraMoveManager.animateMove();
+        //Animate models
         this.sceneManager.animateSceneModels();
-        this.renderer.render(this.scene, this.camera);
+        //Render
+        this.renderer.render(this.scene, this.cameraManager.camera);
     }
 
 
     manageLock() {
         if (this.cameraManager.isLock) {
 
-            this.controls = new PointerLockControls(this.camera, document.body);
+            this.controls = new PointerLockControls(this.cameraManager.camera
+                , document.body);
+
             const blocker = document.getElementById('blocker');
             const instructions = document.getElementById('instructions');
 

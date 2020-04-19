@@ -1,5 +1,4 @@
 import Loader from '../../../Helpers/Loader'
-import * as THREE from 'three'
 
 export default class Pantheon {
     constructor(position) {

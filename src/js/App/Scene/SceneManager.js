@@ -3,9 +3,9 @@ import InsideScene from "./Museum/InsideScene";
 import CameraManager from "../Camera/CameraManager";
 
 
-
 export default class SceneManager {
-    constructor(cameraManager) {
+    constructor(cameraManager, cameraMove) {
+        this.cameraMove = cameraMove;
         this.currentScene = new InsideScene();
         this.cameraManager = cameraManager;
         this.init()
@@ -18,6 +18,9 @@ export default class SceneManager {
         this._meteos = this.currentScene.meteo;
 
         this.currentScene.init();
+        this.cameraMove.init();
+
+        this._threeScene.add(this.cameraMove.splineParent);
 
         this.loadSceneModels();
     }

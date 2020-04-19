@@ -26,6 +26,10 @@ export default class InsideScene {
         flash.position.set(0, 1000, 0);
         flash.power = 100;
         this._scene.add(flash);
+        const flash2 = new THREE.PointLight(0xffffff, 30, 2000, 1.7);
+        flash2.position.set(0, 1000, -1500);
+        flash2.power = 100;
+        this._scene.add(flash2);
 
 
         // var material = new THREE.MeshPhongMaterial({color: 0x808080, dithering: true});
@@ -46,19 +50,8 @@ export default class InsideScene {
         this.objects.push(this.pantheon);
 
         this.huds.push(this.phone);
-
-        this.createTrajectoy();
     }
 
-
-    createTrajectoy() {
-        const positions = [new THREE.Vector3(289.76843686945404, 225.85575373493543, 56.10018915737797),
-            new THREE.Vector3(-53.56300074753207, 171.49711742836848, -14.495472686253045),
-            new THREE.Vector3(-185.9429248423075, 155.2260311615549, 53.40777670562185),
-            new THREE.Vector3(-383.785318791128, 134.63055497842896, 476.9599228856782)];
-
-        const spline = new THREE.CatmullRomCurve3( positions )
-    }
 
     get scene() {
         return this._scene

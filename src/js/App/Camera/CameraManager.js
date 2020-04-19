@@ -1,8 +1,9 @@
 import MainCamera from "./MainCamera/MainCamera";
 
 export default class CameraManager {
-    constructor() {
+    constructor(cameraMoveManager) {
         this.mainCamera = new MainCamera();
+        this.cameraMovementManager = cameraMoveManager;
         this.isLock = true;
         this.init()
 
