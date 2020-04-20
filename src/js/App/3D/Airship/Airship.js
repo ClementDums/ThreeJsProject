@@ -1,5 +1,4 @@
 import Loader from '../../../Helpers/Loader'
-import * as THREE from 'three'
 
 export default class Airship {
     constructor(position, scale) {

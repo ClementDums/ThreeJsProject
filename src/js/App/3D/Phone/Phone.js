@@ -9,7 +9,6 @@ export default class Phone {
         this._path = './assets/3DModels/IPHONE.gltf';
         this._object = null;
         this._isHud = true;
-        console.log(this._cameraPosition)
     }
 
 

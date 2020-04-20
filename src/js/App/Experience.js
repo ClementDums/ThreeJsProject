@@ -5,8 +5,6 @@ import CameraManager from "./Camera/CameraManager";
 import CameraMoveManager from "./Camera/CameraMovementManager";
 
 
-import {PointerLockControls} from 'three/examples/jsm/controls/PointerLockControls.js';
-
 export default class Experience {
 
     constructor(isDebug) {
@@ -15,7 +13,7 @@ export default class Experience {
         this.mouse = new THREE.Vector2();
         this._isDebug = isDebug;
         this.cameraManager = new CameraManager();
-        this.cameraMoveManager = new CameraMoveManager(this.cameraManager.camera);
+        this.cameraMoveManager = new CameraMoveManager(this.cameraManager.camera, this.cameraManager);
         this.sceneManager = new SceneManager(this.cameraManager, this.cameraMoveManager);
 
 
@@ -38,8 +36,7 @@ export default class Experience {
 
         this.camera = this.cameraManager.camera;
         console.log(this.camera);
-        this.manageLock();
-
+        this.scene.add(this.cameraManager.camera)
         this.container.appendChild(this.renderer.domElement);
         window.addEventListener('resize', this.onResize.bind(this));
     }
@@ -50,45 +47,12 @@ export default class Experience {
     }
 
     render() {
-        // animate camera along spline
-        this.cameraMoveManager.animateMove();
-        //Animate models
-        this.sceneManager.animateSceneModels();
+        //Animate Scene
+        this.sceneManager.animate();
         //Render
         this.renderer.render(this.scene, this.cameraManager.camera);
     }
 
-
-    manageLock() {
-        if (this.cameraManager.isLock) {
-
-            this.controls = new PointerLockControls(this.cameraManager.camera
-                , document.body);
-
-            const blocker = document.getElementById('blocker');
-            const instructions = document.getElementById('instructions');
-
-            blocker.style.display = 'block';
-
-            instructions.addEventListener('click', () => {
-                this.controls.lock();
-            }, false);
-            this.controls.addEventListener('lock', function () {
-                instructions.style.display = 'none';
-                blocker.style.display = 'none';
-            });
-
-
-            this.controls.addEventListener('unlock', function () {
-
-                blocker.style.display = 'block';
-                instructions.style.display = '';
-
-            });
-
-            this.scene.add(this.controls.getObject());
-        }
-    }
 
     onResize() {
         const width = window.innerWidth;
@@ -100,4 +64,7 @@ export default class Experience {
     }
 
 
+    manageLock() {
+
+    }
 }

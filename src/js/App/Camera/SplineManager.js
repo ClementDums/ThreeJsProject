@@ -38,14 +38,10 @@ export default class SplineManager {
     }
 
     init() {
-
-
         this.parent = new THREE.Object3D();
         this.parent.name = "CameraMovement";
 
         this.addTube();
-
-
     }
 
 
@@ -75,7 +71,6 @@ export default class SplineManager {
         var wireframe = new THREE.Mesh(geometry, this.wireframeMaterial);
         this.mesh.add(wireframe);
         this.parent.add(this.mesh);
-
     }
 
     setScale() {
