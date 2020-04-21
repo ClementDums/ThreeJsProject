@@ -1,4 +1,3 @@
-//Setup Camera position, rotation, attaché au personnage
 import * as THREE from 'three'
 
 export default class MainCamera {

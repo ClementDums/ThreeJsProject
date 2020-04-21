@@ -2,7 +2,6 @@ import * as THREE from 'three'
 
 import SceneManager from './Scene/SceneManager'
 import CameraManager from "./Camera/CameraManager";
-import CameraMoveManager from "./Camera/CameraMovementManager";
 
 
 export default class Experience {
@@ -13,9 +12,7 @@ export default class Experience {
         this.mouse = new THREE.Vector2();
         this._isDebug = isDebug;
         this.cameraManager = new CameraManager();
-        this.cameraMoveManager = new CameraMoveManager(this.cameraManager.camera, this.cameraManager);
-        this.sceneManager = new SceneManager(this.cameraManager, this.cameraMoveManager);
-
+        this.sceneManager = new SceneManager(this.cameraManager);
 
         this.init();
         this._animate();
@@ -63,8 +60,4 @@ export default class Experience {
         this.camera.updateProjectionMatrix();
     }
 
-
-    manageLock() {
-
-    }
 }

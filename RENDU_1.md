@@ -10,7 +10,7 @@ Fonctions génériques mises à disposition pour les différentes classes du pro
 > **Math** : conversion de matrices, trigonométrie...<br>
 > **Audio**<br>
 > **Lights**<br>
-> **User Interaction** : eventListener, récupération de la position de la souris...<br>
+> **User InteractionManager** : eventListener, récupération de la position de la souris...<br>
 > **Mouvement**<br>
 > **Camera**<br>
 > **Particles**<br>

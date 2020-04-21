@@ -1,36 +1,40 @@
-import OutSideScene from "./OutSide/OutSideScene";
 import InsideScene from "./Museum/InsideScene";
-import InteractionManager from "../Interaction/Interaction";
+import InteractionManager from "../Interaction/InteractionManager";
+import appStates from '../../Helpers/ExperienceStates';
+import ScreenLoader from '../../Helpers/ScreenLoader';
+
 
 export default class SceneManager {
-    constructor(cameraManager, cameraMove) {
+    constructor(cameraManager) {
         this.currentScene = new InsideScene();
         this.interactionManager = new InteractionManager(this);
-        this.cameraMove = cameraMove;
         this.cameraManager = cameraManager;
         this.isLoading = true;
-        this.isCameraMoving = false;
+        this.currentState = appStates.LANDING;
+
         this.init()
     }
 
     init() {
         this._threeScene = this.currentScene.scene;
         this._sceneObjects = this.currentScene.objects;
-        this._huds = this.currentScene.huds;
-
         this._threeScene.add(this.cameraManager.controls.getObject());
-
         this.currentScene.init();
-
         this.loadScene();
     }
 
 
-    startMove() {
-        //
-        this.cameraMove.init();
-        this._threeScene.add(this.cameraMove.splineParent);
-        this.isCameraMoving = true;
+    nextState(state) {
+        this.currentState = state;
+
+        switch (state) {
+            case appStates.HALLWALK:
+                this.cameraManager.startMove("hallWalk");
+                break;
+            default:
+                console.log("State not found");
+                break;
+        }
     }
 
 
@@ -47,7 +51,7 @@ export default class SceneManager {
                 }
                 if (i >= this._sceneObjects.length - 1) {
                     this.isLoading = false;
-                    this.loader();
+                    ScreenLoader.loadScreen(false);
                 }
             })
         })
@@ -67,24 +71,14 @@ export default class SceneManager {
     }
 
     animateCamera() {
-        if (this.isCameraMoving) {
-            this.cameraMove.animateMove();
-        }
+        this.cameraManager.animateCamera();
     }
 
     loadScene() {
         this.loadSceneModels();
-        this.loader()
+        ScreenLoader.loadScreen(true);
     }
 
-    loader() {
-        const loader = document.getElementById('loader');
-        if (!this.isLoading) {
-            loader.style.display = 'none';
-            return
-        }
-        loader.style.display = 'block';
-    }
 
     get scene() {
         return this._threeScene;

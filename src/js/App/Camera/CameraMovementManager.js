@@ -1,11 +1,10 @@
 import * as THREE from 'three'
 
-import SplineManager from "./SplineManager";
+import SplineManager from "../3D/Splines/SplineManager";
 
 export default class CameraMovementManager {
-    constructor(camera,cameraManager) {
+    constructor(camera, cameraManager) {
         this.camera = camera;
-        this.splineManager = new SplineManager();
         this.binormal = new THREE.Vector3();
         this.normal = new THREE.Vector3();
         this.position = new THREE.Vector3();
@@ -14,16 +13,15 @@ export default class CameraMovementManager {
         this.time = 0;
         this.speed = 10;
         this.cameraManager = cameraManager;
+        SplineManager.init();
     }
 
-    init() {
-        this.splineManager.init();
-        this.splineParent = this.splineManager.parent;
+    move(splineName) {
         this.splineCamera = this.camera;
-        this.tubeGeometry = this.splineManager.tubeGeometry;
-        this.params = this.splineManager.params;
+        const spline = SplineManager.getSpline(splineName);
+        this.tubeGeometry = spline.tubeGeometry;
+        this.params = spline.params;
         this.cameraManager.lockCamera();
-
     }
 
     animateMove() {
