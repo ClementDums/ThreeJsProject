@@ -3,7 +3,7 @@ import Loader from '../../../Helpers/Loader'
 export default class Pantheon {
     constructor(position) {
         this._position = position;
-        this._path = './assets/3DModels/Pantheon_V4.gltf';
+        this._path = './assets/3DModels/Pantheon_V5.gltf';
         this._object = null;
         this._isAnimated = false;
     }

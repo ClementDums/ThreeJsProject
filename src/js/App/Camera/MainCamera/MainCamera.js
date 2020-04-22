@@ -11,7 +11,7 @@ export default class MainCamera {
     }
 
     init() {
-        this.setupFlashLight();
+        //this.setupFlashLight();
     }
 
     setupFlashLight() {

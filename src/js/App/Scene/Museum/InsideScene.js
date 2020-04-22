@@ -2,20 +2,20 @@ import * as THREE from 'three'
 import FilterWorkOfArt from '../../3D/WorkOfArt/FilterWorkOfArt'
 import Phone from '../../3D/Phone/Phone'
 import Pantheon from '../../3D/Decors/Pantheon'
-import CameraManager from "../../Camera/CameraManager";
 import SplineManager from "../../3D/Splines/SplineManager";
+import appState from "../../../Helpers/ExperienceStates"
+
 
 
 export default class InsideScene {
     constructor() {
-        this.cameraManager = new CameraManager();
         this._scene = new THREE.Scene();
         this._scene.name = "Inside";
         this.pantheon = new Pantheon(new THREE.Vector3(0, 239, -200));
         this.phone = new Phone(
             new THREE.Vector3(1, 1, 1));
 
-        this.statue = new FilterWorkOfArt(new THREE.Vector3(-170, 1, -200));
+        this.statue = new FilterWorkOfArt(new THREE.Vector3(0, 0, -2100));
         this.objects = [];
     }
 
@@ -32,7 +32,10 @@ export default class InsideScene {
 
 
     addSplines() {
-        SplineManager.newSpline("PantheonHall");
+        SplineManager.newSpline(appState.HALLWALK);
+        this._scene.add(SplineManager.currentSpline.parent);
+
+        SplineManager.newSpline(appState.GALLERYWALK);
         this._scene.add(SplineManager.currentSpline.parent);
     }
 

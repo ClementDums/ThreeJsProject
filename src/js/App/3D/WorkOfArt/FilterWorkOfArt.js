@@ -3,7 +3,7 @@ import Loader from '../../../Helpers/Loader'
 export default class FilterWorkOfArt {
     constructor(position) {
         this._position = position;
-        this._path = './assets/3DModels/Buste/Buste.glb';
+        this._path = './assets/3DModels/Filter/0.gltf';
         this._object = null;
         this._isAnimated = false;
     }

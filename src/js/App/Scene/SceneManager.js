@@ -1,41 +1,21 @@
 import InsideScene from "./Museum/InsideScene";
-import InteractionManager from "../Interaction/InteractionManager";
-import appStates from '../../Helpers/ExperienceStates';
 import ScreenLoader from '../../Helpers/ScreenLoader';
+import CameraManager from "../Camera/CameraManager";
 
 
-export default class SceneManager {
-    constructor(cameraManager) {
-        this.currentScene = new InsideScene();
-        this.interactionManager = new InteractionManager(this);
-        this.cameraManager = cameraManager;
-        this.isLoading = true;
-        this.currentState = appStates.LANDING;
+const SceneManager = {
 
-        this.init()
-    }
 
     init() {
+        this.currentScene = new InsideScene();
+
         this._threeScene = this.currentScene.scene;
         this._sceneObjects = this.currentScene.objects;
-        this._threeScene.add(this.cameraManager.controls.getObject());
+        this.isLoading = true;
+        this._threeScene.add(CameraManager.controls.getObject());
         this.currentScene.init();
         this.loadScene();
-    }
-
-
-    nextState(state) {
-        this.currentState = state;
-
-        switch (state) {
-            case appStates.HALLWALK:
-                this.cameraManager.startMove("hallWalk");
-                break;
-            default:
-                console.log("State not found");
-                break;
-        }
-    }
+    },
 
 
     loadSceneModels() {
@@ -47,7 +27,7 @@ export default class SceneManager {
                 if (!item._isHud) {
                     this._threeScene.add(obj);
                 } else {
-                    this.cameraManager.mainCamera.camera.add(obj)
+                    CameraManager.mainCamera.camera.add(obj)
                 }
                 if (i >= this._sceneObjects.length - 1) {
                     this.isLoading = false;
@@ -55,12 +35,12 @@ export default class SceneManager {
                 }
             })
         })
-    }
+    },
 
     animate() {
         this.animateSceneModels();
         this.animateCamera();
-    }
+    },
 
     animateSceneModels() {
         this._sceneObjects.forEach((item) => {
@@ -68,19 +48,20 @@ export default class SceneManager {
                 item.animate()
             }
         });
-    }
+    },
 
     animateCamera() {
-        this.cameraManager.animateCamera();
-    }
+        CameraManager.animateCamera();
+    },
 
     loadScene() {
         this.loadSceneModels();
         ScreenLoader.loadScreen(true);
-    }
+    },
 
 
     get scene() {
         return this._threeScene;
     }
-}
+};
+export default SceneManager

@@ -2,17 +2,26 @@ import * as THREE from 'three'
 
 import SceneManager from './Scene/SceneManager'
 import CameraManager from "./Camera/CameraManager";
-
+import RaycasterManager from "./Interaction/RaycasterManager"
+import DomInteractionManager from "./Interaction/DomInteractionManager"
+import StatesManager from "./StatesManager"
+import UIManager from "./UI/UIManager"
 
 export default class Experience {
 
     constructor(isDebug) {
         console.log("Experience constructor");
         this.windowHalf = new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2);
-        this.mouse = new THREE.Vector2();
+        this._mouse = new THREE.Vector2();
         this._isDebug = isDebug;
-        this.cameraManager = new CameraManager();
-        this.sceneManager = new SceneManager(this.cameraManager);
+
+        CameraManager.init();
+        SceneManager.init();
+        DomInteractionManager.init();
+        StatesManager.init();
+        UIManager.init();
+
+        //Experience states Manager
 
         this.init();
         this._animate();
@@ -21,7 +30,7 @@ export default class Experience {
     init() {
         this.container = document.getElementById('game');
 
-        this.scene = this.sceneManager.scene;
+        this.scene = SceneManager.scene;
         console.log(this.scene);
         this.scene.background = new THREE.Color(0xff00f0);
 
@@ -31,11 +40,13 @@ export default class Experience {
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-        this.camera = this.cameraManager.camera;
-        console.log(this.camera);
-        this.scene.add(this.cameraManager.camera)
+        this.camera = CameraManager.camera;
+        this.scene.add(CameraManager.camera);
         this.container.appendChild(this.renderer.domElement);
         window.addEventListener('resize', this.onResize.bind(this));
+        window.addEventListener('mousemove', this.onDocumentMouseMove.bind(this), false);
+        window.addEventListener('click', this.onDocumentMouseClick.bind(this), false);
+
     }
 
     _animate() {
@@ -45,9 +56,10 @@ export default class Experience {
 
     render() {
         //Animate Scene
-        this.sceneManager.animate();
+        SceneManager.animate();
+        RaycasterManager.getTouchedElement(this._mouse, CameraManager.camera, this.scene);
         //Render
-        this.renderer.render(this.scene, this.cameraManager.camera);
+        this.renderer.render(this.scene, CameraManager.camera);
     }
 
 
@@ -58,6 +70,15 @@ export default class Experience {
 
         this.camera.aspect = width / height;
         this.camera.updateProjectionMatrix();
+    }
+
+    onDocumentMouseMove(event) {
+        this._mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        this._mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    }
+
+    onDocumentMouseClick(){
+       RaycasterManager.getClickedOnTouchedElement();
     }
 
 }
