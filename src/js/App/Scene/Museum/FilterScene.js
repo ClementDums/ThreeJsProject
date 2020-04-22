@@ -1,21 +1,12 @@
 import * as THREE from 'three'
 import FilterWorkOfArt from '../../3D/WorkOfArt/FilterWorkOfArt'
 import Phone from '../../3D/Phone/Phone'
-import Pantheon from '../../3D/Decors/Pantheon'
-import SplineManager from "../../3D/Splines/SplineManager";
-import appState from "../../../Helpers/ExperienceStates"
-import CameraManager from "../../Camera/CameraManager"
-import appStates from '../../../Helpers/ExperienceStates'
-import UIManager from '../../UI/UIManager'
-import RaycasterManager from "../../Interaction/RaycasterManager";
-import InteractionManager from "../../Interaction/InteractionManager";
 
 
-export default class InsideScene {
+export default class FilterScene {
     constructor() {
         this._scene = new THREE.Scene();
-        this._scene.name = "Inside";
-        this.pantheon = new Pantheon(new THREE.Vector3(0, 239, -200));
+        this._scene.name = "FilterScene";
         this.phone = new Phone(
             new THREE.Vector3(1, 1, 1));
 
@@ -24,24 +15,18 @@ export default class InsideScene {
     }
 
     init() {
-        this.addSplines();
         this.addLights();
-        //this.addGround();
+        this.addGround();
+        var geometry = new THREE.BoxGeometry(1, 1, 1);
+        var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
+        var cube = new THREE.Mesh(geometry, material);
+        this._scene.add(cube);
 
         this.objects.push(this.statue);
         this.objects.push(this.phone);
-        this.objects.push(this.pantheon);
 
     }
 
-
-    addSplines() {
-        SplineManager.newSpline(appState.HALLWALK);
-        this._scene.add(SplineManager.currentSpline.parent);
-
-        SplineManager.newSpline(appState.GALLERYWALK);
-        this._scene.add(SplineManager.currentSpline.parent);
-    }
 
     addLights() {
         let flash = new THREE.PointLight(0xffffff, 30, 2000, 1.7);
@@ -67,26 +52,6 @@ export default class InsideScene {
         mesh.receiveShadow = true;
         this._scene.add(mesh);
     }
-
-
-    static hallWalk() {
-        CameraManager.startMove(appStates.HALLWALK);
-    }
-
-    static galleryWalk() {
-        CameraManager.startMove(appStates.GALLERYWALK);
-    }
-
-    static galleryScreen() {
-        UIManager.showGalleryScreen();
-    }
-
-    static clickOnFilter() {
-        RaycasterManager.isActive = true;
-        RaycasterManager.identifier = "11";
-        InteractionManager.clickListener = true;
-    }
-
 
     get scene() {
         return this._scene

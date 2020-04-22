@@ -3,7 +3,7 @@ import * as THREE from 'three'
 import SceneManager from './Scene/SceneManager'
 import CameraManager from "./Camera/CameraManager";
 import RaycasterManager from "./Interaction/RaycasterManager"
-import DomInteractionManager from "./Interaction/DomInteractionManager"
+import InteractionManager from "./Interaction/InteractionManager"
 import StatesManager from "./StatesManager"
 import UIManager from "./UI/UIManager"
 
@@ -14,10 +14,11 @@ export default class Experience {
         this.windowHalf = new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2);
         this._mouse = new THREE.Vector2();
         this._isDebug = isDebug;
+        this.currentObjectClicked = null;
 
         CameraManager.init();
         SceneManager.init();
-        DomInteractionManager.init();
+        InteractionManager.init();
         StatesManager.init();
         UIManager.init();
 
@@ -57,9 +58,10 @@ export default class Experience {
     render() {
         //Animate Scene
         SceneManager.animate();
-        RaycasterManager.getTouchedElement(this._mouse, CameraManager.camera, this.scene);
+
+        this.currentObjectClicked = RaycasterManager.getTouchedElement(this._mouse, CameraManager.camera, this.scene);
         //Render
-        this.renderer.render(this.scene, CameraManager.camera);
+        this.renderer.render(SceneManager.scene, CameraManager.camera);
     }
 
 
@@ -77,8 +79,9 @@ export default class Experience {
         this._mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
     }
 
-    onDocumentMouseClick(){
-       RaycasterManager.getClickedOnTouchedElement();
+    onDocumentMouseClick() {
+       const currentObjectClicked =  RaycasterManager.getClickedOnTouchedElement();
+       InteractionManager.updateClick(currentObjectClicked);
     }
 
 }

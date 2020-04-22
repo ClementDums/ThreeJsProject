@@ -1,9 +1,12 @@
 import appState from "../../Helpers/ExperienceStates"
 import StatesManager from "../StatesManager"
 
-const DomInteractionManager = {
+const InteractionManager = {
+
     init() {
         this.el = document.getElementById("game");
+        this.clickListener = false;
+        this.currentObjectClicked = null;
         this.hallClick();
         this.galleryClick();
     },
@@ -20,6 +23,15 @@ const DomInteractionManager = {
             this.el.querySelector("#gallery").style.display = "none";
             StatesManager.nextState(appState.GALLERYWALK);
         })
+    },
+
+    updateClick(name){
+        this.currentObjectClicked = name;
+        StatesManager.clicked(name);
     }
+
+
+
+
 };
-export default DomInteractionManager;
+export default InteractionManager;
