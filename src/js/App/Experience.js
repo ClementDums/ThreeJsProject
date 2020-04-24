@@ -6,7 +6,12 @@ import RaycasterManager from "./Interaction/RaycasterManager"
 import InteractionManager from "./Interaction/InteractionManager"
 import StatesManager from "./StatesManager"
 import UIManager from "./UI/UIManager"
-import TWWEEN from "@tweenjs/tween.js"
+import TWEEN from "@tweenjs/tween.js"
+import {EffectComposer} from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import PostProcessingManager from './PostProcessing/PostProcessingManager'
+import {RenderPass} from 'three/examples/jsm/postprocessing/RenderPass.js';
+import {ShaderPass} from 'three/examples/jsm/postprocessing/ShaderPass.js';
+import {FXAAShader} from 'three/examples/jsm/shaders/FXAAShader.js';
 
 export default class Experience {
 
@@ -16,6 +21,7 @@ export default class Experience {
         this._mouse = new THREE.Vector2();
         this._isDebug = isDebug;
         this.currentObjectClicked = null;
+        this.composer = null;
 
         CameraManager.init();
         SceneManager.init();
@@ -45,16 +51,30 @@ export default class Experience {
         this.camera = CameraManager.camera;
         this.scene.add(CameraManager.camera);
         this.container.appendChild(this.renderer.domElement);
+
+        this.postProcessing();
+
         window.addEventListener('resize', this.onResize.bind(this));
         window.addEventListener('mousemove', this.onDocumentMouseMove.bind(this), false);
         window.addEventListener('click', this.onDocumentMouseClick.bind(this), false);
 
     }
 
+    postProcessing() {
+        PostProcessingManager.init(SceneManager.scene, CameraManager.camera);
+        this.composer = new EffectComposer(this.renderer);
+        const renderPass = new RenderPass(SceneManager.scene, CameraManager.camera);
+        this.composer.addPass(renderPass);
+        this.composer.addPass(PostProcessingManager.outlinePass);
+        const effectFXAA = new ShaderPass(FXAAShader);
+        effectFXAA.uniforms['resolution'].value.set(1 / window.innerWidth, 1 / window.innerHeight);
+        this.composer.addPass(effectFXAA);
+    }
+
     _animate() {
         this.render();
         requestAnimationFrame(this._animate.bind(this));
-        TWWEEN.update()
+        TWEEN.update()
     }
 
     render() {
@@ -62,7 +82,8 @@ export default class Experience {
         SceneManager.animate();
         this.currentObjectClicked = RaycasterManager.getTouchedElement(this._mouse, CameraManager.camera, this.scene);
         //Render
-        this.renderer.render(SceneManager.scene, CameraManager.camera);
+        this.composer.render();
+        //this.renderer.render(SceneManager.scene, CameraManager.camera);
     }
 
 
@@ -70,6 +91,7 @@ export default class Experience {
         const width = window.innerWidth;
         const height = window.innerHeight;
         this.renderer.setSize(width, height);
+        this.composer.setSize(width, height);
 
         this.camera.aspect = width / height;
         this.camera.updateProjectionMatrix();
@@ -81,8 +103,8 @@ export default class Experience {
     }
 
     onDocumentMouseClick() {
-       const currentObjectClicked =  RaycasterManager.getClickedOnTouchedElement();
-       InteractionManager.updateClick(currentObjectClicked);
+        const currentObjectClicked = RaycasterManager.getClickedOnTouchedElement();
+        InteractionManager.updateClick(currentObjectClicked);
     }
 
 }

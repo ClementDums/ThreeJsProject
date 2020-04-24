@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import PostProcessingManager from '../PostProcessing/PostProcessingManager'
 
 const RaycasterManager = {
         _raycaster: new THREE.Raycaster(),
@@ -13,19 +14,14 @@ const RaycasterManager = {
                 let intersects = this._raycaster.intersectObjects(scene.children, true);
                 if (intersects.length > 0) {
                     if (this.INTERSECTED !== intersects[0].object) {
-                        // if (this.INTERSECTED) this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
                         this.INTERSECTED = intersects[0].object;
                         if (this.identifiers.includes(this.INTERSECTED.name)) {
-                            var outlineMaterial = new THREE.MeshBasicMaterial({color: 0x00ffff, side: THREE.BackSide});
-
-                            console.log("ye")
-                            this.INTERSECTED.material = outlineMaterial;
-                            //this.INTERSECTED.currentHex = this.INTERSECTED.material.emissive.getHex();
-                            //this.INTERSECTED.material.emissive.setHex(0xff0000);
+                            PostProcessingManager.setOutlineObject(this.INTERSECTED)
                         }
                         else {
-                            //this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
-                            this.INTERSECTED = null;
+                            if (PostProcessingManager.outlineObject) {
+                                PostProcessingManager.setOutlineObject(null)
+                            }
                         }
                     }
                 }
