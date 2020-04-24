@@ -1,7 +1,10 @@
+import UIManager from "../../../UI/UIManager";
+
 const FilterManager = {
     objects: [],
     currentObject: null,
     i: 0,
+
 
     init(statue0, statue1, statue2, statue3) {
         this.objects.push(statue0, statue1, statue2, statue3);
@@ -32,6 +35,13 @@ const FilterManager = {
             this.i -= 1;
         }
     },
+
+    startStory() {
+        UIManager.startTextDisplay(document.getElementById("filterStory"));
+    }
+
+
 };
+
 
 export default FilterManager;

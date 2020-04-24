@@ -16,6 +16,10 @@ const RaycasterManager = {
                         // if (this.INTERSECTED) this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
                         this.INTERSECTED = intersects[0].object;
                         if (this.identifiers.includes(this.INTERSECTED.name)) {
+                            var outlineMaterial = new THREE.MeshBasicMaterial({color: 0x00ffff, side: THREE.BackSide});
+
+                            console.log("ye")
+                            this.INTERSECTED.material = outlineMaterial;
                             //this.INTERSECTED.currentHex = this.INTERSECTED.material.emissive.getHex();
                             //this.INTERSECTED.material.emissive.setHex(0xff0000);
                         }
@@ -30,7 +34,7 @@ const RaycasterManager = {
         ,
 
         getClickedOnTouchedElement() {
-            if(this.INTERSECTED){
+            if (this.INTERSECTED) {
                 console.log(this.INTERSECTED.name);
                 return this.INTERSECTED.name;
             }

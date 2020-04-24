@@ -53,8 +53,13 @@ export default class FilterScene {
             this.nextFilter()
         }
         if (name === "story") {
-            this.prevFilter()
+            this.prevFilter();
+            this.startStory();
         }
+    }
+
+    startStory(){
+        FilterManager.startStory();
     }
 
     filterModule() {
