@@ -42,6 +42,10 @@ const SceneManager = {
         })
     },
 
+    phoneScreenCamera(){
+
+    },
+
     changeScene(scene) {
         switch (scene) {
             case "filter":

@@ -6,6 +6,7 @@ import RaycasterManager from "./Interaction/RaycasterManager"
 import InteractionManager from "./Interaction/InteractionManager"
 import StatesManager from "./StatesManager"
 import UIManager from "./UI/UIManager"
+import TextureManager from "./Texture/TextureManager"
 import TWEEN from "@tweenjs/tween.js"
 import {EffectComposer} from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import PostProcessingManager from './PostProcessing/PostProcessingManager'
@@ -28,6 +29,7 @@ export default class Experience {
         InteractionManager.init();
         StatesManager.init();
         UIManager.init();
+        TextureManager.init();
 
         //Experience states Manager
 
@@ -51,6 +53,7 @@ export default class Experience {
         this.camera = CameraManager.camera;
         this.scene.add(CameraManager.camera);
         this.container.appendChild(this.renderer.domElement);
+
 
         this.postProcessing();
 
@@ -82,8 +85,13 @@ export default class Experience {
         SceneManager.animate();
         this.currentObjectClicked = RaycasterManager.getTouchedElement(this._mouse, CameraManager.camera, this.scene);
         //Render
+        this.renderer.setRenderTarget(TextureManager.rtTexture);
+        this.renderer.clear();
+        this.renderer.render(SceneManager.scene, CameraManager.phoneCamera);
+
+        this.renderer.setRenderTarget(null);
+        this.renderer.clear();
         this.composer.render();
-        //this.renderer.render(SceneManager.scene, CameraManager.camera);
     }
 
 

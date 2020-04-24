@@ -1,4 +1,5 @@
 import MainCamera from "./MainCamera/MainCamera";
+import PhoneCamera from "./PhoneCamera/PhoneCamera";
 import CameraLock from "./CameraLock";
 import CameraMovement from "./CameraMovement";
 import StatesManager from "../StatesManager";
@@ -6,6 +7,7 @@ import StatesManager from "../StatesManager";
 const CameraManager = {
     init() {
         this.mainCamera = new MainCamera();
+        this._phoneCamera = new PhoneCamera();
         this.cameraMovementManager = new CameraMovement(this.mainCamera.camera, this);
         this.cameraLockManager = new CameraLock(this);
         this.isLock = true;
@@ -42,6 +44,9 @@ const CameraManager = {
 
     get camera() {
         return this._camera;
+    },
+    get phoneCamera() {
+        return this._phoneCamera.camera;
     }
 };
 

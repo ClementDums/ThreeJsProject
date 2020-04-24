@@ -9,9 +9,9 @@ const PostProcessingManager = {
     },
 
     setupOutline() {
-        this.outlinePass.edgeStrength = 3.4;
+        this.outlinePass.edgeStrength = 10;
         this.outlinePass.edgeGlow = 1;
-        this.outlinePass.edgeThickness = 3.3;
+        this.outlinePass.edgeThickness = 2;
         this.outlinePass.pulsePeriod = 3;
     },
 

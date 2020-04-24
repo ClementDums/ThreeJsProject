@@ -91,7 +91,7 @@ export default class FilterScene {
     }
 
     addGround() {
-        var material = new THREE.MeshPhongMaterial({color: 0x808080, dithering: true});
+        var material = new THREE.MeshPhongMaterial({color: 0x0000ff, dithering: true});
         var geometry = new THREE.PlaneBufferGeometry(2000, 2000);
         var mesh = new THREE.Mesh(geometry, material);
         mesh.position.set(0, -1, 0);
