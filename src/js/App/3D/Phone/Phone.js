@@ -25,5 +25,9 @@ export default class Phone {
         this._object.position.y = -3;
     }
 
+    setFilter(){
+
+    }
+
 
 }

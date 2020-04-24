@@ -1,5 +1,4 @@
 import InsideScene from "./Museum/InsideScene";
-import appStates from '../../Helpers/ExperienceStates';
 import ScreenLoader from '../../Helpers/ScreenLoader';
 import CameraManager from "../Camera/CameraManager";
 import FilterScene from "./Museum/FilterScene";
@@ -9,7 +8,8 @@ const SceneManager = {
 
 
     init() {
-        this.currentScene = new InsideScene();
+        // this.currentScene = new InsideScene();
+        this.currentScene = new FilterScene();
         this.setupScene();
     },
 
@@ -45,10 +45,7 @@ const SceneManager = {
     changeScene(scene) {
         switch (scene) {
             case "filter":
-                console.log("ok")
-
                 this.currentScene = new FilterScene();
-
         }
         this.setupScene();
     },

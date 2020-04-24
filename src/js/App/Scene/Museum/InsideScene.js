@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import FilterWorkOfArt from '../../3D/WorkOfArt/FilterWorkOfArt'
+import FilterWorkOfArt from '../../3D/WorkOfArt/Filter/FilterWorkOfArt'
 import Phone from '../../3D/Phone/Phone'
 import Pantheon from '../../3D/Decors/Pantheon'
 import SplineManager from "../../3D/Splines/SplineManager";

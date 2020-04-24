@@ -1,14 +1,12 @@
 import appStates from '../Helpers/ExperienceStates';
-import UIManager from './UI/UIManager'
-import RaycasterManager from './Interaction/RaycasterManager'
-import CameraManager from './Camera/CameraManager'
 import SceneManager from './Scene/SceneManager'
 import InsideScene from "./Scene/Museum/InsideScene";
+import FilterScene from "./Scene/Museum/FilterScene";
 
 const StatesManager = {
 
     init() {
-        this.currentState = appStates.LANDING;
+        this.currentState = appStates.EXPERIENCE1SCENE;
         this.scene = SceneManager.currentScene;
     },
 
@@ -18,10 +16,14 @@ const StatesManager = {
     },
 
     clicked(name) {
-        if (name === "11") {
+        if (name === "21") {
+            console.log(this.currentState);
             if (this.currentState === appStates.FILTER) {
                 this.nextState(appStates.EXPERIENCE1SCENE);
             }
+        }
+        if (this.currentState === appStates.EXPERIENCE1SCENE) {
+            SceneManager.currentScene.clicked(name);
         }
     },
 
@@ -46,6 +48,7 @@ const StatesManager = {
             case appStates.EXPERIENCE1SCENE:
                 SceneManager.changeScene("filter");
                 break;
+
 
             default:
                 console.log("State not found");

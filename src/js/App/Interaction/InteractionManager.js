@@ -14,7 +14,7 @@ const InteractionManager = {
     hallClick() {
         this.el.querySelector("#hallButton").addEventListener("click", () => {
             this.el.querySelector("#hall").style.display = "none";
-            StatesManager.nextState(appState.HALLWALK);
+            //StatesManager.nextState(appState.HALLWALK);
         })
     },
 

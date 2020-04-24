@@ -3,7 +3,7 @@ import * as THREE from 'three'
 const RaycasterManager = {
         _raycaster: new THREE.Raycaster(),
         isActive: false,
-        identifier: null,
+        identifiers: [],
         INTERSECTED: null,
 
 
@@ -13,17 +13,15 @@ const RaycasterManager = {
                 let intersects = this._raycaster.intersectObjects(scene.children, true);
                 if (intersects.length > 0) {
                     if (this.INTERSECTED !== intersects[0].object) {
-                        if (this.INTERSECTED) this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
+                        // if (this.INTERSECTED) this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
                         this.INTERSECTED = intersects[0].object;
-                        if (this.INTERSECTED.name === this.identifier) {
-                            this.INTERSECTED.currentHex = this.INTERSECTED.material.emissive.getHex();
-                            this.INTERSECTED.material.emissive.setHex(0xff0000);
+                        if (this.identifiers.includes(this.INTERSECTED.name)) {
+                            //this.INTERSECTED.currentHex = this.INTERSECTED.material.emissive.getHex();
+                            //this.INTERSECTED.material.emissive.setHex(0xff0000);
                         }
                         else {
-                            this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
-
+                            //this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
                             this.INTERSECTED = null;
-
                         }
                     }
                 }
@@ -33,6 +31,7 @@ const RaycasterManager = {
 
         getClickedOnTouchedElement() {
             if(this.INTERSECTED){
+                console.log(this.INTERSECTED.name);
                 return this.INTERSECTED.name;
             }
         }

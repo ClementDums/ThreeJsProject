@@ -5,6 +5,17 @@ html {
     overflow: hidden;
     background-color: $black-color;
   }
+
+  #uiText {
+    position: absolute;
+    width: 100%;
+    height: 150px;
+    background-color: rgba(0, 0, 0, 0.5);
+    bottom: 0;
+    padding-left: 20%;
+    padding-right: 20%;
+    color:#fff;
+  }
   #blocker, #loader, .buttonContainer {
     position: absolute;
     width: 100%;

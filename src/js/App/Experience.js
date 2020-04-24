@@ -6,6 +6,7 @@ import RaycasterManager from "./Interaction/RaycasterManager"
 import InteractionManager from "./Interaction/InteractionManager"
 import StatesManager from "./StatesManager"
 import UIManager from "./UI/UIManager"
+import TWWEEN from "@tweenjs/tween.js"
 
 export default class Experience {
 
@@ -53,12 +54,12 @@ export default class Experience {
     _animate() {
         this.render();
         requestAnimationFrame(this._animate.bind(this));
+        TWWEEN.update()
     }
 
     render() {
         //Animate Scene
         SceneManager.animate();
-
         this.currentObjectClicked = RaycasterManager.getTouchedElement(this._mouse, CameraManager.camera, this.scene);
         //Render
         this.renderer.render(SceneManager.scene, CameraManager.camera);
