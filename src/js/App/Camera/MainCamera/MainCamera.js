@@ -7,6 +7,8 @@ export default class MainCamera {
         this._camera.position.z = 800;
         this._camera.position.z = 200;
         this._camera.position.y = 100;
+        this._camera.layers.enable(1);
+
         this.init();
 
     }

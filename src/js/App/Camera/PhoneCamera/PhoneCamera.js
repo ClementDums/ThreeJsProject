@@ -14,7 +14,9 @@ export default class PhoneCamera {
         this._camera.position.z = 500;
         this._camera.position.y = 100;
         this._camera.name = "PhoneCamera";
-        console.log(this._camera)
+        this._camera.layers.disable(1);
+
+        console.log(this._camera.layers)
 
     }
 

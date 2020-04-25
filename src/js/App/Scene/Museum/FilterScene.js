@@ -4,6 +4,7 @@ import Phone from '../../3D/Phone/Phone'
 import RaycasterManager from "../../Interaction/RaycasterManager";
 import InteractionManager from "../../Interaction/InteractionManager";
 import FilterManager from "../../3D/WorkOfArt/Filter/FilterManager";
+import CameraManager from "../../Camera/CameraManager";
 
 
 export default class FilterScene {
@@ -29,6 +30,8 @@ export default class FilterScene {
         cube.name = "story";
         cube.position.set(-80, 50, -10);
         this._scene.add(cube);
+        console.log(cube);
+
 
         this.objects.push(this.statue0);
         this.objects.push(this.statue1);
@@ -50,20 +53,24 @@ export default class FilterScene {
 
     clicked(name) {
         if (name === "Filter") {
-            this.nextFilter()
+            this.filterModule()
         }
         if (name === "story") {
             this.prevFilter();
             this.startStory();
+            this.stopFilterModule()
         }
     }
 
-    startStory(){
+    startStory() {
         FilterManager.startStory();
     }
 
+    stopFilterModule(){
+        this.phone.setSmall();
+    }
     filterModule() {
-        this.phone.setFilter();
+        this.phone.setFullscreen();
     }
 
     nextFilter() {

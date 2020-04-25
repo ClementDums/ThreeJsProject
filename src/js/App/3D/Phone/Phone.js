@@ -1,6 +1,7 @@
 import Loader from '../../../Helpers/Loader'
 import TextureManager from '../../Texture/TextureManager'
 import * as THREE from 'three'
+import TWEEN from "@tweenjs/tween.js"
 
 export default class Phone {
     constructor(scale) {
@@ -11,6 +12,7 @@ export default class Phone {
         this._object = null;
         this._isHud = true;
         this.screen = null;
+
     }
 
 
@@ -22,18 +24,39 @@ export default class Phone {
     setup() {
         this._object.name = "Phone";
         //this._object.scale.set(this._scale.x, this._scale.y, this._scale.z);
+        //Small position
         // this._object.position.z = -8;
         // this._object.position.x = 4.5;
         // this._object.position.y = -3;
-
-        this._object.position.z = -80;
+        //Big position
         this._object.position.x = 42;
         this._object.position.y = -67;
+        this._object.position.z = -80;
+        this._object.layers.set(1);
+        console.log(this._object)
         this.setScreenTexture()
+    }
+
+    setFullscreen() {
+        //Fullscreen position
+        const tween = new TWEEN.Tween(this._object.position) // Create a new tween that modifies 'coords'.
+            .to({x: -2, y: -30, z: -65}, 1000) // Move to (300, 200) in 1 second.
+            .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
+            .start();
+    }
+
+    setSmall() {
+        const tween = new TWEEN.Tween(this._object.position) // Create a new tween that modifies 'coords'.
+            .to({x: 42, y: -67, z: -80}, 1000) // Move to (300, 200) in 1 second.
+            .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
+            .start();
+
     }
 
     setScreenTexture() {
         this._object.traverse((child) => {
+            child.layers.set(1);
+
             if (child.name === "ECRAN") {
                 this.screen = child.children[0];
             }
@@ -43,10 +66,6 @@ export default class Phone {
         this.screen.material = material2;
         //this.screen.material.map.repeat.set(0.5,1);
         console.log(this.screen)
-    }
-
-    setFilter() {
-
     }
 
 
