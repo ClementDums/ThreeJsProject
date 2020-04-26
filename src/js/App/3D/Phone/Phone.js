@@ -2,6 +2,8 @@ import Loader from '../../../Helpers/Loader'
 import TextureManager from '../../Texture/TextureManager'
 import * as THREE from 'three'
 import TWEEN from "@tweenjs/tween.js"
+import SceneManager from "../../Scene/SceneManager";
+import CameraManager from "../../Camera/CameraManager";
 
 export default class Phone {
     constructor(scale) {
@@ -33,8 +35,7 @@ export default class Phone {
         this._object.position.y = -67;
         this._object.position.z = -80;
         this._object.layers.set(1);
-        console.log(this._object)
-        this.setScreenTexture()
+       // this.setScreenTexture()
     }
 
     setFullscreen() {
@@ -43,6 +44,8 @@ export default class Phone {
             .to({x: -2, y: -30, z: -65}, 1000) // Move to (300, 200) in 1 second.
             .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
             .start();
+        CameraManager.phoneCamera.zoomInFilter()
+
     }
 
     setSmall() {
@@ -50,7 +53,7 @@ export default class Phone {
             .to({x: 42, y: -67, z: -80}, 1000) // Move to (300, 200) in 1 second.
             .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
             .start();
-
+        CameraManager.phoneCamera.zoomOutFilter();
     }
 
     setScreenTexture() {
@@ -67,6 +70,7 @@ export default class Phone {
         //this.screen.material.map.repeat.set(0.5,1);
         console.log(this.screen)
     }
+
 
 
 }

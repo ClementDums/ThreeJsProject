@@ -26,6 +26,7 @@ export default class InsideScene {
     init() {
         this.addSplines();
         this.addLights();
+        this.addSkybox();
         //this.addGround();
 
         this.objects.push(this.statue);
@@ -68,6 +69,9 @@ export default class InsideScene {
         this._scene.add(mesh);
     }
 
+    addSkybox(){
+
+    }
 
     static hallWalk() {
         CameraManager.startMove(appStates.HALLWALK);

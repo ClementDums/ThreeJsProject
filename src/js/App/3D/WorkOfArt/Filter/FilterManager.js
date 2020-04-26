@@ -4,6 +4,7 @@ const FilterManager = {
     objects: [],
     currentObject: null,
     i: 0,
+    isFiltered: false,
 
 
     init(statue0, statue1, statue2, statue3) {
@@ -24,6 +25,9 @@ const FilterManager = {
             this.currentObject = this.objects[this.i + 1];
             this.setCurrentActive();
             this.i += 1;
+            if (this.i === this.objects.length-1){
+                this.endFilter()
+            }
         }
     },
 
@@ -38,6 +42,15 @@ const FilterManager = {
 
     startStory() {
         UIManager.startTextDisplay(document.getElementById("filterStory"));
+    },
+
+    startFilter(phone) {
+        this.isFiltered = true;
+        phone.setFullscreen();
+    },
+
+    endFilter(){
+        console.log("end")
     }
 
 

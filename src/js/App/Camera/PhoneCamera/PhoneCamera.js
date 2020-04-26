@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import TWEEN from "@tweenjs/tween.js"
 
 export default class PhoneCamera {
     constructor() {
@@ -18,6 +19,20 @@ export default class PhoneCamera {
 
         console.log(this._camera.layers)
 
+    }
+
+    zoomInFilter() {
+        const tweenCam = new TWEEN.Tween(this._camera.position) // Create a new tween that modifies 'coords'.
+            .to({z: 250}, 1000) // Move to (300, 200) in 1 second.
+            .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
+            .start();
+    }
+
+    zoomOutFilter() {
+        const tweenCam = new TWEEN.Tween(this._camera.position) // Create a new tween that modifies 'coords'.
+            .to({z: 500}, 1000) // Move to (300, 200) in 1 second.
+            .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
+            .start();
     }
 
     get camera() {

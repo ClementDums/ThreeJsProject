@@ -46,7 +46,7 @@ const CameraManager = {
         return this._camera;
     },
     get phoneCamera() {
-        return this._phoneCamera.camera;
+        return this._phoneCamera;
     }
 };
 

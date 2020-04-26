@@ -8,8 +8,8 @@ const SceneManager = {
 
 
     init() {
-        // this.currentScene = new InsideScene();
-        this.currentScene = new FilterScene();
+        this.currentScene = new InsideScene();
+        //this.currentScene = new FilterScene();
         this.setupScene();
     },
 

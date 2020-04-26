@@ -6,7 +6,7 @@ import FilterScene from "./Scene/Museum/FilterScene";
 const StatesManager = {
 
     init() {
-        this.currentState = appStates.EXPERIENCE1SCENE;
+        this.currentState = appStates.LANDING;
         this.scene = SceneManager.currentScene;
     },
 

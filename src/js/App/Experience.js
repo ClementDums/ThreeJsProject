@@ -87,7 +87,7 @@ export default class Experience {
         //Render
         this.renderer.setRenderTarget(TextureManager.rtTexture);
         this.renderer.clear();
-        this.renderer.render(SceneManager.scene, CameraManager.phoneCamera);
+        this.renderer.render(SceneManager.scene, CameraManager.phoneCamera.camera);
 
         this.renderer.setRenderTarget(null);
         this.renderer.clear();

@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import FilterWorkOfArt from '../../3D/WorkOfArt/Filter/FilterWorkOfArt'
+import Hair from '../../3D/WorkOfArt/Filter/Hair'
 import Phone from '../../3D/Phone/Phone'
 import RaycasterManager from "../../Interaction/RaycasterManager";
 import InteractionManager from "../../Interaction/InteractionManager";
@@ -13,7 +14,7 @@ export default class FilterScene {
         this._scene.name = "FilterScene";
         this.phone = new Phone(
             new THREE.Vector3(1, 1, 1));
-
+        this.hair = new Hair(new THREE.Vector3(0, 80, 80));
         this.statue0 = new FilterWorkOfArt(new THREE.Vector3(0, 80, 80), "0");
         this.statue1 = new FilterWorkOfArt(new THREE.Vector3(0, -80, 80), "1");
         this.statue2 = new FilterWorkOfArt(new THREE.Vector3(0, -80, 80), "2");
@@ -30,9 +31,24 @@ export default class FilterScene {
         cube.name = "story";
         cube.position.set(-80, 50, -10);
         this._scene.add(cube);
-        console.log(cube);
 
 
+        var geometry = new THREE.BoxGeometry(20, 20, 20);
+        var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
+        var cube = new THREE.Mesh(geometry, material);
+        cube.name = "prev";
+        cube.position.set(80, 50, -10);
+        this._scene.add(cube);
+
+        var geometry = new THREE.BoxGeometry(20, 20, 20);
+        var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
+        var cube = new THREE.Mesh(geometry, material);
+        cube.name = "next";
+        cube.position.set(110, 50, -10);
+        this._scene.add(cube);
+
+
+        this.objects.push(this.hair);
         this.objects.push(this.statue0);
         this.objects.push(this.statue1);
         this.objects.push(this.statue2);
@@ -52,11 +68,21 @@ export default class FilterScene {
     }
 
     clicked(name) {
-        if (name === "Filter") {
-            this.filterModule()
+        if (name === "prev") {
+          this.prevFilter()
+        }
+        if (name === "next") {
+          this.nextFilter()
         }
         if (name === "story") {
-            this.prevFilter();
+            this.startStory();
+            this.stopFilterModule()
+        }
+        if (name === "Filter") {
+            RaycasterManager.identifiers.splice("Filter");
+            this.filterModule();
+        }
+        if (name === "story") {
             this.startStory();
             this.stopFilterModule()
         }
@@ -66,11 +92,13 @@ export default class FilterScene {
         FilterManager.startStory();
     }
 
-    stopFilterModule(){
+    stopFilterModule() {
         this.phone.setSmall();
     }
+
+
     filterModule() {
-        this.phone.setFullscreen();
+        FilterManager.startFilter(this.phone);
     }
 
     nextFilter() {
