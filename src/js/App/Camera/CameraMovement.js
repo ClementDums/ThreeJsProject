@@ -1,7 +1,9 @@
 import * as THREE from 'three'
+import TWEEN from "@tweenjs/tween.js"
 
 import SplineManager from "../3D/Splines/SplineManager";
 import CameraManager from "./CameraManager";
+import SceneManager from "../Scene/SceneManager";
 
 
 export default class CameraMovement {
@@ -18,7 +20,7 @@ export default class CameraMovement {
         SplineManager.init();
     }
 
-    move(splineName) {
+    moveSpline(splineName) {
         this.time = 0;
         this.currentSplineName = splineName;
         this.splineCamera = this.camera;
@@ -33,6 +35,19 @@ export default class CameraMovement {
         CameraManager.endMove();
     }
 
+
+    moveTo(x, z) {
+        const tweenCam = new TWEEN.Tween(CameraManager.mainCamera.camera.position) // Create a new tween that modifies 'coords'.
+            .to({x: x, z: z}, 1000) // Move to (300, 200) in 1 second.
+            .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
+            .start();
+
+        const tweenCamPhon = new TWEEN.Tween(CameraManager.phoneCamera.camera.position) // Create a new tween that modifies 'coords'.
+            .to({x: x, z: z}, 1000) // Move to (300, 200) in 1 second.
+            .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
+            .start();
+    }
+
     animateMove() {
         if (this.isMoving) {
             this.splineAnimation();
@@ -42,7 +57,7 @@ export default class CameraMovement {
     splineAnimation() {
         this.time += 15;
         let time = this.time;
-        const looptime = 100000/this.speed;
+        const looptime = 100000 / this.speed;
         const t = (time % looptime) / looptime;
 
         let tubeGeometry = this.tubeGeometry;
@@ -62,7 +77,7 @@ export default class CameraMovement {
         this.binormal.multiplyScalar(pickt - pick).add(tubeGeometry.binormals[pick]);
 
         const dir = tubeGeometry.parameters.path.getTangentAt(t);
-        const offset = 15;
+        const offset = 0;
 
         this.normal.copy(this.binormal).cross(dir);
 

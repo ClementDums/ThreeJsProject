@@ -1,7 +1,7 @@
 import appStates from '../Helpers/ExperienceStates';
 import SceneManager from './Scene/SceneManager'
 import InsideScene from "./Scene/Museum/InsideScene";
-import FilterScene from "./Scene/Museum/FilterScene";
+import CameraManager from "./Camera/CameraManager";
 
 const StatesManager = {
 
@@ -10,45 +10,31 @@ const StatesManager = {
         this.scene = SceneManager.currentScene;
     },
 
-    nextState(state) {
-        this.currentState = state;
+    nextState() {
         this.newAction();
-    },
-
-    clicked(name) {
-        if (name === "21") {
-            console.log(this.currentState);
-            if (this.currentState === appStates.FILTER) {
-                this.nextState(appStates.EXPERIENCE1SCENE);
-            }
-        }
-        if (this.currentState === appStates.EXPERIENCE1SCENE) {
-            SceneManager.currentScene.clicked(name);
-        }
     },
 
     newAction() {
         switch (this.currentState) {
-            case appStates.HALLWALK:
+            case appStates.LANDING:
+                this.currentState = appStates.HALLWALK;
                 InsideScene.hallWalk();
                 break;
 
-            case appStates.GALLERYSCREEN:
-                InsideScene.galleryScreen();
-                break;
-
-            case appStates.GALLERYWALK:
-                InsideScene.galleryWalk();
+            case appStates.HALLWALK:
+                this.currentState = appStates.FILTER;
+                SceneManager.currentScene.clickOnFilter();
                 break;
 
             case appStates.FILTER:
-                InsideScene.clickOnFilter();
+                this.currentState = appStates.HYPERSEX;
+                CameraManager.toHypersex();
                 break;
 
-            case appStates.EXPERIENCE1SCENE:
-                SceneManager.changeScene("filter");
+            case appStates.HYPERSEX:
+                this.currentState = appStates.DIVERSITY;
+                CameraManager.toDiversity();
                 break;
-
 
             default:
                 console.log("State not found");
@@ -56,14 +42,7 @@ const StatesManager = {
         }
     },
 
-    endAction() {
-        if (this.currentState === appStates.HALLWALK) {
-            this.nextState(appStates.GALLERYSCREEN)
-        }
-        if (this.currentState === appStates.GALLERYWALK) {
-            this.nextState(appStates.FILTER)
-        }
-    }
+
 };
 
 export default StatesManager;

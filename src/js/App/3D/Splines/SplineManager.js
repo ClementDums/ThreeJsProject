@@ -11,9 +11,11 @@ const SplineManager = {
 
         let hallWalk = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 100, 800),
             new THREE.Vector3(600, 100, -200),
-            new THREE.Vector3(200, 100, -700),
+            new THREE.Vector3(0, 100, -700),
             new THREE.Vector3(0, 100, -900),
-            new THREE.Vector3(0, 100, -1500)]);
+            new THREE.Vector3(0, 100, -1500),
+            new THREE.Vector3(0, 100, -3900),
+            new THREE.Vector3(-600, 100, -3900)]);
 
         let galleryWalk = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 100, -1500),
             new THREE.Vector3(0, 100, -2000)
@@ -39,7 +41,7 @@ const SplineManager = {
 
         this.wireframeMaterial = new THREE.MeshBasicMaterial({
             color: 0x000000,
-            opacity: 0.3,
+            opacity: 0,
             wireframe: true,
             transparent: true
         });

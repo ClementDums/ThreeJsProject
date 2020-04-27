@@ -42,11 +42,12 @@ export default class Experience {
 
         this.scene = SceneManager.scene;
         console.log(this.scene);
-        this.scene.background = new THREE.Color(0xff00f0);
 
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setPixelRatio(window.devicePixelRatio);
         this.renderer.setSize(window.innerWidth, window.innerHeight);
+        this.renderer.toneMappingExposure = 1;
+
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 

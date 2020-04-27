@@ -28,14 +28,22 @@ const CameraManager = {
     },
 
     startMove(state) {
-        this.cameraMovementManager.move(state);
+        this.cameraMovementManager.moveSpline(state);
         this.isCameraMoving = true;
     },
 
     endMove() {
-        StatesManager.endAction();
+        StatesManager.nextState();
+        this.mainCamera.setLeft()
     },
 
+    toHypersex() {
+        this.cameraMovementManager.moveTo(-440, -4500)
+    },
+
+    toDiversity() {
+        this.cameraMovementManager.moveTo(-440, -5100)
+    },
     animateCamera() {
         if (this.isCameraMoving) {
             this.cameraMovementManager.animateMove();

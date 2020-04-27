@@ -25,7 +25,7 @@ export default class Skybox {
         for (let i = 0; i < 6; i++)
             materialArray[i].side = THREE.BackSide;
 
-        let skyboxGeo = new THREE.BoxGeometry(2000, 2000, 2000);
+        let skyboxGeo = new THREE.BoxGeometry(15000, 15000, 15000);
         this._skybox = new THREE.Mesh(skyboxGeo, materialArray);
         this._skybox.name = "Skybox";
     }

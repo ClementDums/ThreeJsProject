@@ -1,5 +1,7 @@
+import * as THREE from 'three'
 import {FBXLoader} from 'three/examples/jsm/loaders/FBXLoader';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
+
 
 const Loader = {
 
@@ -11,7 +13,7 @@ const Loader = {
     loadFbx(path) {
         return new Promise((resolve, reject) => {
             const loader = new FBXLoader();
-            loader.load(path, (obj)=> {
+            loader.load(path, (obj) => {
                 resolve(obj)
             }, this.onProgress, this.onError);
         });
@@ -22,16 +24,14 @@ const Loader = {
      * @param path
      * @returns {Promise<any>}
      */
-     loadGLTF(path) {
+    loadGLTF(path) {
         return new Promise((resolve, reject) => {
             const loader = new GLTFLoader();
-            loader.load(path, (obj)=> {
+            loader.load(path, (obj) => {
                 resolve(obj.scene)
             }, this.onProgress, this.onError);
         });
     },
-
-
 
 
     onProgress(xhr) {

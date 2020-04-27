@@ -9,7 +9,6 @@ const SceneManager = {
 
     init() {
         this.currentScene = new InsideScene();
-        //this.currentScene = new FilterScene();
         this.setupScene();
     },
 
@@ -20,7 +19,7 @@ const SceneManager = {
         this._threeScene.add(CameraManager.controls.getObject());
         this.currentScene.init();
         this.loadScene();
-
+        this._threeScene.add(CameraManager.camera)
     },
 
     loadSceneModels() {
@@ -40,18 +39,6 @@ const SceneManager = {
                 }
             })
         })
-    },
-
-    phoneScreenCamera(){
-
-    },
-
-    changeScene(scene) {
-        switch (scene) {
-            case "filter":
-                this.currentScene = new FilterScene();
-        }
-        this.setupScene();
     },
 
     animate() {
@@ -75,7 +62,6 @@ const SceneManager = {
         this.loadSceneModels();
         ScreenLoader.loadScreen(true);
     },
-
 
     get scene() {
         return this._threeScene;

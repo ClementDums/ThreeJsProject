@@ -1,6 +1,5 @@
 import * as THREE from 'three'
 import FilterWorkOfArt from '../../3D/WorkOfArt/Filter/FilterWorkOfArt'
-import Hair from '../../3D/WorkOfArt/Filter/Hair'
 import Phone from '../../3D/Phone/Phone'
 import RaycasterManager from "../../Interaction/RaycasterManager";
 import InteractionManager from "../../Interaction/InteractionManager";
@@ -14,11 +13,10 @@ export default class FilterScene {
         this._scene.name = "FilterScene";
         this.phone = new Phone(
             new THREE.Vector3(1, 1, 1));
-        this.hair = new Hair(new THREE.Vector3(0, 80, 80));
-        this.statue0 = new FilterWorkOfArt(new THREE.Vector3(0, 80, 80), "0");
-        this.statue1 = new FilterWorkOfArt(new THREE.Vector3(0, -80, 80), "1");
-        this.statue2 = new FilterWorkOfArt(new THREE.Vector3(0, -80, 80), "2");
-        this.statue3 = new FilterWorkOfArt(new THREE.Vector3(0, -80, 80), "3");
+        this.statue0 = new FilterWorkOfArt(new THREE.Vector3(0, 80, 80), "0","0");
+        this.statue1 = new FilterWorkOfArt(new THREE.Vector3(0, -80, 80), "1","1");
+        this.statue2 = new FilterWorkOfArt(new THREE.Vector3(0, -80, 80), "2","2");
+        this.statue3 = new FilterWorkOfArt(new THREE.Vector3(0, -80, 80), "3","3");
         this.objects = [];
     }
 
@@ -48,7 +46,6 @@ export default class FilterScene {
         this._scene.add(cube);
 
 
-        this.objects.push(this.hair);
         this.objects.push(this.statue0);
         this.objects.push(this.statue1);
         this.objects.push(this.statue2);

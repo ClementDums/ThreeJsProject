@@ -4,33 +4,30 @@ import TWEEN from "@tweenjs/tween.js"
 export default class PhoneCamera {
     constructor() {
         this._camera = new THREE.PerspectiveCamera(40, 0.45, 0.1, 1000);
-        console.log(this._camera);
-
         this.init();
 
     }
 
     init() {
-        this._camera.position.x = 0;
-        this._camera.position.z = 500;
+        this._camera.position.x = -500;
         this._camera.position.y = 100;
+        this._camera.position.z = -3900;
         this._camera.name = "PhoneCamera";
         this._camera.layers.disable(1);
-
-        console.log(this._camera.layers)
+        this._camera.rotation.y = Math.PI / 2;
 
     }
 
     zoomInFilter() {
         const tweenCam = new TWEEN.Tween(this._camera.position) // Create a new tween that modifies 'coords'.
-            .to({z: 250}, 1000) // Move to (300, 200) in 1 second.
+            .to({x: -580}, 2000) // Move to (300, 200) in 1 second.
             .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
             .start();
     }
 
     zoomOutFilter() {
         const tweenCam = new TWEEN.Tween(this._camera.position) // Create a new tween that modifies 'coords'.
-            .to({z: 500}, 1000) // Move to (300, 200) in 1 second.
+            .to({x: -500}, 2000) // Move to (300, 200) in 1 second.
             .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
             .start();
     }

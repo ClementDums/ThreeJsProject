@@ -1,14 +1,13 @@
 import * as THREE from 'three'
+import TWEEN from "@tweenjs/tween.js"
 
 export default class MainCamera {
     constructor() {
-        this._camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 6000);
+        this._camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 8000);
         this._camera.position.x = 0;
-        this._camera.position.z = 800;
-        this._camera.position.z = 200;
+        this._camera.position.z = -2000;
         this._camera.position.y = 100;
         this._camera.layers.enable(1);
-
         this.init();
 
     }
@@ -16,6 +15,14 @@ export default class MainCamera {
     init() {
         //this.setupFlashLight();
     }
+
+    setLeft() {
+        this._camera.rotation.y = Math.PI / 2;
+        this._camera.rotation.x = 0;
+        this._camera.rotation.z = 0;
+
+    }
+
 
     setupFlashLight() {
         this.flashLight = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 7, 20), new THREE.MeshPhongMaterial({color: 0x000000}));

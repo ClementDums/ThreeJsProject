@@ -6,10 +6,9 @@ import SceneManager from "../../Scene/SceneManager";
 import CameraManager from "../../Camera/CameraManager";
 
 export default class Phone {
-    constructor(scale) {
+    constructor() {
         this._cameraPosition = new THREE.Vector3(0, 0, 0);
         this._cameraRotation = new THREE.Vector3(0, 0, 0);
-        this._scale = scale;
         this._path = './assets/3DModels/Iphone.glb';
         this._object = null;
         this._isHud = true;
@@ -25,7 +24,6 @@ export default class Phone {
 
     setup() {
         this._object.name = "Phone";
-        //this._object.scale.set(this._scale.x, this._scale.y, this._scale.z);
         //Small position
         // this._object.position.z = -8;
         // this._object.position.x = 4.5;
@@ -34,12 +32,13 @@ export default class Phone {
         this._object.position.x = 42;
         this._object.position.y = -67;
         this._object.position.z = -80;
+        this.setBlackScreenTexture();
         this._object.layers.set(1);
-       // this.setScreenTexture()
     }
 
     setFullscreen() {
         //Fullscreen position
+        this.setCameraScreenTexture();
         const tween = new TWEEN.Tween(this._object.position) // Create a new tween that modifies 'coords'.
             .to({x: -2, y: -30, z: -65}, 1000) // Move to (300, 200) in 1 second.
             .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
@@ -56,10 +55,25 @@ export default class Phone {
         CameraManager.phoneCamera.zoomOutFilter();
     }
 
-    setScreenTexture() {
+    setBlackScreenTexture() {
         this._object.traverse((child) => {
             child.layers.set(1);
+            if (child.name === "ECRAN") {
+                this.screen = child.children[0];
+            }
+        });
 
+        let material2 = new THREE.MeshStandardMaterial({
+            color: 0xffffff,
+            roughness: 0,
+            metalness: 0.5,
+        });
+        this.screen.material = material2;
+    }
+
+    setCameraScreenTexture() {
+        this._object.traverse((child) => {
+            child.layers.set(1);
             if (child.name === "ECRAN") {
                 this.screen = child.children[0];
             }
@@ -67,10 +81,7 @@ export default class Phone {
 
         let material2 = new THREE.MeshBasicMaterial({color: 0xffffff, map: TextureManager.rtTexture.texture});
         this.screen.material = material2;
-        //this.screen.material.map.repeat.set(0.5,1);
-        console.log(this.screen)
     }
-
 
 
 }
