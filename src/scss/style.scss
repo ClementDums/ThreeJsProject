@@ -4,3 +4,8 @@
 
 // Main
 @import 'main/main';
+
+//gui z index bug
+.dg.ac {
+  z-index: 1000 !important;
+}

@@ -13,9 +13,10 @@ import PostProcessingManager from './PostProcessing/PostProcessingManager'
 import {RenderPass} from 'three/examples/jsm/postprocessing/RenderPass.js';
 import {ShaderPass} from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import {FXAAShader} from 'three/examples/jsm/shaders/FXAAShader.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
 
 export default class Experience {
-
     constructor(isDebug) {
         console.log("Experience constructor");
         this.windowHalf = new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2);
@@ -52,9 +53,19 @@ export default class Experience {
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
         this.camera = CameraManager.camera;
-        this.scene.add(CameraManager.camera);
+        this.scene.add(this.camera);
         this.container.appendChild(this.renderer.domElement);
 
+        this.controls = new OrbitControls( this.camera, this.renderer.domElement );
+
+
+        this.gui = new GUI();
+        this.guiParams = { freeCamera: false };
+        //hide / show free camera
+        this.gui.add( this.guiParams, 'freeCamera' ).listen().onChange((value) => {
+            this.controls.enabled = value
+            document.getElementById('ui').style.display = (value) ? 'none' : 'block';
+        });
 
         this.postProcessing();
 
@@ -65,9 +76,9 @@ export default class Experience {
     }
 
     postProcessing() {
-        PostProcessingManager.init(SceneManager.scene, CameraManager.camera);
+        PostProcessingManager.init(SceneManager.scene, this.camera);
         this.composer = new EffectComposer(this.renderer);
-        const renderPass = new RenderPass(SceneManager.scene, CameraManager.camera);
+        const renderPass = new RenderPass(SceneManager.scene, this.camera);
         this.composer.addPass(renderPass);
         this.composer.addPass(PostProcessingManager.outlinePass);
         const effectFXAA = new ShaderPass(FXAAShader);
@@ -78,13 +89,14 @@ export default class Experience {
     _animate() {
         this.render();
         requestAnimationFrame(this._animate.bind(this));
+        this.controls.update();
         TWEEN.update()
     }
 
     render() {
         //Animate Scene
         SceneManager.animate();
-        this.currentObjectClicked = RaycasterManager.getTouchedElement(this._mouse, CameraManager.camera, this.scene);
+        this.currentObjectClicked = RaycasterManager.getTouchedElement(this._mouse, this.camera, this.scene);
         //Render
         this.renderer.setRenderTarget(TextureManager.rtTexture);
         this.renderer.clear();
@@ -92,8 +104,9 @@ export default class Experience {
 
         this.renderer.setRenderTarget(null);
         this.renderer.clear();
-        this.composer.render();
+        this.renderer.render(SceneManager.scene, this.camera);
     }
+
 
     onResize() {
         const width = window.innerWidth;
@@ -113,5 +126,9 @@ export default class Experience {
     onDocumentMouseClick() {
         const currentObjectClicked = RaycasterManager.getClickedOnTouchedElement();
         InteractionManager.updateClick(currentObjectClicked);
+    }
+
+    onGuiDebugChange(value) {
+        console.log(value)
     }
 }

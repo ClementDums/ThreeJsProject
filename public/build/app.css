@@ -1,0 +1,97 @@
+/*****************************************
+  usage: @include mixinName(paramValue);
+ *****************************************/
+/**
+  Explicit
+ */
+@font-face {
+  font-family: "Calyces";
+  src: url(/build/fonts/Calyces-Regular.f7635eaa.otf);
+}
+
+@font-face {
+  font-family: "CalycesBold";
+  src: url(/build/fonts/Calyces-Bold.4f5ffc59.otf);
+}
+
+html body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #000000;
+}
+
+html #uiText {
+  z-index: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  bottom: 0;
+  padding-left: 20%;
+  padding-right: 20%;
+  color: #fff;
+  font-family: Calyces, sans-serif;
+}
+
+html #blocker, html #loader, html .buttonContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+html #prev {
+  position: absolute;
+  left: 0;
+}
+
+html #next {
+  position: absolute;
+  right: 0;
+}
+
+html #loader {
+  background-color: black;
+}
+
+html .buttonContainer {
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html .button {
+  text-align: center;
+  font-size: 32px;
+}
+
+html #instructions, html #loadingInfos {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  box-orient: horizontal;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  box-pack: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  box-align: center;
+  color: #ffffff;
+  text-align: center;
+  font-family: Arial;
+  font-size: 14px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.dg.ac {
+  z-index: 1000 !important;
+}
+
