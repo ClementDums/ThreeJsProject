@@ -95,7 +95,6 @@ export default class Experience {
         this.composer.render();
     }
 
-
     onResize() {
         const width = window.innerWidth;
         const height = window.innerHeight;
@@ -115,5 +114,4 @@ export default class Experience {
         const currentObjectClicked = RaycasterManager.getClickedOnTouchedElement();
         InteractionManager.updateClick(currentObjectClicked);
     }
-
 }

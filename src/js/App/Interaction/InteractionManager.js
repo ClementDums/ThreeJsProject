@@ -37,6 +37,9 @@ const InteractionManager = {
         if (name === "toFilter") {
             SceneManager.currentScene.clickedFilter(name);
         }
+        if (name === "toHypersex") {
+            SceneManager.currentScene.clickedHypersex(name);
+        }
     }
 
 

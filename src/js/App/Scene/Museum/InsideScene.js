@@ -13,6 +13,8 @@ import Background from "../../Environment/Background";
 import FilterManager from "../../3D/WorkOfArt/Filter/FilterManager";
 import Skybox from "../../Environment/Skybox";
 import HypersexWorkOfArt from "../../3D/WorkOfArt/Hypersex/HypersexWorkOfArt";
+import Hand from "../../3D/WorkOfArt/Hypersex/Hand";
+import HypersexManager from "../../3D/WorkOfArt/Hypersex/HypersexManager";
 
 
 export default class InsideScene {
@@ -26,6 +28,7 @@ export default class InsideScene {
         this.statue3 = new FilterWorkOfArt(new THREE.Vector3(-700, -200, -3900), "3", "3");
 
         this.hypersex = new HypersexWorkOfArt(new THREE.Vector3(-650, 0, -4500), "toHypersex");
+        this.hand = new Hand(new THREE.Vector3(-680, -200, -4500), "hand");
         this.skybox = new Skybox("outside");
         this.phone = new Phone();
 
@@ -54,6 +57,7 @@ export default class InsideScene {
 
 
         this.objects.push(this.hypersex);
+        this.objects.push(this.hand);
 
 
         const cubeMap = this._background.hdrCubeMap;
@@ -150,6 +154,15 @@ export default class InsideScene {
         InteractionManager.clickListener = true;
     }
 
+     clickedHypersex(name) {
+        if (name === "toHypersex") {
+            RaycasterManager.identifiers.splice("toHypersex");
+            HypersexManager.startHypersex(this.phone);
+            HypersexManager.takePhoto();
+        }
+
+    }
+
     clickedFilter(name) {
         if (name === "prev") {
             FilterManager.setPrev();
@@ -161,7 +174,7 @@ export default class InsideScene {
             this.stopFilterModule();
         }
         if (name === "toFilter") {
-            RaycasterManager.identifiers.splice("Filter");
+            RaycasterManager.identifiers.splice("toFilter");
             this.filterModule();
         }
         if (name === "story") {

@@ -47,6 +47,7 @@ const FilterManager = {
     startFilter(phone) {
         this.isFiltered = true;
         phone.setFullscreen();
+        phone.zoomPhone(100);
     },
 
     endFilter(){

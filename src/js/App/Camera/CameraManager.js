@@ -40,7 +40,7 @@ const CameraManager = {
         this.cameraMovementManager.moveTo(-550, -3900)
     },
     toHypersex() {
-        this.cameraMovementManager.moveTo(-440, -4500)
+        this.cameraMovementManager.moveTo(-400, -4500)
     },
 
     toDiversity() {

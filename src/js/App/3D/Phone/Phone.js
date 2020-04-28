@@ -38,14 +38,16 @@ export default class Phone {
 
     setFullscreen() {
         //Fullscreen position
-        this.setCameraScreenTexture();
         const tween = new TWEEN.Tween(this._object.position) // Create a new tween that modifies 'coords'.
             .to({x: -2, y: -30, z: -65}, 1000) // Move to (300, 200) in 1 second.
             .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
             .start();
-        CameraManager.phoneCamera.zoomInFilter()
-
     }
+
+    zoomPhone(x) {
+        CameraManager.phoneCamera.zoomInFilter(x)
+    }
+
 
     setSmall() {
         const tween = new TWEEN.Tween(this._object.position) // Create a new tween that modifies 'coords'.
