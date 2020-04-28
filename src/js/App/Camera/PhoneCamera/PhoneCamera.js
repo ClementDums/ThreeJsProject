@@ -9,7 +9,7 @@ export default class PhoneCamera {
     }
 
     init() {
-        this._camera.position.x = -450;
+        this._camera.position.x = -350;
         this._camera.position.y = 80;
         this._camera.position.z = -3900;
         this._camera.name = "PhoneCamera";

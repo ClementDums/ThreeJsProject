@@ -9,22 +9,22 @@ const SplineManager = {
         this.mesh = null;
         this.splineArray = [];
 
-        let hallWalk = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 100, 800),
-            new THREE.Vector3(600, 100, -200),
-            new THREE.Vector3(0, 100, -700),
-            new THREE.Vector3(0, 100, -900),
-            new THREE.Vector3(0, 100, -1500),
-            new THREE.Vector3(0, 100, -3900),
-            new THREE.Vector3(-600, 100, -3900)]);
+        let hallWalk = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 150, 800),
+            new THREE.Vector3(600, 150, -200),
+            new THREE.Vector3(0, 150, -700),
+            new THREE.Vector3(0, 150, -900),
+            new THREE.Vector3(0, 150, -1500),
+            new THREE.Vector3(0, 150, -3900),
+            new THREE.Vector3(-450, 150, -3900)]);
 
-        let galleryWalk = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 100, -1500),
-            new THREE.Vector3(0, 100, -2000)
+        let endWalk = new THREE.CatmullRomCurve3([new THREE.Vector3(-440, 150, -5100),
+            new THREE.Vector3(0, 150, -5400)
         ]);
 
 
         this.splines = {
             hallWalk: hallWalk,
-            galleryWalk: galleryWalk,
+            endWalk: endWalk,
         };
 
         this.params = {
@@ -68,6 +68,7 @@ const SplineManager = {
             this.mesh.geometry.dispose();
         }
         const extrudePath = this.splines[this.currentSpline.name];
+
         this.currentSpline.tubeGeometry = new THREE.TubeBufferGeometry(extrudePath, this.params.extrusionSegments, 2, this.params.radiusSegments, this.params.closed);
         this.addGeometry(this.currentSpline.tubeGeometry);
         this.setScale();
@@ -84,12 +85,8 @@ const SplineManager = {
 
     setScale() {
         this.mesh.scale.set(this.params.scale, this.params.scale, this.params.scale);
-        this.setSpline()
     },
 
-    setSpline() {
-
-    }
 };
 
 export default SplineManager

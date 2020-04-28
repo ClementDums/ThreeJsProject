@@ -68237,11 +68237,11 @@ var SplineManager = {
     this.tubeGeometry = null;
     this.mesh = null;
     this.splineArray = [];
-    var hallWalk = new three__WEBPACK_IMPORTED_MODULE_0__["CatmullRomCurve3"]([new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 100, 800), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](600, 100, -200), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 100, -700), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 100, -900), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 100, -1500), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 100, -3900), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-600, 100, -3900)]);
-    var galleryWalk = new three__WEBPACK_IMPORTED_MODULE_0__["CatmullRomCurve3"]([new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 100, -1500), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 100, -2000)]);
+    var hallWalk = new three__WEBPACK_IMPORTED_MODULE_0__["CatmullRomCurve3"]([new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 150, 800), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](600, 150, -200), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 150, -700), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 150, -900), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 150, -1500), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 150, -3900), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-450, 150, -3900)]);
+    var endWalk = new three__WEBPACK_IMPORTED_MODULE_0__["CatmullRomCurve3"]([new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-440, 150, -5100), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 150, -5400)]);
     this.splines = {
       hallWalk: hallWalk,
-      galleryWalk: galleryWalk
+      endWalk: endWalk
     };
     this.params = {
       spline: 'HallWalk',
@@ -68297,9 +68297,7 @@ var SplineManager = {
   },
   setScale: function setScale() {
     this.mesh.scale.set(this.params.scale, this.params.scale, this.params.scale);
-    this.setSpline();
-  },
-  setSpline: function setSpline() {}
+  }
 };
 /* harmony default export */ __webpack_exports__["default"] = (SplineManager);
 
@@ -68326,10 +68324,10 @@ var FilterManager = {
     this.currentObject = statue0;
   },
   setCurrentActive: function setCurrentActive() {
-    this.currentObject.enableFilter();
+    this.currentObject.show();
   },
   setCurrentDisable: function setCurrentDisable() {
-    this.currentObject.disableFilter();
+    this.currentObject.hide();
   },
   setNext: function setNext() {
     if (this.objects[this.i + 1]) {
@@ -68387,7 +68385,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 var FilterWorkOfArt = /*#__PURE__*/function () {
-  function FilterWorkOfArt(position, path, name) {
+  function FilterWorkOfArt(position, path, name, visibility) {
     _classCallCheck(this, FilterWorkOfArt);
 
     this._position = position;
@@ -68395,6 +68393,7 @@ var FilterWorkOfArt = /*#__PURE__*/function () {
     this._object = null;
     this._isAnimated = false;
     this.name = name;
+    this.visibility = visibility;
   }
 
   _createClass(FilterWorkOfArt, [{
@@ -68412,20 +68411,75 @@ var FilterWorkOfArt = /*#__PURE__*/function () {
       this._object.position.set(this._position.x, this._position.y, this._position.z);
 
       this._object.children[0].name = this.name;
+      this._object.visible = this.visibility;
     }
   }, {
-    key: "enableFilter",
-    value: function enableFilter() {
-      this._object.position.set(-700, 50, -3900);
+    key: "show",
+    value: function show() {
+      this._object.visible = true;
+      this.visibility = true;
     }
   }, {
-    key: "disableFilter",
-    value: function disableFilter() {
-      this._object.position.set(-700, -200, -3900);
+    key: "hide",
+    value: function hide() {
+      this._object.visible = false;
+      this.visibility = false;
     }
   }]);
 
   return FilterWorkOfArt;
+}();
+
+
+
+/***/ }),
+
+/***/ "./src/js/App/3D/WorkOfArt/Filter/Socle.js":
+/*!*************************************************!*\
+  !*** ./src/js/App/3D/WorkOfArt/Filter/Socle.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Socle; });
+/* harmony import */ var _Helpers_Loader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../Helpers/Loader */ "./src/js/Helpers/Loader.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var Socle = /*#__PURE__*/function () {
+  function Socle(position) {
+    _classCallCheck(this, Socle);
+
+    this._position = position;
+    this._path = './assets/3DModels/Filter/SOCLE.gltf';
+    this._object = null;
+    this._isAnimated = false;
+  }
+
+  _createClass(Socle, [{
+    key: "load",
+    value: function load() {
+      return _Helpers_Loader__WEBPACK_IMPORTED_MODULE_0__["default"].loadGLTF(this._path);
+    }
+  }, {
+    key: "setup",
+    value: function setup() {
+      this._object.name = "Socle";
+      this._object.castShadow = true;
+      this._object.rotation.y = -Math.PI / 2;
+
+      this._object.position.set(this._position.x, this._position.y, this._position.z);
+    }
+  }]);
+
+  return Socle;
 }();
 
 
@@ -68468,10 +68522,17 @@ var Hand = /*#__PURE__*/function () {
       return _Helpers_Loader__WEBPACK_IMPORTED_MODULE_0__["default"].loadGLTF(this._path);
     }
   }, {
+    key: "show",
+    value: function show() {
+      this._object.visible = true;
+    }
+  }, {
     key: "setup",
     value: function setup() {
       this._object.name = "Work of Art";
       this._object.castShadow = true; // this._object.rotation.y = -Math.PI/2;
+
+      this._object.visible = false;
 
       this._object.position.set(this._position.x, this._position.y, this._position.z);
 
@@ -68501,18 +68562,21 @@ __webpack_require__.r(__webpack_exports__);
 
 var HypersexManager = {
   hiddenObjects: [],
-  init: function init(statue0, statue1, statue2, statue3) {
-    this.hiddenObjects.push(statue0, statue1, statue2, statue3);
-    this.currentObject = statue0;
-  },
-  setCurrentActive: function setCurrentActive() {
-    this.currentObject.enableFilter();
-  },
-  setCurrentDisable: function setCurrentDisable() {
-    this.currentObject.disableFilter();
+  init: function init(objects) {
+    this.hiddenObjects = objects;
   },
   takePhoto: function takePhoto() {
+    var _this = this;
+
     _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_1__["default"].mainCamera.flash();
+    setTimeout(function () {
+      _this.showObjects();
+    }, 1500);
+  },
+  showObjects: function showObjects() {
+    this.hiddenObjects.forEach(function (item) {
+      item.show();
+    });
   },
   startStory: function startStory() {
     _UI_UIManager__WEBPACK_IMPORTED_MODULE_0__["default"].startTextDisplay(document.getElementById("filterStory"));
@@ -68522,9 +68586,7 @@ var HypersexManager = {
     phone.setFullscreen();
     phone.zoomPhone(40);
   },
-  endFilter: function endFilter() {
-    console.log("end");
-  }
+  endHypersex: function endHypersex() {}
 };
 /* harmony default export */ __webpack_exports__["default"] = (HypersexManager);
 
@@ -68875,7 +68937,7 @@ var MainCamera = /*#__PURE__*/function () {
     this._camera = new three__WEBPACK_IMPORTED_MODULE_0__["PerspectiveCamera"](50, window.innerWidth / window.innerHeight, 1, 8000);
     this._camera.position.x = 0;
     this._camera.position.z = -2000;
-    this._camera.position.y = 100;
+    this._camera.position.y = 150;
 
     this._camera.layers.enable(1);
 
@@ -68954,7 +69016,7 @@ var PhoneCamera = /*#__PURE__*/function () {
   _createClass(PhoneCamera, [{
     key: "init",
     value: function init() {
-      this._camera.position.x = -450;
+      this._camera.position.x = -350;
       this._camera.position.y = 80;
       this._camera.position.z = -3900;
       this._camera.name = "PhoneCamera";
@@ -69215,13 +69277,13 @@ var Experience = /*#__PURE__*/function () {
       this.camera = _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_2__["default"].camera;
       this.scene.add(this.camera);
       this.container.appendChild(this.renderer.domElement);
-      this.controls = new three_examples_jsm_controls_OrbitControls_js__WEBPACK_IMPORTED_MODULE_14__["OrbitControls"](this.camera, this.renderer.domElement);
       this.gui = new three_examples_jsm_libs_dat_gui_module_js__WEBPACK_IMPORTED_MODULE_15__["GUI"]();
       this.guiParams = {
         freeCamera: false
       }; //hide / show free camera
 
       this.gui.add(this.guiParams, 'freeCamera').listen().onChange(function (value) {
+        _this.controls = new three_examples_jsm_controls_OrbitControls_js__WEBPACK_IMPORTED_MODULE_14__["OrbitControls"](_this.camera, _this.renderer.domElement);
         _this.controls.enabled = value;
         document.getElementById('ui').style.display = value ? 'none' : 'block';
       });
@@ -69864,11 +69926,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _3D_WorkOfArt_Hypersex_HypersexWorkOfArt__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../3D/WorkOfArt/Hypersex/HypersexWorkOfArt */ "./src/js/App/3D/WorkOfArt/Hypersex/HypersexWorkOfArt.js");
 /* harmony import */ var _3D_WorkOfArt_Hypersex_Hand__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../3D/WorkOfArt/Hypersex/Hand */ "./src/js/App/3D/WorkOfArt/Hypersex/Hand.js");
 /* harmony import */ var _3D_WorkOfArt_Hypersex_HypersexManager__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../3D/WorkOfArt/Hypersex/HypersexManager */ "./src/js/App/3D/WorkOfArt/Hypersex/HypersexManager.js");
+/* harmony import */ var _3D_WorkOfArt_Filter_Socle__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../3D/WorkOfArt/Filter/Socle */ "./src/js/App/3D/WorkOfArt/Filter/Socle.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 
 
@@ -69894,13 +69958,14 @@ var InsideScene = /*#__PURE__*/function () {
 
     this._scene = new three__WEBPACK_IMPORTED_MODULE_0__["Scene"]();
     this._scene.name = "Inside";
-    this.pantheon = new _3D_Decors_Pantheon__WEBPACK_IMPORTED_MODULE_3__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 239, -200));
-    this.statue0 = new _3D_WorkOfArt_Filter_FilterWorkOfArt__WEBPACK_IMPORTED_MODULE_1__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-700, 50, -3900), "0", 'toFilter');
-    this.statue1 = new _3D_WorkOfArt_Filter_FilterWorkOfArt__WEBPACK_IMPORTED_MODULE_1__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-700, -200, -3900), "1", "1");
-    this.statue2 = new _3D_WorkOfArt_Filter_FilterWorkOfArt__WEBPACK_IMPORTED_MODULE_1__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-700, -200, -3900), "2", "2");
-    this.statue3 = new _3D_WorkOfArt_Filter_FilterWorkOfArt__WEBPACK_IMPORTED_MODULE_1__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-700, -200, -3900), "3", "3");
-    this.hypersex = new _3D_WorkOfArt_Hypersex_HypersexWorkOfArt__WEBPACK_IMPORTED_MODULE_13__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-650, 0, -4500), "toHypersex");
-    this.hand = new _3D_WorkOfArt_Hypersex_Hand__WEBPACK_IMPORTED_MODULE_14__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-680, -200, -4500), "hand");
+    this.pantheon = new _3D_Decors_Pantheon__WEBPACK_IMPORTED_MODULE_3__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 291, -200));
+    this.statue0 = new _3D_WorkOfArt_Filter_FilterWorkOfArt__WEBPACK_IMPORTED_MODULE_1__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-522, 147, -3900), "0", 'toFilter', true);
+    this.statue1 = new _3D_WorkOfArt_Filter_FilterWorkOfArt__WEBPACK_IMPORTED_MODULE_1__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-530, 147, -3900), "1", "1", false);
+    this.statue2 = new _3D_WorkOfArt_Filter_FilterWorkOfArt__WEBPACK_IMPORTED_MODULE_1__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-530, 147, -3900), "2", "2", false);
+    this.statue3 = new _3D_WorkOfArt_Filter_FilterWorkOfArt__WEBPACK_IMPORTED_MODULE_1__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-530, 147, -3900), "3", "3", false);
+    this.socle = new _3D_WorkOfArt_Filter_Socle__WEBPACK_IMPORTED_MODULE_16__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-530, 0, -3900));
+    this.hypersex = new _3D_WorkOfArt_Hypersex_HypersexWorkOfArt__WEBPACK_IMPORTED_MODULE_13__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-530, 0, -4500), "toHypersex");
+    this.hand = new _3D_WorkOfArt_Hypersex_Hand__WEBPACK_IMPORTED_MODULE_14__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-680, 0, -4500), "hand");
     this.skybox = new _Environment_Skybox__WEBPACK_IMPORTED_MODULE_12__["default"]("outside");
     this.phone = new _3D_Phone_Phone__WEBPACK_IMPORTED_MODULE_2__["default"]();
     this.objects = [];
@@ -69925,9 +69990,13 @@ var InsideScene = /*#__PURE__*/function () {
       this.objects.push(this.statue1);
       this.objects.push(this.statue2);
       this.objects.push(this.statue3);
+      this.objects.push(this.socle);
       _3D_WorkOfArt_Filter_FilterManager__WEBPACK_IMPORTED_MODULE_11__["default"].init(this.statue0, this.statue1, this.statue2, this.statue3);
       this.objects.push(this.hypersex);
       this.objects.push(this.hand);
+      var hiddenObjects = [];
+      hiddenObjects.push(this.hand);
+      _3D_WorkOfArt_Hypersex_HypersexManager__WEBPACK_IMPORTED_MODULE_15__["default"].init(hiddenObjects);
       var cubeMap = this._background.hdrCubeMap;
       this._scene.background = cubeMap;
       var geometry = new three__WEBPACK_IMPORTED_MODULE_0__["BoxGeometry"](20, 20, 20);
@@ -69964,6 +70033,10 @@ var InsideScene = /*#__PURE__*/function () {
     key: "addSplines",
     value: function addSplines() {
       _3D_Splines_SplineManager__WEBPACK_IMPORTED_MODULE_4__["default"].newSpline(_Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_5__["default"].HALLWALK);
+
+      this._scene.add(_3D_Splines_SplineManager__WEBPACK_IMPORTED_MODULE_4__["default"].currentSpline.parent);
+
+      _3D_Splines_SplineManager__WEBPACK_IMPORTED_MODULE_4__["default"].newSpline(_Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_5__["default"].ENDWALK);
 
       this._scene.add(_3D_Splines_SplineManager__WEBPACK_IMPORTED_MODULE_4__["default"].currentSpline.parent);
     }
@@ -70082,6 +70155,11 @@ var InsideScene = /*#__PURE__*/function () {
     key: "hallWalk",
     value: function hallWalk() {
       _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_6__["default"].startMove(_Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_5__["default"].HALLWALK);
+    }
+  }, {
+    key: "endWalk",
+    value: function endWalk() {
+      _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_6__["default"].startMove(_Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_5__["default"].ENDWALK);
     }
   }, {
     key: "galleryScreen",
@@ -70240,12 +70318,17 @@ var StatesManager = {
         break;
 
       case _Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_0__["default"].DIVERSITY:
-        if (order === "next") {} else {
+        if (order === "next") {
+          this.currentState = _Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_0__["default"].ENDWALK;
+        } else {
           this.currentState = _Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_0__["default"].HYPERSEX;
           _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_3__["default"].toHypersex();
-          console.log("ok");
         }
 
+        break;
+
+      case _Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_0__["default"].ENDWALK:
+        _Scene_Museum_InsideScene__WEBPACK_IMPORTED_MODULE_2__["default"].endWalk();
         break;
 
       default:
@@ -70346,7 +70429,8 @@ __webpack_require__.r(__webpack_exports__);
   HALLWALK: 'hallWalk',
   FILTER: 'filter',
   HYPERSEX: 'hypersex',
-  DIVERSITY: 'diversity'
+  DIVERSITY: 'diversity',
+  ENDWALK: 'endWalk'
 });
 
 /***/ }),
@@ -70473,8 +70557,8 @@ window.addEventListener('DOMContentLoaded', function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! A:\Cours\webgl\dev\ThreeJsProject\src\js\main.js */"./src/js/main.js");
-module.exports = __webpack_require__(/*! A:\Cours\webgl\dev\ThreeJsProject\src\scss\style.scss */"./src/scss/style.scss");
+__webpack_require__(/*! C:\xampp\htdocs\webgl\src\js\main.js */"./src/js/main.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\webgl\src\scss\style.scss */"./src/scss/style.scss");
 
 
 /***/ })

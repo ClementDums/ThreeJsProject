@@ -15,20 +15,22 @@ import Skybox from "../../Environment/Skybox";
 import HypersexWorkOfArt from "../../3D/WorkOfArt/Hypersex/HypersexWorkOfArt";
 import Hand from "../../3D/WorkOfArt/Hypersex/Hand";
 import HypersexManager from "../../3D/WorkOfArt/Hypersex/HypersexManager";
+import Socle from "../../3D/WorkOfArt/Filter/Socle";
 
 
 export default class InsideScene {
     constructor() {
         this._scene = new THREE.Scene();
         this._scene.name = "Inside";
-        this.pantheon = new Pantheon(new THREE.Vector3(0, 239, -200));
-        this.statue0 = new FilterWorkOfArt(new THREE.Vector3(-700, 50, -3900), "0", 'toFilter');
-        this.statue1 = new FilterWorkOfArt(new THREE.Vector3(-700, -200, -3900), "1", "1");
-        this.statue2 = new FilterWorkOfArt(new THREE.Vector3(-700, -200, -3900), "2", "2");
-        this.statue3 = new FilterWorkOfArt(new THREE.Vector3(-700, -200, -3900), "3", "3");
+        this.pantheon = new Pantheon(new THREE.Vector3(0, 291, -200));
+        this.statue0 = new FilterWorkOfArt(new THREE.Vector3(-522, 147, -3900), "0", 'toFilter', true);
+        this.statue1 = new FilterWorkOfArt(new THREE.Vector3(-530, 147, -3900), "1", "1", false);
+        this.statue2 = new FilterWorkOfArt(new THREE.Vector3(-530, 147, -3900), "2", "2", false);
+        this.statue3 = new FilterWorkOfArt(new THREE.Vector3(-530, 147, -3900), "3", "3", false);
+        this.socle = new Socle(new THREE.Vector3(-530, 0, -3900));
 
-        this.hypersex = new HypersexWorkOfArt(new THREE.Vector3(-650, 0, -4500), "toHypersex");
-        this.hand = new Hand(new THREE.Vector3(-680, -200, -4500), "hand");
+        this.hypersex = new HypersexWorkOfArt(new THREE.Vector3(-530, 0, -4500), "toHypersex");
+        this.hand = new Hand(new THREE.Vector3(-680, 0, -4500), "hand");
         this.skybox = new Skybox("outside");
         this.phone = new Phone();
 
@@ -52,12 +54,18 @@ export default class InsideScene {
         this.objects.push(this.statue1);
         this.objects.push(this.statue2);
         this.objects.push(this.statue3);
+        this.objects.push(this.socle);
 
         FilterManager.init(this.statue0, this.statue1, this.statue2, this.statue3);
 
 
         this.objects.push(this.hypersex);
         this.objects.push(this.hand);
+
+        const hiddenObjects = [];
+        hiddenObjects.push(this.hand);
+
+        HypersexManager.init(hiddenObjects);
 
 
         const cubeMap = this._background.hdrCubeMap;
@@ -89,6 +97,9 @@ export default class InsideScene {
 
     addSplines() {
         SplineManager.newSpline(appState.HALLWALK);
+        this._scene.add(SplineManager.currentSpline.parent);
+
+        SplineManager.newSpline(appState.ENDWALK);
         this._scene.add(SplineManager.currentSpline.parent);
     }
 
@@ -136,6 +147,10 @@ export default class InsideScene {
         CameraManager.startMove(appStates.HALLWALK);
     }
 
+    static endWalk() {
+        CameraManager.startMove(appStates.ENDWALK);
+    }
+
 
     static galleryScreen() {
         UIManager.showGalleryScreen();
@@ -154,7 +169,7 @@ export default class InsideScene {
         InteractionManager.clickListener = true;
     }
 
-     clickedHypersex(name) {
+    clickedHypersex(name) {
         if (name === "toHypersex") {
             RaycasterManager.identifiers.splice("toHypersex");
             HypersexManager.startHypersex(this.phone);

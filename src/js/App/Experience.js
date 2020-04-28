@@ -13,8 +13,8 @@ import PostProcessingManager from './PostProcessing/PostProcessingManager'
 import {RenderPass} from 'three/examples/jsm/postprocessing/RenderPass.js';
 import {ShaderPass} from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import {FXAAShader} from 'three/examples/jsm/shaders/FXAAShader.js';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
+import {GUI} from 'three/examples/jsm/libs/dat.gui.module.js';
 
 export default class Experience {
     constructor(isDebug) {
@@ -56,14 +56,14 @@ export default class Experience {
         this.scene.add(this.camera);
         this.container.appendChild(this.renderer.domElement);
 
-        this.controls = new OrbitControls( this.camera, this.renderer.domElement );
-
 
         this.gui = new GUI();
-        this.guiParams = { freeCamera: false };
+        this.guiParams = {freeCamera: false};
         //hide / show free camera
-        this.gui.add( this.guiParams, 'freeCamera' ).listen().onChange((value) => {
-            this.controls.enabled = value
+        this.gui.add(this.guiParams, 'freeCamera').listen().onChange((value) => {
+            this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+
+            this.controls.enabled = value;
             document.getElementById('ui').style.display = (value) ? 'none' : 'block';
         });
 

@@ -44,8 +44,6 @@ export default class FlashPhoto {
         this._flashPhoto.add(spotLight3.target);
         this._flashPhoto.name = "FlashPhoto";
         this._flashPhoto.visible = false;
-
-
     }
 
 
@@ -59,12 +57,11 @@ export default class FlashPhoto {
                 this.spotLight.power = 25;
                 setTimeout(() => {
                     flash.visible = false;
+
                 }, 500);
             }, 200);
         }, 1000);
         this.spotLight.power = 10;
-
-
     }
 
     get flashPhoto() {

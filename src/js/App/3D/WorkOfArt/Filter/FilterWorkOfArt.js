@@ -1,12 +1,13 @@
 import Loader from '../../../../Helpers/Loader'
 
 export default class FilterWorkOfArt {
-    constructor(position, path, name) {
+    constructor(position, path, name, visibility) {
         this._position = position;
         this._path = './assets/3DModels/Filter/filter_' + path + '.gltf';
         this._object = null;
         this._isAnimated = false;
         this.name = name;
+        this.visibility = visibility;
     }
 
     load() {
@@ -16,17 +17,20 @@ export default class FilterWorkOfArt {
     setup() {
         this._object.name = "Work of Art";
         this._object.castShadow = true;
-        this._object.rotation.y = -Math.PI/2;
+        this._object.rotation.y = -Math.PI / 2;
         this._object.position.set(this._position.x, this._position.y, this._position.z);
         this._object.children[0].name = this.name;
+        this._object.visible = this.visibility;
     }
 
-    enableFilter() {
-        this._object.position.set(-700, 50, -3900);
+    show() {
+        this._object.visible = true;
+        this.visibility = true;
     }
 
-    disableFilter() {
-        this._object.position.set(-700, -200, -3900);
+    hide() {
+        this._object.visible = false;
+        this.visibility = false;
     }
 
 }

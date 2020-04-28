@@ -5,22 +5,21 @@ const HypersexManager = {
     hiddenObjects: [],
 
 
-    init(statue0, statue1, statue2, statue3) {
-        this.hiddenObjects.push(statue0, statue1, statue2, statue3);
-        this.currentObject = statue0;
+    init(objects) {
+        this.hiddenObjects = objects
     },
-    setCurrentActive() {
-        this.currentObject.enableFilter();
-    },
-
-    setCurrentDisable() {
-        this.currentObject.disableFilter();
-    },
-
-    takePhoto(){
+    takePhoto() {
         CameraManager.mainCamera.flash();
+        setTimeout(() => {
+            this.showObjects();
+        }, 1500);
     },
 
+    showObjects() {
+        this.hiddenObjects.forEach((item)=>{
+            item.show();
+        })
+    },
     startStory() {
         UIManager.startTextDisplay(document.getElementById("filterStory"));
     },
@@ -31,8 +30,7 @@ const HypersexManager = {
         phone.zoomPhone(40);
     },
 
-    endFilter(){
-        console.log("end")
+    endHypersex() {
     }
 
 

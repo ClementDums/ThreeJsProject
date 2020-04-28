@@ -12,11 +12,11 @@ const FilterManager = {
         this.currentObject = statue0;
     },
     setCurrentActive() {
-        this.currentObject.enableFilter();
+        this.currentObject.show();
     },
 
     setCurrentDisable() {
-        this.currentObject.disableFilter();
+        this.currentObject.hide();
     },
 
     setNext() {

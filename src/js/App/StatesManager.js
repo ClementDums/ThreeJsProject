@@ -47,12 +47,17 @@ const StatesManager = {
 
             case appStates.DIVERSITY:
                 if (order === "next") {
+                    this.currentState = appStates.ENDWALK;
+
                 }
                 else {
                     this.currentState = appStates.HYPERSEX;
                     CameraManager.toHypersex();
-                    console.log("ok")
                 }
+                break;
+
+            case appStates.ENDWALK:
+                InsideScene.endWalk();
                 break;
 
 

@@ -13,14 +13,11 @@ export default class Phone {
         this._object = null;
         this._isHud = true;
         this.screen = null;
-
     }
-
 
     load() {
         return Loader.loadGLTF(this._path);
     }
-
 
     setup() {
         this._object.name = "Phone";
@@ -84,6 +81,4 @@ export default class Phone {
         let material2 = new THREE.MeshBasicMaterial({color: 0xffffff, map: TextureManager.rtTexture.texture});
         this.screen.material = material2;
     }
-
-
 }
