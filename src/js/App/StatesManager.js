@@ -1,7 +1,8 @@
 import appStates from '../Helpers/ExperienceStates';
 import SceneManager from './Scene/SceneManager'
-import InsideScene from "./Scene/Museum/InsideScene";
 import CameraManager from "./Camera/CameraManager";
+import FilterManager from "./3D/WorkOfArt/Filter/FilterManager";
+import HypersexManager from "./3D/WorkOfArt/Hypersex/HypersexManager";
 
 const StatesManager = {
 
@@ -21,17 +22,17 @@ const StatesManager = {
         switch (this.currentState) {
             case appStates.LANDING:
                 this.currentState = appStates.HALLWALK;
-                InsideScene.hallWalk();
+                CameraManager.hallWalk();
                 break;
 
             case appStates.HALLWALK:
                 this.currentState = appStates.FILTER;
-                SceneManager.currentScene.clickOnFilter();
+                FilterManager.clickOnFilter();
                 break;
 
             case appStates.FILTER:
                 this.currentState = appStates.HYPERSEX;
-                SceneManager.currentScene.clickOnHypersex();
+                HypersexManager.clickOnHypersex();
                 CameraManager.toHypersex();
                 break;
 
@@ -56,17 +57,14 @@ const StatesManager = {
                 break;
 
             case appStates.ENDWALK:
-                InsideScene.endWalk();
+                CameraManager.endWalk();
                 break;
-
 
             default:
                 console.log("State not found");
                 break;
         }
     },
-
-
 };
 
 export default StatesManager;

@@ -1,12 +1,9 @@
 import InsideScene from "./Museum/InsideScene";
 import ScreenLoader from '../../Helpers/ScreenLoader';
 import CameraManager from "../Camera/CameraManager";
-import FilterScene from "./Museum/FilterScene";
 
 
 const SceneManager = {
-
-
     init() {
         this.currentScene = new InsideScene();
         this.setupScene();
@@ -41,6 +38,14 @@ const SceneManager = {
         })
     },
 
+    loadScene() {
+        this.loadSceneModels();
+        ScreenLoader.loadScreen(true);
+    },
+
+    /**
+     * Animate scene for each frame
+     */
     animate() {
         this.animateSceneModels();
         this.animateCamera();
@@ -56,11 +61,6 @@ const SceneManager = {
 
     animateCamera() {
         CameraManager.animateCamera();
-    },
-
-    loadScene() {
-        this.loadSceneModels();
-        ScreenLoader.loadScreen(true);
     },
 
     get scene() {

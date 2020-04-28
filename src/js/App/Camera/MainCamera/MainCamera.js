@@ -26,13 +26,19 @@ export default class MainCamera {
         this._camera.rotation.z = 0;
     }
 
+    setFront() {
+        this._camera.rotation.y = -Math.PI;
+        this._camera.rotation.x = 0;
+        this._camera.rotation.z = 0;
+    }
+
 
     activeFlashLight() {
         this.flashlight.enable()
     }
 
     flash() {
-       this.flashphoto.flash()
+        this.flashphoto.flash()
     }
 
     get camera() {

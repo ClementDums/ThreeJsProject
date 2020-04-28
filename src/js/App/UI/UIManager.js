@@ -4,7 +4,6 @@ const UIManager = {
         this.textContainer = this.el.querySelector("#uiText");
         this.currentStory = [];
         this.isDisplayingText = false;
-
     },
 
     showGalleryScreen() {
@@ -32,7 +31,6 @@ const UIManager = {
                 console.log(textContainer);
                 textContainer.appendChild(para)
             }, 2000 * (i + 1))
-
         });
     }
 };

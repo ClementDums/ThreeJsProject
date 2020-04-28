@@ -68313,15 +68313,28 @@ var SplineManager = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UI_UIManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../UI/UIManager */ "./src/js/App/UI/UIManager.js");
+/* harmony import */ var _Interaction_RaycasterManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Interaction/RaycasterManager */ "./src/js/App/Interaction/RaycasterManager.js");
+/* harmony import */ var _Interaction_InteractionManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Interaction/InteractionManager */ "./src/js/App/Interaction/InteractionManager.js");
+
+
 
 var FilterManager = {
   objects: [],
   currentObject: null,
   i: 0,
   isFiltered: false,
-  init: function init(statue0, statue1, statue2, statue3) {
+  phone: null,
+  init: function init(phone, statue0, statue1, statue2, statue3) {
+    this.phone = phone;
     this.objects.push(statue0, statue1, statue2, statue3);
     this.currentObject = statue0;
+  },
+  stopFilterModule: function stopFilterModule() {
+    this.phone.setSmall();
+    this.phone.setBlackScreenTexture();
+  },
+  filterModule: function filterModule() {
+    this.startFilter(this.phone);
   },
   setCurrentActive: function setCurrentActive() {
     this.currentObject.show();
@@ -68356,6 +68369,35 @@ var FilterManager = {
     this.isFiltered = true;
     phone.setFullscreen();
     phone.zoomPhone(100);
+  },
+  clickedFilter: function clickedFilter(name) {
+    if (name === "prev") {
+      this.setPrev();
+    }
+
+    if (name === "next") {
+      this.setNext();
+    }
+
+    if (name === "exit") {
+      this.stopFilterModule();
+    }
+
+    if (name === "toFilter") {
+      _Interaction_RaycasterManager__WEBPACK_IMPORTED_MODULE_1__["default"].identifiers.splice("toFilter");
+      this.filterModule();
+    }
+
+    if (name === "story") {
+      this.startStory();
+      this.stopFilterModule();
+    }
+  },
+  clickOnFilter: function clickOnFilter() {
+    this.phone.setCameraScreenTexture();
+    _Interaction_RaycasterManager__WEBPACK_IMPORTED_MODULE_1__["default"].isActive = true;
+    _Interaction_RaycasterManager__WEBPACK_IMPORTED_MODULE_1__["default"].identifiers.push("toFilter");
+    _Interaction_InteractionManager__WEBPACK_IMPORTED_MODULE_2__["default"].clickListener = true;
   },
   endFilter: function endFilter() {
     console.log("end");
@@ -68558,6 +68600,10 @@ var Hand = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UI_UIManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../UI/UIManager */ "./src/js/App/UI/UIManager.js");
 /* harmony import */ var _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Camera/CameraManager */ "./src/js/App/Camera/CameraManager.js");
+/* harmony import */ var _Interaction_RaycasterManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Interaction/RaycasterManager */ "./src/js/App/Interaction/RaycasterManager.js");
+/* harmony import */ var _Interaction_InteractionManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../Interaction/InteractionManager */ "./src/js/App/Interaction/InteractionManager.js");
+
+
 
 
 var HypersexManager = {
@@ -68586,7 +68632,19 @@ var HypersexManager = {
     phone.setFullscreen();
     phone.zoomPhone(40);
   },
-  endHypersex: function endHypersex() {}
+  endHypersex: function endHypersex() {},
+  clickedHypersex: function clickedHypersex(name) {
+    if (name === "toHypersex") {
+      _Interaction_RaycasterManager__WEBPACK_IMPORTED_MODULE_2__["default"].identifiers.splice("toHypersex");
+      this.startHypersex(this.phone);
+      this.takePhoto();
+    }
+  },
+  clickOnHypersex: function clickOnHypersex() {
+    _Interaction_RaycasterManager__WEBPACK_IMPORTED_MODULE_2__["default"].isActive = true;
+    _Interaction_RaycasterManager__WEBPACK_IMPORTED_MODULE_2__["default"].identifiers.push("toHypersex");
+    _Interaction_InteractionManager__WEBPACK_IMPORTED_MODULE_3__["default"].clickListener = true;
+  }
 };
 /* harmony default export */ __webpack_exports__["default"] = (HypersexManager);
 
@@ -68714,6 +68772,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CameraLock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CameraLock */ "./src/js/App/Camera/CameraLock.js");
 /* harmony import */ var _CameraMovement__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CameraMovement */ "./src/js/App/Camera/CameraMovement.js");
 /* harmony import */ var _StatesManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../StatesManager */ "./src/js/App/StatesManager.js");
+/* harmony import */ var _Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Helpers/ExperienceStates */ "./src/js/Helpers/ExperienceStates.js");
+
 
 
 
@@ -68739,23 +68799,54 @@ var CameraManager = {
     this.isLock = false;
     this.cameraLockManager.unlock();
   },
+
+  /**
+   *
+   * @param state
+   */
   startMove: function startMove(state) {
     this.cameraMovementManager.moveSpline(state);
     this.isCameraMoving = true;
   },
   endMove: function endMove() {
     _StatesManager__WEBPACK_IMPORTED_MODULE_4__["default"].nextState();
-    this.mainCamera.setLeft();
+    this.rotate("left");
+  },
+
+  /**
+   *
+   * @param side
+   */
+  rotate: function rotate(side) {
+    switch (side) {
+      case "left":
+        this.mainCamera.setLeft();
+        break;
+
+      case "front":
+        this.mainCamera.setFront();
+        break;
+    }
   },
   toFilter: function toFilter() {
-    this.cameraMovementManager.moveTo(-550, -3900);
+    this.cameraMovementManager.moveTo(-450, -3900);
   },
   toHypersex: function toHypersex() {
-    this.cameraMovementManager.moveTo(-400, -4500);
+    this.cameraMovementManager.moveTo(-350, -4500);
   },
   toDiversity: function toDiversity() {
     this.cameraMovementManager.moveTo(-440, -5100);
   },
+  hallWalk: function hallWalk() {
+    this.startMove(_Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_5__["default"].HALLWALK); //TODO : Add event end move listener
+  },
+  endWalk: function endWalk() {
+    this.startMove(_Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_5__["default"].ENDWALK);
+  },
+
+  /**
+   * Animate camera each frame
+   */
   animateCamera: function animateCamera() {
     if (this.isCameraMoving) {
       this.cameraMovementManager.animateMove();
@@ -68789,13 +68880,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tweenjs_tween_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @tweenjs/tween.js */ "./node_modules/@tweenjs/tween.js/dist/tween.esm.js");
 /* harmony import */ var _3D_Splines_SplineManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../3D/Splines/SplineManager */ "./src/js/App/3D/Splines/SplineManager.js");
 /* harmony import */ var _CameraManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CameraManager */ "./src/js/App/Camera/CameraManager.js");
-/* harmony import */ var _Scene_SceneManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Scene/SceneManager */ "./src/js/App/Scene/SceneManager.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
 
 
 
@@ -68852,7 +68941,6 @@ var CameraMovement = /*#__PURE__*/function () {
       }, 1000) // Move to (300, 200) in 1 second.
       .easing(_tweenjs_tween_js__WEBPACK_IMPORTED_MODULE_1__["default"].Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
       .start();
-      console.log(_CameraManager__WEBPACK_IMPORTED_MODULE_3__["default"].phoneCamera.camera);
     }
   }, {
     key: "animateMove",
@@ -68957,6 +69045,13 @@ var MainCamera = /*#__PURE__*/function () {
     key: "setLeft",
     value: function setLeft() {
       this._camera.rotation.y = Math.PI / 2;
+      this._camera.rotation.x = 0;
+      this._camera.rotation.z = 0;
+    }
+  }, {
+    key: "setFront",
+    value: function setFront() {
+      this._camera.rotation.y = -Math.PI;
       this._camera.rotation.x = 0;
       this._camera.rotation.z = 0;
     }
@@ -69248,7 +69343,8 @@ var Experience = /*#__PURE__*/function () {
     this._mouse = new three__WEBPACK_IMPORTED_MODULE_0__["Vector2"]();
     this._isDebug = isDebug;
     this.currentObjectClicked = null;
-    this.composer = null;
+    this.composer = null; //Init managers
+
     _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_2__["default"].init();
     _Scene_SceneManager__WEBPACK_IMPORTED_MODULE_1__["default"].init();
     _Interaction_InteractionManager__WEBPACK_IMPORTED_MODULE_4__["default"].init();
@@ -69288,7 +69384,8 @@ var Experience = /*#__PURE__*/function () {
         _this.controls.enabled = value;
         document.getElementById('ui').style.display = value ? 'none' : 'block';
       });
-      this.postProcessing();
+      this.postProcessing(); //Event listeners
+
       window.addEventListener('resize', this.onResize.bind(this));
       window.addEventListener('mousemove', this.onDocumentMouseMove.bind(this), false);
       window.addEventListener('click', this.onDocumentMouseClick.bind(this), false);
@@ -69318,13 +69415,16 @@ var Experience = /*#__PURE__*/function () {
       //Animate Scene
       _Scene_SceneManager__WEBPACK_IMPORTED_MODULE_1__["default"].animate();
       this.currentObjectClicked = _Interaction_RaycasterManager__WEBPACK_IMPORTED_MODULE_3__["default"].getTouchedElement(this._mouse, this.camera, this.scene); //Render
+      //Phone camera render
 
       this.renderer.setRenderTarget(_Texture_TextureManager__WEBPACK_IMPORTED_MODULE_7__["default"].rtTexture);
       this.renderer.clear();
-      this.renderer.render(_Scene_SceneManager__WEBPACK_IMPORTED_MODULE_1__["default"].scene, _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_2__["default"].phoneCamera.camera);
+      this.renderer.render(_Scene_SceneManager__WEBPACK_IMPORTED_MODULE_1__["default"].scene, _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_2__["default"].phoneCamera.camera); //Debug camera render
+
       this.renderer.setRenderTarget(null);
       this.renderer.clear();
-      this.renderer.render(_Scene_SceneManager__WEBPACK_IMPORTED_MODULE_1__["default"].scene, this.camera);
+      this.renderer.render(_Scene_SceneManager__WEBPACK_IMPORTED_MODULE_1__["default"].scene, this.camera); //Main camera render
+
       this.renderer.setRenderTarget(null);
       this.renderer.clear();
       this.composer.render();
@@ -69375,7 +69475,9 @@ var Experience = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _StatesManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../StatesManager */ "./src/js/App/StatesManager.js");
-/* harmony import */ var _Scene_SceneManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Scene/SceneManager */ "./src/js/App/Scene/SceneManager.js");
+/* harmony import */ var _3D_WorkOfArt_Filter_FilterManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../3D/WorkOfArt/Filter/FilterManager */ "./src/js/App/3D/WorkOfArt/Filter/FilterManager.js");
+/* harmony import */ var _3D_WorkOfArt_Hypersex_HypersexManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../3D/WorkOfArt/Hypersex/HypersexManager */ "./src/js/App/3D/WorkOfArt/Hypersex/HypersexManager.js");
+
 
 
 var InteractionManager = {
@@ -69405,15 +69507,20 @@ var InteractionManager = {
       _StatesManager__WEBPACK_IMPORTED_MODULE_0__["default"].nextState();
     });
   },
+
+  /**
+   *
+   * @param name
+   */
   updateClick: function updateClick(name) {
     this.currentObjectClicked = name;
 
     if (name === "toFilter") {
-      _Scene_SceneManager__WEBPACK_IMPORTED_MODULE_1__["default"].currentScene.clickedFilter(name);
+      _3D_WorkOfArt_Filter_FilterManager__WEBPACK_IMPORTED_MODULE_1__["default"].clickedFilter(name);
     }
 
     if (name === "toHypersex") {
-      _Scene_SceneManager__WEBPACK_IMPORTED_MODULE_1__["default"].currentScene.clickedHypersex(name);
+      _3D_WorkOfArt_Hypersex_HypersexManager__WEBPACK_IMPORTED_MODULE_2__["default"].clickedHypersex(name);
     }
   }
 };
@@ -69708,201 +69815,6 @@ var PostProcessingManager = {
 
 /***/ }),
 
-/***/ "./src/js/App/Scene/Museum/FilterScene.js":
-/*!************************************************!*\
-  !*** ./src/js/App/Scene/Museum/FilterScene.js ***!
-  \************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FilterScene; });
-/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
-/* harmony import */ var _3D_WorkOfArt_Filter_FilterWorkOfArt__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../3D/WorkOfArt/Filter/FilterWorkOfArt */ "./src/js/App/3D/WorkOfArt/Filter/FilterWorkOfArt.js");
-/* harmony import */ var _3D_Phone_Phone__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../3D/Phone/Phone */ "./src/js/App/3D/Phone/Phone.js");
-/* harmony import */ var _Interaction_RaycasterManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Interaction/RaycasterManager */ "./src/js/App/Interaction/RaycasterManager.js");
-/* harmony import */ var _Interaction_InteractionManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Interaction/InteractionManager */ "./src/js/App/Interaction/InteractionManager.js");
-/* harmony import */ var _3D_WorkOfArt_Filter_FilterManager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../3D/WorkOfArt/Filter/FilterManager */ "./src/js/App/3D/WorkOfArt/Filter/FilterManager.js");
-/* harmony import */ var _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Camera/CameraManager */ "./src/js/App/Camera/CameraManager.js");
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-
-
-
-
-
-
-var FilterScene = /*#__PURE__*/function () {
-  function FilterScene() {
-    _classCallCheck(this, FilterScene);
-
-    this._scene = new three__WEBPACK_IMPORTED_MODULE_0__["Scene"]();
-    this._scene.name = "FilterScene";
-    this.phone = new _3D_Phone_Phone__WEBPACK_IMPORTED_MODULE_2__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](1, 1, 1));
-    this.statue0 = new _3D_WorkOfArt_Filter_FilterWorkOfArt__WEBPACK_IMPORTED_MODULE_1__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 80, 80), "0", "0");
-    this.statue1 = new _3D_WorkOfArt_Filter_FilterWorkOfArt__WEBPACK_IMPORTED_MODULE_1__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, -80, 80), "1", "1");
-    this.statue2 = new _3D_WorkOfArt_Filter_FilterWorkOfArt__WEBPACK_IMPORTED_MODULE_1__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, -80, 80), "2", "2");
-    this.statue3 = new _3D_WorkOfArt_Filter_FilterWorkOfArt__WEBPACK_IMPORTED_MODULE_1__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, -80, 80), "3", "3");
-    this.objects = [];
-  }
-
-  _createClass(FilterScene, [{
-    key: "init",
-    value: function init() {
-      this.addLights();
-      this.addGround();
-      var geometry = new three__WEBPACK_IMPORTED_MODULE_0__["BoxGeometry"](50, 50, 50);
-      var material = new three__WEBPACK_IMPORTED_MODULE_0__["MeshBasicMaterial"]({
-        color: 0x00ff00
-      });
-      var cube = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](geometry, material);
-      cube.name = "story";
-      cube.position.set(-80, 50, -10);
-
-      this._scene.add(cube);
-
-      var geometry = new three__WEBPACK_IMPORTED_MODULE_0__["BoxGeometry"](20, 20, 20);
-      var material = new three__WEBPACK_IMPORTED_MODULE_0__["MeshBasicMaterial"]({
-        color: 0x00ff00
-      });
-      var cube = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](geometry, material);
-      cube.name = "prev";
-      cube.position.set(80, 50, -10);
-
-      this._scene.add(cube);
-
-      var geometry = new three__WEBPACK_IMPORTED_MODULE_0__["BoxGeometry"](20, 20, 20);
-      var material = new three__WEBPACK_IMPORTED_MODULE_0__["MeshBasicMaterial"]({
-        color: 0x00ff00
-      });
-      var cube = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](geometry, material);
-      cube.name = "next";
-      cube.position.set(110, 50, -10);
-
-      this._scene.add(cube);
-
-      this.objects.push(this.statue0);
-      this.objects.push(this.statue1);
-      this.objects.push(this.statue2);
-      this.objects.push(this.statue3);
-      this.objects.push(this.phone);
-      _3D_WorkOfArt_Filter_FilterManager__WEBPACK_IMPORTED_MODULE_5__["default"].init(this.statue0, this.statue1, this.statue2, this.statue3);
-      this.clickPrepare();
-    }
-  }, {
-    key: "clickPrepare",
-    value: function clickPrepare() {
-      _Interaction_RaycasterManager__WEBPACK_IMPORTED_MODULE_3__["default"].isActive = true;
-      _Interaction_RaycasterManager__WEBPACK_IMPORTED_MODULE_3__["default"].identifiers.push("Filter");
-      _Interaction_RaycasterManager__WEBPACK_IMPORTED_MODULE_3__["default"].identifiers.push("story");
-      _Interaction_InteractionManager__WEBPACK_IMPORTED_MODULE_4__["default"].clickListener = true;
-    }
-  }, {
-    key: "clicked",
-    value: function clicked(name) {
-      if (name === "prev") {
-        this.prevFilter();
-      }
-
-      if (name === "next") {
-        this.nextFilter();
-      }
-
-      if (name === "story") {
-        this.startStory();
-        this.stopFilterModule();
-      }
-
-      if (name === "Filter") {
-        _Interaction_RaycasterManager__WEBPACK_IMPORTED_MODULE_3__["default"].identifiers.splice("Filter");
-        this.filterModule();
-      }
-
-      if (name === "story") {
-        this.startStory();
-        this.stopFilterModule();
-      }
-    }
-  }, {
-    key: "startStory",
-    value: function startStory() {
-      _3D_WorkOfArt_Filter_FilterManager__WEBPACK_IMPORTED_MODULE_5__["default"].startStory();
-    }
-  }, {
-    key: "stopFilterModule",
-    value: function stopFilterModule() {
-      this.phone.setSmall();
-    }
-  }, {
-    key: "filterModule",
-    value: function filterModule() {
-      _3D_WorkOfArt_Filter_FilterManager__WEBPACK_IMPORTED_MODULE_5__["default"].startFilter(this.phone);
-    }
-  }, {
-    key: "nextFilter",
-    value: function nextFilter() {
-      _3D_WorkOfArt_Filter_FilterManager__WEBPACK_IMPORTED_MODULE_5__["default"].setNext();
-    }
-  }, {
-    key: "prevFilter",
-    value: function prevFilter() {
-      _3D_WorkOfArt_Filter_FilterManager__WEBPACK_IMPORTED_MODULE_5__["default"].setPrev();
-    }
-  }, {
-    key: "addLights",
-    value: function addLights() {
-      var flash = new three__WEBPACK_IMPORTED_MODULE_0__["PointLight"](0xffffff, 30, 1000, 1.7);
-      flash.position.set(0, 300, 200);
-      flash.power = 30;
-
-      this._scene.add(flash);
-
-      var flash2 = new three__WEBPACK_IMPORTED_MODULE_0__["PointLight"](0xffffff, 30, 2000, 1.7);
-      flash2.position.set(0, 1000, -1500);
-      flash2.power = 100;
-
-      this._scene.add(flash2);
-
-      var ambientLight = new three__WEBPACK_IMPORTED_MODULE_0__["AmbientLight"](0x404040);
-
-      this._scene.add(ambientLight);
-    }
-  }, {
-    key: "addGround",
-    value: function addGround() {
-      var material = new three__WEBPACK_IMPORTED_MODULE_0__["MeshPhongMaterial"]({
-        color: 0x0000ff,
-        dithering: true
-      });
-      var geometry = new three__WEBPACK_IMPORTED_MODULE_0__["PlaneBufferGeometry"](2000, 2000);
-      var mesh = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](geometry, material);
-      mesh.position.set(0, -1, 0);
-      mesh.rotation.x = -Math.PI * 0.5;
-      mesh.receiveShadow = true;
-
-      this._scene.add(mesh);
-    }
-  }, {
-    key: "scene",
-    get: function get() {
-      return this._scene;
-    }
-  }]);
-
-  return FilterScene;
-}();
-
-
-
-/***/ }),
-
 /***/ "./src/js/App/Scene/Museum/InsideScene.js":
 /*!************************************************!*\
   !*** ./src/js/App/Scene/Museum/InsideScene.js ***!
@@ -69919,26 +69831,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _3D_Decors_Pantheon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../3D/Decors/Pantheon */ "./src/js/App/3D/Decors/Pantheon.js");
 /* harmony import */ var _3D_Splines_SplineManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../3D/Splines/SplineManager */ "./src/js/App/3D/Splines/SplineManager.js");
 /* harmony import */ var _Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../Helpers/ExperienceStates */ "./src/js/Helpers/ExperienceStates.js");
-/* harmony import */ var _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Camera/CameraManager */ "./src/js/App/Camera/CameraManager.js");
-/* harmony import */ var _UI_UIManager__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../UI/UIManager */ "./src/js/App/UI/UIManager.js");
-/* harmony import */ var _Interaction_RaycasterManager__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../Interaction/RaycasterManager */ "./src/js/App/Interaction/RaycasterManager.js");
-/* harmony import */ var _Interaction_InteractionManager__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../Interaction/InteractionManager */ "./src/js/App/Interaction/InteractionManager.js");
-/* harmony import */ var _Environment_Background__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../Environment/Background */ "./src/js/App/Environment/Background.js");
-/* harmony import */ var _3D_WorkOfArt_Filter_FilterManager__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../3D/WorkOfArt/Filter/FilterManager */ "./src/js/App/3D/WorkOfArt/Filter/FilterManager.js");
-/* harmony import */ var _Environment_Skybox__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../Environment/Skybox */ "./src/js/App/Environment/Skybox.js");
-/* harmony import */ var _3D_WorkOfArt_Hypersex_HypersexWorkOfArt__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../3D/WorkOfArt/Hypersex/HypersexWorkOfArt */ "./src/js/App/3D/WorkOfArt/Hypersex/HypersexWorkOfArt.js");
-/* harmony import */ var _3D_WorkOfArt_Hypersex_Hand__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../3D/WorkOfArt/Hypersex/Hand */ "./src/js/App/3D/WorkOfArt/Hypersex/Hand.js");
-/* harmony import */ var _3D_WorkOfArt_Hypersex_HypersexManager__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../3D/WorkOfArt/Hypersex/HypersexManager */ "./src/js/App/3D/WorkOfArt/Hypersex/HypersexManager.js");
-/* harmony import */ var _3D_WorkOfArt_Filter_Socle__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../3D/WorkOfArt/Filter/Socle */ "./src/js/App/3D/WorkOfArt/Filter/Socle.js");
+/* harmony import */ var _UI_UIManager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../UI/UIManager */ "./src/js/App/UI/UIManager.js");
+/* harmony import */ var _Environment_Background__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Environment/Background */ "./src/js/App/Environment/Background.js");
+/* harmony import */ var _3D_WorkOfArt_Filter_FilterManager__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../3D/WorkOfArt/Filter/FilterManager */ "./src/js/App/3D/WorkOfArt/Filter/FilterManager.js");
+/* harmony import */ var _Environment_Skybox__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../Environment/Skybox */ "./src/js/App/Environment/Skybox.js");
+/* harmony import */ var _3D_WorkOfArt_Hypersex_HypersexWorkOfArt__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../3D/WorkOfArt/Hypersex/HypersexWorkOfArt */ "./src/js/App/3D/WorkOfArt/Hypersex/HypersexWorkOfArt.js");
+/* harmony import */ var _3D_WorkOfArt_Hypersex_Hand__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../3D/WorkOfArt/Hypersex/Hand */ "./src/js/App/3D/WorkOfArt/Hypersex/Hand.js");
+/* harmony import */ var _3D_WorkOfArt_Hypersex_HypersexManager__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../3D/WorkOfArt/Hypersex/HypersexManager */ "./src/js/App/3D/WorkOfArt/Hypersex/HypersexManager.js");
+/* harmony import */ var _3D_WorkOfArt_Filter_Socle__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../3D/WorkOfArt/Filter/Socle */ "./src/js/App/3D/WorkOfArt/Filter/Socle.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-
 
 
 
@@ -69960,17 +69865,21 @@ var InsideScene = /*#__PURE__*/function () {
     _classCallCheck(this, InsideScene);
 
     this._scene = new three__WEBPACK_IMPORTED_MODULE_0__["Scene"]();
-    this._scene.name = "Inside";
-    this.pantheon = new _3D_Decors_Pantheon__WEBPACK_IMPORTED_MODULE_3__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 291, -200));
+    this._scene.name = "Inside"; //Pantheon
+
+    this.pantheon = new _3D_Decors_Pantheon__WEBPACK_IMPORTED_MODULE_3__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 291, -200)); //Environement
+
+    this.skybox = new _Environment_Skybox__WEBPACK_IMPORTED_MODULE_9__["default"]("outside");
+    this.phone = new _3D_Phone_Phone__WEBPACK_IMPORTED_MODULE_2__["default"](); //Filter
+
     this.statue0 = new _3D_WorkOfArt_Filter_FilterWorkOfArt__WEBPACK_IMPORTED_MODULE_1__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-522, 147, -3900), "0", 'toFilter', true);
     this.statue1 = new _3D_WorkOfArt_Filter_FilterWorkOfArt__WEBPACK_IMPORTED_MODULE_1__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-530, 147, -3900), "1", "1", false);
     this.statue2 = new _3D_WorkOfArt_Filter_FilterWorkOfArt__WEBPACK_IMPORTED_MODULE_1__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-530, 147, -3900), "2", "2", false);
     this.statue3 = new _3D_WorkOfArt_Filter_FilterWorkOfArt__WEBPACK_IMPORTED_MODULE_1__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-530, 147, -3900), "3", "3", false);
-    this.socle = new _3D_WorkOfArt_Filter_Socle__WEBPACK_IMPORTED_MODULE_16__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-530, 0, -3900));
-    this.hypersex = new _3D_WorkOfArt_Hypersex_HypersexWorkOfArt__WEBPACK_IMPORTED_MODULE_13__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-530, 0, -4500), "toHypersex");
-    this.hand = new _3D_WorkOfArt_Hypersex_Hand__WEBPACK_IMPORTED_MODULE_14__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-680, 0, -4500), "hand");
-    this.skybox = new _Environment_Skybox__WEBPACK_IMPORTED_MODULE_12__["default"]("outside");
-    this.phone = new _3D_Phone_Phone__WEBPACK_IMPORTED_MODULE_2__["default"]();
+    this.socle = new _3D_WorkOfArt_Filter_Socle__WEBPACK_IMPORTED_MODULE_13__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-530, 0, -3900)); //Hypersex
+
+    this.hypersex = new _3D_WorkOfArt_Hypersex_HypersexWorkOfArt__WEBPACK_IMPORTED_MODULE_10__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-530, 0, -4500), "toHypersex");
+    this.hand = new _3D_WorkOfArt_Hypersex_Hand__WEBPACK_IMPORTED_MODULE_11__["default"](new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-680, 0, -4500), "hand");
     this.objects = [];
     this._background = null;
   }
@@ -69980,57 +69889,32 @@ var InsideScene = /*#__PURE__*/function () {
     value: function init() {
       this.addSplines();
       this.addLights();
-      this.addSkybox(); //this.addGround();
+      this.addSkybox();
 
-      this._background.init();
+      this._background.init(); //Pantheon
+
 
       this.objects.push(this.phone);
       this.objects.push(this.statue0);
-      this.objects.push(this.pantheon);
+      this.objects.push(this.pantheon); //Environment
 
-      this._scene.add(this.skybox.skybox);
+      this._scene.add(this.skybox.skybox); //Filter
+
 
       this.objects.push(this.statue1);
       this.objects.push(this.statue2);
       this.objects.push(this.statue3);
       this.objects.push(this.socle);
-      _3D_WorkOfArt_Filter_FilterManager__WEBPACK_IMPORTED_MODULE_11__["default"].init(this.statue0, this.statue1, this.statue2, this.statue3);
+      _3D_WorkOfArt_Filter_FilterManager__WEBPACK_IMPORTED_MODULE_8__["default"].init(this.phone, this.statue0, this.statue1, this.statue2, this.statue3); //Hypersex
+
       this.objects.push(this.hypersex);
       this.objects.push(this.hand);
       var hiddenObjects = [];
       hiddenObjects.push(this.hand);
-      _3D_WorkOfArt_Hypersex_HypersexManager__WEBPACK_IMPORTED_MODULE_15__["default"].init(hiddenObjects);
+      _3D_WorkOfArt_Hypersex_HypersexManager__WEBPACK_IMPORTED_MODULE_12__["default"].init(hiddenObjects); //Cube map
+
       var cubeMap = this._background.hdrCubeMap;
       this._scene.background = cubeMap;
-      var geometry = new three__WEBPACK_IMPORTED_MODULE_0__["BoxGeometry"](20, 20, 20);
-      var material = new three__WEBPACK_IMPORTED_MODULE_0__["MeshBasicMaterial"]({
-        color: 0x00ff00
-      });
-      var cube = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](geometry, material);
-      cube.name = "prev";
-      cube.position.set(80, 50, -2150);
-
-      this._scene.add(cube);
-
-      var geometry = new three__WEBPACK_IMPORTED_MODULE_0__["BoxGeometry"](20, 20, 20);
-      var material = new three__WEBPACK_IMPORTED_MODULE_0__["MeshBasicMaterial"]({
-        color: 0x00ff00
-      });
-      var cube = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](geometry, material);
-      cube.name = "next";
-      cube.position.set(110, 50, -2150);
-
-      this._scene.add(cube);
-
-      var geometry = new three__WEBPACK_IMPORTED_MODULE_0__["BoxGeometry"](20, 20, 20);
-      var material = new three__WEBPACK_IMPORTED_MODULE_0__["MeshBasicMaterial"]({
-        color: 0x00ff00
-      });
-      var cube = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](geometry, material);
-      cube.name = "exit";
-      cube.position.set(110, 80, -2150);
-
-      this._scene.add(cube);
     }
   }, {
     key: "addSplines",
@@ -70070,84 +69954,9 @@ var InsideScene = /*#__PURE__*/function () {
       this._scene.add(ambientLight);
     }
   }, {
-    key: "addGround",
-    value: function addGround() {
-      var material = new three__WEBPACK_IMPORTED_MODULE_0__["MeshPhongMaterial"]({
-        color: 0x808080,
-        dithering: true
-      });
-      var geometry = new three__WEBPACK_IMPORTED_MODULE_0__["PlaneBufferGeometry"](2000, 2000);
-      var mesh = new three__WEBPACK_IMPORTED_MODULE_0__["Mesh"](geometry, material);
-      mesh.position.set(0, -1, 0);
-      mesh.rotation.x = -Math.PI * 0.5;
-      mesh.receiveShadow = true;
-
-      this._scene.add(mesh);
-    }
-  }, {
     key: "addSkybox",
     value: function addSkybox() {
-      this._background = new _Environment_Background__WEBPACK_IMPORTED_MODULE_10__["default"]();
-    }
-  }, {
-    key: "clickOnFilter",
-    value: function clickOnFilter() {
-      this.phone.setCameraScreenTexture();
-      _Interaction_RaycasterManager__WEBPACK_IMPORTED_MODULE_8__["default"].isActive = true;
-      _Interaction_RaycasterManager__WEBPACK_IMPORTED_MODULE_8__["default"].identifiers.push("toFilter");
-      _Interaction_InteractionManager__WEBPACK_IMPORTED_MODULE_9__["default"].clickListener = true;
-    }
-  }, {
-    key: "clickOnHypersex",
-    value: function clickOnHypersex() {
-      _Interaction_RaycasterManager__WEBPACK_IMPORTED_MODULE_8__["default"].isActive = true;
-      _Interaction_RaycasterManager__WEBPACK_IMPORTED_MODULE_8__["default"].identifiers.push("toHypersex");
-      _Interaction_InteractionManager__WEBPACK_IMPORTED_MODULE_9__["default"].clickListener = true;
-    }
-  }, {
-    key: "clickedHypersex",
-    value: function clickedHypersex(name) {
-      if (name === "toHypersex") {
-        _Interaction_RaycasterManager__WEBPACK_IMPORTED_MODULE_8__["default"].identifiers.splice("toHypersex");
-        _3D_WorkOfArt_Hypersex_HypersexManager__WEBPACK_IMPORTED_MODULE_15__["default"].startHypersex(this.phone);
-        _3D_WorkOfArt_Hypersex_HypersexManager__WEBPACK_IMPORTED_MODULE_15__["default"].takePhoto();
-      }
-    }
-  }, {
-    key: "clickedFilter",
-    value: function clickedFilter(name) {
-      if (name === "prev") {
-        _3D_WorkOfArt_Filter_FilterManager__WEBPACK_IMPORTED_MODULE_11__["default"].setPrev();
-      }
-
-      if (name === "next") {
-        _3D_WorkOfArt_Filter_FilterManager__WEBPACK_IMPORTED_MODULE_11__["default"].setNext();
-      }
-
-      if (name === "exit") {
-        this.stopFilterModule();
-      }
-
-      if (name === "toFilter") {
-        _Interaction_RaycasterManager__WEBPACK_IMPORTED_MODULE_8__["default"].identifiers.splice("toFilter");
-        this.filterModule();
-      }
-
-      if (name === "story") {
-        _3D_WorkOfArt_Filter_FilterManager__WEBPACK_IMPORTED_MODULE_11__["default"].startStory();
-        this.stopFilterModule();
-      }
-    }
-  }, {
-    key: "stopFilterModule",
-    value: function stopFilterModule() {
-      this.phone.setSmall();
-      this.phone.setBlackScreenTexture();
-    }
-  }, {
-    key: "filterModule",
-    value: function filterModule() {
-      _3D_WorkOfArt_Filter_FilterManager__WEBPACK_IMPORTED_MODULE_11__["default"].startFilter(this.phone);
+      this._background = new _Environment_Background__WEBPACK_IMPORTED_MODULE_7__["default"]();
     }
   }, {
     key: "scene",
@@ -70155,19 +69964,9 @@ var InsideScene = /*#__PURE__*/function () {
       return this._scene;
     }
   }], [{
-    key: "hallWalk",
-    value: function hallWalk() {
-      _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_6__["default"].startMove(_Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_5__["default"].HALLWALK);
-    }
-  }, {
-    key: "endWalk",
-    value: function endWalk() {
-      _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_6__["default"].startMove(_Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_5__["default"].ENDWALK);
-    }
-  }, {
     key: "galleryScreen",
     value: function galleryScreen() {
-      _UI_UIManager__WEBPACK_IMPORTED_MODULE_7__["default"].showGalleryScreen();
+      _UI_UIManager__WEBPACK_IMPORTED_MODULE_6__["default"].showGalleryScreen();
     }
   }]);
 
@@ -70190,8 +69989,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Museum_InsideScene__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Museum/InsideScene */ "./src/js/App/Scene/Museum/InsideScene.js");
 /* harmony import */ var _Helpers_ScreenLoader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Helpers/ScreenLoader */ "./src/js/Helpers/ScreenLoader.js");
 /* harmony import */ var _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Camera/CameraManager */ "./src/js/App/Camera/CameraManager.js");
-/* harmony import */ var _Museum_FilterScene__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Museum/FilterScene */ "./src/js/App/Scene/Museum/FilterScene.js");
-
 
 
 
@@ -70235,6 +70032,14 @@ var SceneManager = {
       });
     });
   },
+  loadScene: function loadScene() {
+    this.loadSceneModels();
+    _Helpers_ScreenLoader__WEBPACK_IMPORTED_MODULE_1__["default"].loadScreen(true);
+  },
+
+  /**
+   * Animate scene for each frame
+   */
   animate: function animate() {
     this.animateSceneModels();
     this.animateCamera();
@@ -70248,10 +70053,6 @@ var SceneManager = {
   },
   animateCamera: function animateCamera() {
     _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_2__["default"].animateCamera();
-  },
-  loadScene: function loadScene() {
-    this.loadSceneModels();
-    _Helpers_ScreenLoader__WEBPACK_IMPORTED_MODULE_1__["default"].loadScreen(true);
   },
 
   get scene() {
@@ -70274,8 +70075,10 @@ var SceneManager = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Helpers/ExperienceStates */ "./src/js/Helpers/ExperienceStates.js");
 /* harmony import */ var _Scene_SceneManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Scene/SceneManager */ "./src/js/App/Scene/SceneManager.js");
-/* harmony import */ var _Scene_Museum_InsideScene__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Scene/Museum/InsideScene */ "./src/js/App/Scene/Museum/InsideScene.js");
-/* harmony import */ var _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Camera/CameraManager */ "./src/js/App/Camera/CameraManager.js");
+/* harmony import */ var _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Camera/CameraManager */ "./src/js/App/Camera/CameraManager.js");
+/* harmony import */ var _3D_WorkOfArt_Filter_FilterManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./3D/WorkOfArt/Filter/FilterManager */ "./src/js/App/3D/WorkOfArt/Filter/FilterManager.js");
+/* harmony import */ var _3D_WorkOfArt_Hypersex_HypersexManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./3D/WorkOfArt/Hypersex/HypersexManager */ "./src/js/App/3D/WorkOfArt/Hypersex/HypersexManager.js");
+
 
 
 
@@ -70295,27 +70098,27 @@ var StatesManager = {
     switch (this.currentState) {
       case _Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_0__["default"].LANDING:
         this.currentState = _Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_0__["default"].HALLWALK;
-        _Scene_Museum_InsideScene__WEBPACK_IMPORTED_MODULE_2__["default"].hallWalk();
+        _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_2__["default"].hallWalk();
         break;
 
       case _Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_0__["default"].HALLWALK:
         this.currentState = _Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_0__["default"].FILTER;
-        _Scene_SceneManager__WEBPACK_IMPORTED_MODULE_1__["default"].currentScene.clickOnFilter();
+        _3D_WorkOfArt_Filter_FilterManager__WEBPACK_IMPORTED_MODULE_3__["default"].clickOnFilter();
         break;
 
       case _Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_0__["default"].FILTER:
         this.currentState = _Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_0__["default"].HYPERSEX;
-        _Scene_SceneManager__WEBPACK_IMPORTED_MODULE_1__["default"].currentScene.clickOnHypersex();
-        _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_3__["default"].toHypersex();
+        _3D_WorkOfArt_Hypersex_HypersexManager__WEBPACK_IMPORTED_MODULE_4__["default"].clickOnHypersex();
+        _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_2__["default"].toHypersex();
         break;
 
       case _Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_0__["default"].HYPERSEX:
         if (order === "next") {
           this.currentState = _Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_0__["default"].DIVERSITY;
-          _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_3__["default"].toDiversity();
+          _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_2__["default"].toDiversity();
         } else {
           this.currentState = _Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_0__["default"].FILTER;
-          _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_3__["default"].toFilter();
+          _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_2__["default"].toFilter();
         }
 
         break;
@@ -70325,13 +70128,13 @@ var StatesManager = {
           this.currentState = _Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_0__["default"].ENDWALK;
         } else {
           this.currentState = _Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_0__["default"].HYPERSEX;
-          _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_3__["default"].toHypersex();
+          _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_2__["default"].toHypersex();
         }
 
         break;
 
       case _Helpers_ExperienceStates__WEBPACK_IMPORTED_MODULE_0__["default"].ENDWALK:
-        _Scene_Museum_InsideScene__WEBPACK_IMPORTED_MODULE_2__["default"].endWalk();
+        _Camera_CameraManager__WEBPACK_IMPORTED_MODULE_2__["default"].endWalk();
         break;
 
       default:
@@ -70357,6 +70160,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var TextureManager = {
   init: function init() {
+    //Render to texture
     this.rtTexture = new three__WEBPACK_IMPORTED_MODULE_0__["WebGLRenderTarget"](window.innerWidth, window.innerHeight, {
       minFilter: three__WEBPACK_IMPORTED_MODULE_0__["LinearFilter"],
       magFilter: three__WEBPACK_IMPORTED_MODULE_0__["NearestFilter"],

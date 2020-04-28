@@ -26,8 +26,7 @@ const RaycasterManager = {
                     }
                 }
             }
-        }
-        ,
+        },
 
         getClickedOnTouchedElement() {
             if (this.INTERSECTED) {
@@ -35,7 +34,6 @@ const RaycasterManager = {
                 return this.INTERSECTED.name;
             }
         }
-    }
-;
+    };
 
 export default RaycasterManager

@@ -25,6 +25,7 @@ export default class Experience {
         this.currentObjectClicked = null;
         this.composer = null;
 
+        //Init managers
         CameraManager.init();
         SceneManager.init();
         InteractionManager.init();
@@ -69,6 +70,7 @@ export default class Experience {
 
         this.postProcessing();
 
+        //Event listeners
         window.addEventListener('resize', this.onResize.bind(this));
         window.addEventListener('mousemove', this.onDocumentMouseMove.bind(this), false);
         window.addEventListener('click', this.onDocumentMouseClick.bind(this), false);
@@ -97,14 +99,17 @@ export default class Experience {
         SceneManager.animate();
         this.currentObjectClicked = RaycasterManager.getTouchedElement(this._mouse, this.camera, this.scene);
         //Render
+        //Phone camera render
         this.renderer.setRenderTarget(TextureManager.rtTexture);
         this.renderer.clear();
         this.renderer.render(SceneManager.scene, CameraManager.phoneCamera.camera);
 
+        //Debug camera render
         this.renderer.setRenderTarget(null);
         this.renderer.clear();
         this.renderer.render(SceneManager.scene, this.camera);
 
+        //Main camera render
         this.renderer.setRenderTarget(null);
         this.renderer.clear();
         this.composer.render();

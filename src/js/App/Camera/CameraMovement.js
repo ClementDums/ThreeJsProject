@@ -3,8 +3,6 @@ import TWEEN from "@tweenjs/tween.js"
 
 import SplineManager from "../3D/Splines/SplineManager";
 import CameraManager from "./CameraManager";
-import SceneManager from "../Scene/SceneManager";
-
 
 export default class CameraMovement {
     constructor(camera) {
@@ -35,7 +33,6 @@ export default class CameraMovement {
         CameraManager.endMove();
     }
 
-
     moveTo(x, z) {
         const tweenCam = new TWEEN.Tween(CameraManager.mainCamera.camera.position) // Create a new tween that modifies 'coords'.
             .to({x: x, z: z}, 1000) // Move to (300, 200) in 1 second.
@@ -43,11 +40,9 @@ export default class CameraMovement {
             .start();
 
         const tweenCamPhon = new TWEEN.Tween(CameraManager.phoneCamera.camera.position) // Create a new tween that modifies 'coords'.
-            .to({x: x+100, z: z}, 1000) // Move to (300, 200) in 1 second.
+            .to({x: x + 100, z: z}, 1000) // Move to (300, 200) in 1 second.
             .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
             .start();
-
-        console.log(CameraManager.phoneCamera.camera)
     }
 
     animateMove() {
@@ -55,6 +50,7 @@ export default class CameraMovement {
             this.splineAnimation();
         }
     }
+
 
     splineAnimation() {
         this.time += 15;

@@ -1,9 +1,10 @@
 import UIManager from "../../../UI/UIManager";
 import CameraManager from "../../../Camera/CameraManager";
+import RaycasterManager from "../../../Interaction/RaycasterManager";
+import InteractionManager from "../../../Interaction/InteractionManager";
 
 const HypersexManager = {
     hiddenObjects: [],
-
 
     init(objects) {
         this.hiddenObjects = objects
@@ -16,7 +17,7 @@ const HypersexManager = {
     },
 
     showObjects() {
-        this.hiddenObjects.forEach((item)=>{
+        this.hiddenObjects.forEach((item) => {
             item.show();
         })
     },
@@ -31,9 +32,22 @@ const HypersexManager = {
     },
 
     endHypersex() {
+    },
+
+
+    clickedHypersex(name) {
+        if (name === "toHypersex") {
+            RaycasterManager.identifiers.splice("toHypersex");
+            this.startHypersex(this.phone);
+            this.takePhoto();
+        }
+    },
+
+    clickOnHypersex() {
+        RaycasterManager.isActive = true;
+        RaycasterManager.identifiers.push("toHypersex");
+        InteractionManager.clickListener = true;
     }
-
-
 };
 
 

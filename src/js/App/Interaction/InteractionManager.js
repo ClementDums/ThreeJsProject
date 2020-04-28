@@ -1,5 +1,6 @@
 import StatesManager from "../StatesManager"
-import SceneManager from "../Scene/SceneManager";
+import FilterManager from "../3D/WorkOfArt/Filter/FilterManager";
+import HypersexManager from "../3D/WorkOfArt/Hypersex/HypersexManager";
 
 const InteractionManager = {
 
@@ -31,17 +32,19 @@ const InteractionManager = {
         })
     },
 
-
+    /**
+     *
+     * @param name
+     */
     updateClick(name) {
         this.currentObjectClicked = name;
         if (name === "toFilter") {
-            SceneManager.currentScene.clickedFilter(name);
+            FilterManager.clickedFilter(name);
         }
         if (name === "toHypersex") {
-            SceneManager.currentScene.clickedHypersex(name);
+            HypersexManager.clickedHypersex(name);
         }
     }
-
 
 };
 export default InteractionManager;

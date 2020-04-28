@@ -6,7 +6,6 @@ export default class FlashPhoto {
         this._flashPhoto.rotateX(Math.PI / 2);
         this.spotLight = new THREE.SpotLight(0xffffff, 0.5, 150);
         this.spotLight2 = new THREE.SpotLight(0xCCCCCC, 0.5, 150);
-
         this.init();
     }
 
@@ -45,7 +44,6 @@ export default class FlashPhoto {
         this._flashPhoto.name = "FlashPhoto";
         this._flashPhoto.visible = false;
     }
-
 
     flash() {
         const flash = this._flashPhoto;
