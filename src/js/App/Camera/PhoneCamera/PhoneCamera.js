@@ -9,8 +9,8 @@ export default class PhoneCamera {
     }
 
     init() {
-        this._camera.position.x = -350;
-        this._camera.position.y = 80;
+        this._camera.position.x = -300;
+        this._camera.position.y = 150;
         this._camera.position.z = -3900;
         this._camera.name = "PhoneCamera";
         this._camera.layers.disable(1);
@@ -19,7 +19,7 @@ export default class PhoneCamera {
 
     zoomInFilter(x) {
         const tweenCam = new TWEEN.Tween(this._camera.position) // Create a new tween that modifies 'coords'.
-            .to({x: this._camera.position.x-x}, 1000) // Move to (300, 200) in 1 second.
+            .to({x: this._camera.position.x-x, y:this._camera.position.y+30}, 1000) // Move to (300, 200) in 1 second.
             .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
             .start();
     }

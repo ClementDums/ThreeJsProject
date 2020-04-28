@@ -89,7 +89,6 @@ export default class Experience {
     _animate() {
         this.render();
         requestAnimationFrame(this._animate.bind(this));
-        this.controls.update();
         TWEEN.update()
     }
 
@@ -105,6 +104,10 @@ export default class Experience {
         this.renderer.setRenderTarget(null);
         this.renderer.clear();
         this.renderer.render(SceneManager.scene, this.camera);
+
+        this.renderer.setRenderTarget(null);
+        this.renderer.clear();
+        this.composer.render();
     }
 
 

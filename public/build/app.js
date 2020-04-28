@@ -68237,8 +68237,8 @@ var SplineManager = {
     this.tubeGeometry = null;
     this.mesh = null;
     this.splineArray = [];
-    var hallWalk = new three__WEBPACK_IMPORTED_MODULE_0__["CatmullRomCurve3"]([new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 150, 800), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](600, 150, -200), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 150, -700), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 150, -900), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 150, -1500), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 150, -3900), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-450, 150, -3900)]);
-    var endWalk = new three__WEBPACK_IMPORTED_MODULE_0__["CatmullRomCurve3"]([new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-440, 150, -5100), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 150, -5400)]);
+    var hallWalk = new three__WEBPACK_IMPORTED_MODULE_0__["CatmullRomCurve3"]([new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 180, 800), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](600, 180, -200), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 180, -700), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 180, -900), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 180, -1500), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 180, -3900), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-450, 180, -3900)]);
+    var endWalk = new three__WEBPACK_IMPORTED_MODULE_0__["CatmullRomCurve3"]([new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](-440, 180, -5100), new three__WEBPACK_IMPORTED_MODULE_0__["Vector3"](0, 180, -5400)]);
     this.splines = {
       hallWalk: hallWalk,
       endWalk: endWalk
@@ -68937,7 +68937,7 @@ var MainCamera = /*#__PURE__*/function () {
     this._camera = new three__WEBPACK_IMPORTED_MODULE_0__["PerspectiveCamera"](50, window.innerWidth / window.innerHeight, 1, 8000);
     this._camera.position.x = 0;
     this._camera.position.z = -2000;
-    this._camera.position.y = 150;
+    this._camera.position.y = 180;
 
     this._camera.layers.enable(1);
 
@@ -69016,8 +69016,8 @@ var PhoneCamera = /*#__PURE__*/function () {
   _createClass(PhoneCamera, [{
     key: "init",
     value: function init() {
-      this._camera.position.x = -350;
-      this._camera.position.y = 80;
+      this._camera.position.x = -300;
+      this._camera.position.y = 150;
       this._camera.position.z = -3900;
       this._camera.name = "PhoneCamera";
 
@@ -69030,7 +69030,8 @@ var PhoneCamera = /*#__PURE__*/function () {
     value: function zoomInFilter(x) {
       var tweenCam = new _tweenjs_tween_js__WEBPACK_IMPORTED_MODULE_1__["default"].Tween(this._camera.position) // Create a new tween that modifies 'coords'.
       .to({
-        x: this._camera.position.x - x
+        x: this._camera.position.x - x,
+        y: this._camera.position.y + 30
       }, 1000) // Move to (300, 200) in 1 second.
       .easing(_tweenjs_tween_js__WEBPACK_IMPORTED_MODULE_1__["default"].Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
       .start();
@@ -69309,7 +69310,6 @@ var Experience = /*#__PURE__*/function () {
     value: function _animate() {
       this.render();
       requestAnimationFrame(this._animate.bind(this));
-      this.controls.update();
       _tweenjs_tween_js__WEBPACK_IMPORTED_MODULE_8__["default"].update();
     }
   }, {
@@ -69325,6 +69325,9 @@ var Experience = /*#__PURE__*/function () {
       this.renderer.setRenderTarget(null);
       this.renderer.clear();
       this.renderer.render(_Scene_SceneManager__WEBPACK_IMPORTED_MODULE_1__["default"].scene, this.camera);
+      this.renderer.setRenderTarget(null);
+      this.renderer.clear();
+      this.composer.render();
     }
   }, {
     key: "onResize",

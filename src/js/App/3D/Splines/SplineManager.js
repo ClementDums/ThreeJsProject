@@ -9,16 +9,16 @@ const SplineManager = {
         this.mesh = null;
         this.splineArray = [];
 
-        let hallWalk = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 150, 800),
-            new THREE.Vector3(600, 150, -200),
-            new THREE.Vector3(0, 150, -700),
-            new THREE.Vector3(0, 150, -900),
-            new THREE.Vector3(0, 150, -1500),
-            new THREE.Vector3(0, 150, -3900),
-            new THREE.Vector3(-450, 150, -3900)]);
+        let hallWalk = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 180, 800),
+            new THREE.Vector3(600, 180, -200),
+            new THREE.Vector3(0, 180, -700),
+            new THREE.Vector3(0, 180, -900),
+            new THREE.Vector3(0, 180, -1500),
+            new THREE.Vector3(0, 180, -3900),
+            new THREE.Vector3(-450, 180, -3900)]);
 
-        let endWalk = new THREE.CatmullRomCurve3([new THREE.Vector3(-440, 150, -5100),
-            new THREE.Vector3(0, 150, -5400)
+        let endWalk = new THREE.CatmullRomCurve3([new THREE.Vector3(-440, 180, -5100),
+            new THREE.Vector3(0, 180, -5400)
         ]);
 
 

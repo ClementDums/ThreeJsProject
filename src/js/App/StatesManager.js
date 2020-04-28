@@ -48,7 +48,6 @@ const StatesManager = {
             case appStates.DIVERSITY:
                 if (order === "next") {
                     this.currentState = appStates.ENDWALK;
-
                 }
                 else {
                     this.currentState = appStates.HYPERSEX;
