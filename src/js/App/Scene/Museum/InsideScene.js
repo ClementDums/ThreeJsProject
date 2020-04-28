@@ -25,7 +25,7 @@ export default class InsideScene {
         this.statue2 = new FilterWorkOfArt(new THREE.Vector3(-700, -200, -3900), "2", "2");
         this.statue3 = new FilterWorkOfArt(new THREE.Vector3(-700, -200, -3900), "3", "3");
 
-        this.hypersex = new HypersexWorkOfArt(new THREE.Vector3(-650, 0, -4500), "hypersex");
+        this.hypersex = new HypersexWorkOfArt(new THREE.Vector3(-650, 0, -4500), "toHypersex");
         this.skybox = new Skybox("outside");
         this.phone = new Phone();
 
@@ -141,6 +141,12 @@ export default class InsideScene {
         this.phone.setCameraScreenTexture();
         RaycasterManager.isActive = true;
         RaycasterManager.identifiers.push("toFilter");
+        InteractionManager.clickListener = true;
+    }
+
+    clickOnHypersex() {
+        RaycasterManager.isActive = true;
+        RaycasterManager.identifiers.push("toHypersex");
         InteractionManager.clickListener = true;
     }
 

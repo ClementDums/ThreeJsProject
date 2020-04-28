@@ -20,14 +20,14 @@ export default class PhoneCamera {
 
     zoomInFilter() {
         const tweenCam = new TWEEN.Tween(this._camera.position) // Create a new tween that modifies 'coords'.
-            .to({x: -580}, 2000) // Move to (300, 200) in 1 second.
+            .to({x: -580}, 1000) // Move to (300, 200) in 1 second.
             .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
             .start();
     }
 
     zoomOutFilter() {
         const tweenCam = new TWEEN.Tween(this._camera.position) // Create a new tween that modifies 'coords'.
-            .to({x: -500}, 2000) // Move to (300, 200) in 1 second.
+            .to({x: -500}, 1000) // Move to (300, 200) in 1 second.
             .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
             .start();
     }

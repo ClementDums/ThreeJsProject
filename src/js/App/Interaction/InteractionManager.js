@@ -21,8 +21,7 @@ const InteractionManager = {
 
     prevModule() {
         this.el.querySelector("#prev").addEventListener("click", () => {
-            this.el.querySelector("#hall").style.display = "none";
-            StatesManager.nextState();
+            StatesManager.prevState();
         })
     },
 

@@ -36,7 +36,9 @@ const CameraManager = {
         StatesManager.nextState();
         this.mainCamera.setLeft()
     },
-
+    toFilter() {
+        this.cameraMovementManager.moveTo(-550, -3900)
+    },
     toHypersex() {
         this.cameraMovementManager.moveTo(-440, -4500)
     },
@@ -44,6 +46,7 @@ const CameraManager = {
     toDiversity() {
         this.cameraMovementManager.moveTo(-440, -5100)
     },
+
     animateCamera() {
         if (this.isCameraMoving) {
             this.cameraMovementManager.animateMove();

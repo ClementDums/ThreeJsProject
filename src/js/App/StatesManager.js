@@ -11,10 +11,13 @@ const StatesManager = {
     },
 
     nextState() {
-        this.newAction();
+        this.newAction("next");
+    },
+    prevState() {
+        this.newAction("prev");
     },
 
-    newAction() {
+    newAction(order) {
         switch (this.currentState) {
             case appStates.LANDING:
                 this.currentState = appStates.HALLWALK;
@@ -28,13 +31,30 @@ const StatesManager = {
 
             case appStates.FILTER:
                 this.currentState = appStates.HYPERSEX;
+                SceneManager.currentScene.clickOnHypersex();
                 CameraManager.toHypersex();
                 break;
 
             case appStates.HYPERSEX:
-                this.currentState = appStates.DIVERSITY;
-                CameraManager.toDiversity();
+                if (order === "next") {
+                    this.currentState = appStates.DIVERSITY;
+                    CameraManager.toDiversity();
+                } else {
+                    this.currentState = appStates.FILTER;
+                    CameraManager.toFilter();
+                }
                 break;
+
+            case appStates.DIVERSITY:
+                if (order === "next") {
+                }
+                else {
+                    this.currentState = appStates.HYPERSEX;
+                    CameraManager.toHypersex();
+                    console.log("ok")
+                }
+                break;
+
 
             default:
                 console.log("State not found");
