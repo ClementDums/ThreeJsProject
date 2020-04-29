@@ -8,19 +8,19 @@ const SplineManager = {
         this.tubeGeometry = null;
         this.mesh = null;
         this.splineArray = [];
+        this.currentMovingSpline = null;
 
         let hallWalk = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 180, 800),
-            new THREE.Vector3(600, 180, -200),
-            new THREE.Vector3(0, 180, -700),
-            new THREE.Vector3(0, 180, -900),
-            new THREE.Vector3(0, 180, -1500),
-            new THREE.Vector3(0, 180, -3900),
-            new THREE.Vector3(-450, 180, -3900)]);
+            new THREE.Vector3(600, 190, -200),
+            new THREE.Vector3(0, 190, -700),
+            new THREE.Vector3(0, 190, -900),
+            new THREE.Vector3(0, 190, -1500),
+            new THREE.Vector3(0, 190, -3900),
+            new THREE.Vector3(-430, 190, -3900)]);
 
         let endWalk = new THREE.CatmullRomCurve3([new THREE.Vector3(-440, 180, -5100),
-            new THREE.Vector3(0, 180, -5400)
+            new THREE.Vector3(0, 190, -5400)
         ]);
-
 
         this.splines = {
             hallWalk: hallWalk,

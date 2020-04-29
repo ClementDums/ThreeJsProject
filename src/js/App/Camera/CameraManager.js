@@ -9,12 +9,13 @@ import appStates from '../../Helpers/ExperienceStates'
 const CameraManager = {
         init() {
             this.mainCamera = new MainCamera();
+            this._camera = this.mainCamera.camera;
+
             this._phoneCamera = new PhoneCamera();
             this.cameraMovementManager = new CameraMovement(this.mainCamera.camera, this);
             this.cameraLockManager = new CameraLock(this);
             this.isLock = true;
             this.isCameraMoving = false;
-            this._camera = this.mainCamera.camera;
             this.cameraLockManager.init();
             this.controls = this.cameraLockManager.controls;
         },
@@ -39,9 +40,16 @@ const CameraManager = {
             this.isCameraMoving = true;
         },
 
-        endMove() {
+        endMove(state) {
             StatesManager.nextState();
-            this.rotate("left")
+            switch (state) {
+                case appStates.HALLWALK:
+                    this.rotate("left");
+                    break;
+                case appStates.ENDWALK:
+                    this.rotate("front");
+                    break;
+            }
         },
 
         /**
@@ -60,7 +68,7 @@ const CameraManager = {
         },
 
         toFilter() {
-            this.cameraMovementManager.moveTo(-450, -3900)
+            this.cameraMovementManager.moveTo(-382, -3900)
         },
         toHypersex() {
             this.cameraMovementManager.moveTo(-350, -4500)

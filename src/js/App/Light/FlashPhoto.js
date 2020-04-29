@@ -58,7 +58,7 @@ export default class FlashPhoto {
 
                 }, 500);
             }, 200);
-        }, 1000);
+        }, 2000);
         this.spotLight.power = 10;
     }
 

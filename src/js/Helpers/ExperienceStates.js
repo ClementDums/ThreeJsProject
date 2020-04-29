@@ -5,4 +5,5 @@ export default {
     HYPERSEX: 'hypersex',
     DIVERSITY: 'diversity',
     ENDWALK: 'endWalk',
+    ENDSTATUE: 'endStatue',
 }

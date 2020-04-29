@@ -6,8 +6,9 @@ export default class MainCamera {
     constructor() {
         this._camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 8000);
         this._camera.position.x = 0;
-        this._camera.position.z = -2000;
-        this._camera.position.y = 180;
+        this._camera.position.y = 190;
+        this._camera.position.z = 800;
+
         this._camera.layers.enable(1);
         this.flashlight = new Flashlight();
         this.flashphoto = new FlashPhoto();
@@ -27,7 +28,7 @@ export default class MainCamera {
     }
 
     setFront() {
-        this._camera.rotation.y = -Math.PI;
+        this._camera.rotation.y = 0;
         this._camera.rotation.x = 0;
         this._camera.rotation.z = 0;
     }

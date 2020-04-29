@@ -17,13 +17,22 @@ const FilterManager = {
         this.currentObject = statue0;
     },
 
+    filterModule() {
+        this.startFilter(this.phone);
+    },
+
     stopFilterModule() {
         this.phone.setSmall();
         this.phone.setBlackScreenTexture();
+        document.getElementById("filter").style.display = "none"
     },
 
-    filterModule() {
-        this.startFilter(this.phone);
+    startFilter(phone) {
+        this.isFiltered = true;
+        phone.setFullscreen();
+        phone.zoomPhone(100);
+        InteractionManager.initFilter();
+        document.getElementById("filter").style.display = "block"
     },
 
     setCurrentActive() {
@@ -59,11 +68,7 @@ const FilterManager = {
         UIManager.startTextDisplay(document.getElementById("filterStory"));
     },
 
-    startFilter(phone) {
-        this.isFiltered = true;
-        phone.setFullscreen();
-        phone.zoomPhone(100);
-    },
+
     clickedFilter(name) {
         if (name === "prev") {
             this.setPrev();
@@ -91,7 +96,7 @@ const FilterManager = {
     },
 
     endFilter() {
-        console.log("end")
+        this.stopFilterModule();
     }
 
 

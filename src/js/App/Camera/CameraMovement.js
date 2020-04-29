@@ -3,6 +3,7 @@ import TWEEN from "@tweenjs/tween.js"
 
 import SplineManager from "../3D/Splines/SplineManager";
 import CameraManager from "./CameraManager";
+import SceneManager from "../Scene/SceneManager";
 
 export default class CameraMovement {
     constructor(camera) {
@@ -12,6 +13,7 @@ export default class CameraMovement {
         this.position = new THREE.Vector3();
         this.lookAt = new THREE.Vector3();
         this.currentSplineName = "";
+        this.currentMovingSpline = null;
         this.isMoving = false;
         this.time = 0;
         this.speed = 10;
@@ -23,6 +25,7 @@ export default class CameraMovement {
         this.currentSplineName = splineName;
         this.splineCamera = this.camera;
         const spline = SplineManager.getSpline(splineName);
+        this.currentMovingSpline = spline;
         this.tubeGeometry = spline.tubeGeometry;
         this.params = spline.params;
         CameraManager.lockCamera();
@@ -30,7 +33,10 @@ export default class CameraMovement {
     }
 
     endMove() {
-        CameraManager.endMove();
+        CameraManager.endMove(this.currentSplineName);
+        SceneManager.scene.remove(this.currentMovingSpline.parent);
+        this.currentMovingSpline.parent.children[0].geometry.dispose();
+        this.currentMovingSpline.parent.children[0].material.dispose();
     }
 
     moveTo(x, z) {
@@ -64,7 +70,6 @@ export default class CameraMovement {
         this.position.multiplyScalar(this.params.scale);
 
         // interpolation
-
         const segments = this.tubeGeometry.tangents.length;
         const pickt = t * segments;
         const pick = Math.floor(pickt);

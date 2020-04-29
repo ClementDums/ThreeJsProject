@@ -17,6 +17,140 @@ html {
     background-color: $black-color;
   }
 
+  #blocker, #loader, .buttonContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  #ui {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    header {
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 120px;
+      div {
+        width: 70px;
+        .nextprev {
+          position: relative;
+          text-transform: uppercase;
+          font-size: 0.8em;
+        }
+        #prev {
+          text-align: left;
+        }
+        #next {
+          text-align: right;
+        }
+        #next::after {
+          //position: absolute;
+          //width: 30px;
+          //height: 2px;
+          //top:50%;
+          //background: #fff;
+          //content: "";
+          //display: block;
+        }
+      }
+
+    }
+    #textContainer {
+      height: 420px;
+      margin-bottom: 20px;
+      z-index: 2;
+      #filter {
+        display: none;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        .carousel-wrapper {
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          * {
+            box-sizing: border-box;
+          }
+          .carousel {
+            span {
+              width: 110px;
+              height: 110px;
+              position: absolute;
+              background-color: rgba(255, 255, 255, 0.5);
+              border-radius: 50%;
+              border: 2px solid #fff;
+              bottom: 80px;
+              transition: transform .5s, opacity .5s, z-index .5s;
+              &.prev {
+                left: 20px;
+              }
+              &.next {
+                right: 20px;
+              }
+            }
+
+          }
+        }
+
+      }
+      #hypersex {
+        display: none;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        #photo {
+          width: 110px;
+          height: 110px;
+          right: 200px;
+          position: absolute;
+          background-color: rgba(255, 255, 255, 0.5);
+          border-radius: 50%;
+          border: 2px solid #fff;
+          bottom: 80px;
+          transition: transform .5s, opacity .5s, z-index .5s;
+        }
+      }
+
+    }
+    #buttonContainer {
+      height: 50px;
+      margin-bottom: 20px;
+
+      .button {
+        background: transparent;
+        border-radius: 30px;
+        padding: 15px 35px 15px;
+        font-size: 1.2em;
+        border: #fff solid 1px;
+        color: #fff;
+      }
+    }
+
+    footer {
+      height: 200px;
+    }
+  }
+
+  #loader {
+    background-color: rgba(0, 0, 0, 1);
+  }
+
+  .centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .buttonContainer {
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0);
+  }
+  .button {
+    text-align: center;
+    font-size: 32px;
+  }
   #uiText {
     z-index: 0;
     position: absolute;
@@ -29,37 +163,6 @@ html {
     color: #fff;
     font-family: Calyces, sans-serif;
   }
-  #blocker, #loader, .buttonContainer {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-  #prev {
-    position: absolute;
-    left: 0;
-  }
-  #next {
-    position: absolute;
-    right: 0;
-  }
-
-  #loader {
-    background-color: rgba(0, 0, 0, 1);
-  }
-
-  .buttonContainer {
-    z-index: 1;
-    background-color: rgba(0, 0, 0, 0);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .button {
-    text-align: center;
-    font-size: 32px;
-  }
-
   #instructions, #loadingInfos {
     width: 100%;
     height: 100%;

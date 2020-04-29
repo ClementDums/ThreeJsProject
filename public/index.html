@@ -15,14 +15,32 @@
 <div id="game">
 
     <div id="ui">
-        <div class="buttonContainer" id="prevnext">
-            <button id="prev" class="button">Précedent</button>
-            <button id="next" class="button">Suivant</button>
+        <header>
+            <div>
+                <span id="prev" class="nextprev">Revenir en arrière</span>
+            </div>
+            <div>
+                <span id="next" class="nextprev">Passer à la suite</span>
+            </div>
+        </header>
+        <div id="textContainer">
+            <div id="filter">
+                <div class="carousel-wrapper">
+                    <div class="carousel">
+                        <span class="prev"></span>
+                        <span class="next"></span>
+                    </div>
+
+                </div>
+            </div>
+            <div id="hypersex">
+                <span id="photo"></span>
+            </div>
+        </div>
+        <div id="buttonContainer" class="centered">
+            <button id="startButton" class="button">Démarrer</button>
         </div>
 
-        <div class="buttonContainer" id="hall">
-            <button id="hallButton" class="button">Entrer dans le temple</button>
-        </div>
 
         <div id="loader">
             <div id="loadingInfos">
@@ -30,9 +48,6 @@
             </div>
         </div>
 
-        <div id="uiText">
-            <p>Hello</p>
-        </div>
 
         <div id="filterStory" style="display: none">
             <p>Les filtres</p>
@@ -40,7 +55,12 @@
             <p>Text3</p>
             <p>fin</p>
         </div>
+
+        <footer>
+
+        </footer>
     </div>
+
 
 </div>
 

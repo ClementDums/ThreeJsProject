@@ -6,6 +6,7 @@ const InteractionManager = {
 
     init() {
         this.el = document.getElementById("game");
+        this.header = this.el.querySelector("header");
         this.clickListener = false;
         this.currentObjectClicked = null;
         this.landingClick();
@@ -13,24 +14,56 @@ const InteractionManager = {
         this.prevModule();
     },
 
+    initFilter() {
+        this.filter = this.el.querySelector("#filter");
+        this.prevFilter();
+        this.nextFilter();
+    },
+
+    initHypersex() {
+        this.hypersex = this.el.querySelector("#hypersex");
+        this.takePhoto();
+    },
+
     landingClick() {
-        this.el.querySelector("#hallButton").addEventListener("click", () => {
-            this.el.querySelector("#hall").style.display = "none";
+        this.el.querySelector("#startButton").addEventListener("click", () => {
+            this.el.querySelector("#buttonContainer").style.display = "none";
             StatesManager.nextState();
         })
     },
 
     prevModule() {
-        this.el.querySelector("#prev").addEventListener("click", () => {
+        this.header.querySelector("#prev").addEventListener("click", () => {
             StatesManager.prevState();
         })
     },
 
     nextModule() {
-        this.el.querySelector("#next").addEventListener("click", () => {
+        this.header.querySelector("#next").addEventListener("click", () => {
             StatesManager.nextState();
         })
     },
+
+    /***FILTER***/
+
+    prevFilter() {
+        this.filter.querySelector(".prev").addEventListener("click", () => {
+            FilterManager.setPrev();
+        })
+    },
+    nextFilter() {
+        this.filter.querySelector(".next").addEventListener("click", () => {
+            FilterManager.setNext();
+        })
+    },
+
+    /****HYPERSEX***/
+    takePhoto() {
+        this.hypersex.querySelector("#photo").addEventListener("click", () => {
+            HypersexManager.takePhoto();
+        })
+    },
+
 
     /**
      *

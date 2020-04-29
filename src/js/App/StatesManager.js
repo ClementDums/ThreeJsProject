@@ -57,7 +57,11 @@ const StatesManager = {
                 break;
 
             case appStates.ENDWALK:
+                this.currentState = appStates.ENDSTATUE;
                 CameraManager.endWalk();
+                break;
+
+            case appStates.ENDSTATUE:
                 break;
 
             default:
