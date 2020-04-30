@@ -97,7 +97,7 @@ export default class InsideScene {
         // flash2.power = 20;
         // this._scene.add(flash2);
         //
-        let flash3 = new THREE.PointLight(0xffffff, 2);
+        let flash3 = new THREE.PointLight(0x6737B6, 2);
         flash3.castShadow = true;
         flash3.position.set(0, 1000, -2500);
         this._scene.add(flash3);
@@ -107,7 +107,7 @@ export default class InsideScene {
         // flash4.power = 20;
         // this._scene.add(flash4);
 
-        let ambientLight = new THREE.AmbientLight(0x404040);
+        let ambientLight = new THREE.AmbientLight(0x6100fe);
         this._scene.add(ambientLight);
 
     }
