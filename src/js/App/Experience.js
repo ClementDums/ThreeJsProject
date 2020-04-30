@@ -15,6 +15,7 @@ import {ShaderPass} from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import {FXAAShader} from 'three/examples/jsm/shaders/FXAAShader.js';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 import {GUI} from 'three/examples/jsm/libs/dat.gui.module.js';
+import VolumetricLightHelper from '../Helpers/Light/VolumetricLightHelper';
 
 export default class Experience {
     constructor(isDebug) {
@@ -57,6 +58,24 @@ export default class Experience {
         this.scene.add(this.camera);
         this.container.appendChild(this.renderer.domElement);
 
+        let cylinderData = {
+            radiusTop: 20,
+            radiusBottom: 380,
+            height: 2600,
+            radiusSegment: 32*2,
+            heightSegments: 50,
+            openEnded: true
+        }
+
+        let mainSpotlightParams = {
+            name: "MainSpotlight",
+            cylinderData: cylinderData,
+            position: {x: 0, y: 2375, z: -200},
+            lookAt: {x: 0, y: 0, z: -200}
+        }
+
+        let mesh = new VolumetricLightHelper(mainSpotlightParams ).getVolumetricLightMesh();
+        this.scene.add(mesh)
 
         this.gui = new GUI();
         this.guiParams = {freeCamera: false};
