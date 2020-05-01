@@ -18,13 +18,13 @@ const SplineManager = {
             new THREE.Vector3(0, 190, -3900),
             new THREE.Vector3(-430, 190, -3900)]);
 
-        let endWalk = new THREE.CatmullRomCurve3([new THREE.Vector3(-440, 180, -5100),
+        let endingWalk = new THREE.CatmullRomCurve3([new THREE.Vector3(-440, 180, -5100),
             new THREE.Vector3(0, 190, -5400)
         ]);
 
         this.splines = {
             hallWalk: hallWalk,
-            endWalk: endWalk,
+            endingWalk: endingWalk,
         };
 
         this.params = {

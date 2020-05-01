@@ -45,8 +45,9 @@ const CameraManager = {
             switch (state) {
                 case appStates.HALLWALK:
                     this.rotate("left");
+                    document.getElementById("fullscreenText").style.display = "none";
                     break;
-                case appStates.ENDWALK:
+                case appStates.ENDINGWALK:
                     this.rotate("front");
                     break;
             }
@@ -83,8 +84,8 @@ const CameraManager = {
             //TODO : Add event end move listener
         },
 
-        endWalk() {
-            this.startMove(appStates.ENDWALK);
+        endingWalk() {
+            this.startMove(appStates.ENDINGWALK);
         },
 
         /**

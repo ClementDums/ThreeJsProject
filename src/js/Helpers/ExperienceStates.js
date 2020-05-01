@@ -4,6 +4,6 @@ export default {
     FILTER: 'filter',
     HYPERSEX: 'hypersex',
     DIVERSITY: 'diversity',
-    ENDWALK: 'endWalk',
+    ENDINGWALK: 'endingWalk',
     ENDSTATUE: 'endStatue',
 }

@@ -65,7 +65,7 @@ const FilterManager = {
     },
 
     startStory() {
-        UIManager.startTextDisplay(document.getElementById("filterStory"));
+        UIManager.newCarousel();
     },
 
 
@@ -97,6 +97,7 @@ const FilterManager = {
 
     endFilter() {
         this.stopFilterModule();
+        this.startStory();
     }
 
 
