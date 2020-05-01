@@ -17,7 +17,6 @@ Encore
     ])
 
     .enableSassLoader()
-
     .enableSingleRuntimeChunk()
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(false)

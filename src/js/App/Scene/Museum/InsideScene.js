@@ -82,7 +82,7 @@ export default class InsideScene {
         SplineManager.newSpline(appState.HALLWALK);
         this._scene.add(SplineManager.currentSpline.parent);
 
-        SplineManager.newSpline(appState.ENDWALK);
+        SplineManager.newSpline(appState.ENDINGWALK);
         this._scene.add(SplineManager.currentSpline.parent);
     }
 
@@ -114,10 +114,6 @@ export default class InsideScene {
 
     addSkybox() {
         this._background = new Background();
-    }
-
-    static galleryScreen() {
-        UIManager.showGalleryScreen();
     }
 
     get scene() {

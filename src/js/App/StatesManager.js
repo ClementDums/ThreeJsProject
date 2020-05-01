@@ -3,6 +3,7 @@ import SceneManager from './Scene/SceneManager'
 import CameraManager from "./Camera/CameraManager";
 import FilterManager from "./3D/WorkOfArt/Filter/FilterManager";
 import HypersexManager from "./3D/WorkOfArt/Hypersex/HypersexManager";
+import UIManager from "./UI/UIManager";
 
 const StatesManager = {
 
@@ -23,6 +24,7 @@ const StatesManager = {
             case appStates.LANDING:
                 this.currentState = appStates.HALLWALK;
                 CameraManager.hallWalk();
+                UIManager.displayHomeText(document.getElementById("hallWalk"));
                 break;
 
             case appStates.HALLWALK:
@@ -48,7 +50,7 @@ const StatesManager = {
 
             case appStates.DIVERSITY:
                 if (order === "next") {
-                    this.currentState = appStates.ENDWALK;
+                    this.currentState = appStates.ENDINGWALK;
                 }
                 else {
                     this.currentState = appStates.HYPERSEX;
@@ -56,9 +58,9 @@ const StatesManager = {
                 }
                 break;
 
-            case appStates.ENDWALK:
+            case appStates.ENDINGWALK:
                 this.currentState = appStates.ENDSTATUE;
-                CameraManager.endWalk();
+                CameraManager.endingWalk();
                 break;
 
             case appStates.ENDSTATUE:

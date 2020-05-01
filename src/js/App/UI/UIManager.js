@@ -1,18 +1,19 @@
+import Carousel from "./Carousel";
+
 const UIManager = {
     init() {
         this.el = document.getElementById("game");
-        this.textContainer = this.el.querySelector("#uiText");
+        this.textContainer = this.el.querySelector("#fullscreenText");
+        this.carousel = null;
         this.currentStory = [];
         this.isDisplayingText = false;
-    },
+        },
 
-    showGalleryScreen() {
-        this.el.querySelector("#gallery").style.display = "flex";
-    },
 
-    startTextDisplay(storyContainer) {
+    displayHomeText(storyContainer) {
+        this.textContainer.style.display = "flex";
         if (!this.isDisplayingText) {
-            this.isDisplayingText= true;
+            this.isDisplayingText = true;
             const texts = storyContainer.querySelectorAll("p");
             texts.forEach((it) => {
                 this.currentStory.push(it.innerText);
@@ -21,14 +22,21 @@ const UIManager = {
         }
     },
 
+    newCarousel() {
+        this.carousel = new Carousel();
+    },
+
+    deleteCarousel() {
+        this.carousel.destroy();
+    },
+
     displayText() {
         this.currentStory.forEach((it, i) => {
             const textContainer = this.textContainer;
-            setTimeout(function () {
+            setTimeout(() => {
                 textContainer.innerHTML = "";
                 let para = document.createElement("p");
                 para.innerText = it;
-                console.log(textContainer);
                 textContainer.appendChild(para)
             }, 2000 * (i + 1))
         });

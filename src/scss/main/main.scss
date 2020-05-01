@@ -1,12 +1,23 @@
 @font-face {
   font-family: "Calyces";
-  src: url("../../../public/assets/Font/Calyces-Regular.otf");
+  src: url("../fonts/Calyces-Regular.otf");
 
 }
 
 @font-face {
   font-family: "CalycesBold";
-  src: url("../../../public/assets/Font/Calyces-Bold.otf");
+  src: url("../fonts/Calyces-Bold.otf");
+}
+
+@font-face {
+  font-family: "Asul";
+  src: url("../fonts/Asul-Regular.ttf");
+
+}
+
+@font-face {
+  font-family: "AsulBold";
+  src: url("../fonts/Asul-Bold.ttf");
 }
 
 html {
@@ -16,7 +27,12 @@ html {
     overflow: hidden;
     background-color: $black-color;
   }
-
+  p {
+    font-family: Asul, sans-serif;
+  }
+  p.title {
+    font-family: Calyces, sans-serif;
+  }
   #blocker, #loader, .buttonContainer {
     position: absolute;
     width: 100%;
@@ -29,40 +45,130 @@ html {
     height: 100%;
     header {
       color: #fff;
+      height: 140px;
+      font-family: sans-serif;
+      letter-spacing: 1px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      height: 120px;
-      font-family: Calyces;
-      div {
-        width: 70px;
-        .nextprev {
-          position: relative;
-          text-transform: uppercase;
-          font-size: 0.8em;
-        }
-        #prev {
-          text-align: left;
-        }
-        #next {
-          text-align: right;
-        }
-        #next::after {
-          //position: absolute;
-          //width: 30px;
-          //height: 2px;
-          //top:50%;
-          //background: #fff;
-          //content: "";
-          //display: block;
+      .container {
+        width: 95%;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        div {
+          width: 60px;
+          cursor: pointer;
+          .nextprev {
+            position: relative;
+            text-transform: uppercase;
+            font-size: 0.5em;
+          }
+          #prev {
+            text-align: left;
+          }
+          #prev::after {
+            position: absolute;
+            width: 30px;
+            height: 1px;
+            left: -40px;
+            top: 50%;
+            background: #fff;
+            content: "";
+            display: block;
+          }
+          #next {
+            text-align: right;
+          }
+          #next::after {
+            position: absolute;
+            width: 35px;
+            height: 1px;
+            right: -55px;
+            top: 50%;
+            background: #fff;
+            content: "";
+            display: block;
+          }
         }
       }
-
     }
     #textContainer {
       height: 420px;
       margin-bottom: 20px;
       z-index: 2;
+      #fullscreenText {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        height: 100%;
+        text-align: center;
+        margin: 0 auto;
+        font-size: 2em;
+        color: #fff;
+      }
+
+      #verticalCaroussel {
+        height: 100%;
+        .mask {
+          height: 100%;
+          width: 100%;
+          position: relative;
+          overflow: hidden;
+          nav {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            float: right;
+
+            ul {
+              list-style: none;
+              position: fixed;
+              right: 20px;
+              li {
+                background: #432F54;
+                margin-bottom: 20px;
+                height: 6px;
+                width: 6px;
+                border-radius: 50%;
+              }
+            }
+          }
+
+          .container {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            section {
+              height: 100%;
+              width: 100%;
+              font-size: 2em;
+              color: #fff;
+              display: flex;
+              align-items: center;
+              flex-direction: column;
+              justify-content: center;
+              p {
+                width: 70%;
+                margin: 0 auto;
+                text-align: center;
+                &.title {
+                  letter-spacing: 3px;
+                  margin-bottom: 30px;
+                }
+                &.secondary {
+                  font-size: 0.5em;
+                  letter-spacing: 1px;
+                }
+              }
+
+            }
+          }
+        }
+      }
       #filter {
         display: none;
         width: 100%;
@@ -121,6 +227,8 @@ html {
       margin-bottom: 20px;
 
       .button {
+        cursor: pointer;
+
         background: transparent;
         border-radius: 30px;
         padding: 15px 35px 15px;
@@ -144,14 +252,17 @@ html {
     align-items: center;
     justify-content: center;
   }
+
   .buttonContainer {
     z-index: 1;
     background-color: rgba(0, 0, 0, 0);
   }
+
   .button {
     text-align: center;
     font-size: 32px;
   }
+
   #uiText {
     z-index: 0;
     position: absolute;
@@ -164,6 +275,7 @@ html {
     color: #fff;
     font-family: Calyces, sans-serif;
   }
+
   #instructions, #loadingInfos {
     width: 100%;
     height: 100%;
@@ -192,4 +304,5 @@ html {
 
     cursor: pointer;
   }
+
 }

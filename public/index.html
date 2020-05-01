@@ -16,14 +16,23 @@
 
     <div id="ui">
         <header>
-            <div>
-                <span id="prev" class="nextprev">Revenir en arrière</span>
-            </div>
-            <div>
-                <span id="next" class="nextprev">Passer à la suite</span>
+            <div class="container">
+                <div>
+                    <span id="prev" class="nextprev">Revenir en arrière</span>
+                </div>
+                <div>
+                    <span id="next" class="nextprev">Passer à la suite</span>
+                </div>
             </div>
         </header>
         <div id="textContainer">
+            <div id="fullscreenText" style="display: none">
+            </div>
+
+            <div id="verticalCaroussel" style="display:none">
+
+            </div>
+
             <div id="filter">
                 <div class="carousel-wrapper">
                     <div class="carousel">
@@ -48,21 +57,31 @@
             </div>
         </div>
 
+        <footer>
 
+        </footer>
+    </div>
+</div>
+
+
+<!--TEXT TEMPLATES-->
+        <div id="hallWalk" style="display: none">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras finibus dignissim justo, vel fringilla
+                lacus mollis non. Etiam dignissim libero eu arcu pulvinar, a pulvinar dolor rhoncus. In accumsan a eros
+                et pellentesque</p>
+            <p>Lalilala</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras finibus dignissim justo, vel fringilla
+                lacus mollis non. Etiam dignissim libero eu arcu pulvinar, a pulvinar dolor rhoncus. In accumsan a eros
+                et pellentesque</p>
+            <p>Lalilala</p>
+            <p></p>
+        </div>
         <div id="filterStory" style="display: none">
             <p>Les filtres</p>
             <p>Text2</p>
             <p>Text3</p>
             <p>fin</p>
         </div>
-
-        <footer>
-
-        </footer>
-    </div>
-
-
-</div>
 
 <script>
     javascript:(function () {
