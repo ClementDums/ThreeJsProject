@@ -11,8 +11,8 @@ export default class VolumetricLightHelper {
         this.lookAt       = params.lookAt
     }
 
-    getVolumetricLightMesh() {
-        console.log(this.cylinderData)
+    getVolumetricLight() {
+
         //create cylinder geometry
         this.geometry = this.createGeometry()
 
@@ -37,16 +37,14 @@ export default class VolumetricLightHelper {
     }
 
     createMesh(geometry, material) {
+        //init mesh
         let mesh = new THREE.Mesh( geometry, material );
-        console.log(this.position)
-        mesh.position.set(this.position.x, this.position.y, this.position.z);//0,2375,-200
-
-        //mesh.lookAt(this.position.x, this.position.y, this.position.z);//0,0, -200
-        mesh.lookAt(new THREE.Vector3(this.lookAt.x, this.lookAt.y, this.lookAt.z));
-
-        // material.uniforms.lightColor.value.set('white')
-        // material.uniforms.spotPosition.value = mesh.position
+        //set name
         mesh.name = this.name;
+        //set position
+        mesh.position.set(this.position.x, this.position.y, this.position.z);
+        //set look at position
+        mesh.lookAt(new THREE.Vector3(this.lookAt.x, this.lookAt.y, this.lookAt.z));
 
         return mesh
     }
