@@ -17,6 +17,7 @@ export default class Carousel {
         this.createDom();
         this.addListItems();
         this.addSections();
+        this.scrollToContinue();
 
         window.addEventListener("wheel", this.scrolled.bind(this));
     }
@@ -41,6 +42,7 @@ export default class Carousel {
             this.activeSection += 1;
             this.showSection(this.activeSection);
             this.showActiveLi(this.activeSection);
+            this.removeScroll(this.activeSection)
         }
     }
 
@@ -51,6 +53,7 @@ export default class Carousel {
             this.activeSection -= 1;
             this.showSection(this.activeSection);
             this.showActiveLi(this.activeSection);
+            this.removeScroll(this.activeSection);
         }
     }
 
@@ -67,15 +70,28 @@ export default class Carousel {
 
     showActiveLi(i) {
         let lis = this.list.querySelectorAll("li");
-        console.log(lis)
         lis.forEach((item) => {
             const attr = item.getAttribute('data-section');
             item.style.background = "#432F54";
-
             if (i == attr) {
                 item.style.background = "#FFF"
             }
         });
+    }
+
+    scrollToContinue() {
+        let scrollP = document.createElement("p");
+        scrollP.innerHTML = "Scroller pour continuer";
+        scrollP.classList.add("scroll-continue");
+        this.scroll = scrollP;
+        this.container.appendChild(scrollP)
+    }
+
+    removeScroll(i) {
+        document.querySelector(".scroll-continue").style.display = "block";
+        if (i === this.textArray.length - 1) {
+            document.querySelector(".scroll-continue").style.display = "none";
+        }
     }
 
     addListItems() {

@@ -28,7 +28,7 @@ const HypersexManager = {
         })
     },
     startStory() {
-        UIManager.startTextDisplay(document.getElementById("filterStory"));
+        UIManager.newCarousel();
     },
 
     startHypersex(phone) {

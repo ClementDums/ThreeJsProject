@@ -29,6 +29,7 @@ html {
   }
   p {
     font-family: Asul, sans-serif;
+    color: #fff;
   }
   p.title {
     font-family: Calyces, sans-serif;
@@ -44,12 +45,12 @@ html {
     width: 100%;
     height: 100%;
     header {
-      color: #fff;
-      height: 140px;
+      height: 15%;
       font-family: sans-serif;
       letter-spacing: 1px;
       display: flex;
-      align-items: center;
+      align-items: flex-end;
+      color: #fff;
       .container {
         width: 95%;
         margin: 0 auto;
@@ -59,12 +60,12 @@ html {
         justify-content: space-between;
         align-items: center;
         div {
-          width: 60px;
+          width: 70px;
           cursor: pointer;
           .nextprev {
             position: relative;
             text-transform: uppercase;
-            font-size: 0.5em;
+            font-size: 0.6em;
           }
           #prev {
             text-align: left;
@@ -96,9 +97,11 @@ html {
       }
     }
     #textContainer {
-      height: 420px;
-      margin-bottom: 20px;
+      height: 70%;
       z-index: 2;
+      .text {
+        height: 90%;
+      }
       #fullscreenText {
         display: flex;
         justify-content: center;
@@ -108,11 +111,26 @@ html {
         text-align: center;
         margin: 0 auto;
         font-size: 2em;
-        color: #fff;
       }
 
       #verticalCaroussel {
         height: 100%;
+        .scroll-continue {
+          text-align: center;
+          position: relative;
+          &::after {
+            position: absolute;
+            height: 20px;
+            left: 0;
+            width: 1px;
+            bottom: -30px;
+            background: #fff;
+            margin: 0 auto;
+            content: "";
+            right: 0;
+            display: block;
+          }
+        }
         .mask {
           height: 100%;
           width: 100%;
@@ -146,7 +164,6 @@ html {
               height: 100%;
               width: 100%;
               font-size: 2em;
-              color: #fff;
               display: flex;
               align-items: center;
               flex-direction: column;
@@ -225,26 +242,69 @@ html {
     #buttonContainer {
       height: 50px;
       margin-bottom: 20px;
-
       .button {
         cursor: pointer;
-
+        color: #fff;
         background: transparent;
         border-radius: 30px;
         padding: 15px 35px 15px;
         font-size: 1.2em;
         border: #fff solid 1px;
-        color: #fff;
       }
     }
 
     footer {
-      height: 200px;
+      height: 15%;
+      .container {
+        width: 95%;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        .top {
+          width: 95%;
+          margin: 0 auto;
+          left: 0;
+          right: 0;
+          img {
+            width: 20px;
+          }
+        }
+        .bottom {
+          width: 95%;
+          height: 40px;
+          margin: 0 auto;
+          left: 0;
+          right: 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          p {
+            font-size: 0.8em;
+          }
+          img {
+            width: 15px;
+          }
+          ul {
+            display: flex;
+            align-items: center;
+            padding-inline-start: 0;
+            li {
+              display: inline-block;
+              margin-right: 20px;
+              a {
+                color: #fff;
+                text-decoration: none;
+              }
+            }
+          }
+        }
+      }
     }
   }
 
   #loader {
     background-color: rgba(0, 0, 0, 1);
+    z-index: 99;
   }
 
   .centered {
