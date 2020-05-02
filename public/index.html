@@ -14,6 +14,13 @@
 
 <div id="game">
 
+
+    <div id="loader">
+        <div id="loadingInfos">
+            <span style="font-size:36px">Loading scene</span>
+        </div>
+    </div>
+
     <div id="ui">
         <header>
             <div class="container">
@@ -26,38 +33,48 @@
             </div>
         </header>
         <div id="textContainer">
-            <div id="fullscreenText" style="display: none">
-            </div>
+            <div class="text">
+                <div id="fullscreenText" style="display: none">
+                </div>
 
-            <div id="verticalCaroussel" style="display:none">
-
-            </div>
-
-            <div id="filter">
-                <div class="carousel-wrapper">
-                    <div class="carousel">
-                        <span class="prev"></span>
-                        <span class="next"></span>
-                    </div>
+                <div id="verticalCaroussel" style="display:none">
 
                 </div>
-            </div>
-            <div id="hypersex">
-                <span id="photo"></span>
-            </div>
-        </div>
-        <div id="buttonContainer" class="centered">
-            <button id="startButton" class="button">Démarrer</button>
-        </div>
 
-
-        <div id="loader">
-            <div id="loadingInfos">
-                <span style="font-size:36px">Loading scene</span>
+                <div id="filter">
+                    <div class="carousel-wrapper">
+                        <div class="carousel">
+                            <span class="prev"></span>
+                            <span class="next"></span>
+                        </div>
+                    </div>
+                </div>
+                <div id="hypersex">
+                    <span id="photo"></span>
+                </div>
+            </div>
+            <div id="buttonContainer" class="centered">
+                <button id="startButton" class="button">Démarrer</button>
             </div>
         </div>
 
         <footer>
+            <div class="container">
+                <div class="top">
+                    <img src="assets/Image/icon/instagram.svg" alt="">
+                </div>
+                <hr>
+                <div class="bottom">
+                    <nav>
+                        <ul>
+                            <li><a href="#"><img src="assets/Image/icon/gobelins.png" alt=""></a></li>
+                            <li><a href="#">A propos</a></li>
+                            <li><a href="#">Crédits</a></li>
+                        </ul>
+                    </nav>
+                    <p>Copyright © 2020 Pour Elles, Tous droits réservés.</p>
+                </div>
+            </div>
 
         </footer>
     </div>
@@ -65,23 +82,23 @@
 
 
 <!--TEXT TEMPLATES-->
-        <div id="hallWalk" style="display: none">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras finibus dignissim justo, vel fringilla
-                lacus mollis non. Etiam dignissim libero eu arcu pulvinar, a pulvinar dolor rhoncus. In accumsan a eros
-                et pellentesque</p>
-            <p>Lalilala</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras finibus dignissim justo, vel fringilla
-                lacus mollis non. Etiam dignissim libero eu arcu pulvinar, a pulvinar dolor rhoncus. In accumsan a eros
-                et pellentesque</p>
-            <p>Lalilala</p>
-            <p></p>
-        </div>
-        <div id="filterStory" style="display: none">
-            <p>Les filtres</p>
-            <p>Text2</p>
-            <p>Text3</p>
-            <p>fin</p>
-        </div>
+<div id="hallWalk" style="display: none">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras finibus dignissim justo, vel fringilla
+        lacus mollis non. Etiam dignissim libero eu arcu pulvinar, a pulvinar dolor rhoncus. In accumsan a eros
+        et pellentesque</p>
+    <p>Lalilala</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras finibus dignissim justo, vel fringilla
+        lacus mollis non. Etiam dignissim libero eu arcu pulvinar, a pulvinar dolor rhoncus. In accumsan a eros
+        et pellentesque</p>
+    <p>Lalilala</p>
+    <p></p>
+</div>
+<div id="filterStory" style="display: none">
+    <p>Les filtres</p>
+    <p>Text2</p>
+    <p>Text3</p>
+    <p>fin</p>
+</div>
 
 <script>
     javascript:(function () {
