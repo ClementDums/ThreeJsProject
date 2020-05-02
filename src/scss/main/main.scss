@@ -63,6 +63,7 @@ html {
           width: 70px;
           cursor: pointer;
           .nextprev {
+            display: none;
             position: relative;
             text-transform: uppercase;
             font-size: 0.6em;
@@ -115,7 +116,12 @@ html {
 
       #verticalCaroussel {
         height: 100%;
-        .scroll-continue {
+        .leaveCarousel {
+          text-align: center;
+          position: relative;
+          cursor: pointer;
+        }
+        .scrollContinue {
           text-align: center;
           position: relative;
           &::after {
@@ -123,7 +129,7 @@ html {
             height: 20px;
             left: 0;
             width: 1px;
-            bottom: -30px;
+            bottom: -24px;
             background: #fff;
             margin: 0 auto;
             content: "";
@@ -304,7 +310,7 @@ html {
 
   #loader {
     background-color: rgba(0, 0, 0, 1);
-    z-index: 99;
+    z-index: 5;
   }
 
   .centered {

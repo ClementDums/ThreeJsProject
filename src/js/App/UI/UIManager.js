@@ -7,7 +7,7 @@ const UIManager = {
         this.carousel = null;
         this.currentStory = [];
         this.isDisplayingText = false;
-        },
+    },
 
 
     displayHomeText(storyContainer) {
@@ -21,13 +21,40 @@ const UIManager = {
             this.displayText();
         }
     },
+    displayNextPrev() {
+        const nextprev = document.querySelectorAll(".nextprev");
+        nextprev.forEach((item) => {
+            item.style.display = "block";
+        });
+        this.endCarousel();
+
+    },
+
+    hideModules() {
+        const modules = this.el.querySelectorAll(".module");
+        modules.forEach((item) => {
+            item.style.display = "none";
+        })
+    },
+
+    hideNextPrev() {
+        const nextprev = document.querySelectorAll(".nextprev");
+        nextprev.forEach((item) => {
+            item.style.display = "none";
+        })
+    },
 
     newCarousel() {
         this.carousel = new Carousel();
     },
-
+    endCarousel() {
+        this.deleteCarousel();
+    },
     deleteCarousel() {
-        this.carousel.destroy();
+        if (this.carousel) {
+            this.carousel.destroy();
+
+        }
     },
 
     displayText() {

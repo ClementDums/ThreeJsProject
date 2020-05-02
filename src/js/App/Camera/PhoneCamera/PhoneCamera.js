@@ -25,9 +25,9 @@ export default class PhoneCamera {
             .start();
     }
 
-    zoomOutFilter() {
+    zoomOutFilter(x) {
         const tweenCam = new TWEEN.Tween(this._camera.position) // Create a new tween that modifies 'coords'.
-            .to({x: -500}, 1000) // Move to (300, 200) in 1 second.
+            .to({x: this._camera.position.x+x,y:this._camera.position.y-40}, 1000) // Move to (300, 200) in 1 second.
             .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
             .start();
     }

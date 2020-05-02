@@ -1,4 +1,5 @@
 import Texts from "../../Helpers/Texts/Texts"
+import UIManager from "./UIManager";
 
 export default class Carousel {
     constructor() {
@@ -82,15 +83,17 @@ export default class Carousel {
     scrollToContinue() {
         let scrollP = document.createElement("p");
         scrollP.innerHTML = "Scroller pour continuer";
-        scrollP.classList.add("scroll-continue");
+        scrollP.classList.add("scrollContinue");
         this.scroll = scrollP;
         this.container.appendChild(scrollP)
     }
 
+
     removeScroll(i) {
-        document.querySelector(".scroll-continue").style.display = "block";
+        document.querySelector(".scrollContinue").style.display = "block";
+
         if (i === this.textArray.length - 1) {
-            document.querySelector(".scroll-continue").style.display = "none";
+            document.querySelector(".scrollContinue").style.display = "none";
         }
     }
 

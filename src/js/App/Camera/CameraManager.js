@@ -4,6 +4,7 @@ import CameraLock from "./CameraLock";
 import CameraMovement from "./CameraMovement";
 import StatesManager from "../StatesManager";
 import appStates from '../../Helpers/ExperienceStates'
+import UIManager from "../UI/UIManager";
 
 
 const CameraManager = {
@@ -45,6 +46,7 @@ const CameraManager = {
             switch (state) {
                 case appStates.HALLWALK:
                     this.rotate("left");
+                    UIManager.displayNextPrev();
                     document.getElementById("fullscreenText").style.display = "none";
                     break;
                 case appStates.ENDINGWALK:
