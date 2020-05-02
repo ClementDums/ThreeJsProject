@@ -6,10 +6,16 @@ import InteractionManager from "../../../Interaction/InteractionManager";
 const HypersexManager = {
     hiddenObjects: [],
     phone: null,
+    isFiltered: false,
 
     init(objects, phone) {
         this.hiddenObjects = objects;
         this.phone = phone;
+    },
+    hypersexModule() {
+        if (!this.isFiltered) {
+            this.startHypersex(this.phone)
+        }
     },
     takePhoto() {
         CameraManager.mainCamera.flash();
@@ -18,7 +24,7 @@ const HypersexManager = {
 
         }, 2500);
         setTimeout(() => {
-            this.stopHypersexModule();
+            this.endHypersex();
         }, 4000);
     },
 
@@ -27,6 +33,7 @@ const HypersexManager = {
             item.show();
         })
     },
+
     startStory() {
         UIManager.newCarousel();
     },
@@ -46,12 +53,14 @@ const HypersexManager = {
     },
 
     endHypersex() {
+        this.startStory();
+        this.stopHypersexModule();
     },
 
     clickedHypersex(name) {
         if (name === "toHypersex") {
             RaycasterManager.identifiers.splice("toHypersex");
-            this.startHypersex(this.phone);
+            this.hypersexModule();
         }
     },
 

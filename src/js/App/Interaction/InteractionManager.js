@@ -7,6 +7,7 @@ const InteractionManager = {
     init() {
         this.el = document.getElementById("game");
         this.header = this.el.querySelector("header");
+        this.carousel = this.el.querySelector("#verticalCaroussel");
         this.clickListener = false;
         this.currentObjectClicked = null;
         this.landingClick();

@@ -51,7 +51,7 @@ export default class Phone {
             .to({x: 42, y: -67, z: -80}, 1000) // Move to (300, 200) in 1 second.
             .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
             .start();
-        CameraManager.phoneCamera.zoomOutFilter();
+        CameraManager.phoneCamera.zoomOutFilter(100);
     }
 
     setBlackScreenTexture() {
