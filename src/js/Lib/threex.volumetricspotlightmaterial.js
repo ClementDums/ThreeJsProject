@@ -36,7 +36,7 @@ export default function(){
 		'float intensity;',
 
 		// distance attenuation
-		'intensity	= distance(vWorldPosition, spotPosition)/1000.0;',
+		'intensity	= distance(vWorldPosition, spotPosition)/attenuation;',
 		'intensity	= 1.0 - clamp(intensity, 0.0, 1.0);',
 
 		// intensity on angle
@@ -61,7 +61,7 @@ export default function(){
 			},
 			anglePower	: {
 				type	: "f",
-				value	: 2
+				value	: 5
 			},
 			spotPosition		: {
 				type	: "v3",

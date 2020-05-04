@@ -15,14 +15,14 @@ export default class VolumetricLight {
             radiusSegment: 32*2,
             heightSegments: 50,
             openEnded: true
-        }
+        };
         //volumetric data
         let volumetricLightData = {
             name: "MainVolumetricLight",
             cylinderData: cylinderData,
             position: {x: 0, y: 2375, z: -200},
             lookAt: {x: 0, y: 0, z: -200}
-        }
+        };
         //volumetric light
         let volumetric = new VolumetricLightHelper(volumetricLightData).getVolumetricLight();
         //--------------------Volumetric light end
@@ -32,12 +32,12 @@ export default class VolumetricLight {
         let spotlightData = {
             name: "MainSpotlight",
             position: {x: 0, y: 2000, z: -200},
-            target: {x: 0, y: 0,z: -200},
+            target: {x: -20, y: 0,z: -280},
             color: new THREE.Color(1, 1, 1),
             angle: Math.PI/16,
-            intensity: 3,
-            penumbra: 0.6
-        }
+            intensity: 0.9,
+            penumbra: 0.2
+        };
 
         //spotlight
         let spot = new SpotLightHelper(spotlightData).getSpotLight();

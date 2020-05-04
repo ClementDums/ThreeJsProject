@@ -56,9 +56,9 @@ export default class FlashPhoto {
                 setTimeout(() => {
                     flash.visible = false;
 
-                }, 500);
+                },400);
             }, 200);
-        }, 2000);
+        }, 1500);
         this.spotLight.power = 10;
     }
 

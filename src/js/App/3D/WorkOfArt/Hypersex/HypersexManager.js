@@ -48,7 +48,6 @@ const HypersexManager = {
         this.isSmall = false;
         phone.setFullscreen();
         phone.zoomPhone(40);
-        InteractionManager.initHypersex();
         document.getElementById("hypersex").style.display = "block"
     },
 

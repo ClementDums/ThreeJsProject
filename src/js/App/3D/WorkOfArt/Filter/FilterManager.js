@@ -61,7 +61,6 @@ const FilterManager = {
         this.isSmall = false;
         phone.setFullscreen();
         phone.zoomPhone(100);
-        InteractionManager.initFilter();
         document.getElementById("filter").style.display = "block"
     },
 
