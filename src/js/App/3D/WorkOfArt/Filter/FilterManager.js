@@ -9,6 +9,7 @@ const FilterManager = {
     i: 0,
     isFiltered: false,
     phone: null,
+    isSmall: true,
 
     //Init module
     init(phone, statue0, statue1, statue2, statue3) {
@@ -57,22 +58,23 @@ const FilterManager = {
     //Start filter with phone
     startPhoneFilter(phone) {
         this.isFiltered = true;
+        this.isSmall = false;
         phone.setFullscreen();
         phone.zoomPhone(100);
-        InteractionManager.initFilter();
         document.getElementById("filter").style.display = "block"
     },
 
     //Stop filter with phone
     stopPhoneFilter() {
-        this.phone.setSmall();
-        this.phone.setBlackScreenTexture();
-        document.getElementById("filter").style.display = "none"
+        if (!this.isSmall) {
+            this.phone.setSmall();
+            this.isSmall = true;
+        }
+        document.getElementById("filter").style.display = "none";
         this.startStory();
     },
 
     //Start carousel story
-
     startStory() {
         UIManager.newCarousel();
     },

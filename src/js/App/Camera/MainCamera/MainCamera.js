@@ -4,7 +4,7 @@ import FlashPhoto from "../../Light/FlashPhoto";
 
 export default class MainCamera {
     constructor() {
-        this._camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 8000);
+        this._camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 4000);
         this._camera.position.x = 0;
         this._camera.position.y = 190;
         this._camera.position.z = 800;

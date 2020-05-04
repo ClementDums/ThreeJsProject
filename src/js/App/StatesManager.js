@@ -35,11 +35,12 @@ const StatesManager = {
             case appStates.FILTER:
                 this.currentState = appStates.HYPERSEX;
                 FilterManager.endModule();
-                HypersexManager.clickOnHypersex();
+                HypersexManager.startModule();
                 CameraManager.toHypersex();
                 break;
 
             case appStates.HYPERSEX:
+                HypersexManager.endModule();
                 if (order === "next") {
                     this.currentState = appStates.DIVERSITY;
                     CameraManager.toDiversity();
@@ -57,6 +58,7 @@ const StatesManager = {
                 else {
                     this.currentState = appStates.HYPERSEX;
                     CameraManager.toHypersex();
+                    HypersexManager.startModule();
                 }
                 break;
 

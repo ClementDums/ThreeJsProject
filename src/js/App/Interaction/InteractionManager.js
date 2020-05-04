@@ -13,6 +13,9 @@ const InteractionManager = {
         this.landingClick();
         this.nextModule();
         this.prevModule();
+        //Init Modules on click
+        this.initFilter();
+        this.initHypersex()
     },
 
     initFilter() {
@@ -54,6 +57,7 @@ const InteractionManager = {
     },
     nextFilter() {
         this.filter.querySelector(".next").addEventListener("click", () => {
+            console.log("next")
             FilterManager.setNext();
         })
     },
