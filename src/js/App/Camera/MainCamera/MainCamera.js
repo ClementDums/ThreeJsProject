@@ -1,6 +1,5 @@
 import * as THREE from 'three'
 import Flashlight from "../../Light/Flashlight";
-import FlashPhoto from "../../Light/FlashPhoto";
 
 export default class MainCamera {
     constructor() {
@@ -11,14 +10,11 @@ export default class MainCamera {
 
         this._camera.layers.enable(1);
         this.flashlight = new Flashlight();
-        this.flashphoto = new FlashPhoto();
         this.init();
 
     }
 
     init() {
-        this._camera.add(this.flashlight.flashlight);
-        this._camera.add(this.flashphoto.flashPhoto);
     }
 
     setLeft() {
@@ -33,13 +29,9 @@ export default class MainCamera {
         this._camera.rotation.z = 0;
     }
 
-
     activeFlashLight() {
+        this._camera.add(this.flashlight.flashlight);
         this.flashlight.enable()
-    }
-
-    flash() {
-        this.flashphoto.flash()
     }
 
     get camera() {

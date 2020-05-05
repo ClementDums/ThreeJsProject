@@ -1,13 +1,16 @@
 import UIManager from "../../../UI/UIManager";
-import CameraManager from "../../../Camera/CameraManager";
 import RaycasterManager from "../../../Interaction/RaycasterManager";
 import InteractionManager from "../../../Interaction/InteractionManager";
+import PostProcessingManager from "../../../PostProcessing/PostProcessingManager";
 
 const HypersexManager = {
     hiddenObjects: [],
     phone: null,
     isFiltered: false,
     isSmall: true,
+    flashSpeed: 0.1,
+    flashColor: 0,
+    removeFlash: false,
 
     //Init module
     init(objects, phone) {
@@ -51,13 +54,35 @@ const HypersexManager = {
         document.getElementById("hypersex").style.display = "block"
     },
 
+    animate() {
+        if (this.flashColor > 0 && this.removeFlash) {
+            this.flashColor -= this.flashSpeed;
+            PostProcessingManager.colorifyPass.uniforms["color"].value.setRGB(this.flashColor, this.flashColor, this.flashColor);
+
+            if (this.flashColor < 0) {
+                this.flashColor = 0;
+            }
+        }
+    },
+
+    //Flash effet with colorify shader
+    flashPhoto() {
+        this.flashColor = 1;
+        PostProcessingManager.colorifyPass.uniforms["color"].value.setRGB(this.flashColor, this.flashColor, this.flashColor);
+    },
+
     //Take photo
     takePhoto() {
-        CameraManager.mainCamera.flash();
+        this.flashPhoto();
         setTimeout(() => {
-            this.showObjects();
+            this.removeFlash = true;
+            setTimeout(() => {
+                this.flashPhoto();
+                this.showObjects();
+                this.removeFlash = false;
+            }, 600);
+        }, 800);
 
-        }, 2500);
         setTimeout(() => {
             this.stopPhoneHypersex();
         }, 4000);
@@ -93,6 +118,7 @@ const HypersexManager = {
     resetModule() {
         this.stopPhoneHypersex();
         UIManager.deleteCarousel();
+        this.removeFlash = false;
     },
 
 

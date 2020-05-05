@@ -90,6 +90,9 @@ export default class Experience {
         const renderPass = new RenderPass(SceneManager.scene, this.camera);
         this.composer.addPass(renderPass);
         this.composer.addPass(PostProcessingManager.outlinePass);
+
+        this.composer.addPass(PostProcessingManager.colorifyPass);
+
         const effectFXAA = new ShaderPass(FXAAShader);
         effectFXAA.uniforms['resolution'].value.set(1 / window.innerWidth, 1 / window.innerHeight);
         this.composer.addPass(effectFXAA);
