@@ -1,6 +1,7 @@
 import UIManager from "../../../UI/UIManager";
 import RaycasterManager from "../../../Interaction/RaycasterManager";
 import InteractionManager from "../../../Interaction/InteractionManager";
+import PostProcessingManager from "../../../PostProcessing/PostProcessingManager";
 
 
 const FilterManager = {
@@ -10,6 +11,7 @@ const FilterManager = {
     isFiltered: false,
     phone: null,
     isSmall: true,
+    pupleLight : null,
 
     //Init module
     init(phone, statue0, statue1, statue2, statue3) {
@@ -18,9 +20,15 @@ const FilterManager = {
         this.currentObject = statue0;
     },
 
+    setLight(purpleLight){
+        this.pupleLight = purpleLight;
+    },
+
     //Start module
     startModule() {
         this.clickOnFilter();
+        UIManager.hidePrev();
+        this.pupleLight.visible = true;
     },
 
     //Prepare module onClick
@@ -57,6 +65,7 @@ const FilterManager = {
 
     //Start filter with phone
     startPhoneFilter(phone) {
+        PostProcessingManager.setVignette(1.3);
         this.isFiltered = true;
         this.isSmall = false;
         phone.setFullscreen();
@@ -66,6 +75,7 @@ const FilterManager = {
 
     //Stop filter with phone
     stopPhoneFilter() {
+        PostProcessingManager.setVignette(0);
         if (!this.isSmall) {
             this.phone.setSmall();
             this.isSmall = true;
@@ -121,7 +131,9 @@ const FilterManager = {
     resetModule() {
         this.stopPhoneFilter();
         UIManager.deleteCarousel();
+        UIManager.displayNextPrev();
         this.resetFilter();
+        this.pupleLight.visible = false;
     },
 
     //Reset filter

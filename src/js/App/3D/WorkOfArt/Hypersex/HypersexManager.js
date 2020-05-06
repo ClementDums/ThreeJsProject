@@ -11,6 +11,7 @@ const HypersexManager = {
     flashSpeed: 0.1,
     flashColor: 0,
     removeFlash: false,
+    purpleLight: null,
 
     //Init module
     init(objects, phone) {
@@ -18,9 +19,14 @@ const HypersexManager = {
         this.phone = phone;
     },
 
+    setLight(purpleLight) {
+        this.pupleLight = purpleLight;
+    },
+
     //Start module
     startModule() {
         this.clickOnHypersex();
+        this.pupleLight.visible = true;
     },
 
     //Prepare module onClick
@@ -58,14 +64,13 @@ const HypersexManager = {
         if (this.flashColor > 0 && this.removeFlash) {
             this.flashColor -= this.flashSpeed;
             PostProcessingManager.colorifyPass.uniforms["color"].value.setRGB(this.flashColor, this.flashColor, this.flashColor);
-
             if (this.flashColor < 0) {
                 this.flashColor = 0;
             }
         }
     },
 
-    //Flash effet with colorify shader
+    //Flash effect with colorify shader
     flashPhoto() {
         this.flashColor = 1;
         PostProcessingManager.colorifyPass.uniforms["color"].value.setRGB(this.flashColor, this.flashColor, this.flashColor);
@@ -79,12 +84,14 @@ const HypersexManager = {
             setTimeout(() => {
                 this.flashPhoto();
                 this.showObjects();
-                this.removeFlash = false;
+                PostProcessingManager.setVignette(1.3);
             }, 600);
         }, 800);
 
         setTimeout(() => {
             this.stopPhoneHypersex();
+            this.removeFlash = false;
+
         }, 4000);
     },
 
@@ -119,6 +126,7 @@ const HypersexManager = {
         this.stopPhoneHypersex();
         UIManager.deleteCarousel();
         this.removeFlash = false;
+        this.pupleLight.visible = false;
     },
 
 

@@ -16,6 +16,7 @@ import {FXAAShader} from 'three/examples/jsm/shaders/FXAAShader.js';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 import {GUI} from 'three/examples/jsm/libs/dat.gui.module.js';
 import VolumetricLight from './Light/VolumetricLight'
+import {GammaCorrectionShader} from "three/examples/jsm/shaders/GammaCorrectionShader";
 
 export default class Experience {
     constructor(isDebug) {
@@ -47,12 +48,8 @@ export default class Experience {
         console.log(this.scene);
 
         this.renderer = new THREE.WebGLRenderer();
-        this.renderer.setPixelRatio(window.devicePixelRatio);
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.renderer.toneMappingExposure = 1;
-
-        this.renderer.shadowMap.enabled = true;
-        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
         this.camera = CameraManager.camera;
         this.scene.add(this.camera);
@@ -77,6 +74,7 @@ export default class Experience {
 
         this.postProcessing();
 
+
         //Event listeners
         window.addEventListener('resize', this.onResize.bind(this));
         window.addEventListener('mousemove', this.onDocumentMouseMove.bind(this), false);
@@ -89,9 +87,44 @@ export default class Experience {
         this.composer = new EffectComposer(this.renderer);
         const renderPass = new RenderPass(SceneManager.scene, this.camera);
         this.composer.addPass(renderPass);
-        this.composer.addPass(PostProcessingManager.outlinePass);
+         this.composer.addPass(PostProcessingManager.outlinePass);
+
+
+        //     const colorShader = {
+        //         uniforms: {
+        //             tDiffuse: {value: 0xffffff},
+        //             color: {value: new THREE.Color(0xffff00)},
+        //         },
+        //         vertexShader: `
+        //   varying vec2 vUv;
+        //   void main() {
+        //     vUv = uv;
+        //     gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1);
+        //   }
+        // `,
+        //         fragmentShader: `
+        //   uniform vec3 color;
+        //   uniform sampler2D tDiffuse;
+        //   varying vec2 vUv;
+        //   void main() {
+        //     vec4 previousPassColor = texture2D(tDiffuse, vUv);
+        //     gl_FragColor = vec4(
+        //         previousPassColor.rgb * color,
+        //         0.3);
+        //   }
+        // `,
+        //     };
+        //
+        //     const colorPass = new ShaderPass(colorShader);
+        //     colorPass.renderToScreen = true;
+        //     this.composer.addPass(colorPass);
+        // var shaderSepia = GammaCorrectionShader;
+        // var effectSepia = new ShaderPass(shaderSepia);
+        // effectSepia.renderToScreen = true;
+        // this.composer.addPass(effectSepia);
 
         this.composer.addPass(PostProcessingManager.colorifyPass);
+        this.composer.addPass(PostProcessingManager.effectVignette);
 
         const effectFXAA = new ShaderPass(FXAAShader);
         effectFXAA.uniforms['resolution'].value.set(1 / window.innerWidth, 1 / window.innerHeight);

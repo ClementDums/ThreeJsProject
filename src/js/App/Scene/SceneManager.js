@@ -51,6 +51,7 @@ const SceneManager = {
         this.animateSceneModels();
         this.animateCamera();
         HypersexManager.animate();
+        this.currentScene.animate();
     },
 
     animateSceneModels() {

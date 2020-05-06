@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import Flashlight from "../../Light/Flashlight";
+import TWEEN from "@tweenjs/tween.js"
 
 export default class MainCamera {
     constructor() {
@@ -18,15 +19,17 @@ export default class MainCamera {
     }
 
     setLeft() {
-        this._camera.rotation.y = Math.PI / 2;
-        this._camera.rotation.x = 0;
-        this._camera.rotation.z = 0;
+        const tweenCam = new TWEEN.Tween(this._camera.rotation) // Create a new tween that modifies 'coords'.
+            .to({x: 0, y:Math.PI/2,z: 0}, 500) // Move to (300, 200) in 1 second.
+            .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
+            .start();
     }
 
     setFront() {
-        this._camera.rotation.y = 0;
-        this._camera.rotation.x = 0;
-        this._camera.rotation.z = 0;
+         const tweenCam = new TWEEN.Tween(this._camera.rotation) // Create a new tween that modifies 'coords'.
+            .to({x: 0, y:0,z: 0}, 500) // Move to (300, 200) in 1 second.
+            .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
+            .start();
     }
 
     activeFlashLight() {

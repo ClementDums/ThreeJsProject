@@ -124,6 +124,13 @@ html {
         .scrollContinue {
           text-align: center;
           position: relative;
+          opacity: 0;
+          transition: transform 2s, opacity 5s;
+          transform: translate(0, 20px);
+          &.visible {
+            opacity: 1;
+            transform: translate(0, 0);
+          }
           &::after {
             position: absolute;
             height: 20px;
@@ -149,9 +156,15 @@ html {
             float: right;
 
             ul {
+              opacity: 0;
               list-style: none;
               position: fixed;
               right: 20px;
+              transition: opacity 5s;
+
+              &.visible {
+                opacity: 1;
+              }
               li {
                 background: #432F54;
                 margin-bottom: 20px;
@@ -171,6 +184,7 @@ html {
               width: 100%;
               font-size: 2em;
               display: flex;
+              position: absolute;
               align-items: center;
               flex-direction: column;
               justify-content: center;
@@ -178,6 +192,10 @@ html {
                 width: 70%;
                 margin: 0 auto;
                 text-align: center;
+                transform: translate(0, 30px);
+                transition: opacity 3s, transform 1.5s;
+                opacity: 0;
+
                 &.title {
                   letter-spacing: 3px;
                   margin-bottom: 30px;
@@ -185,6 +203,15 @@ html {
                 &.secondary {
                   font-size: 0.5em;
                   letter-spacing: 1px;
+                }
+                &.intro {
+                  font-size: 0.5em;
+                  letter-spacing: 1px;
+                  margin-bottom: 30px;
+                }
+                &.visible {
+                  opacity: 1;
+                  transform: translate(0, 0);
                 }
               }
 

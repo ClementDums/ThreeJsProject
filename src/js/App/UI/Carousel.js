@@ -20,7 +20,28 @@ export default class Carousel {
         this.addSections();
         this.scrollToContinue();
 
+        this.displayIntro();
         window.addEventListener("wheel", this.scrolled.bind(this));
+    }
+
+    displayIntro() {
+        let introSec = this.container.querySelector(".introSection");
+        let introP = introSec.querySelectorAll("p");
+
+        introP.forEach((p, i) => {
+            setTimeout(() => {
+                p.classList.add('visible')
+            }, 1800 * (i + 1))
+
+        });
+
+        setTimeout(() => {
+            this.scroll.classList.add("visible")
+            this.list.classList.add("visible")
+
+        }, 6000)
+
+
     }
 
     scrolled(e) {
@@ -61,10 +82,14 @@ export default class Carousel {
     showSection(i) {
         let sections = this.sectionContainer.querySelectorAll("section");
         sections.forEach((item) => {
-            item.style.display = "none";
+            item.style.visibility = "hidden";
             const attr = item.getAttribute('data-section');
             if (i == attr) {
-                item.style.display = "flex";
+                item.style.visibility = "visible";
+                let p = item.querySelectorAll("p");
+                p.forEach((i) => {
+                    i.classList.add("visible");
+                })
             }
         });
     }
@@ -85,7 +110,7 @@ export default class Carousel {
         scrollP.innerHTML = "Scroller pour continuer";
         scrollP.classList.add("scrollContinue");
         this.scroll = scrollP;
-        this.container.appendChild(scrollP)
+        this.container.appendChild(scrollP);
     }
 
 
@@ -112,15 +137,31 @@ export default class Carousel {
         for (let i = 0; i < this.textArray.length; i++) {
             let section = document.createElement("section");
             section.setAttribute("data-section", "" + i + "");
-            let pPrimary = document.createElement("p");
-            pPrimary.classList.add("title");
-            let pSecondary = document.createElement("p");
-            pSecondary.classList.add("secondary");
+            if (i == 0) {
+                section.classList.add("introSection");
+            }
 
-            pPrimary.innerHTML = this.textArray[i].primary;
-            pSecondary.innerHTML = this.textArray[i].secondary;
-            section.appendChild(pPrimary);
-            section.appendChild(pSecondary);
+
+            if (this.textArray[i].primary) {
+                let pPrimary = document.createElement("p");
+                pPrimary.classList.add("title");
+                pPrimary.innerHTML = this.textArray[i].primary;
+                section.appendChild(pPrimary);
+            }
+
+            if (this.textArray[i].intro) {
+                let pIntro = document.createElement("p");
+                pIntro.classList.add("intro");
+                pIntro.innerHTML = this.textArray[i].intro;
+                section.appendChild(pIntro);
+            }
+
+            if (this.textArray[i].secondary) {
+                let pSecondary = document.createElement("p");
+                pSecondary.classList.add("secondary");
+                pSecondary.innerHTML = this.textArray[i].secondary;
+                section.appendChild(pSecondary);
+            }
             this.sectionContainer.appendChild(section);
         }
     }

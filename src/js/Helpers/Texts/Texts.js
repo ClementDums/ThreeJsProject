@@ -1,15 +1,20 @@
 const Texts = {
     filterStory: [
         {
-            primary: "Les femmes se battent pour que nous vivions dans un monde qui ne soit pas submergé de femmes parfaites, minces, blanches et surtout retouchées.",
-            secondary: " En 2017, chaque image photoshopée devra être accompagnée de la mention “Image retouchée”, cette loi s’applique également sur internet..."
+            intro: "Des femmes se sont battues pour que nous vivions dans un monde qui ne soit pas submergé de publicités de femmes parfaites, minces, blanches et surtout retouchées.",
+            secondary: "En 2017, chaque image photoshopée devra être accompagnée de la mention “Image retouchée”, cette loi s’applique également sur internet."
         },
         {
-            primary: "À l’inverse, n’importe quelle personne peut faire usage des filtres sur des plateformes telles que Snapchat ou Instagram sans appliquer cette mention.",
-            secondary: "Cela instaure un nouveau standard de beauté chez les jeunes, une baisse de l’estime de soi et créé des troubles tels que la dysmorphie corporelle : un trouble obsessionnel pour les complexes physiques que peuvent développer les jeunes filles, n’acceptant plus de se voir autrement qu’à travers une version “sans défaut” d’elles mêmes grâce aux filtres."
+            primary: "SNAPCHAT DYSMORPHIA",
+            secondary: "En 2020, ce ne sont plus les publicitaires qui créent des standards de féminité inatteignable, mais bien votre soeur, voisine, collègue, vous… tout personne armée d’un smartphone. " +
+                "En un simple tapotement de doigt, de swipe, vous voilà avec de belles pommettes rehaussées, une peau parfaite, de grands yeux de biche et une taille de guêpe. " +
+                "Rien de grave à vouloir mettre en avant une version améliorée de soi en ligne après tout non ? " +
+                "Et bien ce n’est pas ce que les nouvelles études sur la santé mentale des jeunes filles disent. " +
+                "À force de voir et d’aimer une version de soi filtrée, améliorée, retouchée qui est de plus, aimée par les autres, certaines ne peuvent plus se voir ni se prendre en photo sans ces filtres. " +
+                "Si bien que c’est aujourd’hui une personne sur cinquante qui souffre de dysmorphie corporelle, un trouble qui se manifeste par une obsession sur un ou plusieurs traits physiques."
         },
         {
-            primary: "",
+            primary: "ss",
             secondary: "Ces comportements vont à contre-courant des mouvements d’acceptation de soi et d’authenticité qu’essaient de développer de nombreux comptes féministes sur ces mêmes plateformes."
         },
         {
