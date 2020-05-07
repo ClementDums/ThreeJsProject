@@ -19,6 +19,7 @@ const CameraManager = {
             this.isCameraMoving = false;
             this.cameraLockManager.init();
             this.controls = this.cameraLockManager.controls;
+            this.phoneTexture = false;
         },
 
         lockCamera() {
@@ -46,6 +47,7 @@ const CameraManager = {
             switch (state) {
                 case appStates.HALLWALK:
                     this.rotate("left");
+                    this.phoneTexture = true;
                     UIManager.displayNextPrev();
                     document.getElementById("fullscreenText").style.display = "none";
                     break;

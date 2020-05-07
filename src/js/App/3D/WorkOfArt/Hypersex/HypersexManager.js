@@ -72,7 +72,7 @@ const HypersexManager = {
 
     //Flash effect with colorify shader
     flashPhoto() {
-        this.flashColor = 1;
+        this.flashColor = 0.5;
         PostProcessingManager.colorifyPass.uniforms["color"].value.setRGB(this.flashColor, this.flashColor, this.flashColor);
     },
 
@@ -109,6 +109,7 @@ const HypersexManager = {
 
     //Stop hypersex with phone
     stopPhoneHypersex() {
+        PostProcessingManager.setVignette(0);
         if (!this.isSmall) {
             this.phone.setSmall();
             this.isSmall = true;

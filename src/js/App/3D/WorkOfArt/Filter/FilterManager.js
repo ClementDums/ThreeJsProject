@@ -11,7 +11,7 @@ const FilterManager = {
     isFiltered: false,
     phone: null,
     isSmall: true,
-    pupleLight : null,
+    pupleLight: null,
 
     //Init module
     init(phone, statue0, statue1, statue2, statue3) {
@@ -20,7 +20,7 @@ const FilterManager = {
         this.currentObject = statue0;
     },
 
-    setLight(purpleLight){
+    setLight(purpleLight) {
         this.pupleLight = purpleLight;
     },
 
@@ -112,7 +112,6 @@ const FilterManager = {
         }
     },
 
-
     //Show current object
     setCurrentActive() {
         this.currentObject.show();
@@ -143,8 +142,6 @@ const FilterManager = {
         this.currentObject = this.objects[0];
         this.setCurrentActive()
     },
-
 };
-
 
 export default FilterManager;

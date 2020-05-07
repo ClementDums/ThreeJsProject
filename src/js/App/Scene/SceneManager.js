@@ -28,6 +28,10 @@ const SceneManager = {
                 item.setup();
                 if (!item._isHud) {
                     this._threeScene.add(obj);
+                    if (item.hasPerf) {
+                        item.perf();
+                    }
+
                 } else {
                     CameraManager.mainCamera.camera.add(obj)
                 }

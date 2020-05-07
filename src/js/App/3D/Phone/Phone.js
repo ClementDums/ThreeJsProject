@@ -2,7 +2,6 @@ import Loader from '../../../Helpers/Loader'
 import TextureManager from '../../Texture/TextureManager'
 import * as THREE from 'three'
 import TWEEN from "@tweenjs/tween.js"
-import SceneManager from "../../Scene/SceneManager";
 import CameraManager from "../../Camera/CameraManager";
 
 export default class Phone {

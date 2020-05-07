@@ -46,18 +46,14 @@ export default class Experience {
 
         this.scene = SceneManager.scene;
         console.log(this.scene);
-
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.renderer.toneMappingExposure = 1;
-
+        this.renderer.outputEncoding = THREE.LinearEncoding;
         this.camera = CameraManager.camera;
         this.scene.add(this.camera);
         this.container.appendChild(this.renderer.domElement);
 
-
         const light = new VolumetricLight().getMainSpotLight();
-
         this.scene.add(light.spot);
         this.scene.add(light.volumetric);
         this.scene.add(light.spotTarget);
@@ -74,7 +70,6 @@ export default class Experience {
 
         this.postProcessing();
 
-
         //Event listeners
         window.addEventListener('resize', this.onResize.bind(this));
         window.addEventListener('mousemove', this.onDocumentMouseMove.bind(this), false);
@@ -87,44 +82,12 @@ export default class Experience {
         this.composer = new EffectComposer(this.renderer);
         const renderPass = new RenderPass(SceneManager.scene, this.camera);
         this.composer.addPass(renderPass);
-         this.composer.addPass(PostProcessingManager.outlinePass);
-
-
-        //     const colorShader = {
-        //         uniforms: {
-        //             tDiffuse: {value: 0xffffff},
-        //             color: {value: new THREE.Color(0xffff00)},
-        //         },
-        //         vertexShader: `
-        //   varying vec2 vUv;
-        //   void main() {
-        //     vUv = uv;
-        //     gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1);
-        //   }
-        // `,
-        //         fragmentShader: `
-        //   uniform vec3 color;
-        //   uniform sampler2D tDiffuse;
-        //   varying vec2 vUv;
-        //   void main() {
-        //     vec4 previousPassColor = texture2D(tDiffuse, vUv);
-        //     gl_FragColor = vec4(
-        //         previousPassColor.rgb * color,
-        //         0.3);
-        //   }
-        // `,
-        //     };
-        //
-        //     const colorPass = new ShaderPass(colorShader);
-        //     colorPass.renderToScreen = true;
-        //     this.composer.addPass(colorPass);
-        // var shaderSepia = GammaCorrectionShader;
-        // var effectSepia = new ShaderPass(shaderSepia);
-        // effectSepia.renderToScreen = true;
-        // this.composer.addPass(effectSepia);
+        this.composer.addPass(PostProcessingManager.outlinePass);
 
         this.composer.addPass(PostProcessingManager.colorifyPass);
         this.composer.addPass(PostProcessingManager.effectVignette);
+        const gamma = new ShaderPass(GammaCorrectionShader);
+        this.composer.addPass(gamma);
 
         const effectFXAA = new ShaderPass(FXAAShader);
         effectFXAA.uniforms['resolution'].value.set(1 / window.innerWidth, 1 / window.innerHeight);
@@ -143,16 +106,17 @@ export default class Experience {
         this.currentObjectClicked = RaycasterManager.getTouchedElement(this._mouse, this.camera, this.scene);
         //Render
         //Phone camera render
-        this.renderer.setRenderTarget(TextureManager.rtTexture);
-        this.renderer.clear();
-        this.renderer.render(SceneManager.scene, CameraManager.phoneCamera.camera);
-
+        if(CameraManager.phoneTexture) {
+            this.renderer.setRenderTarget(TextureManager.rtTexture);
+            this.renderer.clear();
+            this.renderer.render(SceneManager.scene, CameraManager.phoneCamera.camera);
+        }
         //Debug camera render
-        this.renderer.setRenderTarget(null);
-        this.renderer.clear();
-        this.renderer.render(SceneManager.scene, this.camera);
-
-        //Main camera render
+        // this.renderer.setRenderTarget(null);
+        // this.renderer.clear();
+        // this.renderer.render(SceneManager.scene, this.camera);
+        //
+        // //Main camera render
         this.renderer.setRenderTarget(null);
         this.renderer.clear();
         this.composer.render();
