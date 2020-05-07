@@ -2,6 +2,8 @@
   "build/app.css": "/build/app.css",
   "build/app.js": "/build/app.js",
   "build/runtime.js": "/build/runtime.js",
+  "build/fonts/Asul-Bold.ttf": "/build/fonts/Asul-Bold.d303f1b8.ttf",
+  "build/fonts/Asul-Regular.ttf": "/build/fonts/Asul-Regular.4b9cfe2a.ttf",
   "build/fonts/Calyces-Bold.otf": "/build/fonts/Calyces-Bold.4f5ffc59.otf",
   "build/fonts/Calyces-Regular.otf": "/build/fonts/Calyces-Regular.f7635eaa.otf"
 }

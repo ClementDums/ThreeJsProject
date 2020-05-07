@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import Flashlight from "../../Light/Flashlight";
-import FlashPhoto from "../../Light/FlashPhoto";
+import TWEEN from "@tweenjs/tween.js"
 
 export default class MainCamera {
     constructor() {
@@ -11,35 +11,30 @@ export default class MainCamera {
 
         this._camera.layers.enable(1);
         this.flashlight = new Flashlight();
-        this.flashphoto = new FlashPhoto();
         this.init();
 
     }
 
     init() {
-        this._camera.add(this.flashlight.flashlight);
-        this._camera.add(this.flashphoto.flashPhoto);
     }
 
     setLeft() {
-        this._camera.rotation.y = Math.PI / 2;
-        this._camera.rotation.x = 0;
-        this._camera.rotation.z = 0;
+        const tweenCam = new TWEEN.Tween(this._camera.rotation) // Create a new tween that modifies 'coords'.
+            .to({x: 0, y:Math.PI/2,z: 0}, 500) // Move to (300, 200) in 1 second.
+            .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
+            .start();
     }
 
     setFront() {
-        this._camera.rotation.y = 0;
-        this._camera.rotation.x = 0;
-        this._camera.rotation.z = 0;
+         const tweenCam = new TWEEN.Tween(this._camera.rotation) // Create a new tween that modifies 'coords'.
+            .to({x: 0, y:0,z: 0}, 500) // Move to (300, 200) in 1 second.
+            .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
+            .start();
     }
-
 
     activeFlashLight() {
+        this._camera.add(this.flashlight.flashlight);
         this.flashlight.enable()
-    }
-
-    flash() {
-        this.flashphoto.flash()
     }
 
     get camera() {

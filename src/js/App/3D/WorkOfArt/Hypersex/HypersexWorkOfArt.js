@@ -7,6 +7,8 @@ export default class HypersexWorkOfArt {
         this._object = null;
         this._isAnimated = false;
         this.name = name;
+        this.hasPerf = true;
+
     }
 
     load() {
@@ -15,7 +17,7 @@ export default class HypersexWorkOfArt {
 
     setup() {
         this._object.name = "Work of Art";
-        this._object.castShadow = true;
+        this._object.rotation.y = Math.PI / 2;
         this._object.position.set(this._position.x, this._position.y, this._position.z);
         this._object.children[0].name = this.name;
     }

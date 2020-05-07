@@ -44,6 +44,10 @@ const UIManager = {
         })
     },
 
+    hidePrev() {
+        document.getElementById("prev").style.display = "none";
+    },
+
     newCarousel() {
         this.carousel = new Carousel();
     },

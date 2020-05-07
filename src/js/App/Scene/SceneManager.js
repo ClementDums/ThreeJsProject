@@ -1,6 +1,7 @@
 import InsideScene from "./Museum/InsideScene";
 import ScreenLoader from '../../Helpers/ScreenLoader';
 import CameraManager from "../Camera/CameraManager";
+import HypersexManager from "../3D/WorkOfArt/Hypersex/HypersexManager"
 
 
 const SceneManager = {
@@ -27,6 +28,10 @@ const SceneManager = {
                 item.setup();
                 if (!item._isHud) {
                     this._threeScene.add(obj);
+                    if (item.hasPerf) {
+                        item.perf();
+                    }
+
                 } else {
                     CameraManager.mainCamera.camera.add(obj)
                 }
@@ -49,6 +54,8 @@ const SceneManager = {
     animate() {
         this.animateSceneModels();
         this.animateCamera();
+        HypersexManager.animate();
+        this.currentScene.animate();
     },
 
     animateSceneModels() {

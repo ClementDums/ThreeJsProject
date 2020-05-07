@@ -16,6 +16,7 @@ import {FXAAShader} from 'three/examples/jsm/shaders/FXAAShader.js';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 import {GUI} from 'three/examples/jsm/libs/dat.gui.module.js';
 import VolumetricLight from './Light/VolumetricLight'
+import {GammaCorrectionShader} from "three/examples/jsm/shaders/GammaCorrectionShader";
 
 export default class Experience {
     constructor(isDebug) {
@@ -45,22 +46,14 @@ export default class Experience {
 
         this.scene = SceneManager.scene;
         console.log(this.scene);
-
         this.renderer = new THREE.WebGLRenderer();
-        this.renderer.setPixelRatio(window.devicePixelRatio);
         this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.renderer.toneMappingExposure = 1;
-
-        this.renderer.shadowMap.enabled = true;
-        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-
+        this.renderer.outputEncoding = THREE.LinearEncoding;
         this.camera = CameraManager.camera;
         this.scene.add(this.camera);
         this.container.appendChild(this.renderer.domElement);
 
-
         const light = new VolumetricLight().getMainSpotLight();
-
         this.scene.add(light.spot);
         this.scene.add(light.volumetric);
         this.scene.add(light.spotTarget);
@@ -90,6 +83,12 @@ export default class Experience {
         const renderPass = new RenderPass(SceneManager.scene, this.camera);
         this.composer.addPass(renderPass);
         this.composer.addPass(PostProcessingManager.outlinePass);
+
+        this.composer.addPass(PostProcessingManager.colorifyPass);
+        this.composer.addPass(PostProcessingManager.effectVignette);
+        const gamma = new ShaderPass(GammaCorrectionShader);
+        this.composer.addPass(gamma);
+
         const effectFXAA = new ShaderPass(FXAAShader);
         effectFXAA.uniforms['resolution'].value.set(1 / window.innerWidth, 1 / window.innerHeight);
         this.composer.addPass(effectFXAA);
@@ -107,16 +106,17 @@ export default class Experience {
         this.currentObjectClicked = RaycasterManager.getTouchedElement(this._mouse, this.camera, this.scene);
         //Render
         //Phone camera render
-        this.renderer.setRenderTarget(TextureManager.rtTexture);
-        this.renderer.clear();
-        this.renderer.render(SceneManager.scene, CameraManager.phoneCamera.camera);
-
+        if(CameraManager.phoneTexture) {
+            this.renderer.setRenderTarget(TextureManager.rtTexture);
+            this.renderer.clear();
+            this.renderer.render(SceneManager.scene, CameraManager.phoneCamera.camera);
+        }
         //Debug camera render
-        this.renderer.setRenderTarget(null);
-        this.renderer.clear();
-        this.renderer.render(SceneManager.scene, this.camera);
-
-        //Main camera render
+        // this.renderer.setRenderTarget(null);
+        // this.renderer.clear();
+        // this.renderer.render(SceneManager.scene, this.camera);
+        //
+        // //Main camera render
         this.renderer.setRenderTarget(null);
         this.renderer.clear();
         this.composer.render();

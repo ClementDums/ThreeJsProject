@@ -4,7 +4,7 @@ export default class Socle {
 
     constructor(position) {
         this._position = position;
-        this._path = './assets/3DModels/Filter/SOCLE.gltf';
+        this._path = './assets/3DModels/Filter/socle.glb';
         this._object = null;
         this._isAnimated = false;
     }

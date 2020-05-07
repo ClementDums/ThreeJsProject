@@ -54,6 +54,8 @@ const StatesManager = {
             case appStates.DIVERSITY:
                 if (order === "next") {
                     this.currentState = appStates.ENDINGWALK;
+                    CameraManager.endingWalk();
+                    UIManager.hideNextPrev();
                 }
                 else {
                     this.currentState = appStates.HYPERSEX;
@@ -64,7 +66,6 @@ const StatesManager = {
 
             case appStates.ENDINGWALK:
                 this.currentState = appStates.ENDSTATUE;
-                CameraManager.endingWalk();
                 break;
 
             case appStates.ENDSTATUE:
