@@ -7,25 +7,30 @@
 
     <!-- TODO add og, canonical, robots -->
 
-    <link rel="icon" href="favicon.ico"/>
+    <link rel="icon" href="logo_noir.ico"/>
     <link rel="stylesheet" href="build/app.css">
 </head>
 <body>
 
 <div id="game">
-
-
     <div id="loader">
         <div id="loadingInfos">
             <span style="font-size:36px">Loading scene</span>
+            <span class="percent" style="font-size:36px"></span>
+
         </div>
     </div>
+
+    <div class="follow"></div>
 
     <div id="ui">
         <header>
             <div class="container">
                 <div>
                     <span id="prev" class="nextprev">Revenir en arrière</span>
+                </div>
+                <div>
+                    <img id="logo" src="assets/Image/icon/logo_blanc.svg" alt="">
                 </div>
                 <div>
                     <span id="next" class="nextprev">Passer à la suite</span>
@@ -60,7 +65,12 @@
         <footer>
             <div class="container">
                 <div class="top">
-                    <img src="assets/Image/icon/instagram.svg" alt="">
+                    <ul>
+                        <li><img id="soundOn" class="visible sound" src="assets/Image/icon/sound-on.svg" alt="">
+                            <img id="soundOff" class="sound" src="assets/Image/icon/sound-off.svg" alt=""></li>
+                        <li><img src="assets/Image/icon/instagram.svg" alt=""></li>
+                    </ul>
+
                 </div>
                 <hr>
                 <div class="bottom">
@@ -92,12 +102,7 @@
     <p>Lalilala</p>
     <p></p>
 </div>
-<div id="filterStory" style="display: none">
-    <p>Les filtres</p>
-    <p>Text2</p>
-    <p>Text3</p>
-    <p>fin</p>
-</div>
+
 
 <script>
     javascript:(function () {

@@ -1,6 +1,7 @@
 import StatesManager from "../StatesManager"
 import FilterManager from "../3D/WorkOfArt/Filter/FilterManager";
 import HypersexManager from "../3D/WorkOfArt/Hypersex/HypersexManager";
+import AudioHelpers from "../../Helpers/Audio/AudioHelpers";
 
 const InteractionManager = {
 
@@ -15,7 +16,10 @@ const InteractionManager = {
         this.prevModule();
         //Init Modules on click
         this.initFilter();
-        this.initHypersex()
+        this.initHypersex();
+
+        //Init sound control on click
+        this.initSound();
     },
 
     initFilter() {
@@ -69,6 +73,21 @@ const InteractionManager = {
         })
     },
 
+
+    /****SOUND***/
+    initSound() {
+        this.el.querySelector("#soundOn").addEventListener("click", () => {
+            AudioHelpers.muteMaster();
+            this.el.querySelector("#soundOff").classList.add("visible");
+            this.el.querySelector("#soundOn").classList.remove("visible");
+        });
+
+        this.el.querySelector("#soundOff").addEventListener("click", () => {
+            AudioHelpers.unmuteMaster();
+            this.el.querySelector("#soundOff").classList.remove("visible");
+            this.el.querySelector("#soundOn").classList.add("visible");
+        });
+    },
 
     /**
      *

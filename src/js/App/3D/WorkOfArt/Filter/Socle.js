@@ -16,7 +16,6 @@ export default class Socle {
     setup() {
         this._object.name = "Socle";
         this._object.castShadow = true;
-        this._object.rotation.y = -Math.PI / 2;
         this._object.position.set(this._position.x, this._position.y, this._position.z);
     }
 

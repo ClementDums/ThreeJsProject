@@ -4,7 +4,9 @@ import CameraLock from "./CameraLock";
 import CameraMovement from "./CameraMovement";
 import StatesManager from "../StatesManager";
 import appStates from '../../Helpers/ExperienceStates'
+import AudioHelpers from '../../Helpers/Audio/AudioHelpers'
 import UIManager from "../UI/UIManager";
+import * as THREE from 'three'
 
 
 const CameraManager = {
@@ -20,6 +22,8 @@ const CameraManager = {
             this.cameraLockManager.init();
             this.controls = this.cameraLockManager.controls;
             this.phoneTexture = false;
+
+            this.setAudio()
         },
 
         lockCamera() {
@@ -27,6 +31,11 @@ const CameraManager = {
             this.cameraLockManager.lock();
         },
 
+        setAudio() {
+            var listener = new THREE.AudioListener();
+            this._camera.add(listener);
+            AudioHelpers.setListener(listener);
+        },
 
         unlockCamera() {
             this.isLock = false;
@@ -38,11 +47,14 @@ const CameraManager = {
          * @param state
          */
         startMove(state) {
+            this.phoneTexture = false;
             this.cameraMovementManager.moveSpline(state);
             this.isCameraMoving = true;
+            AudioHelpers.playSound("walk");
         },
 
         endMove(state) {
+            AudioHelpers.pauseSound("walk");
             StatesManager.nextState();
             switch (state) {
                 case appStates.HALLWALK:

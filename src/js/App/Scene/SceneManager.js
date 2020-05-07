@@ -1,7 +1,7 @@
 import InsideScene from "./Museum/InsideScene";
-import ScreenLoader from '../../Helpers/ScreenLoader';
 import CameraManager from "../Camera/CameraManager";
 import HypersexManager from "../3D/WorkOfArt/Hypersex/HypersexManager"
+import Loader from "../../Helpers/Loader";
 
 
 const SceneManager = {
@@ -13,7 +13,6 @@ const SceneManager = {
     setupScene() {
         this._threeScene = this.currentScene.scene;
         this._sceneObjects = this.currentScene.objects;
-        this.isLoading = true;
         this._threeScene.add(CameraManager.controls.getObject());
         this.currentScene.init();
         this.loadScene();
@@ -21,31 +20,23 @@ const SceneManager = {
     },
 
     loadSceneModels() {
-        this.isLoading = true;
+        Loader.init();
         this._sceneObjects.forEach((item, i) => {
             item.load().then((obj) => {
                 item._object = obj;
                 item.setup();
                 if (!item._isHud) {
                     this._threeScene.add(obj);
-                    if (item.hasPerf) {
-                        item.perf();
-                    }
-
                 } else {
                     CameraManager.mainCamera.camera.add(obj)
                 }
-                if (i >= this._sceneObjects.length - 1) {
-                    this.isLoading = false;
-                    ScreenLoader.loadScreen(false);
-                }
+
             })
         })
     },
 
     loadScene() {
         this.loadSceneModels();
-        ScreenLoader.loadScreen(true);
     },
 
     /**
@@ -55,7 +46,6 @@ const SceneManager = {
         this.animateSceneModels();
         this.animateCamera();
         HypersexManager.animate();
-        this.currentScene.animate();
     },
 
     animateSceneModels() {

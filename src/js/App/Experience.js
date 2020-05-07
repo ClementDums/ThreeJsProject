@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-
 import SceneManager from './Scene/SceneManager'
 import CameraManager from "./Camera/CameraManager";
 import RaycasterManager from "./Interaction/RaycasterManager"
@@ -106,7 +105,7 @@ export default class Experience {
         this.currentObjectClicked = RaycasterManager.getTouchedElement(this._mouse, this.camera, this.scene);
         //Render
         //Phone camera render
-        if(CameraManager.phoneTexture) {
+        if (CameraManager.phoneTexture) {
             this.renderer.setRenderTarget(TextureManager.rtTexture);
             this.renderer.clear();
             this.renderer.render(SceneManager.scene, CameraManager.phoneCamera.camera);
@@ -136,6 +135,8 @@ export default class Experience {
     onDocumentMouseMove(event) {
         this._mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
         this._mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+        document.querySelector(".follow").style.transform = "translate(" + (event.clientX - 7) + "px," + (event.clientY - 7) + "px)";
     }
 
     onDocumentMouseClick() {

@@ -21,6 +21,7 @@
 }
 
 html {
+  cursor: none;
   body {
     margin: 0;
     padding: 0;
@@ -59,9 +60,11 @@ html {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        #logo{
+          width: 30px;
+        }
         div {
           width: 70px;
-          cursor: pointer;
           .nextprev {
             display: none;
             position: relative;
@@ -119,7 +122,7 @@ html {
         .leaveCarousel {
           text-align: center;
           position: relative;
-          cursor: pointer;
+          cursor: none;
         }
         .scrollContinue {
           text-align: center;
@@ -276,7 +279,7 @@ html {
       height: 50px;
       margin-bottom: 20px;
       .button {
-        cursor: pointer;
+        cursor: none;
         color: #fff;
         background: transparent;
         border-radius: 30px;
@@ -293,13 +296,36 @@ html {
         margin: 0 auto;
         left: 0;
         right: 0;
+        ul {
+          display: flex;
+          align-items: center;
+          padding-inline-start: 0;
+          li {
+            display: inline-block;
+            margin-right: 20px;
+            a {
+              color: #fff;
+              text-decoration: none;
+            }
+          }
+        }
         .top {
           width: 95%;
           margin: 0 auto;
           left: 0;
           right: 0;
+          li {
+            height: 20px;
+            margin-right: 10px;
+          }
+          .sound {
+            display: none;
+            &.visible {
+              display: block;
+            }
+          }
           img {
-            width: 20px;
+            height:  20px;
           }
         }
         .bottom {
@@ -317,19 +343,7 @@ html {
           img {
             width: 15px;
           }
-          ul {
-            display: flex;
-            align-items: center;
-            padding-inline-start: 0;
-            li {
-              display: inline-block;
-              margin-right: 20px;
-              a {
-                color: #fff;
-                text-decoration: none;
-              }
-            }
-          }
+
         }
       }
     }
@@ -395,7 +409,7 @@ html {
     font-size: 14px;
     line-height: 24px;
 
-    cursor: pointer;
+    cursor: none;
   }
 
 }

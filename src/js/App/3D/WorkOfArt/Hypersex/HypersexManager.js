@@ -2,6 +2,7 @@ import UIManager from "../../../UI/UIManager";
 import RaycasterManager from "../../../Interaction/RaycasterManager";
 import InteractionManager from "../../../Interaction/InteractionManager";
 import PostProcessingManager from "../../../PostProcessing/PostProcessingManager";
+import AudioHelpers from "../../../../Helpers/Audio/AudioHelpers";
 
 const HypersexManager = {
     hiddenObjects: [],
@@ -17,6 +18,7 @@ const HypersexManager = {
     init(objects, phone) {
         this.hiddenObjects = objects;
         this.phone = phone;
+        AudioHelpers.addSound("photo", './assets/Audio/photo.mp3', false);
     },
 
     setLight(purpleLight) {
@@ -67,6 +69,7 @@ const HypersexManager = {
             if (this.flashColor < 0) {
                 this.flashColor = 0;
             }
+            console.log(this.flashColor)
         }
     },
 
@@ -83,6 +86,7 @@ const HypersexManager = {
             this.removeFlash = true;
             setTimeout(() => {
                 this.flashPhoto();
+                AudioHelpers.playSound("photo");
                 this.showObjects();
                 PostProcessingManager.setVignette(1.3);
             }, 600);
