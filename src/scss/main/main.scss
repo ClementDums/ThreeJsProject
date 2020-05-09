@@ -35,7 +35,7 @@ html {
   p.title {
     font-family: Calyces, sans-serif;
   }
-  #blocker, #loader, .buttonContainer {
+  #blocker, .buttonContainer {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -96,11 +96,6 @@ html {
     }
   }
 
-  #loader {
-    background-color: rgba(0, 0, 0, 1);
-    z-index: 5;
-  }
-
   .centered {
     display: flex;
     align-items: center;
@@ -128,35 +123,6 @@ html {
     padding-right: 20%;
     color: #fff;
     font-family: Calyces, sans-serif;
-  }
-
-  #instructions, #loadingInfos {
-    width: 100%;
-    height: 100%;
-
-    display: -webkit-box;
-    display: -moz-box;
-    display: box;
-
-    -webkit-box-orient: horizontal;
-    -moz-box-orient: horizontal;
-    box-orient: horizontal;
-
-    -webkit-box-pack: center;
-    -moz-box-pack: center;
-    box-pack: center;
-
-    -webkit-box-align: center;
-    -moz-box-align: center;
-    box-align: center;
-
-    color: #ffffff;
-    text-align: center;
-    font-family: Arial;
-    font-size: 14px;
-    line-height: 24px;
-
-    cursor: none;
   }
 
 }

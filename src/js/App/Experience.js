@@ -37,7 +37,6 @@ export default class Experience {
         TextureManager.init();
 
         //Experience states Manager
-
         this.init();
         this._animate();
     }
