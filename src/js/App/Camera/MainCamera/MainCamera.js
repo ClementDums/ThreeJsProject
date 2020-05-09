@@ -4,10 +4,10 @@ import TWEEN from "@tweenjs/tween.js"
 
 export default class MainCamera {
     constructor() {
-        this._camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 4000);
+        this._camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 4200);
         this._camera.position.x = 0;
         this._camera.position.y = 190;
-        this._camera.position.z = 800;
+        this._camera.position.z = 2400;
 
         this._camera.layers.enable(1);
         this.flashlight = new Flashlight();

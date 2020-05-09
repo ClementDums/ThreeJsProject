@@ -4,6 +4,13 @@
 
 // Main
 @import 'main/main';
+@import 'main/loader';
+@import 'main/cursor';
+@import 'main/header';
+@import 'main/modules/filter';
+@import 'main/modules/hypersex';
+@import 'main/verticalCaroussel';
+@import 'main/footer';
 
 //gui z index bug
 .dg.ac {

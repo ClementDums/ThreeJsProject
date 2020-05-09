@@ -1,13 +1,13 @@
 import Texts from "../../Helpers/Texts/Texts"
-import UIManager from "./UIManager";
 
 export default class Carousel {
-    constructor() {
+    constructor(template) {
         this.container = document.getElementById("verticalCaroussel");
+        this.textTemplate = template;
         this.list = null;
         this.sectionContainer = null;
         //Array of text
-        this.textArray = Texts.filterStory;
+        this.textArray = null;
         this.isScrolling = false;
         this.activeSection = 0;
         this.init();
@@ -15,6 +15,7 @@ export default class Carousel {
 
     init() {
         this.container.style.display = "block";
+        this.createTextArray();
         this.createDom();
         this.addListItems();
         this.addSections();
@@ -24,6 +25,16 @@ export default class Carousel {
         window.addEventListener("wheel", this.scrolled.bind(this));
     }
 
+    /**
+     * Create text array from div in template
+     */
+    createTextArray() {
+        this.textArray = this.textTemplate.querySelectorAll("div");
+    }
+
+    /**
+     * Display intro
+     */
     displayIntro() {
         let introSec = this.container.querySelector(".introSection");
         let introP = introSec.querySelectorAll("p");
@@ -40,8 +51,6 @@ export default class Carousel {
             this.list.classList.add("visible")
 
         }, 6000)
-
-
     }
 
     scrolled(e) {
@@ -57,6 +66,7 @@ export default class Carousel {
         this.timeout = setTimeout(() => this.isScrolling = false, 800)
     }
 
+
     scrollBottom() {
         if (this.activeSection < this.textArray.length - 1 && !this.isScrolling) {
             this.isScrolling = true;
@@ -64,7 +74,7 @@ export default class Carousel {
             this.activeSection += 1;
             this.showSection(this.activeSection);
             this.showActiveLi(this.activeSection);
-            this.removeScroll(this.activeSection)
+            this.displayScrollToContinue(this.activeSection)
         }
     }
 
@@ -75,10 +85,14 @@ export default class Carousel {
             this.activeSection -= 1;
             this.showSection(this.activeSection);
             this.showActiveLi(this.activeSection);
-            this.removeScroll(this.activeSection);
+            this.displayScrollToContinue(this.activeSection);
         }
     }
 
+    /**
+     * Show current carousel section
+     * @param i
+     */
     showSection(i) {
         let sections = this.sectionContainer.querySelectorAll("section");
         sections.forEach((item) => {
@@ -94,6 +108,10 @@ export default class Carousel {
         });
     }
 
+    /**
+     * Show active list item
+     * @param i
+     */
     showActiveLi(i) {
         let lis = this.list.querySelectorAll("li");
         lis.forEach((item) => {
@@ -105,6 +123,9 @@ export default class Carousel {
         });
     }
 
+    /**
+     * Create scroll to continue text
+     */
     scrollToContinue() {
         let scrollP = document.createElement("p");
         scrollP.innerHTML = "Scroller pour continuer";
@@ -114,14 +135,20 @@ export default class Carousel {
     }
 
 
-    removeScroll(i) {
+    /**
+     * Handle scroll to continue text display
+     * @param i
+     */
+    displayScrollToContinue(i) {
         document.querySelector(".scrollContinue").style.display = "block";
-
         if (i === this.textArray.length - 1) {
             document.querySelector(".scrollContinue").style.display = "none";
         }
     }
 
+    /**
+     * Add carousel list items
+     */
     addListItems() {
         for (let i = 0; i < this.textArray.length; i++) {
             let li = document.createElement("li");
@@ -133,39 +160,48 @@ export default class Carousel {
         }
     }
 
+    /**
+     * Add carousel sections
+     */
     addSections() {
         for (let i = 0; i < this.textArray.length; i++) {
             let section = document.createElement("section");
             section.setAttribute("data-section", "" + i + "");
-            if (i == 0) {
+            if (i === 0) {
                 section.classList.add("introSection");
             }
 
+            let pContent = this.textArray[i].querySelectorAll("p");
+            pContent.forEach((paragraph) => {
+                if (paragraph.classList.contains("primary")) {
+                    let pPrimary = document.createElement("p");
+                    pPrimary.classList.add("title");
+                    pPrimary.innerHTML = paragraph.innerHTML;
+                    section.appendChild(pPrimary);
+                }
 
-            if (this.textArray[i].primary) {
-                let pPrimary = document.createElement("p");
-                pPrimary.classList.add("title");
-                pPrimary.innerHTML = this.textArray[i].primary;
-                section.appendChild(pPrimary);
-            }
+                if (paragraph.classList.contains("intro")) {
+                    let pIntro = document.createElement("p");
+                    pIntro.classList.add("intro");
+                    pIntro.innerHTML = paragraph.innerHTML;
+                    section.appendChild(pIntro);
+                }
+                if (paragraph.classList.contains("secondary")) {
+                    let pSecondary = document.createElement("p");
+                    pSecondary.classList.add("secondary");
+                    pSecondary.innerHTML = paragraph.innerHTML;
+                    section.appendChild(pSecondary);
+                }
 
-            if (this.textArray[i].intro) {
-                let pIntro = document.createElement("p");
-                pIntro.classList.add("intro");
-                pIntro.innerHTML = this.textArray[i].intro;
-                section.appendChild(pIntro);
-            }
+            });
 
-            if (this.textArray[i].secondary) {
-                let pSecondary = document.createElement("p");
-                pSecondary.classList.add("secondary");
-                pSecondary.innerHTML = this.textArray[i].secondary;
-                section.appendChild(pSecondary);
-            }
             this.sectionContainer.appendChild(section);
         }
     }
 
+    /**
+     * Create carousel DOM
+     */
     createDom() {
         const mask = document.createElement("div");
         const nav = document.createElement("NAV");
@@ -182,6 +218,9 @@ export default class Carousel {
         this.list = ul;
     }
 
+    /**
+     * Destroy carousel
+     */
     destroy() {
         this.container.style.display = "none";
         this.container.innerHTML = "";

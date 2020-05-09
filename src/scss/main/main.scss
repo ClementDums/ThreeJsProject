@@ -21,6 +21,7 @@
 }
 
 html {
+  cursor: none;
   body {
     margin: 0;
     padding: 0;
@@ -34,7 +35,7 @@ html {
   p.title {
     font-family: Calyces, sans-serif;
   }
-  #blocker, #loader, .buttonContainer {
+  #blocker, .buttonContainer {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -44,67 +45,16 @@ html {
     position: absolute;
     width: 100%;
     height: 100%;
-    header {
-      height: 15%;
-      font-family: sans-serif;
-      letter-spacing: 1px;
-      display: flex;
-      align-items: flex-end;
-      color: #fff;
-      .container {
-        width: 95%;
-        margin: 0 auto;
-        left: 0;
-        right: 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        div {
-          width: 70px;
-          cursor: pointer;
-          .nextprev {
-            display: none;
-            position: relative;
-            text-transform: uppercase;
-            font-size: 0.6em;
-          }
-          #prev {
-            text-align: left;
-          }
-          #prev::after {
-            position: absolute;
-            width: 30px;
-            height: 1px;
-            left: -40px;
-            top: 50%;
-            background: #fff;
-            content: "";
-            display: block;
-          }
-          #next {
-            text-align: right;
-          }
-          #next::after {
-            position: absolute;
-            width: 35px;
-            height: 1px;
-            right: -55px;
-            top: 50%;
-            background: #fff;
-            content: "";
-            display: block;
-          }
-        }
-      }
-    }
+
     #textContainer {
-      height: 70%;
+      height: 72%;
       z-index: 2;
       .text {
         height: 90%;
       }
-      #fullscreenText {
+      #introText {
         display: flex;
+        position: relative;
         justify-content: center;
         align-items: center;
         width: 80%;
@@ -112,232 +62,38 @@ html {
         text-align: center;
         margin: 0 auto;
         font-size: 2em;
-      }
-
-      #verticalCaroussel {
-        height: 100%;
-        .leaveCarousel {
-          text-align: center;
-          position: relative;
-          cursor: pointer;
-        }
-        .scrollContinue {
-          text-align: center;
-          position: relative;
+        p {
+          position: absolute;
+          left: 0;
+          right: 0;
+          margin: 0 auto;
           opacity: 0;
-          transition: transform 2s, opacity 5s;
-          transform: translate(0, 20px);
+          transition: opacity 1.5s;
           &.visible {
             opacity: 1;
-            transform: translate(0, 0);
-          }
-          &::after {
-            position: absolute;
-            height: 20px;
-            left: 0;
-            width: 1px;
-            bottom: -24px;
-            background: #fff;
-            margin: 0 auto;
-            content: "";
-            right: 0;
-            display: block;
-          }
-        }
-        .mask {
-          height: 100%;
-          width: 100%;
-          position: relative;
-          overflow: hidden;
-          nav {
-            display: flex;
-            align-items: center;
-            height: 100%;
-            float: right;
-
-            ul {
-              opacity: 0;
-              list-style: none;
-              position: fixed;
-              right: 20px;
-              transition: opacity 5s;
-
-              &.visible {
-                opacity: 1;
-              }
-              li {
-                background: #432F54;
-                margin-bottom: 20px;
-                height: 6px;
-                width: 6px;
-                border-radius: 50%;
-              }
-            }
-          }
-
-          .container {
-            height: 100%;
-            width: 100%;
-            position: absolute;
-            section {
-              height: 100%;
-              width: 100%;
-              font-size: 2em;
-              display: flex;
-              position: absolute;
-              align-items: center;
-              flex-direction: column;
-              justify-content: center;
-              p {
-                width: 70%;
-                margin: 0 auto;
-                text-align: center;
-                transform: translate(0, 30px);
-                transition: opacity 3s, transform 1.5s;
-                opacity: 0;
-
-                &.title {
-                  letter-spacing: 3px;
-                  margin-bottom: 30px;
-                }
-                &.secondary {
-                  font-size: 0.5em;
-                  letter-spacing: 1px;
-                }
-                &.intro {
-                  font-size: 0.5em;
-                  letter-spacing: 1px;
-                  margin-bottom: 30px;
-                }
-                &.visible {
-                  opacity: 1;
-                  transform: translate(0, 0);
-                }
-              }
-
-            }
           }
         }
       }
-      #filter {
-        display: none;
-        width: 100%;
-        height: 100%;
-        position: relative;
-        .carousel-wrapper {
-          width: 100%;
-          height: 100%;
-          overflow: hidden;
-          * {
-            box-sizing: border-box;
-          }
-          .carousel {
-            span {
-              width: 110px;
-              height: 110px;
-              position: absolute;
-              background-color: rgba(255, 255, 255, 0.5);
-              border-radius: 50%;
-              border: 2px solid #fff;
-              bottom: 80px;
-              transition: transform .5s, opacity .5s, z-index .5s;
-              &.prev {
-                left: 20px;
-              }
-              &.next {
-                right: 20px;
-              }
-            }
-
-          }
-        }
-
-      }
-      #hypersex {
-        display: none;
-        width: 100%;
-        height: 100%;
-        position: relative;
-        #photo {
-          width: 110px;
-          height: 110px;
-          right: 200px;
-          position: absolute;
-          background-color: rgba(255, 255, 255, 0.5);
-          border-radius: 50%;
-          border: 2px solid #fff;
-          bottom: 80px;
-          transition: transform .5s, opacity .5s, z-index .5s;
-        }
-      }
-
     }
+
     #buttonContainer {
       height: 50px;
       margin-bottom: 20px;
       .button {
-        cursor: pointer;
+        cursor: none;
         color: #fff;
         background: transparent;
         border-radius: 30px;
         padding: 15px 35px 15px;
         font-size: 1.2em;
         border: #fff solid 1px;
-      }
-    }
+        &:hover{
+          .follow{
 
-    footer {
-      height: 15%;
-      .container {
-        width: 95%;
-        margin: 0 auto;
-        left: 0;
-        right: 0;
-        .top {
-          width: 95%;
-          margin: 0 auto;
-          left: 0;
-          right: 0;
-          img {
-            width: 20px;
-          }
-        }
-        .bottom {
-          width: 95%;
-          height: 40px;
-          margin: 0 auto;
-          left: 0;
-          right: 0;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          p {
-            font-size: 0.8em;
-          }
-          img {
-            width: 15px;
-          }
-          ul {
-            display: flex;
-            align-items: center;
-            padding-inline-start: 0;
-            li {
-              display: inline-block;
-              margin-right: 20px;
-              a {
-                color: #fff;
-                text-decoration: none;
-              }
-            }
           }
         }
       }
     }
-  }
-
-  #loader {
-    background-color: rgba(0, 0, 0, 1);
-    z-index: 5;
   }
 
   .centered {
@@ -367,35 +123,6 @@ html {
     padding-right: 20%;
     color: #fff;
     font-family: Calyces, sans-serif;
-  }
-
-  #instructions, #loadingInfos {
-    width: 100%;
-    height: 100%;
-
-    display: -webkit-box;
-    display: -moz-box;
-    display: box;
-
-    -webkit-box-orient: horizontal;
-    -moz-box-orient: horizontal;
-    box-orient: horizontal;
-
-    -webkit-box-pack: center;
-    -moz-box-pack: center;
-    box-pack: center;
-
-    -webkit-box-align: center;
-    -moz-box-align: center;
-    box-align: center;
-
-    color: #ffffff;
-    text-align: center;
-    font-family: Arial;
-    font-size: 14px;
-    line-height: 24px;
-
-    cursor: pointer;
   }
 
 }

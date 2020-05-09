@@ -1,0 +1,34 @@
+#filter {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  .carousel-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    * {
+      box-sizing: border-box;
+    }
+    .carousel {
+      span {
+        width: 110px;
+        height: 110px;
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        border: 2px solid #fff;
+        bottom: 80px;
+        transition: transform .5s, opacity .5s, z-index .5s;
+        &.prev {
+          left: 20px;
+        }
+        &.next {
+          right: 20px;
+        }
+      }
+
+    }
+  }
+
+}

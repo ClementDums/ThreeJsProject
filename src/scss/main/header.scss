@@ -1,0 +1,57 @@
+header {
+  height: 14%;
+  font-family: sans-serif;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: flex-end;
+  color: #fff;
+  .container {
+    width: 95%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    #logo {
+      width: 30px;
+    }
+    .nextprev {
+      width: 70px;
+      span {
+        display: none;
+        position: relative;
+        text-transform: uppercase;
+        font-size: 0.6em;
+      }
+    }
+    #prev {
+      text-align: left;
+    }
+    #prev::after {
+      position: absolute;
+      width: 30px;
+      height: 1px;
+      left: -40px;
+      top: 50%;
+      background: #fff;
+      content: "";
+      display: block;
+    }
+    #next {
+      text-align: right;
+    }
+    #next::after {
+      position: absolute;
+      width: 35px;
+      height: 1px;
+      right: -55px;
+      top: 50%;
+      background: #fff;
+      content: "";
+      display: block;
+    }
+  }
+}
+
+

@@ -16,7 +16,7 @@ export default class CameraMovement {
         this.currentMovingSpline = null;
         this.isMoving = false;
         this.time = 0;
-        this.speed = 10;
+        this.speed = 2;
         SplineManager.init();
     }
 
@@ -40,14 +40,14 @@ export default class CameraMovement {
     }
 
     moveTo(x, z) {
-        const tweenCam = new TWEEN.Tween(CameraManager.mainCamera.camera.position) // Create a new tween that modifies 'coords'.
-            .to({x: x, z: z}, 1000) // Move to (300, 200) in 1 second.
-            .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
+        const tweenCam = new TWEEN.Tween(CameraManager.mainCamera.camera.position)
+            .to({x: x, z: z}, 1000)
+            .easing(TWEEN.Easing.Quadratic.Out)
             .start();
 
-        const tweenCamPhon = new TWEEN.Tween(CameraManager.phoneCamera.camera.position) // Create a new tween that modifies 'coords'.
-            .to({x: x + 100, z: z}, 1000) // Move to (300, 200) in 1 second.
-            .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
+        const tweenCamPhon = new TWEEN.Tween(CameraManager.phoneCamera.camera.position)
+            .to({x: x + 100, z: z}, 1000)
+            .easing(TWEEN.Easing.Quadratic.Out)
             .start();
     }
 
@@ -56,7 +56,6 @@ export default class CameraMovement {
             this.splineAnimation();
         }
     }
-
 
     splineAnimation() {
         this.time += 15;
@@ -87,8 +86,6 @@ export default class CameraMovement {
         this.position.add(this.normal.clone().multiplyScalar(offset));
 
         this.splineCamera.position.copy(this.position);
-
-        // using arclength for stablization in look ahead
 
         tubeGeometry.parameters.path.getPointAt((t + 30 / tubeGeometry.parameters.path.getLength()) % 1, this.lookAt);
         this.lookAt.multiplyScalar(this.params.scale);

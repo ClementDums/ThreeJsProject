@@ -1,0 +1,108 @@
+#textTemplate{
+  display: none;
+}
+#verticalCaroussel {
+  height: 100%;
+  .leaveCarousel {
+    text-align: center;
+    position: relative;
+    cursor: none;
+  }
+  .scrollContinue {
+    text-align: center;
+    position: relative;
+    opacity: 0;
+    transition: transform 2s, opacity 5s;
+    transform: translate(0, 20px);
+    &.visible {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+    &::after {
+      position: absolute;
+      height: 20px;
+      left: 0;
+      width: 1px;
+      bottom: -24px;
+      background: #fff;
+      margin: 0 auto;
+      content: "";
+      right: 0;
+      display: block;
+    }
+  }
+  .mask {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    nav {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      float: right;
+
+      ul {
+        opacity: 0;
+        list-style: none;
+        position: fixed;
+        right: 20px;
+        transition: opacity 5s;
+
+        &.visible {
+          opacity: 1;
+        }
+        li {
+          background: #432F54;
+          margin-bottom: 20px;
+          height: 6px;
+          width: 6px;
+          border-radius: 50%;
+        }
+      }
+    }
+
+    .container {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      section {
+        height: 100%;
+        width: 100%;
+        font-size: 2em;
+        display: flex;
+        position: absolute;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        p {
+          width: 70%;
+          margin: 0 auto;
+          text-align: center;
+          transform: translate(0, 30px);
+          transition: opacity 3s, transform 1.5s;
+          opacity: 0;
+
+          &.title {
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+          }
+          &.secondary {
+            font-size: 0.5em;
+            letter-spacing: 1px;
+          }
+          &.intro {
+            font-size: 0.5em;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+          }
+          &.visible {
+            opacity: 1;
+            transform: translate(0, 0);
+          }
+        }
+
+      }
+    }
+  }
+}

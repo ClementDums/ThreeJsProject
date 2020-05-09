@@ -10,13 +10,37 @@ const SplineManager = {
         this.splineArray = [];
         this.currentMovingSpline = null;
 
-        let hallWalk = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 180, 800),
-            new THREE.Vector3(600, 190, -200),
-            new THREE.Vector3(0, 190, -700),
-            new THREE.Vector3(0, 190, -900),
-            new THREE.Vector3(0, 190, -1500),
-            new THREE.Vector3(0, 190, -3900),
-            new THREE.Vector3(-430, 190, -3900)]);
+
+        /***TEST SPLINE DON'T REMOVE***/
+            // let hallWalk = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 180, 800),
+            //     new THREE.Vector3(600, 190, -200),
+            //     new THREE.Vector3(0, 190, -700),
+            //     new THREE.Vector3(0, 190, -900),
+            //     new THREE.Vector3(0, 190, -1500),
+            //     new THREE.Vector3(0, 190, -3900),
+            //     new THREE.Vector3(-430, 190, -3900)]);
+
+        let hallWalk = new THREE.CatmullRomCurve3([
+                //start
+                new THREE.Vector3(0, 190, 2400),
+                //front statues
+                new THREE.Vector3(0, 190, 1200),
+                //left statues
+                new THREE.Vector3(-980, 190, 60),
+                new THREE.Vector3(-1090, 190, -530),
+                //Mid circle
+                new THREE.Vector3(0, 190, -1200),
+                //right statues
+                new THREE.Vector3(1400, 190, 0),
+                new THREE.Vector3(1900, 190, 0),
+
+                new THREE.Vector3(2090, 190, -1160),
+
+                new THREE.Vector3(0, 190, -2360),
+                //front gallery
+                new THREE.Vector3(-100, 190, -3900),
+                //Front of filter
+                new THREE.Vector3(-430, 190, -3900)]);
 
         let endingWalk = new THREE.CatmullRomCurve3([new THREE.Vector3(-440, 180, -5100),
             new THREE.Vector3(0, 190, -5400)
@@ -48,6 +72,10 @@ const SplineManager = {
 
     },
 
+    /**
+     * Add new spline
+     * @param spline
+     */
     newSpline(spline) {
         this.currentSpline = new Spline(spline.toString());
         this.splineArray.push(this.currentSpline);
@@ -75,7 +103,6 @@ const SplineManager = {
     },
 
     addGeometry(geometry) {
-
         // 3D shape
         this.mesh = new THREE.Mesh(geometry, this.material);
         let wireframe = new THREE.Mesh(geometry, this.wireframeMaterial);
@@ -83,6 +110,9 @@ const SplineManager = {
         this.currentSpline.parent.add(this.mesh);
     },
 
+    /**
+     * Set spline scale
+     */
     setScale() {
         this.mesh.scale.set(this.params.scale, this.params.scale, this.params.scale);
     },

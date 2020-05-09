@@ -18,7 +18,6 @@ export default class FilterWorkOfArt {
 
     setup() {
         this._object.name = "Work of Art";
-        this._object.rotation.y = -Math.PI / 2;
         this._object.position.set(this._position.x, this._position.y, this._position.z);
         this._object.children[0].name = this.name;
         this._object.visible = this.visibility;
