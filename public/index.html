@@ -26,20 +26,33 @@
     <div id="ui">
         <header>
             <div class="container">
-                <div>
-                    <span id="prev" class="nextprev">Revenir en arrière</span>
+                <div class="nextprev hover">
+                    <span id="prev" class="nextspan">Revenir en arrière</span>
                 </div>
                 <div>
                     <img id="logo" src="assets/Image/icon/logo_blanc.svg" alt="">
                 </div>
-                <div>
-                    <span id="next" class="nextprev">Passer à la suite</span>
+                <div class="nextprev hover">
+                    <span id="next" class="nextspan">Passer à la suite</span>
                 </div>
             </div>
         </header>
         <div id="textContainer">
             <div class="text">
-                <div id="fullscreenText" style="display: none">
+                <div id="introText" style="display: none">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras finibus dignissim justo, vel
+                        fringilla
+                        lacus mollis non. Etiam dignissim libero eu arcu pulvinar, a pulvinar dolor rhoncus. In accumsan
+                        a eros
+                        et pellentesque</p>
+                    <p>Lalilala</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras finibus dignissim justo, vel
+                        fringilla
+                        lacus mollis non. Etiam dignissim libero eu arcu pulvinar, a pulvinar dolor rhoncus. In accumsan
+                        a eros
+                        et pellentesque</p>
+                    <p>Lalilala</p>
+                    <p></p>
                 </div>
 
                 <div id="verticalCaroussel" style="display:none">
@@ -58,7 +71,7 @@
                 </div>
             </div>
             <div id="buttonContainer" class="centered">
-                <button id="startButton" class="button">Démarrer</button>
+                <button id="startButton" class="button hover">Démarrer</button>
             </div>
         </div>
 
@@ -66,19 +79,23 @@
             <div class="container">
                 <div class="top">
                     <ul>
-                        <li><img id="soundOn" class="visible sound" src="assets/Image/icon/sound-on.svg" alt="">
+                        <li class="hover"><img id="soundOn" class="visible sound" src="assets/Image/icon/sound-on.svg"
+                                               alt="">
                             <img id="soundOff" class="sound" src="assets/Image/icon/sound-off.svg" alt=""></li>
-                        <li><img src="assets/Image/icon/instagram.svg" alt=""></li>
+                        <li class="hover"><img src="assets/Image/icon/instagram.svg" alt=""></li>
                     </ul>
-
+                    <div id="phoneIcon" class="hover">
+                        <img class="phoneOff" src="assets/Image/icon/phone_off.svg" alt="">
+                        <img class="phoneOn" src="assets/Image/icon/phone_on.svg" alt="">
+                    </div>
                 </div>
                 <hr>
                 <div class="bottom">
                     <nav>
                         <ul>
-                            <li><a href="#"><img src="assets/Image/icon/gobelins.png" alt=""></a></li>
-                            <li><a href="#">A propos</a></li>
-                            <li><a href="#">Crédits</a></li>
+                            <li class="hover"><a href="#"><img src="assets/Image/icon/gobelins.png" alt=""></a></li>
+                            <li class="hover"><a href="#">A propos</a></li>
+                            <li class="hover"><a href="#">Crédits</a></li>
                         </ul>
                     </nav>
                     <p>Copyright © 2020 Pour Elles, Tous droits réservés.</p>
@@ -89,20 +106,92 @@
     </div>
 </div>
 
+<div id="textTemplate">
 
-<!--TEXT TEMPLATES-->
-<div id="hallWalk" style="display: none">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras finibus dignissim justo, vel fringilla
-        lacus mollis non. Etiam dignissim libero eu arcu pulvinar, a pulvinar dolor rhoncus. In accumsan a eros
-        et pellentesque</p>
-    <p>Lalilala</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras finibus dignissim justo, vel fringilla
-        lacus mollis non. Etiam dignissim libero eu arcu pulvinar, a pulvinar dolor rhoncus. In accumsan a eros
-        et pellentesque</p>
-    <p>Lalilala</p>
-    <p></p>
+    <div id="filterStory">
+        <div>
+            <p class="intro">Des femmes se sont battues pour que nous vivions dans un monde qui ne soit pas submergé de
+                publicités de
+                femmes parfaites, minces, blanches et surtout retouchées.</p>
+            <p class="secondary">En 2017, chaque image photoshopée devra être accompagnée de la mention “Image
+                retouchée”, cette
+                loi s’applique également sur internet</p>
+        </div>
+        <div>
+            <p class="primary">DYSMORPHIE CORPORELLE</p>
+            <p class="secondary">En 2020, ce ne sont plus les publicitaires qui créent des standards de féminité
+                inatteignable, mais bien votre soeur, voisine, collègue, vous… tout personne armée d’un smartphone.
+                En un simple tapotement de doigt, de swipe, vous voilà avec de belles pommettes rehaussées, une peau
+                parfaite, de grands yeux de biche, des lèvres pulpeuses et une taille de guêpe.
+                Rien de grave à vouloir mettre en avant une version améliorée de soi en ligne après tout non ?
+                Et bien ce n’est pas ce que les nouvelles études sur la santé mentale des jeunes filles disent.
+                À force de voir et d’aimer une version de soi filtrée, améliorée, retouchée qui est de plus, aimée par
+                les autres, certaines ne peuvent plus se voir ni se prendre en photo sans ces filtres.
+                Si bien que c’est aujourd’hui une personne sur cinquante qui souffre de dysmorphie corporelle.
+            </p>
+        </div>
+        <div>
+            <p class="primary">DES FILTRES RÉELS</p>
+            <p class="secondary">Cela ne s’arrête pas là. De nombreux chirurgiens plastiques observent de nouveaux
+                phénomènes inquiétants. De plus en plus de patients viennent en consultation avec une photo d’eux avec
+                filtre et demandent à ressembler à cette image… en vrai.
+                Depuis 2017, il y a un boom d’interventions plastiques chez les moins de 25 ans de 24% et 70% de ces
+                jeunes l’envisagent. En France seulement, la demande de lipofilling, qui consiste à prélever sa propre
+                graisse pour l'injecter dans les fesses, à haute dose (à l'image de Kim Kardashian), a bondi de 30% ces
+                dernières années.
+            </p>
+        </div>
+        <div>
+            <p class="primary">UNE GÉNÉRATION DÉPRESSIVE - SANTÉ MENTALE EN DANGER</p>
+            <p class="secondary">95 millions de photos et vidéos sont postées sur Instagram chaque jour, les plus
+                belles, les plus réussies sont misent en avant. Instagram nous pousse à nous comparer, or plus on se
+                compare aux autres, plus on se créer des complexes. Aujourd’hui c’est 9 filles sur 10 qui se disent
+                malheureuses dans leur corps. En 25 ans, les jeunes de moins de 25 ans présentant des symptômes
+                dépressifs ont augmenté de 70%. Il est également bon à savoir qu’Instagram est une application
+                favorisant l’anxiété, la dépression, la solitude, le manque de sommeil et la baisse de l’image de
+                soi. </p>
+        </div>
+    </div>
+
+    <div id="hypersexStory">
+        <div>
+            <p class="intro">Au début des années 2000 plusieurs groupes féministes se sont battus pour faire naître des
+                loies contre l’hypersexualisation des jeunes filles dans les médias.</p>
+            <p class="secondary">Les loies n’ont malheureusement jamais vues le jour mais l’État à tout de même entendu
+                leurs signaux d’alarme et publie en 2012 un rapport officiel “Contre l'hypersexualisation, un nouveau
+                combat pour l'égalité”.</p>
+        </div>
+        <div>
+            <p class="primary">SEXY IS THE NEW CUTE</p>
+            <p class="secondary">Bien que Tik Tok soit vendu comme une application mettant en avant la créativité et
+                l’humour, le fait est que l’immense majorité des vidéos sont à caractères sexy, aux tenues légères, aux
+                danses suggestives et au langage explicite. En scrollant on en arrive même à se demander si cette appli
+                n’est pas une version un peu plus soft d’un site pornographique.
+            </p>
+        </div>
+        <div>
+            <p class="primary">DES FILTRES RÉELS</p>
+            <p class="secondary">Cela ne s’arrête pas là. De nombreux chirurgiens plastiques observent de nouveaux
+                phénomènes inquiétants. De plus en plus de patients viennent en consultation avec une photo d’eux avec
+                filtre et demandent à ressembler à cette image… en vrai.
+                Depuis 2017, il y a un boom d’interventions plastiques chez les moins de 25 ans de 24% et 70% de ces
+                jeunes l’envisagent. En France seulement, la demande de lipofilling, qui consiste à prélever sa propre
+                graisse pour l'injecter dans les fesses, à haute dose (à l'image de Kim Kardashian), a bondi de 30% ces
+                dernières années.
+            </p>
+        </div>
+        <div>
+            <p class="primary">UNE GÉNÉRATION DÉPRESSIVE - SANTÉ MENTALE EN DANGER</p>
+            <p class="secondary">95 millions de photos et vidéos sont postées sur Instagram chaque jour, les plus
+                belles, les plus réussies sont misent en avant. Instagram nous pousse à nous comparer, or plus on se
+                compare aux autres, plus on se créer des complexes. Aujourd’hui c’est 9 filles sur 10 qui se disent
+                malheureuses dans leur corps. En 25 ans, les jeunes de moins de 25 ans présentant des symptômes
+                dépressifs ont augmenté de 70%. Il est également bon à savoir qu’Instagram est une application
+                favorisant l’anxiété, la dépression, la solitude, le manque de sommeil et la baisse de l’image de
+                soi. </p>
+        </div>
+    </div>
 </div>
-
 
 <script>
     javascript:(function () {

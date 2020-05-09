@@ -16,7 +16,6 @@ export default class Background {
 
                 this.hdrCubeMap.magFilter = THREE.LinearFilter;
                 this.hdrCubeMap.needsUpdate = true;
-
             });
     }
 

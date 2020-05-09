@@ -48,6 +48,10 @@ const SplineManager = {
 
     },
 
+    /**
+     * Add new spline
+     * @param spline
+     */
     newSpline(spline) {
         this.currentSpline = new Spline(spline.toString());
         this.splineArray.push(this.currentSpline);
@@ -75,7 +79,6 @@ const SplineManager = {
     },
 
     addGeometry(geometry) {
-
         // 3D shape
         this.mesh = new THREE.Mesh(geometry, this.material);
         let wireframe = new THREE.Mesh(geometry, this.wireframeMaterial);
@@ -83,6 +86,9 @@ const SplineManager = {
         this.currentSpline.parent.add(this.mesh);
     },
 
+    /**
+     * Set spline scale
+     */
     setScale() {
         this.mesh.scale.set(this.params.scale, this.params.scale, this.params.scale);
     },

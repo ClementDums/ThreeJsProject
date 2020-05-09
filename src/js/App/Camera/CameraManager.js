@@ -60,8 +60,7 @@ const CameraManager = {
                 case appStates.HALLWALK:
                     this.rotate("left");
                     this.phoneTexture = true;
-                    UIManager.displayNextPrev();
-                    document.getElementById("fullscreenText").style.display = "none";
+                    UIManager.hideHomeText();
                     break;
                 case appStates.ENDINGWALK:
                     this.rotate("front");

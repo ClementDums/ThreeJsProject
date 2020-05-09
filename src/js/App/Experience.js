@@ -16,6 +16,7 @@ import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 import {GUI} from 'three/examples/jsm/libs/dat.gui.module.js';
 import VolumetricLight from './Light/VolumetricLight'
 import {GammaCorrectionShader} from "three/examples/jsm/shaders/GammaCorrectionShader";
+import ModuleManager from "./Modules/ModuleManager";
 
 export default class Experience {
     constructor(isDebug) {
@@ -28,6 +29,7 @@ export default class Experience {
 
         //Init managers
         CameraManager.init();
+        ModuleManager.init();
         SceneManager.init();
         InteractionManager.init();
         StatesManager.init();
@@ -73,6 +75,14 @@ export default class Experience {
         window.addEventListener('resize', this.onResize.bind(this));
         window.addEventListener('mousemove', this.onDocumentMouseMove.bind(this), false);
         window.addEventListener('click', this.onDocumentMouseClick.bind(this), false);
+        document.querySelectorAll('.hover').forEach((button) => {
+            button.addEventListener('mouseover', () => {
+                document.querySelector(".follow").classList.add("big");
+            });
+            button.addEventListener('mouseout', () => {
+                document.querySelector(".follow").classList.remove("big");
+            });
+        });
 
     }
 
@@ -114,7 +124,7 @@ export default class Experience {
         // this.renderer.setRenderTarget(null);
         // this.renderer.clear();
         // this.renderer.render(SceneManager.scene, this.camera);
-        //
+
         // //Main camera render
         this.renderer.setRenderTarget(null);
         this.renderer.clear();

@@ -1,0 +1,75 @@
+footer {
+  height: 14%;
+  .container {
+    width: 95%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    ul {
+      display: flex;
+      align-items: center;
+      padding-inline-start: 0;
+      margin: 0;
+      li {
+        display: inline-block;
+        margin-right: 20px;
+        a {
+          color: #fff;
+          text-decoration: none;
+        }
+      }
+    }
+    .top {
+      width: 95%;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      #phoneIcon {
+        position: absolute;
+        right: 60px;
+        bottom: 60px;
+
+        .phoneOn {
+          display: none;
+        }
+        img {
+          height: 80px;
+        }
+      }
+
+      li {
+        height: 20px;
+        margin-right: 10px;
+      }
+      .sound {
+        display: none;
+        &.visible {
+          display: block;
+        }
+      }
+      img {
+        height: 20px;
+      }
+    }
+    .bottom {
+      width: 95%;
+      height: 40px;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      p {
+        font-size: 0.8em;
+      }
+      img {
+        width: 15px;
+      }
+
+    }
+  }
+}

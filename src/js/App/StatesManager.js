@@ -1,9 +1,10 @@
 import appStates from '../Helpers/ExperienceStates';
 import SceneManager from './Scene/SceneManager'
 import CameraManager from "./Camera/CameraManager";
-import FilterManager from "./3D/WorkOfArt/Filter/FilterManager";
-import HypersexManager from "./3D/WorkOfArt/Hypersex/HypersexManager";
+import FilterManager from "./Modules/Filter";
+import Hypersex from "./Modules/Hypersex";
 import UIManager from "./UI/UIManager";
+import ModuleManager from "./Modules/ModuleManager";
 
 const StatesManager = {
 
@@ -28,26 +29,26 @@ const StatesManager = {
                 break;
 
             case appStates.HALLWALK:
+                UIManager.displayNextPrev();
                 this.currentState = appStates.FILTER;
-                FilterManager.startModule();
+                ModuleManager.changeModule(appStates.FILTER);
                 break;
 
             case appStates.FILTER:
                 this.currentState = appStates.HYPERSEX;
-                FilterManager.endModule();
-                HypersexManager.startModule();
+                ModuleManager.changeModule(appStates.HYPERSEX);
                 CameraManager.toHypersex();
                 break;
 
             case appStates.HYPERSEX:
-                HypersexManager.endModule();
                 if (order === "next") {
                     this.currentState = appStates.DIVERSITY;
+                    ModuleManager.changeModule(appStates.DIVERSITY);
                     CameraManager.toDiversity();
                 } else {
                     this.currentState = appStates.FILTER;
                     CameraManager.toFilter();
-                    FilterManager.startModule();
+                    ModuleManager.changeModule(appStates.FILTER);
                 }
                 break;
 
@@ -60,7 +61,7 @@ const StatesManager = {
                 else {
                     this.currentState = appStates.HYPERSEX;
                     CameraManager.toHypersex();
-                    HypersexManager.startModule();
+                    ModuleManager.changeModule(appStates.HYPERSEX)
                 }
                 break;
 

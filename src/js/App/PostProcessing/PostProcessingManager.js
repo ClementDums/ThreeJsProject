@@ -35,7 +35,6 @@ const PostProcessingManager = {
 
     setupColorify() {
         this.colorifyPass.uniforms["color"].value.setRGB(0, 0, 0);
-        console.log("ok")
     },
 
     setupOutline() {
