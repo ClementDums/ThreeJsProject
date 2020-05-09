@@ -29,9 +29,11 @@ const StatesManager = {
                 break;
 
             case appStates.HALLWALK:
+                CameraManager.toFilter();
                 UIManager.displayNextPrev();
                 this.currentState = appStates.FILTER;
                 ModuleManager.changeModule(appStates.FILTER);
+
                 break;
 
             case appStates.FILTER:

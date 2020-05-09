@@ -119,7 +119,7 @@ export default class Experience {
             this.renderer.clear();
             this.renderer.render(SceneManager.scene, CameraManager.phoneCamera.camera);
         }
-        //Debug camera render
+        // Debug camera render
         // this.renderer.setRenderTarget(null);
         // this.renderer.clear();
         // this.renderer.render(SceneManager.scene, this.camera);

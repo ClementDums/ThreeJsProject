@@ -26,7 +26,7 @@ export default class InsideScene {
 
         //Environement
         this.skybox = new Skybox("outside");
-
+        this.fog = new THREE.Fog(0x000000, 1, 4300);
         this.phone = new Phone();
 
         //Filter
@@ -49,6 +49,8 @@ export default class InsideScene {
         this.addSplines();
         this.addLights();
         this.addSounds();
+
+        this._scene.fog = this.fog;
 
         //Pantheon
         this.objects.push(this.pantheon);
@@ -88,7 +90,7 @@ export default class InsideScene {
     addSplines() {
         SplineManager.newSpline(appState.HALLWALK);
         this._scene.add(SplineManager.currentSpline.parent);
-
+        SplineManager.currentSpline.parent.visible = false;
         SplineManager.newSpline(appState.ENDINGWALK);
         this._scene.add(SplineManager.currentSpline.parent);
     }

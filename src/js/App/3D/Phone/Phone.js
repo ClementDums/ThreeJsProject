@@ -37,9 +37,9 @@ export default class Phone {
      */
     show() {
         this._object.visible = true;
-        const tween = new TWEEN.Tween(this._object.position) // Create a new tween that modifies 'coords'.
-            .to({y: -67}, 1000) // Move to (300, 200) in 1 second.
-            .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
+        const tween = new TWEEN.Tween(this._object.position)
+            .to({y: -67}, 1000)
+            .easing(TWEEN.Easing.Quadratic.Out)
             .start();
     }
 
@@ -47,9 +47,9 @@ export default class Phone {
      * Hide phone
      */
     hide() {
-        const tween = new TWEEN.Tween(this._object.position) // Create a new tween that modifies 'coords'.
-            .to({x: 42, y: -100, z: -80}, 100) // Move to (300, 200) in 1 second.
-            .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
+        const tween = new TWEEN.Tween(this._object.position)
+            .to({x: 42, y: -100, z: -80}, 1000)
+            .easing(TWEEN.Easing.Quadratic.Out)
             .start();
         if (this.isZoomed) {
             CameraManager.phoneCamera.zoomOutFilter(100);
@@ -62,9 +62,9 @@ export default class Phone {
      */
     setFullscreen() {
         //Fullscreen position
-        const tween = new TWEEN.Tween(this._object.position) // Create a new tween that modifies 'coords'.
-            .to({x: -2, y: -30, z: -65}, 1000) // Move to (300, 200) in 1 second.
-            .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
+        const tween = new TWEEN.Tween(this._object.position)
+            .to({x: -2, y: -30, z: -65}, 1000)
+            .easing(TWEEN.Easing.Quadratic.Out)
             .start();
     }
 
@@ -72,9 +72,9 @@ export default class Phone {
      * Show phone small
      */
     setSmall() {
-        const tween = new TWEEN.Tween(this._object.position) // Create a new tween that modifies 'coords'.
-            .to({x: 42, y: -67, z: -80}, 1000) // Move to (300, 200) in 1 second.
-            .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
+        const tween = new TWEEN.Tween(this._object.position)
+            .to({x: 42, y: -67, z: -80}, 1000)
+            .easing(TWEEN.Easing.Quadratic.Out)
             .start();
         CameraManager.phoneCamera.zoomOutFilter(100);
     }
