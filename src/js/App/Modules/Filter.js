@@ -1,6 +1,5 @@
 import UIManager from "../UI/UIManager";
 import RaycasterManager from "../Interaction/RaycasterManager";
-import InteractionManager from "../Interaction/InteractionManager";
 import PostProcessingManager from "../PostProcessing/PostProcessingManager";
 import SceneManager from "../Scene/SceneManager";
 
@@ -13,18 +12,15 @@ export default class Filter {
         this.isActive = false;
         this.phone = null;
         this.light = null;
-        this.heart = null;
         this.filterUi = null;
-        this.isClickable = false;
     }
 
     /**
      * Init module
      */
-    init(phone, heart, statue0, statue1, statue2, statue3) {
+    init(phone, statue0, statue1, statue2, statue3) {
         this.phone = phone;
         this.objects.push(statue0, statue1, statue2, statue3);
-        this.heart = heart;
         this.currentObject = statue0;
         this.initInteraction();
     }
@@ -37,28 +33,26 @@ export default class Filter {
      * Prepare module onClick
      */
     enableModuleClick() {
+        RaycasterManager.isActive = true;
         RaycasterManager.identifiers.push("toFilter");
     }
 
     /**
      * Handle filter click
-     * @param name
+     * @param namer
      */
     clickedModule(name) {
-        if (this.isClickable) {
-            if (name === "toFilter") {
-                RaycasterManager.identifiers.splice("toFilter");
-                this.filterModule();
-            }
-            if (name === "prev") {
-                this.setPrev();
-            }
-            if (name === "next") {
-                this.setNext();
-            }
-            if (name === "exit") {
-                this.stopPhoneFilter();
-            }
+        if (name === "toFilter") {
+            RaycasterManager.identifiers.splice("toFilter");
+            this.filterModule();
+            UIManager.phoneIconOn();
+
+        }
+        if (name === "prev") {
+            this.setPrev();
+        }
+        if (name === "next") {
+            this.setNext();
         }
     }
 
@@ -97,11 +91,8 @@ export default class Filter {
         this.isActive = true;
         //Fullscreen phone
         phone.setFullscreen();
-        phone.zoomPhone(100);
-        //Post proccessing effect
-        PostProcessingManager.setVignette(1.1);
+        phone.zoomPhone(70);
         //Animate
-        this.heart.show();
         SceneManager.isAnimated = true;
         document.getElementById("filter").style.display = "block"
     }
@@ -110,7 +101,7 @@ export default class Filter {
 
     }
 
-    stopPhoneFilter() {
+    stopPhone() {
         PostProcessingManager.setVignette(0);
         this.phone.hide();
         document.getElementById("filter").style.display = "none";
@@ -133,6 +124,8 @@ export default class Filter {
             this.currentObject = this.objects[this.i - 1];
             this.setCurrentActive();
             this.i -= 1;
+            this.heartAnim();
+            this.setVignette();
         }
     }
 
@@ -145,9 +138,15 @@ export default class Filter {
             this.currentObject = this.objects[this.i + 1];
             this.setCurrentActive();
             this.i += 1;
-            if (this.i === this.objects.length - 1) {
-                this.stopPhoneFilter()
-            }
+            this.heartAnim();
+            this.setVignette();
+        }
+    }
+
+    heartAnim() {
+        if (this.currentObject !== 0) {
+            this.currentObject.heartAnim.show();
+            this.currentObject.heartAnim.animate();
         }
     }
 
@@ -158,23 +157,46 @@ export default class Filter {
         this.currentObject.show();
     }
 
+    setVignette() {
+        //Post proccessing effect
+        switch (this.i) {
+            case 0:
+                PostProcessingManager.setVignette(0);
+                break;
+            case 1:
+                PostProcessingManager.setVignette(0.5);
+                break;
+            case 2:
+                PostProcessingManager.setVignette(0.8);
+                break;
+            case 3:
+                PostProcessingManager.setVignette(1.0);
+                break;
+            default:
+                break
+        }
+
+    }
+
     /**
      * Disable current object
      */
     setCurrentDisable() {
         this.currentObject.hide();
+        if (this.i !== 0) {
+            this.currentObject.heartAnim.hide();
+        }
     }
+
 
     /**
      * End Filter module
      */
     resetModule() {
-        this.stopPhoneFilter();
+        this.stopPhone();
         this.resetFilter();
         this.light.visible = false;
-        this.heart.hide();
         RaycasterManager.identifiers.splice("toFilter");
-        InteractionManager.clickListener = false;
         SceneManager.isAnimated = false;
     }
 

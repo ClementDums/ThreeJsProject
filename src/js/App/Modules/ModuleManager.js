@@ -2,8 +2,6 @@ import appStates from '../../Helpers/ExperienceStates';
 import Filter from "./Filter";
 import Hypersex from "./Hypersex";
 import UIManager from "../UI/UIManager";
-import RaycasterManager from "../Interaction/RaycasterManager";
-import InteractionManager from "../Interaction/InteractionManager";
 
 const ModuleManager = {
     init() {
@@ -12,6 +10,8 @@ const ModuleManager = {
         this.hypersex = new Hypersex();
         this.modules = [];
         this.phone = null;
+        this.isOnPhone = false;
+        this.isClickable = false;
     },
 
     //Init Modules
@@ -37,7 +37,11 @@ const ModuleManager = {
     },
 
     moduleClick(name) {
-        this.currentModule.clickedModule(name);
+        if(this.isClickable)
+        {
+            this.currentModule.clickedModule(name);
+            this.isClickable = false;
+        }
     },
 
     /**
@@ -57,6 +61,7 @@ const ModuleManager = {
      * @param state
      */
     changeModule(state) {
+        this.isOnPhone = false;
         this.endModule();
         switch (state) {
             case appStates.FILTER :
@@ -78,26 +83,35 @@ const ModuleManager = {
             UIManager.phoneIconOn();
         }, 1000);
         this.currentModule.light.visible = true;
-        const currentPos = this.modules.indexOf(this.currentModule);
-        if (currentPos === 0) {
-            UIManager.hidePrev();
-        }
     },
 
     /**
      * Handle phone icon click
      */
     clickedPhoneIcon() {
-        //Enable click on module
-        this.currentModule.enableModuleClick();
-        RaycasterManager.isActive = true;
-        InteractionManager.clickListener = true;
+        //Show phone
+        if (!this.isOnPhone) {
+            UIManager.hideNextPrev();
+            //Enable click on module
+            this.currentModule.enableModuleClick();
+            //Phone icon off
+            UIManager.phoneIconOff();
+            //Show virtual phone
+            this.showPhone();
+            this.isOnPhone = true;
+            this.isClickable = true;
 
-        this.currentModule.isClickable = true;
-        //Phone icon off
-        UIManager.phoneIconOff();
-        //Show virtual phone
-        this.showPhone();
+        } else {
+            //If phone is out
+            this.currentModule.stopPhone();
+            UIManager.phoneIconOff();
+            UIManager.displayNextPrev();
+            const currentPos = this.modules.indexOf(this.currentModule);
+            if (currentPos === 0) {
+                UIManager.hidePrev();
+            }
+            this.isOnPhone = false;
+        }
     },
 
 
@@ -107,16 +121,11 @@ const ModuleManager = {
     endModule() {
         if (this.currentModule) {
             this.currentModule.isActive = false;
-            this.currentModule.isClickable = false;
             this.currentModule.resetModule();
-
+            UIManager.deleteCarousel();
         }
-
-        UIManager.deleteCarousel();
         UIManager.displayNextPrev();
     }
-
-
 };
 
 export default ModuleManager;

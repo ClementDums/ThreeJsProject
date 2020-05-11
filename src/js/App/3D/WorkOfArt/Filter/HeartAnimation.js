@@ -2,11 +2,16 @@ import Loader from '../../../../Helpers/Loader'
 
 export default class HeartAnimation {
 
-    constructor(position) {
+    constructor(position, path) {
         this._position = position;
-        this._path = './assets/Animation/FilterHeart.fbx';
+        this._path = path;
         this._object = null;
         this._isAnimated = true;
+        this.mixer = null;
+    }
+
+    animate() {
+        this.mixer.clipAction(this._object.animations[0]).play();
     }
 
     load() {
@@ -20,6 +25,8 @@ export default class HeartAnimation {
 
     hide() {
         this._object.visible = false;
+        this.mixer.stopAllAction();
+
     }
 
     setup() {

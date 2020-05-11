@@ -33,7 +33,7 @@ const SceneManager = {
                     this._threeScene.add(obj);
                     if (item._isAnimated) {
                         let mixer = new THREE.AnimationMixer(obj);
-                        mixer.clipAction(obj.animations[0]).play();
+                        item.mixer = mixer;
                         this.mixers.push(mixer)
                     }
                 } else {

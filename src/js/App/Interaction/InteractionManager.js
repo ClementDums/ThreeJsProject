@@ -8,8 +8,6 @@ const InteractionManager = {
         this.el = document.getElementById("game");
         this.header = this.el.querySelector("header");
         this.carousel = this.el.querySelector("#verticalCaroussel");
-        this.clickListener = false;
-        this.currentObjectClicked = null;
         this.landingClick();
         this.prevNextModule();
         //Init Modules on click
@@ -23,6 +21,7 @@ const InteractionManager = {
      */
     landingClick() {
         this.el.querySelector("#startButton").addEventListener("click", () => {
+            this.el.querySelector("#buttonContainer").style.display = "none";
             this.el.querySelector("#buttonContainer").style.display = "none";
             StatesManager.nextState();
         })
@@ -69,12 +68,13 @@ const InteractionManager = {
      * @param name
      */
     updateClick(name) {
-        this.currentObjectClicked = name;
-        if (name === "toFilter") {
-            ModuleManager.moduleClick(name);
-        }
-        if (name === "toHypersex") {
-            ModuleManager.moduleClick(name);
+        if (name) {
+            if (name === "toFilter") {
+                ModuleManager.moduleClick(name);
+            }
+            if (name === "toHypersex") {
+                ModuleManager.moduleClick(name);
+            }
         }
     }
 

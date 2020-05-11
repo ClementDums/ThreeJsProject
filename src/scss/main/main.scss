@@ -50,7 +50,26 @@ html {
       height: 72%;
       z-index: 2;
       .text {
-        height: 90%;
+        position: relative;
+        height: 100%;
+
+        #buttonContainer {
+          height: 50px;
+          position: absolute;
+          margin: 0 auto;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          .button {
+            cursor: none;
+            color: #fff;
+            background: transparent;
+            border-radius: 30px;
+            padding: 15px 35px 15px;
+            font-size: 1.2em;
+            border: #fff solid 1px;
+          }
+        }
       }
       #introText {
         display: flex;
@@ -76,24 +95,6 @@ html {
       }
     }
 
-    #buttonContainer {
-      height: 50px;
-      margin-bottom: 20px;
-      .button {
-        cursor: none;
-        color: #fff;
-        background: transparent;
-        border-radius: 30px;
-        padding: 15px 35px 15px;
-        font-size: 1.2em;
-        border: #fff solid 1px;
-        &:hover{
-          .follow{
-
-          }
-        }
-      }
-    }
   }
 
   .centered {

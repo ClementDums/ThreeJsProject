@@ -1,12 +1,15 @@
 import Carousel from "./Carousel";
+import Cursor from "./Cursor";
+import HomeText from "./HomeText";
 
 const UIManager = {
     init() {
         this.el = document.getElementById("game");
-        this.textContainer = this.el.querySelector("#introText");
         this.carousel = null;
         this.currentStory = [];
         this.isDisplayingText = false;
+        Cursor.init();
+        HomeText.init();
     },
 
     phoneIconOn() {
@@ -20,32 +23,11 @@ const UIManager = {
     },
 
     displayHomeText() {
-        this.textContainer.style.display = "flex";
-        if (!this.isDisplayingText) {
-            this.isDisplayingText = true;
-            let homeText = document.getElementById("introText");
-            this.displayText(homeText);
-        }
-    },
-
-    displayText(textContainer) {
-        let texts = textContainer.querySelectorAll("p");
-        for (let i = 0; i < texts.length; i++) {
-            if (i == 0) {
-                texts[i].classList.add("visible")
-            } else {
-                setTimeout(() => {
-                    texts[i - 1].classList.remove("visible");
-                    texts[i].classList.add("visible")
-                }, 2000 * (i + 1))
-            }
-
-        }
-
+        HomeText.displayHomeText();
     },
 
     hideHomeText() {
-        this.textContainer.style.display = "none";
+        HomeText.hideHomeText();
     },
 
 
@@ -54,8 +36,6 @@ const UIManager = {
         nextprev.forEach((item) => {
             item.style.display = "block";
         });
-        this.endCarousel();
-
     },
 
     hideNextPrev() {
@@ -86,7 +66,6 @@ const UIManager = {
     deleteCarousel() {
         if (this.carousel) {
             this.carousel.destroy();
-
         }
     },
 

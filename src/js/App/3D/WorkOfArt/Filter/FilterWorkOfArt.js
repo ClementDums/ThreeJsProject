@@ -1,7 +1,7 @@
 import Loader from '../../../../Helpers/Loader'
 
 export default class FilterWorkOfArt {
-    constructor(position, path, name, visibility) {
+    constructor(position, path, name, visibility, heartAnim) {
         this._position = position;
         this._path = './assets/3DModels/Filter/filter_' + path + '.glb';
         this._object = null;
@@ -9,11 +9,14 @@ export default class FilterWorkOfArt {
         this.name = name;
         this.visibility = visibility;
         this.hasPerf = true;
-
+        this.heartAnim = heartAnim;
     }
 
     load() {
         return Loader.loadGLTF(this._path);
+    }
+
+    animate() {
     }
 
     setup() {

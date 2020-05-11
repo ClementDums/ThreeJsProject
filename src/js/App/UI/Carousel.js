@@ -38,18 +38,15 @@ export default class Carousel {
     displayIntro() {
         let introSec = this.container.querySelector(".introSection");
         let introP = introSec.querySelectorAll("p");
-
         introP.forEach((p, i) => {
             setTimeout(() => {
                 p.classList.add('visible')
             }, 1800 * (i + 1))
 
         });
-
         setTimeout(() => {
             this.scroll.classList.add("visible")
             this.list.classList.add("visible")
-
         }, 6000)
     }
 
@@ -71,6 +68,7 @@ export default class Carousel {
         if (this.activeSection < this.textArray.length - 1 && !this.isScrolling) {
             this.isScrolling = true;
             this.timeOut();
+            this.hideSection();
             this.activeSection += 1;
             this.showSection(this.activeSection);
             this.showActiveLi(this.activeSection);
@@ -82,11 +80,27 @@ export default class Carousel {
         if (this.activeSection > 0 && !this.isScrolling) {
             this.isScrolling = true;
             this.timeOut();
+            this.hideSection();
             this.activeSection -= 1;
             this.showSection(this.activeSection);
             this.showActiveLi(this.activeSection);
             this.displayScrollToContinue(this.activeSection);
         }
+    }
+
+    /**
+     * Show current carousel section
+     * @param i
+     */
+    hideSection(i) {
+        let sections = this.sectionContainer.querySelectorAll("section");
+        sections.forEach((item) => {
+            item.style.visibility = "hidden";
+            let p = item.querySelectorAll("p");
+            p.forEach((i) => {
+                i.classList.remove("visible");
+            })
+        });
     }
 
     /**
