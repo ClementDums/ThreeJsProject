@@ -1,6 +1,5 @@
 import UIManager from "../UI/UIManager";
 import RaycasterManager from "../Interaction/RaycasterManager";
-import InteractionManager from "../Interaction/InteractionManager";
 import PostProcessingManager from "../PostProcessing/PostProcessingManager";
 import AudioHelpers from "../../Helpers/Audio/AudioHelpers";
 
@@ -13,7 +12,6 @@ export default class Hypersex {
         this.flashColor = 0;
         this.removeFlash = false;
         this.light = null;
-        this.isClickable = false;
     }
 
     /**
@@ -25,6 +23,7 @@ export default class Hypersex {
         this.hiddenObjects = objects;
         this.phone = phone;
         AudioHelpers.addSound("photo", './assets/Audio/photo.mp3', false);
+        AudioHelpers.addSound("flashbass", './assets/Audio/flash_bass_3.mp3', false);
         this.initInteraction();
     }
 
@@ -44,6 +43,7 @@ export default class Hypersex {
      * Prepare click
      */
     enableModuleClick() {
+        RaycasterManager.isActive = true;
         RaycasterManager.identifiers.push("toHypersex");
     }
 
@@ -52,11 +52,10 @@ export default class Hypersex {
      * @param name
      */
     clickedModule(name) {
-        if (this.isClickable) {
-            if (name === "toHypersex") {
-                RaycasterManager.identifiers.splice("toHypersex");
-                this.hypersexModule();
-            }
+        if (name === "toHypersex") {
+            RaycasterManager.identifiers.splice("toHypersex");
+            UIManager.phoneIconOn();
+            this.hypersexModule();
         }
     }
 
@@ -103,20 +102,19 @@ export default class Hypersex {
         setTimeout(() => {
             this.removeFlash = true;
             this.showObjects();
+            AudioHelpers.playSound("flashbass");
             PostProcessingManager.setVignette(1.3);
             setTimeout(() => {
                 this.flashPhoto();
                 AudioHelpers.playSound("photo");
                 this.hideObjects()
-
             }, 600);
-        }, 800);
+        }, 600);
 
         setTimeout(() => {
-            this.stopPhoneHypersex();
             this.removeFlash = false;
-            PostProcessingManager.setupColorify();
-        }, 4000);
+            PostProcessingManager.easeColorify();
+        }, 3000);
     }
 
     /**
@@ -144,7 +142,7 @@ export default class Hypersex {
         UIManager.newCarousel(document.getElementById("hypersexStory"));
     }
 
-    stopPhoneHypersex() {
+    stopPhone() {
         PostProcessingManager.setVignette(0);
         this.phone.hide();
         document.getElementById("hypersex").style.display = "none";
@@ -152,10 +150,9 @@ export default class Hypersex {
     }
 
     resetModule() {
-        this.stopPhoneHypersex();
+        this.stopPhone();
         this.removeFlash = false;
         this.light.visible = false;
         RaycasterManager.identifiers.splice("toHypersex");
-        InteractionManager.clickListener = false;
     }
 };

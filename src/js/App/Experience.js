@@ -73,15 +73,8 @@ export default class Experience {
         //Event listeners
         window.addEventListener('resize', this.onResize.bind(this));
         window.addEventListener('mousemove', this.onDocumentMouseMove.bind(this), false);
-        window.addEventListener('click', this.onDocumentMouseClick.bind(this), false);
-        document.querySelectorAll('.hover').forEach((button) => {
-            button.addEventListener('mouseover', () => {
-                document.querySelector(".follow").classList.add("big");
-            });
-            button.addEventListener('mouseout', () => {
-                document.querySelector(".follow").classList.remove("big");
-            });
-        });
+        document.addEventListener('click', this.onDocumentMouseClick.bind(this))
+
 
     }
 
@@ -111,7 +104,7 @@ export default class Experience {
     render() {
         //Animate Scene
         SceneManager.animate();
-        this.currentObjectClicked = RaycasterManager.getTouchedElement(this._mouse, this.camera, this.scene);
+        this.currentObjectClicked = RaycasterManager.getTouchedElement(this._mouse, CameraManager.camera, this.scene);
         //Render
         //Phone camera render
         if (CameraManager.phoneTexture) {
@@ -144,8 +137,6 @@ export default class Experience {
     onDocumentMouseMove(event) {
         this._mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
         this._mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-        document.querySelector(".follow").style.transform = "translate(" + (event.clientX - 7) + "px," + (event.clientY - 7) + "px)";
     }
 
     onDocumentMouseClick() {

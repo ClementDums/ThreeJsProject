@@ -8,7 +8,7 @@ export default class Phone {
     constructor() {
         this._cameraPosition = new THREE.Vector3(0, 0, 0);
         this._cameraRotation = new THREE.Vector3(0, 0, 0);
-        this._path = './assets/3DModels/Iphone.glb';
+        this._path = './assets/3DModels/Phone/Iphone.glb';
         this._object = null;
         this._isHud = true;
         this.screen = null;
@@ -37,7 +37,7 @@ export default class Phone {
      */
     show() {
         this._object.visible = true;
-        const tween = new TWEEN.Tween(this._object.position)
+        new TWEEN.Tween(this._object.position)
             .to({y: -67}, 1000)
             .easing(TWEEN.Easing.Quadratic.Out)
             .start();

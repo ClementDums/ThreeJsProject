@@ -4,7 +4,7 @@ import PerfHelper from "../../../Helpers/Performance/PerfHelper";
 export default class Pantheon {
     constructor(position) {
         this._position = position;
-        this._path = './assets/3DModels/Pantheon/Pantheon_Opti.glb';
+        this._path = './assets/3DModels/Pantheon/Pantheon_V16.glb';
         this._object = null;
         this._isAnimated = false;
         this.hasPerf = true;
@@ -24,6 +24,4 @@ export default class Pantheon {
     perf() {
         PerfHelper.instrumentScene(this._object)
     }
-
-
 }

@@ -27,7 +27,7 @@ const PostProcessingManager = {
     },
     setVignette(offset) {
         const tweenCam = new TWEEN.Tween(this.effectVignette.uniforms["offset"]) // Create a new tween that modifies 'coords'.
-            .to({value:offset}, 1000) // Move to (300, 200) in 1 second.
+            .to({value: offset}, 1000) // Move to (300, 200) in 1 second.
             .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
             .start();
 
@@ -35,6 +35,12 @@ const PostProcessingManager = {
 
     setupColorify() {
         this.colorifyPass.uniforms["color"].value.setRGB(0, 0, 0);
+    },
+    easeColorify() {
+        const tweenCam = new TWEEN.Tween(this.colorifyPass.uniforms["color"].value) // Create a new tween that modifies 'coords'.
+            .to({r: 0,g:0,b:0}, 1000) // Move to (300, 200) in 1 second.
+            .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
+            .start();
     },
 
     setupOutline() {

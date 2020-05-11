@@ -5,15 +5,14 @@ import Pantheon from '../../3D/Decors/Pantheon'
 import SplineManager from "../../3D/Splines/SplineManager";
 import appState from "../../../Helpers/ExperienceStates"
 import Background from "../../Environment/Background";
-import FilterManager from "../../Modules/Filter";
 import Skybox from "../../Environment/Skybox";
 import HypersexWorkOfArt from "../../3D/WorkOfArt/Hypersex/HypersexWorkOfArt";
-import Hand from "../../3D/WorkOfArt/Hypersex/Hand";
-import Hypersex from "../../Modules/Hypersex";
+import HandLeft from "../../3D/WorkOfArt/Hypersex/HandLeft";
 import Socle from "../../3D/WorkOfArt/Filter/Socle";
 import AudioHelpers from "../../../Helpers/Audio/AudioHelpers";
 import HeartAnimation from "../../3D/WorkOfArt/Filter/HeartAnimation";
 import ModuleManager from "../../Modules/ModuleManager";
+import HandRight from "../../3D/WorkOfArt/Hypersex/HandRight";
 
 
 export default class InsideScene {
@@ -30,16 +29,28 @@ export default class InsideScene {
         this.phone = new Phone();
 
         //Filter
+        this.heartAnim1 = new HeartAnimation(new THREE.Vector3(-450, -50, -3900),
+            './assets/Animation/Animation_coeurs_minimum.fbx');
+
+        this.heartAnim2 = new HeartAnimation(new THREE.Vector3(-450, -50, -3900),
+            './assets/Animation/Animation_coeurs_intermediaire.fbx');
+
+        this.heartAnim3 = new HeartAnimation(new THREE.Vector3(-450, -50, -3900),
+            './assets/Animation/Animation_coeurs_max.fbx');
+
+
         this.statue0 = new FilterWorkOfArt(new THREE.Vector3(-520, 180, -3900), "0", 'toFilter', true);
-        this.statue1 = new FilterWorkOfArt(new THREE.Vector3(-520, 180, -3900), "1", "1", false);
-        this.statue2 = new FilterWorkOfArt(new THREE.Vector3(-520, 180, -3900), "2", "2", false);
-        this.statue3 = new FilterWorkOfArt(new THREE.Vector3(-520, 180, -3900), "3", "3", false);
+        this.statue1 = new FilterWorkOfArt(new THREE.Vector3(-520, 180, -3900), "1", "1", false, this.heartAnim1);
+        this.statue2 = new FilterWorkOfArt(new THREE.Vector3(-520, 180, -3900), "2", "2", false, this.heartAnim2);
+        this.statue3 = new FilterWorkOfArt(new THREE.Vector3(-520, 180, -3900), "3", "3", false, this.heartAnim3);
         this.socle = new Socle(new THREE.Vector3(-530, 0, -3900));
-        this.heartAnim = new HeartAnimation(new THREE.Vector3(-450, -50, -3900));
 
         //Hypersex
         this.hypersex = new HypersexWorkOfArt(new THREE.Vector3(-530, 0, -4500), "toHypersex");
-        this.hand = new Hand(new THREE.Vector3(-680, 300, -4500), "hand");
+
+
+        this.handLeft = new HandLeft(new THREE.Vector3(-650, 138, -4400), "handLeft");
+        this.handRight = new HandRight(new THREE.Vector3(-650, 275, -4620), "handRight");
 
         this.objects = [];
         this._background = null;
@@ -59,26 +70,27 @@ export default class InsideScene {
 
         ModuleManager.phone = this.phone;
         //Filter
+        this.objects.push(this.heartAnim1);
+        this.objects.push(this.heartAnim2);
+        this.objects.push(this.heartAnim3);
+
         this.objects.push(this.statue1);
         this.objects.push(this.statue2);
         this.objects.push(this.statue3);
         this.objects.push(this.socle);
-        this.objects.push(this.heartAnim);
-        ModuleManager.initFilter(this.phone, this.heartAnim, this.statue0, this.statue1, this.statue2, this.statue3);
+
+        ModuleManager.initFilter(this.phone, this.statue0, this.statue1, this.statue2, this.statue3);
         //Hypersex
         this.objects.push(this.hypersex);
-        this.objects.push(this.hand);
+        this.objects.push(this.handLeft);
+        this.objects.push(this.handRight);
 
         const hiddenObjects = [];
-        hiddenObjects.push(this.hand);
+        hiddenObjects.push(this.handLeft);
+        hiddenObjects.push(this.handRight);
         ModuleManager.initHypersex(hiddenObjects, this.phone);
 
         //Cube map
-
-        this.particleGroup = new THREE.Object3D();
-
-        this.particleGroup.position.set(-500, 180, -3900);
-        this.particleGroup.name = "Heart";
     }
 
     addSounds() {
@@ -142,7 +154,7 @@ export default class InsideScene {
         this._scene.add(flash3);
 
         var light = new THREE.HemisphereLight(0x310177, 0xffffff, 1);
-        this._scene.add(light)
+        this._scene.add(light);
 
         let purpleLight2 = new THREE.PointLight(0x310177, 0.5);
         purpleLight2.name = "galleryBottom";

@@ -10,7 +10,6 @@ const SplineManager = {
         this.splineArray = [];
         this.currentMovingSpline = null;
 
-
         /***TEST SPLINE DON'T REMOVE***/
             // let hallWalk = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 180, 800),
             //     new THREE.Vector3(600, 190, -200),
@@ -36,9 +35,9 @@ const SplineManager = {
 
                 new THREE.Vector3(2090, 190, -1160),
 
-                new THREE.Vector3(0, 190, -2360),
+                new THREE.Vector3(250, 190, -2360),
                 //front gallery
-                new THREE.Vector3(-100, 190, -3900),
+                new THREE.Vector3(100, 190, -3850),
                 //Front of filter
                 new THREE.Vector3(-430, 190, -3900)]);
 
