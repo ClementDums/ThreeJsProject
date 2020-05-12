@@ -57,6 +57,10 @@ const UIManager = {
         document.getElementById("prev").style.display = "none";
     },
 
+    hideNext() {
+        document.getElementById("next").style.display = "none";
+    },
+
     newCarousel(template) {
         this.carousel = new Carousel(template);
     },

@@ -100,6 +100,7 @@ const CameraManager = {
         },
 
         endingWalk() {
+            this.cameraMovementManager.speed = 10;
             this.startMove(appStates.ENDINGWALK);
         },
 

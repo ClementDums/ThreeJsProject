@@ -13,6 +13,7 @@ export default class Filter {
         this.phone = null;
         this.light = null;
         this.filterUi = null;
+        this.isCompleted = false;
     }
 
     /**
@@ -95,6 +96,7 @@ export default class Filter {
         //Animate
         SceneManager.isAnimated = true;
         document.getElementById("filter").style.display = "block"
+        this.hidePrev();
     }
 
     animate() {
@@ -102,6 +104,7 @@ export default class Filter {
     }
 
     stopPhone() {
+        this.isCompleted = true;
         PostProcessingManager.setVignette(0);
         this.phone.hide();
         document.getElementById("filter").style.display = "none";
@@ -119,13 +122,18 @@ export default class Filter {
      * Go to previous filter
      */
     setPrev() {
+        this.showNext();
         if (this.objects[this.i - 1]) {
+            this.showPrev();
             this.setCurrentDisable();
             this.currentObject = this.objects[this.i - 1];
             this.setCurrentActive();
             this.i -= 1;
             this.heartAnim();
             this.setVignette();
+            if (this.i === 0) {
+                this.hidePrev();
+            }
         }
     }
 
@@ -133,18 +141,39 @@ export default class Filter {
      * Go to next filter
      */
     setNext() {
+        this.showPrev();
         if (this.objects[this.i + 1]) {
+            this.showNext();
             this.setCurrentDisable();
             this.currentObject = this.objects[this.i + 1];
             this.setCurrentActive();
             this.i += 1;
             this.heartAnim();
             this.setVignette();
+            if (this.i === this.objects.length - 1) {
+                this.hideNext();
+            }
         }
     }
 
+    hidePrev() {
+        this.filterUi.querySelector(".prev").style.display = "none";
+    }
+
+    showPrev() {
+        this.filterUi.querySelector(".prev").style.display = "block";
+    }
+
+    hideNext() {
+        this.filterUi.querySelector(".next").style.display = "none";
+    }
+
+    showNext() {
+        this.filterUi.querySelector(".next").style.display = "block";
+    }
+
     heartAnim() {
-        if (this.currentObject !== 0) {
+        if (this.i !== 0) {
             this.currentObject.heartAnim.show();
             this.currentObject.heartAnim.animate();
         }
@@ -193,7 +222,7 @@ export default class Filter {
      * End Filter module
      */
     resetModule() {
-        this.stopPhone();
+        // this.stopPhone();
         this.resetFilter();
         this.light.visible = false;
         RaycasterManager.identifiers.splice("toFilter");

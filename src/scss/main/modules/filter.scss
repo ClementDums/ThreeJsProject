@@ -12,8 +12,8 @@
     }
     .carousel {
       span {
-        width: 110px;
-        height: 110px;
+        width: 90px;
+        height: 90px;
         position: absolute;
         background-color: rgba(255, 255, 255, 0.5);
         border-radius: 50%;
@@ -25,6 +25,13 @@
         }
         &.next {
           right: 20px;
+        }
+        &.middle {
+          right: 0;
+          left: 0;
+          margin: 0 auto;
+          width: 110px;
+          height: 110px;
         }
       }
 

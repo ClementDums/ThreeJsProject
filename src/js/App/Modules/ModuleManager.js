@@ -12,6 +12,8 @@ const ModuleManager = {
         this.phone = null;
         this.isOnPhone = false;
         this.isClickable = false;
+        this.completedModules = 0;
+        this.allModulesCompleted = false;
     },
 
     //Init Modules
@@ -37,10 +39,24 @@ const ModuleManager = {
     },
 
     moduleClick(name) {
-        if(this.isClickable)
-        {
+        if (this.isClickable) {
             this.currentModule.clickedModule(name);
             this.isClickable = false;
+        }
+    },
+
+    /**
+     * Indent completed modules
+     */
+    moduleCompleted() {
+        let i = 0;
+        this.modules.forEach((item) => {
+            if (item.isCompleted) {
+                i++;
+            }
+        });
+        if (i >= this.modules.length) {
+            this.allModulesCompleted = true;
         }
     },
 
@@ -79,6 +95,7 @@ const ModuleManager = {
      * Start module : show phone icon and light, hide previous if first module
      */
     startModule() {
+        this.testPrevNextDisplay();
         setTimeout(() => {
             UIManager.phoneIconOn();
         }, 1000);
@@ -106,14 +123,24 @@ const ModuleManager = {
             this.currentModule.stopPhone();
             UIManager.phoneIconOff();
             UIManager.displayNextPrev();
-            const currentPos = this.modules.indexOf(this.currentModule);
-            if (currentPos === 0) {
-                UIManager.hidePrev();
-            }
             this.isOnPhone = false;
+
         }
     },
 
+    /**
+     * Test of prev and next button displaying
+     */
+    testPrevNextDisplay() {
+        const currentPos = this.modules.indexOf(this.currentModule);
+        if (currentPos === 0) {
+            UIManager.hidePrev();
+        }
+        //TODO : Change to -1 when 3rd module is implemented
+        if (!this.allModulesCompleted && currentPos >= this.modules.length ) {
+            UIManager.hideNext();
+        }
+    },
 
     /**
      * Set module disable, reset module
@@ -125,6 +152,7 @@ const ModuleManager = {
             UIManager.deleteCarousel();
         }
         UIManager.displayNextPrev();
+        this.moduleCompleted();
     }
 };
 

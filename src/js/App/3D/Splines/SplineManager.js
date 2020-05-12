@@ -41,8 +41,10 @@ const SplineManager = {
                 //Front of filter
                 new THREE.Vector3(-430, 190, -3900)]);
 
-        let endingWalk = new THREE.CatmullRomCurve3([new THREE.Vector3(-440, 180, -5100),
-            new THREE.Vector3(0, 190, -5400)
+        let endingWalk = new THREE.CatmullRomCurve3([new THREE.Vector3(-440, 190, -5100),
+            new THREE.Vector3(-380, 190, -5100),
+            new THREE.Vector3(-200, 190, -5450),
+            new THREE.Vector3(0, 190, -5510)
         ]);
 
         this.splines = {
