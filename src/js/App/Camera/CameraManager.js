@@ -64,6 +64,8 @@ const CameraManager = {
                     break;
                 case appStates.ENDINGWALK:
                     this.rotate("front");
+                    UIManager.hideMoral();
+                    UIManager.displayEndText();
                     break;
             }
         },
@@ -100,6 +102,7 @@ const CameraManager = {
         },
 
         endingWalk() {
+            this.cameraMovementManager.speed = 6;
             this.startMove(appStates.ENDINGWALK);
         },
 

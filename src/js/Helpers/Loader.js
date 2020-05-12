@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import {FBXLoader} from 'three/examples/jsm/loaders/FBXLoader';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 import ScreenLoader from "./ScreenLoader";
+import SceneManager from "../App/Scene/SceneManager";
 
 
 const Loader = {
@@ -14,6 +15,7 @@ const Loader = {
         };
         this.manager.onLoad = function () {
             ScreenLoader.loadScreen(false);
+            SceneManager.afterLoad();
         };
         this.manager.onProgress = function (url, itemsLoaded, itemsTotal) {
             console.log(itemsLoaded/itemsTotal *100);

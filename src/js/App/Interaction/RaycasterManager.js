@@ -30,8 +30,6 @@ const RaycasterManager = {
 
     getClickedOnTouchedElement() {
         if (this.INTERSECTED) {
-            console.log(this.INTERSECTED.name);
-            console.log(this.identifiers);
             return this.INTERSECTED.name;
         }
     }

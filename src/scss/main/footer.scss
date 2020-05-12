@@ -1,5 +1,10 @@
 footer {
   height: 14%;
+  transition: all 1.5s;
+
+  &.up {
+    transform: translateY(-270px);
+  }
   .container {
     width: 95%;
     margin: 0 auto;
@@ -11,6 +16,7 @@ footer {
       padding-inline-start: 0;
       margin: 0;
       li {
+        color: #fff;
         display: inline-block;
         margin-right: 20px;
         a {
@@ -63,7 +69,7 @@ footer {
       margin: 0 auto;
       left: 0;
       right: 0;
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: space-between;
       p {
@@ -72,7 +78,10 @@ footer {
       img {
         width: 15px;
       }
-
+      &.visible {
+        display: flex;
+      }
     }
+
   }
 }

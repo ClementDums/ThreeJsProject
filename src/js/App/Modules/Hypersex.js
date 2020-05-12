@@ -12,6 +12,7 @@ export default class Hypersex {
         this.flashColor = 0;
         this.removeFlash = false;
         this.light = null;
+        this.isCompleted = false;
     }
 
     /**
@@ -143,6 +144,7 @@ export default class Hypersex {
     }
 
     stopPhone() {
+        this.isCompleted = true;
         PostProcessingManager.setVignette(0);
         this.phone.hide();
         document.getElementById("hypersex").style.display = "none";
@@ -150,7 +152,7 @@ export default class Hypersex {
     }
 
     resetModule() {
-        this.stopPhone();
+        // this.stopPhone();
         this.removeFlash = false;
         this.light.visible = false;
         RaycasterManager.identifiers.splice("toHypersex");

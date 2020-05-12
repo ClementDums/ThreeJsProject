@@ -1,0 +1,45 @@
+#endText {
+  width: 100%;
+  height: 100%;
+  section {
+    width: 70%;
+    display: none;
+    position: absolute;
+    height: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    margin: 0 auto;
+    justify-content: center;
+    &.visible {
+      display:flex;
+    }
+  }
+
+}
+
+#moral {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 100%;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 2em;
+  p {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    opacity: 0;
+    transition: opacity 1.5s;
+    &.visible {
+      opacity: 1;
+    }
+
+  }
+  &.visible {
+    display: flex;
+  }
+}

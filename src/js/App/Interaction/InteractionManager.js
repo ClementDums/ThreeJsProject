@@ -1,6 +1,7 @@
 import StatesManager from "../StatesManager"
 import AudioHelpers from "../../Helpers/Audio/AudioHelpers";
 import ModuleManager from "../Modules/ModuleManager";
+import UIManager from "../UI/UIManager";
 
 const InteractionManager = {
 
@@ -14,6 +15,8 @@ const InteractionManager = {
         this.phoneIconClick();
         //Init sound control on click
         this.initSound();
+        this.initEndButtons();
+        this.initAbout();
     },
 
     /**
@@ -42,7 +45,7 @@ const InteractionManager = {
 
     phoneIconClick() {
         this.el.querySelector(".phoneOn").addEventListener("click", () => {
-            ModuleManager.clickedPhoneIcon();
+            ModuleManager.clickedPhoneIcon()
         })
     },
 
@@ -63,6 +66,14 @@ const InteractionManager = {
         });
     },
 
+
+    initEndButtons() {
+        this.el.querySelector("#toShareSection").addEventListener("click", UIManager.toShareSection);
+    },
+    initAbout() {
+        this.el.querySelector("#aboutBtn").addEventListener("click", UIManager.showAbout);
+        this.el.querySelector("#quitAboutBtn").addEventListener("click", UIManager.hideAbout);
+    },
     /**
      *  Handle Raycaster click
      * @param name

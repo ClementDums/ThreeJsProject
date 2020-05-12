@@ -31,9 +31,10 @@ export default class Experience {
         CameraManager.init();
         ModuleManager.init();
         SceneManager.init();
+        UIManager.init();
+
         InteractionManager.init();
         StatesManager.init();
-        UIManager.init();
         TextureManager.init();
 
         //Experience states Manager
@@ -48,7 +49,7 @@ export default class Experience {
         console.log(this.scene);
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.renderer.outputEncoding = THREE.LinearEncoding;
+        this.renderer.outputEncoding = THREE.sRGBEncoding;
         this.camera = CameraManager.camera;
         this.scene.add(this.camera);
         this.container.appendChild(this.renderer.domElement);
@@ -93,6 +94,7 @@ export default class Experience {
         const effectFXAA = new ShaderPass(FXAAShader);
         effectFXAA.uniforms['resolution'].value.set(1 / window.innerWidth, 1 / window.innerHeight);
         this.composer.addPass(effectFXAA);
+
     }
 
     _animate() {
