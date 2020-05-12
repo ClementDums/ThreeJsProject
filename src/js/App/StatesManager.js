@@ -25,7 +25,7 @@ const StatesManager = {
             case appStates.LANDING:
                 this.currentState = appStates.HALLWALK;
                 CameraManager.hallWalk();
-                UIManager.displayHomeText(document.getElementById("hallWalk"));
+                UIManager.displayHomeText();
                 break;
 
             case appStates.HALLWALK:
@@ -59,6 +59,8 @@ const StatesManager = {
                     this.currentState = appStates.ENDINGWALK;
                     CameraManager.endingWalk();
                     UIManager.hideNextPrev();
+                                    UIManager.displayMoral();
+
                 }
                 else {
                     this.currentState = appStates.HYPERSEX;
@@ -69,6 +71,7 @@ const StatesManager = {
 
             case appStates.ENDINGWALK:
                 this.currentState = appStates.ENDSTATUE;
+
                 break;
 
             case appStates.ENDSTATUE:

@@ -68,7 +68,6 @@ const InteractionManager = {
 
 
     initEndButtons() {
-        this.el.querySelector("#toInvitSection").addEventListener("click", UIManager.toInvitSection);
         this.el.querySelector("#toShareSection").addEventListener("click", UIManager.toShareSection);
     },
     initAbout() {

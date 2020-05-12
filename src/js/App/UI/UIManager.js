@@ -1,6 +1,7 @@
 import Carousel from "./Carousel";
 import Cursor from "./Cursor";
 import HomeText from "./HomeText";
+import Moral from "./Moral";
 
 const UIManager = {
     init() {
@@ -12,6 +13,7 @@ const UIManager = {
         this.isDisplayingText = false;
         Cursor.init();
         HomeText.init();
+        Moral.init();
     },
 
     phoneIconOn() {
@@ -32,6 +34,12 @@ const UIManager = {
         HomeText.hideHomeText();
     },
 
+    displayMoral() {
+        Moral.displayMoral();
+    },
+    hideMoral() {
+        Moral.hideMoral();
+    },
 
     displayNextPrev() {
         const nextprev = document.querySelectorAll(".nextspan");
