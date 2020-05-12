@@ -18,7 +18,6 @@ export default class Carousel {
         this.addListItems();
         this.addSections();
         this.scrollToContinue();
-
         this.displayIntro();
         window.addEventListener("wheel", this.scrolled.bind(this));
     }
@@ -27,7 +26,7 @@ export default class Carousel {
      * Create text array from div in template
      */
     createTextArray() {
-        this.textArray = this.textTemplate.querySelectorAll("div");
+        this.textArray = this.textTemplate.querySelectorAll(".section");
     }
 
     /**
@@ -185,25 +184,27 @@ export default class Carousel {
 
             let pContent = this.textArray[i].querySelectorAll("p");
             pContent.forEach((paragraph) => {
-                if (paragraph.classList.contains("primary")) {
-                    let pPrimary = document.createElement("p");
-                    pPrimary.classList.add("title");
-                    pPrimary.innerHTML = paragraph.innerHTML;
-                    section.appendChild(pPrimary);
-                }
+                // if (paragraph.classList.contains("primary")) {
+                //     let pPrimary = document.createElement("p");
+                //     pPrimary.classList.add("title");
+                //     pPrimary.innerHTML = paragraph.innerHTML;
+                //     section.appendChild(pPrimary);
+                // }
+                //
+                // if (paragraph.classList.contains("intro")) {
+                //     let pIntro = document.createElement("p");
+                //     pIntro.classList.add("intro");
+                //     pIntro.innerHTML = paragraph.innerHTML;
+                //     section.appendChild(pIntro);
+                // }
+                // if (paragraph.classList.contains("secondary")) {
+                //     let pSecondary = document.createElement("p");
+                //     pSecondary.classList.add("secondary");
+                //     pSecondary.innerHTML = paragraph.innerHTML;
+                //     section.appendChild(pSecondary);
+                // }
 
-                if (paragraph.classList.contains("intro")) {
-                    let pIntro = document.createElement("p");
-                    pIntro.classList.add("intro");
-                    pIntro.innerHTML = paragraph.innerHTML;
-                    section.appendChild(pIntro);
-                }
-                if (paragraph.classList.contains("secondary")) {
-                    let pSecondary = document.createElement("p");
-                    pSecondary.classList.add("secondary");
-                    pSecondary.innerHTML = paragraph.innerHTML;
-                    section.appendChild(pSecondary);
-                }
+                section.appendChild(paragraph);
 
             });
 

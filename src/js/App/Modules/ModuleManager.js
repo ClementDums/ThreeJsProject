@@ -124,7 +124,7 @@ const ModuleManager = {
             UIManager.phoneIconOff();
             UIManager.displayNextPrev();
             this.isOnPhone = false;
-
+            this.testPrevNextDisplay();
         }
     },
 
@@ -137,7 +137,7 @@ const ModuleManager = {
             UIManager.hidePrev();
         }
         //TODO : Change to -1 when 3rd module is implemented
-        if (!this.allModulesCompleted && currentPos >= this.modules.length ) {
+        if (!this.allModulesCompleted && currentPos >= this.modules.length) {
             UIManager.hideNext();
         }
     },
