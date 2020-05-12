@@ -25,7 +25,7 @@ const AudioHelpers = {
         this.sounds.push(sound);
     },
 
-    setSoundVolume(name ,v) {
+    setSoundVolume(name, v) {
         const sound = this.sounds.find(item => item.name === name);
         if (!sound) {
             console.log("Sound not found");
@@ -52,6 +52,15 @@ const AudioHelpers = {
         });
     },
 
+    resetSound(name) {
+        const sound = this.sounds.find(item => item.name === name);
+        if (!sound) {
+            console.log("Sound not found");
+            return
+        }
+        sound.audio.pause();
+        sound.audio.currentTime = 0;
+    },
     pauseSound(name) {
         const sound = this.sounds.find(item => item.name === name);
         if (!sound) {

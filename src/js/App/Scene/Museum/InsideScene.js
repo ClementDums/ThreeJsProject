@@ -111,22 +111,12 @@ export default class InsideScene {
         SplineManager.currentSpline.parent.visible = false;
         SplineManager.newSpline(appState.ENDINGWALK);
         this._scene.add(SplineManager.currentSpline.parent);
+        SplineManager.currentSpline.parent.visible = false;
     }
 
     addLights() {
 
-        // let flash2 = new THREE.PointLight(0xff9b1c, 3, 2000);
-        // flash2.name = "Dome light";
-        // flash2.position.set(0, 2097, -200);
-        // this._scene.add(flash2);
-        //
-        // let statue = new THREE.PointLight(0xff9b1c, 3, 300);
-        // statue.name = "Dome light";
-        // statue.position.set(0, 400, -200);
-        // this._scene.add(statue);
-
-
-        let flash4 = new THREE.SpotLight(0xff6800, 1, 600);
+        let flash4 = new THREE.SpotLight(0x310177, 2, 600);
         flash4.name = "Filter light";
         flash4.target.position.set(-520, 200, -3900);
         flash4.position.set(-450, 0, -3900);
@@ -135,7 +125,7 @@ export default class InsideScene {
         ModuleManager.setFilterLight(flash4);
         flash4.visible = false;
 
-        let hypersex = new THREE.SpotLight(0xff6800, 1, 600);
+        let hypersex = new THREE.SpotLight(0x310177, 2, 600);
         hypersex.name = "Hypersex light";
         hypersex.target.position.set(-530, 200, -4500);
         hypersex.position.set(-450, 0, -4500);
@@ -147,25 +137,24 @@ export default class InsideScene {
 
 
         // //Purple light
-        let purpleLight = new THREE.PointLight(0x310177, 1.2);
-        purpleLight.name = "galleryTop";
-        purpleLight.position.set(0, 1000, -4000);
-        this._scene.add(purpleLight);
+        // let purpleLight = new THREE.PointLight(0x310177, 1.2);
+        // purpleLight.name = "galleryTop";
+        // purpleLight.position.set(0, 1000, -4000);
+        // this._scene.add(purpleLight);
 
 
-        //Purple light
-        let flash3 = new THREE.PointLight(0x310177, 0.5);
-        flash3.castShadow = true;
-        flash3.position.set(0, 2097, -200);
-        this._scene.add(flash3);
+        // Purple light
+        // let flash3 = new THREE.PointLight(0x310177, 0.5);
+        // flash3.position.set(0, 2097, -200);
+        // this._scene.add(flash3);
 
-        var light = new THREE.HemisphereLight(0x310177, 0xffffff, 1);
+        var light = new THREE.HemisphereLight(0xffffff, 0xffffff, 1);
         this._scene.add(light);
 
-        let purpleLight2 = new THREE.PointLight(0x310177, 0.5);
-        purpleLight2.name = "galleryBottom";
-        purpleLight2.position.set(0, 300, -4000);
-        this._scene.add(purpleLight2);
+        // let purpleLight2 = new THREE.PointLight(0x310177, 0.5);
+        // purpleLight2.name = "galleryBottom";
+        // purpleLight2.position.set(0, 300, -4000);
+        // this._scene.add(purpleLight2);
     }
 
     addSkybox() {

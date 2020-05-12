@@ -1,0 +1,30 @@
+#about {
+  background-color: #412770;
+  height: 270px;
+  visibility: hidden;
+  position: absolute;
+  display: flex;
+  transition: all 1.5s;
+  .title {
+    text-align: center;
+  }
+  div:first-child {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  div:last-child {
+    margin-top: 20px;
+    width: 60%;
+    img {
+      width: 50px;
+      margin-left: 100px;
+    }
+  }
+  &.visible {
+    visibility: visible;
+    transform: translateY(-270px);
+
+  }
+}

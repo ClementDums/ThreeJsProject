@@ -62,6 +62,53 @@
                 <div id="verticalCaroussel" style="display:none">
                 </div>
 
+                <div id="endText" style="display:none">
+                    <section id="moralSection" class="visible">
+                        <div>
+                            <p>Il est urgent que nous agissions toutes et tous aujourd’hui pour que les jeunes filles
+                                d’aujourd’hui, les futures femmes de demain, ne grandissent pas en pensant constamment
+                                qu’elle
+                                ne sont pas assez belles, pas assez fines, pas assez pulpeuses, pas assez sexy. Il faut
+                                que
+                                nous
+                                comprenions que nos usages des réseaux sociaux, en tant qu’adultes, affectent
+                                différemment
+                                les
+                                plus jeunes sur leur rapport au corps, à l’image de la femme et de la féminité … nous
+                                devons
+                                le
+                                faire, pour elles.</p>
+                        </div>
+                        <div>
+                            <button id="toInvitSection" class="endNextBtn">Suivant</button>
+                        </div>
+                    </section>
+                    <section id="invitSection">
+                        <div>
+                            <p>Nous invitons à rejoindre les femmes et les hommes qui ont fait cette expérience avant
+                                vous,
+                                et qui ont choisi de soutenir cet appel à un usage des réseaux sociaux plus sain, plus
+                                honnête et plus humain. Vous pouvez donc, si vous le souhaitez, poster une photo de vous
+                                avec ce filtre, qui ne modifie en rien votre apparence physique, qui ne lisse pas votre
+                                peau
+                                et qui n’agrandira pas vos yeux, une photo qui est 100% vous. </p>
+                            <button class="flashBtn">Flashez-moi !</button>
+                        </div>
+                        <div>
+                            <button id="toShareSection" class="endNextBtn">Suivant</button>
+                        </div>
+                    </section>
+                    <section id="shareSection">
+                        <div>
+                            <p>Si cette expérience vous a parlé, voici une liste de comptes instagram qui redonnent le
+                                sourire et qui nous font nous sentir bien ! Vous pouvez aussi la partager autour de vous
+                                à
+                                qui serait susceptible d’en bénéficier ! </p>
+                            <button class="share">Partager</button>
+                        </div>
+                    </section>
+                </div>
+
                 <div id="filter" class="module">
                     <div class="carousel-wrapper">
                         <div class="carousel">
@@ -97,11 +144,11 @@
                     </div>
                 </div>
                 <hr>
-                <div class="bottom">
+                <div class="bottom visible">
                     <nav>
                         <ul>
                             <li class="hover"><img src="assets/Image/icon/gobelins.png" alt=""></li>
-                            <li class="hover"><a href="#">À propos</a></li>
+                            <li id="aboutBtn" class="hover">À propos</li>
                             <li class="hover"><a href="#">Crédits</a></li>
                         </ul>
                     </nav>
@@ -110,6 +157,19 @@
             </div>
 
         </footer>
+        <div id="about">
+            <div><p class="title">À propos</p></div>
+            <div><img id="quitAboutBtn" src="assets/Image/icon/quit.svg" alt="">
+                <p>Pour Elles est une expérience qui a pour but de mettre la lumière sur des usages actuels des réseaux
+                sociaux qui peuvent être dangereux pour les femmes en devenir, les jeunes filles d’aujourd’hui.
+                Pour Elles a vu le jour dans le cadre d’un projet étudiant du Master de Design Interactif à Gobelins l’École
+                de l’Image.
+                Ce site à été créé avec enthousiasme par deux designers, Antoine Fouilloux et Leah Rolin et
+                deux développeurs, Clément Dumas et Pierre Brelaud. </p>
+                <p>Design : Antoine Fouilloux et Léah Rolin.
+                Développement : Pierre Brelaud et Clément Dumas</p>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -214,6 +274,7 @@
                 soi. </p>
         </div>
     </div>
+
 </div>
 
 <script>

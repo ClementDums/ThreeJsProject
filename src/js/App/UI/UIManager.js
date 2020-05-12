@@ -5,6 +5,8 @@ import HomeText from "./HomeText";
 const UIManager = {
     init() {
         this.el = document.getElementById("game");
+        console.log(this.el)
+
         this.carousel = null;
         this.currentStory = [];
         this.isDisplayingText = false;
@@ -72,6 +74,33 @@ const UIManager = {
             this.carousel.destroy();
         }
     },
+
+    displayEndText() {
+        document.querySelector("#endText").style.display = "block";
+
+    },
+    toInvitSection() {
+        document.querySelector("#invitSection").classList.add('visible');
+        document.querySelector("#moralSection").classList.remove('visible');
+    },
+
+    toShareSection() {
+        document.querySelector("#shareSection").classList.add('visible');
+        document.querySelector("#invitSection").classList.remove('visible');
+    },
+
+    showAbout() {
+
+        document.querySelector("footer").classList.add("up");
+        document.querySelector("#about").classList.add("visible");
+        document.querySelector("footer").querySelector(".bottom").classList.remove("visible");
+    },
+    hideAbout() {
+        document.querySelector("footer").classList.remove("up");
+        document.querySelector("#about").classList.remove("visible");
+        document.querySelector("footer").querySelector(".bottom").classList.add("visible");
+
+    }
 
 };
 

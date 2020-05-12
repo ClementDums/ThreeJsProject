@@ -19,7 +19,7 @@
         border-radius: 50%;
         border: 2px solid #fff;
         bottom: 80px;
-        transition: transform .5s, opacity .5s, z-index .5s;
+        transition: left .5s, opacity .5s, z-index .5s;
         &.prev {
           left: 20px;
         }

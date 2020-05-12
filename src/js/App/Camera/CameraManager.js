@@ -64,6 +64,7 @@ const CameraManager = {
                     break;
                 case appStates.ENDINGWALK:
                     this.rotate("front");
+                    UIManager.displayEndText();
                     break;
             }
         },
