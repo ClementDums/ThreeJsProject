@@ -48,6 +48,13 @@ const SceneManager = {
     },
 
     /**
+     * Called after scene complete loading
+     */
+    afterLoad(){
+        this.currentScene.playSounds()
+    },
+
+    /**
      * Animate scene for each frame
      */
     animate() {

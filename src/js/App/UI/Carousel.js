@@ -1,5 +1,3 @@
-import Texts from "../../Helpers/Texts/Texts"
-
 export default class Carousel {
     constructor(template) {
         this.container = document.getElementById("verticalCaroussel");

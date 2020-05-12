@@ -95,9 +95,15 @@ export default class InsideScene {
 
     addSounds() {
         AudioHelpers.addSound("ambiance", './assets/Audio/ambiance.mp3', true);
+        AudioHelpers.addSound("music", './assets/Audio/music.mp3', true);
+        AudioHelpers.setSoundVolume("music", 0.1);
         AudioHelpers.addSound("walk", './assets/Audio/walk.mp3', true);
-        AudioHelpers.playSound("ambiance");
     };
+
+    playSounds() {
+        AudioHelpers.playSound("ambiance");
+        AudioHelpers.playSound("music");
+    }
 
     addSplines() {
         SplineManager.newSpline(appState.HALLWALK);
