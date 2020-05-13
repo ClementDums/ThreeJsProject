@@ -55,7 +55,6 @@ export default class Hypersex {
     clickedModule(name) {
         if (name === "toHypersex") {
             RaycasterManager.identifiers.splice("toHypersex");
-            UIManager.phoneIconOn();
             this.hypersexModule();
         }
     }
@@ -87,6 +86,8 @@ export default class Hypersex {
     photoClick() {
         this.hypersexUi.querySelector("#photo").addEventListener("click", () => {
             this.takePhoto();
+            UIManager.phoneIconOn();
+            UIManager.phoneTextIn();
         })
     }
 

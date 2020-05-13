@@ -16,7 +16,7 @@ export default class CameraMovement {
         this.currentMovingSpline = null;
         this.isMoving = false;
         this.time = 0;
-        this.speed = 2;
+        this.speed = 10;
         SplineManager.init();
     }
 

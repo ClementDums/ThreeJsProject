@@ -18,13 +18,28 @@ const UIManager = {
 
     phoneIconOn() {
         document.querySelector(".phoneOn").style.display = "block";
+        document.getElementById("phoneIcon").querySelector(".outPhone").classList.add("phoneOn");
         document.querySelector(".phoneOff").style.display = "none";
     },
 
-    phoneIconOff() {
-        document.querySelector(".phoneOn").style.display = "none";
-        document.querySelector(".phoneOff").style.display = "block";
+    phoneTextOut() {
+        document.getElementById("phoneIcon").querySelector(".outPhone").classList.add("visible");
     },
+    phoneTextIn() {
+        document.getElementById("phoneIcon").querySelector(".inPhone").classList.add("visible");
+    },
+    hidePhoneText() {
+        document.getElementById("phoneIcon").querySelector(".inPhone").classList.remove("visible");
+        document.getElementById("phoneIcon").querySelector(".outPhone").classList.remove("visible");
+    },
+
+    phoneIconOff() {
+        document.querySelector(".phoneOff").style.display = "block";
+        document.getElementById("phoneIcon").querySelector(".outPhone").classList.remove("phoneOn");
+                document.querySelector(".phoneOn").style.display = "none";
+
+    },
+
 
     displayHomeText() {
         HomeText.displayHomeText();

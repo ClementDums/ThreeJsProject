@@ -98,6 +98,8 @@ const ModuleManager = {
         this.testPrevNextDisplay();
         setTimeout(() => {
             UIManager.phoneIconOn();
+            UIManager.phoneTextOut();
+
         }, 1000);
         this.currentModule.light.visible = true;
     },
@@ -106,13 +108,15 @@ const ModuleManager = {
      * Handle phone icon click
      */
     clickedPhoneIcon() {
+        //Hide text
+        UIManager.hidePhoneText();
+        //Phone icon off
+        UIManager.phoneIconOff();
         //Show phone
         if (!this.isOnPhone) {
             UIManager.hideNextPrev();
             //Enable click on module
             this.currentModule.enableModuleClick();
-            //Phone icon off
-            UIManager.phoneIconOff();
             //Show virtual phone
             this.showPhone();
             this.isOnPhone = true;
@@ -120,8 +124,8 @@ const ModuleManager = {
 
         } else {
             //If phone is out
+            //Stop phone filtering
             this.currentModule.stopPhone();
-            UIManager.phoneIconOff();
             UIManager.displayNextPrev();
             this.isOnPhone = false;
             this.testPrevNextDisplay();
