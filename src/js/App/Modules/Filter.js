@@ -46,8 +46,6 @@ export default class Filter {
         if (name === "toFilter") {
             RaycasterManager.identifiers.splice("toFilter");
             this.filterModule();
-            UIManager.phoneIconOn();
-
         }
         if (name === "prev") {
             this.setPrev();
@@ -96,6 +94,7 @@ export default class Filter {
         //Animate
         SceneManager.isAnimated = true;
         document.getElementById("filter").style.display = "block"
+        this.showNext();
         this.hidePrev();
     }
 
@@ -152,6 +151,8 @@ export default class Filter {
             this.setVignette();
             if (this.i === this.objects.length - 1) {
                 this.hideNext();
+                UIManager.phoneIconOn();
+                UIManager.phoneTextIn();
             }
         }
     }
@@ -237,7 +238,8 @@ export default class Filter {
         this.setCurrentDisable();
         this.i = 0;
         this.currentObject = this.objects[0];
-        this.setCurrentActive()
+        this.setCurrentActive();
+        this.setVignette();
     }
 };
 

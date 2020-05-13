@@ -38,7 +38,6 @@ const PerfHelper = {
         }
 
         scene.onAfterRender = function () {
-            alert("ok")
             let delta = performance.now() - this.userData.perf.renderTS;
             let fps = Math.min(60, 1000 / delta);
 

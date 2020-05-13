@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>webpack-starter</title>
-    <meta name="description" content="Essential ES6 & SCSS starter.">
+    <title>Pour Elles</title>
+    <meta name="description" content="Pour Elles est une expérience interactive qui a pour but de mettre en lumière certains usages actuels des réseaux
+                    sociaux pouvant être dangereux pour les femmes en devenir, les jeunes filles d’aujourd’hui.">
 
     <!-- TODO add og, canonical, robots -->
 
@@ -23,6 +24,7 @@
             </div>
         </div>
     </div>
+    <div id="maskText"></div>
 
     <div class="follow"></div>
 
@@ -44,19 +46,16 @@
             <div class="text">
                 <div id="introText" style="display: none">
                     <p>Bienvenue au Panthéon du droit des femmes, ici sont réunies les plus grandes avancées féministes
-                        de l'Histoire. </p>
+                        de l'Histoire.</p>
                     <p>De Simone Veil à Simone de Beauvoir en passant par Frida Kahlo, ces femmes n’ont cessé de faire
-                        changer les mentalités et de se battre pour le droit des femmes dans le monde. </p>
+                        changer les mentalités et de se battre pour le droit des femmes dans le monde.</p>
 
                     <p>Mais aujourd’hui, avec l'explosion des réseaux sociaux il semblerait qu’une grande partie de la
-                        nouvelle génération soit passée à côté de ces combats et de ces valeurs féministes.
-                    </p>
-                    <p>Il existe de nombreux paradoxes entre la progression du féminisme sur ces plateformes ces
-                        dernières années et l’apparition de comportements inverses chez les jeunes femmes, souvent sur
-                        les applications récentes, qui sont en train de créer de nombreux troubles du comportement
-                        inquiétants.</p>
-                    <p>Laissez vous guider dans une mise en évidence de ces nouveau usages à travers les trois
-                        expériences qui vont suivre.</p>
+                        nouvelle génération soit passée à côté de ces combats et de ces valeurs féministes.</p>
+                    <p>Il existe en effet de nombreux paradoxes entre la progression du féminisme dans la société
+                        actuelle et les usages des jeunes femmes sur les réseaux sociaux. Pouvant même conduire à
+                        des troubles du comportement inquiétants.</p>
+                    <p>Laissez vous guider à travers les trois expériences qui vont suivre...</p>
                 </div>
                 <div id="moral" style="display: none">
                     <p>Il est urgent que nous agissions toutes et tous aujourd’hui pour que les jeunes filles
@@ -72,17 +71,19 @@
                 <div id="verticalCaroussel" style="display:none">
                 </div>
 
-                <div id="endText" style="display:none">
-                    <section id="invitSection" class="visible">
+                <div id="endText">
+                    <section id="invitSection">
                         <div>
                             <p>Nous invitons à rejoindre les femmes et les hommes qui ont fait cette expérience avant
                                 vous,
                                 et qui ont choisi de soutenir cet appel à un usage des réseaux sociaux plus sain, plus
-                                honnête et plus humain. Vous pouvez donc, si vous le souhaitez, poster une photo de vous
+                                honnête et plus humain.<br><br>
+                                Vous pouvez donc, si vous le souhaitez, poster une photo de vous
                                 avec ce filtre, qui ne modifie en rien votre apparence physique, qui ne lisse pas votre
                                 peau
                                 et qui n’agrandira pas vos yeux, une photo qui est 100% vous. </p>
-                            <button class="flashBtn">Flashez-moi !</button>
+                            <p class="flashMe">Flashez-moi !</p>
+                            <img src="assets/Image/icon/flash.png" alt="Flash QR code">
                         </div>
                         <div>
                             <button id="toShareSection" class="endNextBtn">Suivant</button>
@@ -91,7 +92,7 @@
                     <section id="shareSection">
                         <div>
                             <p>Si cette expérience vous a parlé, voici une liste de comptes instagram qui redonnent le
-                                sourire et qui nous font nous sentir bien ! Vous pouvez aussi la partager autour de vous
+                                sourire et qui nous font nous sentir bien !<br> Vous pouvez aussi la partager autour de vous
                                 à
                                 qui serait susceptible d’en bénéficier ! </p>
                             <button class="share">Partager</button>
@@ -129,6 +130,8 @@
                                 src="assets/Image/icon/instagram.svg" alt=""></a></li>
                     </ul>
                     <div id="phoneIcon" class="hover">
+                        <div><p class="outPhone">Sortez le téléphone</p>
+                            <p class="inPhone">Rangez le téléphone</p></div>
                         <img class="phoneOff" src="assets/Image/icon/phone_off.svg" alt="">
                         <img class="phoneOn" src="assets/Image/icon/phone_on.svg" alt="">
                     </div>
@@ -147,11 +150,14 @@
             </div>
 
         </footer>
+
+        <!--ABOUT-->
         <div id="about">
             <div><p class="title">À propos</p></div>
             <div><img id="quitAboutBtn" src="assets/Image/icon/quit.svg" alt="">
-                <p>Pour Elles est une expérience qui a pour but de mettre la lumière sur des usages actuels des réseaux
-                    sociaux qui peuvent être dangereux pour les femmes en devenir, les jeunes filles d’aujourd’hui.
+                <p>Pour Elles est une expérience interactive qui a pour but de mettre en lumière certains usages actuels
+                    des réseaux
+                    sociaux pouvant être dangereux pour les femmes en devenir, les jeunes filles d’aujourd’hui.
                     Pour Elles a vu le jour dans le cadre d’un projet étudiant du Master de Design Interactif à Gobelins
                     l’École
                     de l’Image.
@@ -164,16 +170,15 @@
     </div>
 </div>
 
+<!--TEXT TEMPLATES-->
 <div id="textTemplate">
 
     <div id="filterStory">
         <div class="section">
             <p class="intro">Des femmes se sont battues pour que nous vivions dans un monde qui ne soit pas submergé de
-                publicités de
-                femmes parfaites, minces, blanches et surtout retouchées.</p>
+                publicités de femmes parfaites, minces, blanches et surtout retouchées.</p>
             <p class="secondary">En 2017, chaque image photoshopée devra être accompagnée de la mention “Image
-                retouchée”, cette
-                loi s’applique également sur internet</p>
+                retouchée”, cette loi s’applique également sur internet.</p>
         </div>
         <div class="section">
             <div class="flex">
@@ -186,34 +191,28 @@
                 </div>
                 <div>
                     <p class="secondary rightText">En 2020, ce ne sont plus les publicitaires qui créent des standards
-                        de
-                        féminité
-                        inatteignable, mais bien votre soeur, voisine, collègue, vous… tout personne armée d’un
-                        smartphone.
+                        de féminité inatteignables, mais bien votre soeur, voisine, collègue, vous… tout personne armée
+                        d’un smartphone.
                         En un simple tapotement de doigt, de swipe, vous voilà avec de belles pommettes rehaussées, une
-                        peau
-                        parfaite, de grands yeux de biche, des lèvres pulpeuses et une taille de guêpe.
+                        peau parfaite, de grands yeux de biche, des lèvres pulpeuses et une taille de guêpe.
                         Rien de grave à vouloir mettre en avant une version améliorée de soi en ligne après tout non ?
                         Et bien ce n’est pas ce que les nouvelles études sur la santé mentale des jeunes filles disent.
                         À force de voir et d’aimer une version de soi filtrée, améliorée, retouchée qui est de plus,
-                        aimée
-                        par
-                        les autres, certaines ne peuvent plus se voir ni se prendre en photo sans ces filtres.
-                        Si bien que c’est aujourd’hui une personne sur cinquante qui souffre de dysmorphie corporelle.
-                    </p>
+                        aimée par les autres, certaines ne peuvent plus se voir ni se prendre en photo sans ces filtres.
+                        Si bien que c’est aujourd’hui une personne sur cinquante qui souffre de dysmorphie
+                        corporelle.</p>
                 </div>
             </div>
         </div>
         <div class="section">
             <p class="primary">DES FILTRES RÉELS</p>
             <p class="secondary">Cela ne s’arrête pas là. De nombreux chirurgiens plastiques observent de nouveaux
-                phénomènes inquiétants. De plus en plus de patients viennent en consultation avec une photo d’eux avec
-                filtre et demandent à ressembler à cette image… en vrai.
-                Depuis 2017, il y a un boom d’interventions plastiques chez les moins de 25 ans de 24% et 70% de ces
+                phénomènes inquiétants. De plus en plus de patients viennent en consultation avec une photo d’eux
+                filtrée et demandent à ressembler à cette image… en vrai.
+                Depuis 2017, il y a un boom de 24% d’interventions plastiques chez les moins de 25 ans et 70% de ces
                 jeunes l’envisagent. En France seulement, la demande de lipofilling, qui consiste à prélever sa propre
                 graisse pour l'injecter dans les fesses, à haute dose (à l'image de Kim Kardashian), a bondi de 30% ces
-                dernières années.
-            </p>
+                dernières années.</p>
         </div>
         <div class="section">
             <p class="primary">UNE GÉNÉRATION DÉPRESSIVE - SANTÉ MENTALE EN DANGER</p>
@@ -223,17 +222,17 @@
                 malheureuses dans leur corps. En 25 ans, les jeunes de moins de 25 ans présentant des symptômes
                 dépressifs ont augmenté de 70%. Il est également bon à savoir qu’Instagram est une application
                 favorisant l’anxiété, la dépression, la solitude, le manque de sommeil et la baisse de l’image de
-                soi. </p>
+                soi.</p>
         </div>
     </div>
 
     <div id="hypersexStory">
         <div class="section">
             <p class="intro">Au début des années 2000 plusieurs groupes féministes se sont battus pour faire naître des
-                loies contre l’hypersexualisation des jeunes filles dans les médias.</p>
-            <p class="secondary">Les loies n’ont malheureusement jamais vues le jour mais l’État à tout de même entendu
+                lois contre l’hypersexualisation des jeunes filles dans les médias.</p>
+            <p class="secondary">Les lois n’ont malheureusement jamais vues le jour mais l’État à tout de même entendu
                 leurs signaux d’alarme et publie en 2012 un rapport officiel “Contre l'hypersexualisation, un nouveau
-                combat pour l'égalité”.</p>
+                combat pour l'égalité”</p>
         </div>
         <div class="section">
             <p class="primary">SEXY IS THE NEW CUTE</p>
@@ -244,25 +243,27 @@
             </p>
         </div>
         <div class="section">
-            <p class="primary">DES FILTRES RÉELS</p>
-            <p class="secondary">Cela ne s’arrête pas là. De nombreux chirurgiens plastiques observent de nouveaux
-                phénomènes inquiétants. De plus en plus de patients viennent en consultation avec une photo d’eux avec
-                filtre et demandent à ressembler à cette image… en vrai.
-                Depuis 2017, il y a un boom d’interventions plastiques chez les moins de 25 ans de 24% et 70% de ces
-                jeunes l’envisagent. En France seulement, la demande de lipofilling, qui consiste à prélever sa propre
-                graisse pour l'injecter dans les fesses, à haute dose (à l'image de Kim Kardashian), a bondi de 30% ces
-                dernières années.
+            <p class="primary">DE PLUS EN PLUS JEUNES</p>
+            <p class="secondary">Même si TikTok demande à ses utilisateurs d’avoir au moins 13 ans, des millions
+                d’enfants à travers le monde possèdent un compte sur la plateforme. Le plus inquiétant, 80% des ces
+                jeunes postent eux-mêmes des vidéos. Ces millions de jeunes créatrices (70% de filles) se
+                mettent à imiter les tenues et les danses des utilisatrices plus âgées, il n’est donc pas rare de tomber
+                sur une vidéo d’une fillette de 9 ans qui twerk en pyjama dans sa chambre d’enfant.
             </p>
         </div>
         <div class="section">
-            <p class="primary">UNE GÉNÉRATION DÉPRESSIVE - SANTÉ MENTALE EN DANGER</p>
-            <p class="secondary">95 millions de photos et vidéos sont postées sur Instagram chaque jour, les plus
-                belles, les plus réussies sont misent en avant. Instagram nous pousse à nous comparer, or plus on se
-                compare aux autres, plus on se créer des complexes. Aujourd’hui c’est 9 filles sur 10 qui se disent
-                malheureuses dans leur corps. En 25 ans, les jeunes de moins de 25 ans présentant des symptômes
-                dépressifs ont augmenté de 70%. Il est également bon à savoir qu’Instagram est une application
-                favorisant l’anxiété, la dépression, la solitude, le manque de sommeil et la baisse de l’image de
-                soi. </p>
+            <p class="primary">PÉDOPHILES - @Lucas_2005</p>
+            <p class="secondary">
+                Savez-vous à quel type de contenu sont exposées les filles de 8 à 13 ans sur Tik Tok ? Savez-vous ce
+                qu’elles postent ? Savez-vous qui voit ces vidéos ? Savez-vous qui les like ? Savez-vous qui les
+                commentent ? Savez-vous qui leur envoie des messages privés ?
+            </p>
+            <p class="secondary">
+                Malheureusement, qui dit application qui regroupe des millions d’enfants et pré-adolescents dit jackpot
+                pour les amateurs de pédo-pornographie. Bien que certains se fassent passer eux aussi pour des enfants,
+                d’autres ne s’en cachent même pas, tant le trafic est important sur l’application. Il est extrêmement
+                important de contrôler et d’informer les jeunes autour de nous qui utilisent ces applications.
+            </p>
         </div>
     </div>
 

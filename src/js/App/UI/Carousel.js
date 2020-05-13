@@ -14,12 +14,21 @@ export default class Carousel {
     init() {
         this.container.style.display = "block";
         this.createTextArray();
+        this.showMask();
         this.createDom();
         this.addListItems();
         this.addSections();
         this.scrollToContinue();
         this.displayIntro();
         window.addEventListener("wheel", this.scrolled.bind(this));
+    }
+
+    /**
+     * Show black text mask
+     */
+
+    showMask() {
+        document.getElementById("maskText").classList.add("visible");
     }
 
     /**
@@ -48,11 +57,13 @@ export default class Carousel {
     }
 
     scrolled(e) {
-        const direction = e.deltaY;
-        if (direction < 0) {
-            this.scrollTop();
-        } else {
-            this.scrollBottom();
+        if (this.container) {
+            const direction = e.deltaY;
+            if (direction < 0) {
+                this.scrollTop();
+            } else {
+                this.scrollBottom();
+            }
         }
     }
 
@@ -237,6 +248,8 @@ export default class Carousel {
     destroy() {
         this.container.style.display = "none";
         this.container.innerHTML = "";
+        this.container = null;
+        document.getElementById("maskText").classList.remove("visible");
     }
 
 }

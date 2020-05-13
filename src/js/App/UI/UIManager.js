@@ -18,13 +18,28 @@ const UIManager = {
 
     phoneIconOn() {
         document.querySelector(".phoneOn").style.display = "block";
+        document.getElementById("phoneIcon").querySelector(".outPhone").classList.add("phoneOn");
         document.querySelector(".phoneOff").style.display = "none";
     },
 
-    phoneIconOff() {
-        document.querySelector(".phoneOn").style.display = "none";
-        document.querySelector(".phoneOff").style.display = "block";
+    phoneTextOut() {
+        document.getElementById("phoneIcon").querySelector(".outPhone").classList.add("visible");
     },
+    phoneTextIn() {
+        document.getElementById("phoneIcon").querySelector(".inPhone").classList.add("visible");
+    },
+    hidePhoneText() {
+        document.getElementById("phoneIcon").querySelector(".inPhone").classList.remove("visible");
+        document.getElementById("phoneIcon").querySelector(".outPhone").classList.remove("visible");
+    },
+
+    phoneIconOff() {
+        document.querySelector(".phoneOff").style.display = "block";
+        document.getElementById("phoneIcon").querySelector(".outPhone").classList.remove("phoneOn");
+        document.querySelector(".phoneOn").style.display = "none";
+
+    },
+
 
     displayHomeText() {
         HomeText.displayHomeText();
@@ -85,24 +100,27 @@ const UIManager = {
 
     displayEndText() {
         document.querySelector("#endText").style.display = "block";
+        this.toInvitSection();
 
     },
+
     toInvitSection() {
         document.querySelector("#invitSection").classList.add('visible');
-        document.querySelector("#moralSection").classList.remove('visible');
     },
 
     toShareSection() {
-        document.querySelector("#shareSection").classList.add('visible');
         document.querySelector("#invitSection").classList.remove('visible');
+        setTimeout(() => {
+            document.querySelector("#shareSection").classList.add('visible');
+        }, 2000);
     },
 
     showAbout() {
-
         document.querySelector("footer").classList.add("up");
         document.querySelector("#about").classList.add("visible");
         document.querySelector("footer").querySelector(".bottom").classList.remove("visible");
     },
+
     hideAbout() {
         document.querySelector("footer").classList.remove("up");
         document.querySelector("#about").classList.remove("visible");
