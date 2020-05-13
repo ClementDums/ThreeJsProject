@@ -59,8 +59,9 @@ const StatesManager = {
                     this.currentState = appStates.ENDINGWALK;
                     CameraManager.endingWalk();
                     UIManager.hideNextPrev();
-                                    UIManager.displayMoral();
-
+                    UIManager.displayMoral();
+                    UIManager.hidePhoneText();
+                    UIManager.phoneIconOff();
                 }
                 else {
                     this.currentState = appStates.HYPERSEX;

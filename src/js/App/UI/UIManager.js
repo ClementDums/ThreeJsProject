@@ -36,7 +36,7 @@ const UIManager = {
     phoneIconOff() {
         document.querySelector(".phoneOff").style.display = "block";
         document.getElementById("phoneIcon").querySelector(".outPhone").classList.remove("phoneOn");
-                document.querySelector(".phoneOn").style.display = "none";
+        document.querySelector(".phoneOn").style.display = "none";
 
     },
 
@@ -100,24 +100,27 @@ const UIManager = {
 
     displayEndText() {
         document.querySelector("#endText").style.display = "block";
+        this.toInvitSection();
 
     },
+
     toInvitSection() {
         document.querySelector("#invitSection").classList.add('visible');
-        document.querySelector("#moralSection").classList.remove('visible');
     },
 
     toShareSection() {
-        document.querySelector("#shareSection").classList.add('visible');
         document.querySelector("#invitSection").classList.remove('visible');
+        setTimeout(() => {
+            document.querySelector("#shareSection").classList.add('visible');
+        }, 2000);
     },
 
     showAbout() {
-
         document.querySelector("footer").classList.add("up");
         document.querySelector("#about").classList.add("visible");
         document.querySelector("footer").querySelector(".bottom").classList.remove("visible");
     },
+
     hideAbout() {
         document.querySelector("footer").classList.remove("up");
         document.querySelector("#about").classList.remove("visible");

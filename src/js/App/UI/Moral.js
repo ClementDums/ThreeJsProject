@@ -28,8 +28,8 @@ const Moral = {
             setTimeout(() => {
                 this.texts[0].classList.remove("visible");
                 this.firstText();
-            }, 6000);
-        }, 2000);
+            }, 8000);
+        }, 1000);
     },
 
     firstText() {
@@ -37,7 +37,7 @@ const Moral = {
             this.texts[1].classList.add("visible");
             setTimeout(() => {
                 this.texts[1].classList.remove("visible");
-            }, 6000);
+            }, 7000);
         }, 2000);
     },
 

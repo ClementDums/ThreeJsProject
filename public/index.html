@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>webpack-starter</title>
-    <meta name="description" content="Essential ES6 & SCSS starter.">
+    <title>Pour Elles</title>
+    <meta name="description" content="Pour Elles est une expérience interactive qui a pour but de mettre en lumière certains usages actuels des réseaux
+                    sociaux pouvant être dangereux pour les femmes en devenir, les jeunes filles d’aujourd’hui.">
 
     <!-- TODO add og, canonical, robots -->
 
@@ -23,6 +24,7 @@
             </div>
         </div>
     </div>
+    <div id="maskText"></div>
 
     <div class="follow"></div>
 
@@ -69,17 +71,19 @@
                 <div id="verticalCaroussel" style="display:none">
                 </div>
 
-                <div id="endText" style="display:none">
-                    <section id="invitSection" class="visible">
+                <div id="endText">
+                    <section id="invitSection">
                         <div>
                             <p>Nous invitons à rejoindre les femmes et les hommes qui ont fait cette expérience avant
                                 vous,
                                 et qui ont choisi de soutenir cet appel à un usage des réseaux sociaux plus sain, plus
-                                honnête et plus humain. Vous pouvez donc, si vous le souhaitez, poster une photo de vous
+                                honnête et plus humain.<br><br>
+                                Vous pouvez donc, si vous le souhaitez, poster une photo de vous
                                 avec ce filtre, qui ne modifie en rien votre apparence physique, qui ne lisse pas votre
                                 peau
                                 et qui n’agrandira pas vos yeux, une photo qui est 100% vous. </p>
-                            <button class="flashBtn">Flashez-moi !</button>
+                            <p class="flashMe">Flashez-moi !</p>
+                            <img src="assets/Image/icon/flash.png" alt="Flash QR code">
                         </div>
                         <div>
                             <button id="toShareSection" class="endNextBtn">Suivant</button>
@@ -88,7 +92,7 @@
                     <section id="shareSection">
                         <div>
                             <p>Si cette expérience vous a parlé, voici une liste de comptes instagram qui redonnent le
-                                sourire et qui nous font nous sentir bien ! Vous pouvez aussi la partager autour de vous
+                                sourire et qui nous font nous sentir bien !<br> Vous pouvez aussi la partager autour de vous
                                 à
                                 qui serait susceptible d’en bénéficier ! </p>
                             <button class="share">Partager</button>
@@ -151,8 +155,9 @@
         <div id="about">
             <div><p class="title">À propos</p></div>
             <div><img id="quitAboutBtn" src="assets/Image/icon/quit.svg" alt="">
-                <p>Pour Elles est une expérience qui a pour but de mettre la lumière sur des usages actuels des réseaux
-                    sociaux qui peuvent être dangereux pour les femmes en devenir, les jeunes filles d’aujourd’hui.
+                <p>Pour Elles est une expérience interactive qui a pour but de mettre en lumière certains usages actuels
+                    des réseaux
+                    sociaux pouvant être dangereux pour les femmes en devenir, les jeunes filles d’aujourd’hui.
                     Pour Elles a vu le jour dans le cadre d’un projet étudiant du Master de Design Interactif à Gobelins
                     l’École
                     de l’Image.
