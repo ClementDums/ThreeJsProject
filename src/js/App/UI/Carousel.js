@@ -1,3 +1,5 @@
+import UIManager from "./UIManager";
+
 export default class Carousel {
     constructor(template) {
         this.container = document.getElementById("verticalCaroussel");
@@ -14,21 +16,13 @@ export default class Carousel {
     init() {
         this.container.style.display = "block";
         this.createTextArray();
-        this.showMask();
+        UIManager.showMask();
         this.createDom();
         this.addListItems();
         this.addSections();
         this.scrollToContinue();
         this.displayIntro();
         window.addEventListener("wheel", this.scrolled.bind(this));
-    }
-
-    /**
-     * Show black text mask
-     */
-
-    showMask() {
-        document.getElementById("maskText").classList.add("visible");
     }
 
     /**
@@ -246,10 +240,13 @@ export default class Carousel {
      * Destroy carousel
      */
     destroy() {
-        this.container.style.display = "none";
-        this.container.innerHTML = "";
-        this.container = null;
-        document.getElementById("maskText").classList.remove("visible");
+
+        if (this.container) {
+            this.container.style.display = "none";
+            this.container.innerHTML = "";
+            this.container = null;
+            UIManager.hideMask();
+        }
     }
 
 }

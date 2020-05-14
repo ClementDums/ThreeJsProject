@@ -2,18 +2,27 @@ import Carousel from "./Carousel";
 import Cursor from "./Cursor";
 import HomeText from "./HomeText";
 import Moral from "./Moral";
+import ImageGallery from "./ImageGallery";
+import StatesManager from "../StatesManager";
 
 const UIManager = {
     init() {
         this.el = document.getElementById("game");
-        console.log(this.el)
-
         this.carousel = null;
         this.currentStory = [];
         this.isDisplayingText = false;
         Cursor.init();
         HomeText.init();
         Moral.init();
+        this.imageGallery = null;
+    },
+
+    newImageGallery() {
+        this.imageGallery = new ImageGallery();
+    },
+
+    hideImageGallery() {
+        this.imageGallery.hideGallery();
     },
 
     phoneIconOn() {
@@ -77,6 +86,17 @@ const UIManager = {
         })
     },
 
+    /**
+     * Show black text mask
+     */
+
+    showMask() {
+        document.getElementById("maskText").classList.add("visible");
+    },
+
+    hideMask() {
+        document.getElementById("maskText").classList.remove("visible");
+    },
 
     hidePrev() {
         document.getElementById("prev").style.display = "none";
@@ -109,6 +129,7 @@ const UIManager = {
     },
 
     toShareSection() {
+        StatesManager.nextState();
         document.querySelector("#invitSection").classList.remove('visible');
         setTimeout(() => {
             document.querySelector("#shareSection").classList.add('visible');
@@ -125,7 +146,6 @@ const UIManager = {
         document.querySelector("footer").classList.remove("up");
         document.querySelector("#about").classList.remove("visible");
         document.querySelector("footer").querySelector(".bottom").classList.add("visible");
-
     }
 
 };

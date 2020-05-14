@@ -1,8 +1,6 @@
 import appStates from '../Helpers/ExperienceStates';
 import SceneManager from './Scene/SceneManager'
 import CameraManager from "./Camera/CameraManager";
-import FilterManager from "./Modules/Filter";
-import Hypersex from "./Modules/Hypersex";
 import UIManager from "./UI/UIManager";
 import ModuleManager from "./Modules/ModuleManager";
 
@@ -71,12 +69,23 @@ const StatesManager = {
                 break;
 
             case appStates.ENDINGWALK:
-                this.currentState = appStates.ENDSTATUE;
-
+                this.currentState = appStates.IMAGEGALLERY;
                 break;
 
-            case appStates.ENDSTATUE:
+            case appStates.IMAGEGALLERY:
+                this.currentState = appStates.SHARESECTION;
+                UIManager.showMask();
+                UIManager.hideMoral();
+                UIManager.displayEndText();
+                setTimeout(() => {
+                    UIManager.newImageGallery();
+                }, 500);
                 break;
+
+            case appStates.SHARESECTION:
+                UIManager.hideImageGallery();
+                break;
+
 
             default:
                 console.log("State not found");

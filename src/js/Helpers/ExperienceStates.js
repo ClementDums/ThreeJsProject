@@ -5,5 +5,6 @@ export default {
     HYPERSEX: 'hypersex',
     DIVERSITY: 'diversity',
     ENDINGWALK: 'endingWalk',
-    ENDSTATUE: 'endStatue',
+    IMAGEGALLERY: 'imageGallery',
+    SHARESECTION: 'shareSection',
 }

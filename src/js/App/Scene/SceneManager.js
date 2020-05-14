@@ -20,7 +20,9 @@ const SceneManager = {
         this.currentScene.init();
         this.loadScene();
         this.isAnimated = false;
-        this._threeScene.add(CameraManager.camera)
+        this._threeScene.add(CameraManager.camera);
+        this.cssScene = new THREE.Scene();
+
     },
 
     loadSceneModels() {
@@ -50,7 +52,7 @@ const SceneManager = {
     /**
      * Called after scene complete loading
      */
-    afterLoad(){
+    afterLoad() {
         this.currentScene.playSounds()
     },
 
