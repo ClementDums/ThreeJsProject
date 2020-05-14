@@ -16,11 +16,12 @@ const RaycasterManager = {
                 if (this.INTERSECTED !== intersects[0].object) {
                     this.INTERSECTED = intersects[0].object;
                     if (this.identifiers.includes(this.INTERSECTED.name)) {
-                        PostProcessingManager.setOutlineObject(this.INTERSECTED)
+                        PostProcessingManager.setOutlineObject(this.INTERSECTED,10)
+
                     }
                     else {
                         if (PostProcessingManager.outlineObject) {
-                            PostProcessingManager.setOutlineObject(null)
+                            PostProcessingManager.setOutlineStrength(5);
                         }
                     }
                 }

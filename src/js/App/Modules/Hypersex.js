@@ -13,16 +13,19 @@ export default class Hypersex {
         this.removeFlash = false;
         this.light = null;
         this.isCompleted = false;
+        this.statue = null;
     }
 
     /**
      * Init hidden objects and interaction
      * @param objects
      * @param phone
+     * @param statue
      */
-    init(objects, phone) {
+    init(objects, phone, statue) {
         this.hiddenObjects = objects;
         this.phone = phone;
+        this.statue = statue;
         AudioHelpers.addSound("photo", './assets/Audio/photo.mp3', false);
         AudioHelpers.addSound("flashbass", './assets/Audio/flash_bass_3.mp3', false);
         this.initInteraction();
@@ -46,6 +49,8 @@ export default class Hypersex {
     enableModuleClick() {
         RaycasterManager.isActive = true;
         RaycasterManager.identifiers.push("toHypersex");
+        console.log(this.statue);
+        PostProcessingManager.setOutlineObject(this.statue._object.children[0],5);
     }
 
     /**

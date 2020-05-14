@@ -89,7 +89,7 @@ export default class InsideScene {
         const hiddenObjects = [];
         hiddenObjects.push(this.handLeft);
         hiddenObjects.push(this.handRight);
-        ModuleManager.initHypersex(hiddenObjects, this.phone);
+        ModuleManager.initHypersex(hiddenObjects, this.phone,this.hypersex);
 
         //Cube map
     }
@@ -152,9 +152,9 @@ export default class InsideScene {
 
 
         // Purple light
-        // let flash3 = new THREE.PointLight(0x310177, 0.5);
-        // flash3.position.set(0, 2097, -200);
-        // this._scene.add(flash3);
+        let flash3 = new THREE.PointLight(0x310177, 0.5);
+        flash3.position.set(0, 2097, -200);
+        this._scene.add(flash3);
 
         var light = new THREE.HemisphereLight(0xffffff, 0xffffff, 1);
         this._scene.add(light);

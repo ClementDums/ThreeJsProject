@@ -38,7 +38,7 @@ const PostProcessingManager = {
     },
     easeColorify() {
         const tweenCam = new TWEEN.Tween(this.colorifyPass.uniforms["color"].value) // Create a new tween that modifies 'coords'.
-            .to({r: 0,g:0,b:0}, 1000) // Move to (300, 200) in 1 second.
+            .to({r: 0, g: 0, b: 0}, 1000) // Move to (300, 200) in 1 second.
             .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.)
             .start();
     },
@@ -50,8 +50,13 @@ const PostProcessingManager = {
         this.outlinePass.pulsePeriod = 3;
     },
 
-    setOutlineObject(item) {
+    setOutlineStrength(strength) {
+        this.outlinePass.edgeStrength = strength;
+    },
+
+    setOutlineObject(item, strength) {
         this.outlineObject = item;
+        this.setOutlineStrength(strength);
         if (this.outlineObject) {
             this.outlinePass.selectedObjects = [this.outlineObject];
         } else {
