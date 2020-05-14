@@ -67,8 +67,8 @@ const SceneManager = {
 
     animateSceneModels() {
         if (this.isAnimated) {
-            var delta = this.clock.getDelta();
-            for (var i = 0; i < this.mixers.length; ++i) {
+            let delta = this.clock.getDelta();
+            for (let i = 0; i < this.mixers.length; ++i) {
                 this.mixers[i].update(delta);
             }
         }

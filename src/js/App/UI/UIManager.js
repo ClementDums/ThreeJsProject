@@ -17,6 +17,11 @@ const UIManager = {
         this.imageGallery = null;
     },
 
+    setLoadInfos(itemPercent){
+      document.getElementById("loadInfos").innerText = ""+itemPercent+"%";
+      document.getElementById("myBar").style.width = ""+itemPercent+"%";
+    },
+
     newImageGallery() {
         this.imageGallery = new ImageGallery();
     },
