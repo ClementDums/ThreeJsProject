@@ -1,0 +1,16 @@
+.image_gallery_element {
+  width: 480px;
+  height: 720px;
+  box-shadow: 0px 0px 12px rgba(255, 155, 28,0.5);
+  border: 1px solid rgba(255, 155, 28, 0.25);
+  font-family: Helvetica, sans-serif;
+  text-align: center;
+  line-height: normal;
+  cursor: default;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#image_gallery {
+    display: none;
+ }

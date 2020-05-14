@@ -3,6 +3,7 @@ import {FBXLoader} from 'three/examples/jsm/loaders/FBXLoader';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 import ScreenLoader from "./ScreenLoader";
 import SceneManager from "../App/Scene/SceneManager";
+import UIManager from "../App/UI/UIManager";
 
 
 const Loader = {
@@ -18,7 +19,8 @@ const Loader = {
             SceneManager.afterLoad();
         };
         this.manager.onProgress = function (url, itemsLoaded, itemsTotal) {
-            console.log(itemsLoaded/itemsTotal *100);
+            const itemPercent = Math.floor((itemsLoaded/itemsTotal *100));
+            UIManager.setLoadInfos(itemPercent);
             console.log('Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
         };
     },

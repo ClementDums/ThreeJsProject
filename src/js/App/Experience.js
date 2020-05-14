@@ -14,9 +14,9 @@ import {ShaderPass} from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import {FXAAShader} from 'three/examples/jsm/shaders/FXAAShader.js';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 import {GUI} from 'three/examples/jsm/libs/dat.gui.module.js';
-import VolumetricLight from './Light/VolumetricLight'
 import {GammaCorrectionShader} from "three/examples/jsm/shaders/GammaCorrectionShader";
 import ModuleManager from "./Modules/ModuleManager";
+import {CSS3DRenderer} from "three/examples/jsm/renderers/CSS3DRenderer";
 
 export default class Experience {
     constructor(isDebug) {
@@ -53,11 +53,14 @@ export default class Experience {
         this.camera = CameraManager.camera;
         this.scene.add(this.camera);
         this.container.appendChild(this.renderer.domElement);
+        //------------------------------------TEST
 
-        const light = new VolumetricLight().getMainSpotLight();
-        this.scene.add(light.spot);
-        this.scene.add(light.volumetric);
-        this.scene.add(light.spotTarget);
+        this.cssRenderer = new CSS3DRenderer();
+        this.cssRenderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('image_gallery').appendChild(this.cssRenderer.domElement);
+
+        //------------------------------------TEST
+
 
         this.gui = new GUI();
         this.guiParams = {freeCamera: false};
@@ -75,9 +78,9 @@ export default class Experience {
         window.addEventListener('resize', this.onResize.bind(this));
         window.addEventListener('mousemove', this.onDocumentMouseMove.bind(this), false);
         document.addEventListener('click', this.onDocumentMouseClick.bind(this))
-
-
     }
+
+
 
     postProcessing() {
         PostProcessingManager.init(SceneManager.scene, this.camera);
@@ -119,6 +122,8 @@ export default class Experience {
         // this.renderer.clear();
         // this.renderer.render(SceneManager.scene, this.camera);
 
+        this.cssRenderer.render(SceneManager.cssScene, this.camera);
+
         // //Main camera render
         this.renderer.setRenderTarget(null);
         this.renderer.clear();
@@ -130,6 +135,7 @@ export default class Experience {
         const width = window.innerWidth;
         const height = window.innerHeight;
         this.renderer.setSize(width, height);
+        this.cssRenderer.setSize(width, height);
         this.composer.setSize(width, height);
 
         this.camera.aspect = width / height;

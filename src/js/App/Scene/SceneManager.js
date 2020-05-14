@@ -20,7 +20,9 @@ const SceneManager = {
         this.currentScene.init();
         this.loadScene();
         this.isAnimated = false;
-        this._threeScene.add(CameraManager.camera)
+        this._threeScene.add(CameraManager.camera);
+        this.cssScene = new THREE.Scene();
+
     },
 
     loadSceneModels() {
@@ -50,7 +52,7 @@ const SceneManager = {
     /**
      * Called after scene complete loading
      */
-    afterLoad(){
+    afterLoad() {
         this.currentScene.playSounds()
     },
 
@@ -65,8 +67,8 @@ const SceneManager = {
 
     animateSceneModels() {
         if (this.isAnimated) {
-            var delta = this.clock.getDelta();
-            for (var i = 0; i < this.mixers.length; ++i) {
+            let delta = this.clock.getDelta();
+            for (let i = 0; i < this.mixers.length; ++i) {
                 this.mixers[i].update(delta);
             }
         }

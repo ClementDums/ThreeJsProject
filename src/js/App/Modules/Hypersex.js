@@ -105,7 +105,7 @@ export default class Hypersex {
             this.removeFlash = true;
             this.showObjects();
             AudioHelpers.playSound("flashbass");
-            PostProcessingManager.setVignette(1.3);
+            PostProcessingManager.setVignette(1.0);
             setTimeout(() => {
                 this.flashPhoto();
                 AudioHelpers.playSound("photo");
@@ -116,6 +116,8 @@ export default class Hypersex {
         setTimeout(() => {
             this.removeFlash = false;
             PostProcessingManager.easeColorify();
+            PostProcessingManager.setVignette(0);
+
         }, 3000);
     }
 
