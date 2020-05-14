@@ -13,6 +13,7 @@ import AudioHelpers from "../../../Helpers/Audio/AudioHelpers";
 import HeartAnimation from "../../3D/WorkOfArt/Filter/HeartAnimation";
 import ModuleManager from "../../Modules/ModuleManager";
 import HandRight from "../../3D/WorkOfArt/Hypersex/HandRight";
+import VolumetricLight from "../../Light/VolumetricLight";
 
 
 export default class InsideScene {
@@ -115,6 +116,13 @@ export default class InsideScene {
     }
 
     addLights() {
+
+        //Volumetric light
+        const volumetricLight = new VolumetricLight().getMainSpotLight();
+        this.scene.add(volumetricLight.spot);
+        this.scene.add(volumetricLight.volumetric);
+        this.scene.add(volumetricLight.spotTarget);
+
 
         let flash4 = new THREE.SpotLight(0x310177, 2, 600);
         flash4.name = "Filter light";

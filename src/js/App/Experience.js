@@ -14,7 +14,6 @@ import {ShaderPass} from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import {FXAAShader} from 'three/examples/jsm/shaders/FXAAShader.js';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 import {GUI} from 'three/examples/jsm/libs/dat.gui.module.js';
-import VolumetricLight from './Light/VolumetricLight'
 import {GammaCorrectionShader} from "three/examples/jsm/shaders/GammaCorrectionShader";
 import ModuleManager from "./Modules/ModuleManager";
 import {CSS3DRenderer} from "three/examples/jsm/renderers/CSS3DRenderer";
@@ -54,13 +53,6 @@ export default class Experience {
         this.camera = CameraManager.camera;
         this.scene.add(this.camera);
         this.container.appendChild(this.renderer.domElement);
-
-        const light = new VolumetricLight().getMainSpotLight();
-        this.scene.add(light.spot);
-        this.scene.add(light.volumetric);
-        this.scene.add(light.spotTarget);
-
-
         //------------------------------------TEST
 
         this.cssRenderer = new CSS3DRenderer();
@@ -86,8 +78,6 @@ export default class Experience {
         window.addEventListener('resize', this.onResize.bind(this));
         window.addEventListener('mousemove', this.onDocumentMouseMove.bind(this), false);
         document.addEventListener('click', this.onDocumentMouseClick.bind(this))
-
-
     }
 
 
