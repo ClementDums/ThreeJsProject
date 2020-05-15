@@ -41,7 +41,7 @@ const Cursor = {
         //             })
         //             .start();
         //     });
-        // },
+        },
 
         initParams() {
             this.outFollow.width = 70;
