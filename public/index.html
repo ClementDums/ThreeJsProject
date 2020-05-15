@@ -16,22 +16,23 @@
 <div id="game">
     <div id="image_gallery" style="pointer-events: none; position: absolute;"></div>
     <div id="loader">
+        <div class="image">
+            <img src="assets/Animation/logo.gif" alt="Logo gif">
+        </div>
         <div id="loadingInfos">
-            <div class="container">
-                <img src="assets/Animation/logo.gif" alt="">
-
+            <div class="infos">
                 <p>Chargement de l'expérience...</p>
                 <div id="myProgress">
                     <div id="myBar"></div>
                 </div>
-                <p id="loadInfos"></p>
-                <span class="percent" style="font-size:36px"></span>
+                <p id="loadInfos">0%</p>
             </div>
         </div>
     </div>
     <div id="maskText"></div>
 
     <div class="follow"></div>
+    <div class="outFollow"></div>
 
     <div id="ui">
         <header>
@@ -116,9 +117,10 @@
                 <div id="filter" class="module">
                     <div class="carousel-wrapper">
                         <div class="carousel">
-                            <span class="prev"></span>
-                            <span class="middle"></span>
-                            <span class="next"></span>
+                            <span data-ind="0" class="filterBtn active"></span>
+                            <span data-ind="1" class="filterBtn"></span>
+                            <span data-ind="2" class="filterBtn"></span>
+                            <span data-ind="3" class="filterBtn"></span>
                         </div>
                     </div>
                 </div>
@@ -126,7 +128,7 @@
                     <span id="photo"></span>
                 </div>
                 <div id="buttonContainer" class="centered">
-                    <button id="startButton" class="button hover">Démarrer</button>
+                    <p id="startButton" class="button hover">Entrer dans l'expérience</p>
                 </div>
             </div>
 
@@ -143,9 +145,9 @@
                                 src="assets/Image/icon/instagram.svg" alt=""></a></li>
                     </ul>
                     <div id="phoneIcon" class="hover">
-                        <div><p class="outPhone">Sortez le téléphone</p>
-                            <p class="inPhone">Rangez le téléphone</p></div>
-                        <img class="phoneOff" src="assets/Image/icon/phone_off.svg" alt="">
+                        <div><p class="outPhone">Prendre le téléphone</p>
+                            <p class="inPhone">Ranger le téléphone</p></div>
+                        <img class="phoneOff" src="assets/Image/icon/mobile.svg" alt="">
                         <img class="phoneOn" src="assets/Image/icon/phone_on.svg" alt="">
                     </div>
                 </div>
@@ -153,9 +155,7 @@
                 <div class="bottom visible">
                     <nav>
                         <ul>
-                            <li class="hover"><img src="assets/Image/icon/gobelins.png" alt=""></li>
                             <li id="aboutBtn" class="hover">À propos</li>
-                            <li class="hover"><a href="#">Crédits</a></li>
                         </ul>
                     </nav>
                     <p>Copyright © 2020 Pour Elles, Tous droits réservés.</p>
@@ -185,7 +185,6 @@
 
 <!--TEXT TEMPLATES-->
 <div id="textTemplate">
-
     <div id="filterStory">
         <div class="section">
             <p class="intro">Des femmes se sont battues pour que nous vivions dans un monde qui ne soit pas submergé de

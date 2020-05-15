@@ -132,9 +132,9 @@ export default class Carousel {
         let lis = this.list.querySelectorAll("li");
         lis.forEach((item) => {
             const attr = item.getAttribute('data-section');
-            item.style.background = "#432F54";
+            item.classList.remove("active");
             if (i == attr) {
-                item.style.background = "#FFF"
+                item.classList.add("active");
             }
         });
     }
@@ -170,7 +170,7 @@ export default class Carousel {
             let li = document.createElement("li");
             li.setAttribute("data-section", "" + i + "");
             if (i === 0) {
-                li.style.background = "#fff";
+                li.classList.add('active');
             }
             this.list.appendChild(li);
         }
@@ -189,25 +189,6 @@ export default class Carousel {
 
             let pContent = this.textArray[i].querySelectorAll("p");
             pContent.forEach((paragraph) => {
-                // if (paragraph.classList.contains("primary")) {
-                //     let pPrimary = document.createElement("p");
-                //     pPrimary.classList.add("title");
-                //     pPrimary.innerHTML = paragraph.innerHTML;
-                //     section.appendChild(pPrimary);
-                // }
-                //
-                // if (paragraph.classList.contains("intro")) {
-                //     let pIntro = document.createElement("p");
-                //     pIntro.classList.add("intro");
-                //     pIntro.innerHTML = paragraph.innerHTML;
-                //     section.appendChild(pIntro);
-                // }
-                // if (paragraph.classList.contains("secondary")) {
-                //     let pSecondary = document.createElement("p");
-                //     pSecondary.classList.add("secondary");
-                //     pSecondary.innerHTML = paragraph.innerHTML;
-                //     section.appendChild(pSecondary);
-                // }
 
                 section.appendChild(paragraph);
 

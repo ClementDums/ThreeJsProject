@@ -6,9 +6,12 @@ import SceneManager from "../Scene/SceneManager";
 
 export default class Filter {
     constructor() {
+        this.carousel = null;
+        this.carouselPos = 25;
         this.objects = [];
         this.currentObject = null;
         this.i = 0;
+        this.previousI = 0;
         this.isActive = false;
         this.phone = null;
         this.light = null;
@@ -36,6 +39,7 @@ export default class Filter {
     enableModuleClick() {
         RaycasterManager.isActive = true;
         RaycasterManager.identifiers.push("toFilter");
+        PostProcessingManager.setOutlineObject(this.objects[0]._object.children[0], 5);
     }
 
     /**
@@ -45,13 +49,8 @@ export default class Filter {
     clickedModule(name) {
         if (name === "toFilter") {
             RaycasterManager.identifiers.splice("toFilter");
+            PostProcessingManager.setOutlineObject(null, 0);
             this.filterModule();
-        }
-        if (name === "prev") {
-            this.setPrev();
-        }
-        if (name === "next") {
-            this.setNext();
         }
     }
 
@@ -60,21 +59,53 @@ export default class Filter {
      */
     initInteraction() {
         this.filterUi = document.querySelector("#filter");
-        this.prevFilter();
-        this.nextFilter();
-    }
-
-    prevFilter() {
-        this.filterUi.querySelector(".prev").addEventListener("click", () => {
-            this.setPrev();
+        this.carousel = this.filterUi.querySelector(".carousel");
+        this.filterBtn = this.filterUi.querySelectorAll(".filterBtn");
+        this.filterBtn.forEach((btn) => {
+            btn.addEventListener('click', this.handleBtnClick.bind(this));
         })
     }
 
-    nextFilter() {
-        this.filterUi.querySelector(".next").addEventListener("click", () => {
-            this.setNext();
-        })
+    handleBtnClick(e) {
+        this.filterBtn.forEach(btn => {
+            btn.classList.remove('active');
+        });
+        const btn = e.target;
+        btn.classList.add("active");
+        this.getIndexAttribute(btn)
     }
+
+    getIndexAttribute(btn) {
+        const ind = btn.getAttribute("data-ind");
+        this.previousI= parseInt(this.i);
+        this.i = parseInt(ind);
+        this.scroll();
+    }
+
+    scroll() {
+        if (this.previousI == this.i) {
+            return
+        }
+        if (this.previousI < this.i) {
+            this.scrollNext();
+
+        } else {
+            this.scrollPrev();
+        }
+    }
+
+    scrollPrev() {
+        this.carouselPos += 25;
+        this.carousel.style.transform = "translateX(" + this.carouselPos + "%)";
+        this.setPrev();
+    }
+
+    scrollNext() {
+        this.carouselPos -= 25;
+        this.carousel.style.transform = "translateX(" + this.carouselPos + "%)";
+        this.setPrev();
+    }
+
 
     filterModule() {
         if (!this.isActive) {
@@ -94,8 +125,6 @@ export default class Filter {
         //Animate
         SceneManager.isAnimated = true;
         document.getElementById("filter").style.display = "block"
-        this.showNext();
-        this.hidePrev();
     }
 
     animate() {
@@ -121,18 +150,14 @@ export default class Filter {
      * Go to previous filter
      */
     setPrev() {
-        this.showNext();
-        if (this.objects[this.i - 1]) {
-            this.showPrev();
-            this.setCurrentDisable();
-            this.currentObject = this.objects[this.i - 1];
-            this.setCurrentActive();
-            this.i -= 1;
-            this.heartAnim();
-            this.setVignette();
-            if (this.i === 0) {
-                this.hidePrev();
-            }
+        this.setCurrentDisable();
+        this.currentObject = this.objects[this.i];
+        this.setCurrentActive();
+        this.heartAnim();
+        this.setVignette();
+        if (this.i === this.objects.length - 1) {
+            UIManager.phoneIconOn();
+            UIManager.phoneTextIn();
         }
     }
 
@@ -140,38 +165,17 @@ export default class Filter {
      * Go to next filter
      */
     setNext() {
-        this.showPrev();
         if (this.objects[this.i + 1]) {
-            this.showNext();
             this.setCurrentDisable();
             this.currentObject = this.objects[this.i + 1];
             this.setCurrentActive();
             this.i += 1;
             this.heartAnim();
             this.setVignette();
-            if (this.i === this.objects.length - 1) {
-                this.hideNext();
-                UIManager.phoneIconOn();
-                UIManager.phoneTextIn();
-            }
+
         }
     }
 
-    hidePrev() {
-        this.filterUi.querySelector(".prev").style.display = "none";
-    }
-
-    showPrev() {
-        this.filterUi.querySelector(".prev").style.display = "block";
-    }
-
-    hideNext() {
-        this.filterUi.querySelector(".next").style.display = "none";
-    }
-
-    showNext() {
-        this.filterUi.querySelector(".next").style.display = "block";
-    }
 
     heartAnim() {
         if (this.i !== 0) {
@@ -213,7 +217,7 @@ export default class Filter {
      */
     setCurrentDisable() {
         this.currentObject.hide();
-        if (this.i !== 0) {
+        if (this.previousI !== 0) {
             this.currentObject.heartAnim.hide();
         }
     }

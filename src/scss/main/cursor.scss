@@ -2,15 +2,26 @@
   position: absolute;
   display: block;
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 12px;
+  height: 12px;
   background-color: #fff;
   top: 0;
   left: 0;
   pointer-events: none;
   z-index: 4;
   transition: background-color 0.5s;
-  &.big {
-    background-color: #A554FF;
-  }
 }
+
+.outFollow {
+  transform-style: preserve-3d;
+  position: absolute;
+  width: 70px;
+  z-index: 4;
+  height: 70px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+

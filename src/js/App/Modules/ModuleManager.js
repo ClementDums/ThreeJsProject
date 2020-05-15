@@ -22,8 +22,8 @@ const ModuleManager = {
         this.modules.push(this.filter);
     },
 
-    initHypersex(hiddenObjects, phone) {
-        this.hypersex.init(hiddenObjects, phone);
+    initHypersex(hiddenObjects, phone, statue) {
+        this.hypersex.init(hiddenObjects, phone, statue);
         this.modules.push(this.hypersex);
     },
 

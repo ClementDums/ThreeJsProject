@@ -30,6 +30,9 @@ const UIManager = {
         this.imageGallery.hideGallery();
     },
 
+    animate(){
+      Cursor.animate();
+    },
     phoneIconOn() {
         document.querySelector(".phoneOn").style.display = "block";
         document.getElementById("phoneIcon").querySelector(".outPhone").classList.add("phoneOn");
