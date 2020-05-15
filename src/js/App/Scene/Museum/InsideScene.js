@@ -145,14 +145,14 @@ export default class InsideScene {
 
 
         // //Purple light
-        // let purpleLight = new THREE.PointLight(0x310177, 1.2);
-        // purpleLight.name = "galleryTop";
-        // purpleLight.position.set(0, 1000, -4000);
-        // this._scene.add(purpleLight);
+        let purpleLight = new THREE.PointLight(0x310177, 1.2);
+        purpleLight.name = "galleryTop";
+        purpleLight.position.set(0, 1000, -4000);
+        this._scene.add(purpleLight);
 
 
         // Purple light
-        let flash3 = new THREE.PointLight(0x310177, 0.5);
+        let flash3 = new THREE.PointLight(0x310177, 1);
         flash3.position.set(0, 2097, -200);
         this._scene.add(flash3);
 

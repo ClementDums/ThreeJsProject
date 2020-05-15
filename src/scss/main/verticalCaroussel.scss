@@ -1,19 +1,21 @@
-#textTemplate{
+#textTemplate {
   display: none;
 }
-#maskText{
-  background-color: rgba(0,0,0,0.5);
+
+#maskText {
+  background-color: rgba(0, 0, 0, 0.5);
   height: 100%;
   width: 100%;
-  position:absolute;
+  position: absolute;
   visibility: hidden;
   opacity: 0;
   transition: all 1.5s;
-  &.visible{
+  &.visible {
     visibility: visible;
     opacity: 1;
   }
 }
+
 #verticalCaroussel {
   height: 100%;
   .leaveCarousel {
@@ -71,6 +73,10 @@
           height: 6px;
           width: 6px;
           border-radius: 50%;
+          transition: all 1.5s;
+          &.active {
+            background: #fff;
+          }
         }
       }
     }

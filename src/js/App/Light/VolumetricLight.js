@@ -48,7 +48,5 @@ export default class VolumetricLight {
             spot: spot,
             spotTarget: spot.target
         }
-
     }
-
 }

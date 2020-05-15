@@ -36,7 +36,7 @@ export default class Filter {
     enableModuleClick() {
         RaycasterManager.isActive = true;
         RaycasterManager.identifiers.push("toFilter");
-        PostProcessingManager.setOutlineObject(this.objects[0]._object.children[0],5);
+        PostProcessingManager.setOutlineObject(this.objects[0]._object.children[0], 5);
     }
 
     /**
@@ -46,6 +46,7 @@ export default class Filter {
     clickedModule(name) {
         if (name === "toFilter") {
             RaycasterManager.identifiers.splice("toFilter");
+            PostProcessingManager.setOutlineObject(null, 0);
             this.filterModule();
         }
         if (name === "prev") {

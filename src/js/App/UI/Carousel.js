@@ -132,9 +132,9 @@ export default class Carousel {
         let lis = this.list.querySelectorAll("li");
         lis.forEach((item) => {
             const attr = item.getAttribute('data-section');
-            item.style.background = "#432F54";
+            item.classList.remove("active");
             if (i == attr) {
-                item.style.background = "#FFF"
+                item.classList.add("active");
             }
         });
     }
@@ -170,7 +170,7 @@ export default class Carousel {
             let li = document.createElement("li");
             li.setAttribute("data-section", "" + i + "");
             if (i === 0) {
-                li.style.background = "#fff";
+                li.classList.add('active');
             }
             this.list.appendChild(li);
         }
