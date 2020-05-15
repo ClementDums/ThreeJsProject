@@ -98,6 +98,7 @@ export default class Filter {
         document.getElementById("filter").style.display = "block"
         this.showNext();
         this.hidePrev();
+        this.hideMiddle();
     }
 
     animate() {
@@ -125,6 +126,7 @@ export default class Filter {
     setPrev() {
         this.showNext();
         if (this.objects[this.i - 1]) {
+            this.showMiddle();
             this.showPrev();
             this.setCurrentDisable();
             this.currentObject = this.objects[this.i - 1];
@@ -134,6 +136,7 @@ export default class Filter {
             this.setVignette();
             if (this.i === 0) {
                 this.hidePrev();
+                this.hideMiddle();
             }
         }
     }
@@ -144,6 +147,7 @@ export default class Filter {
     setNext() {
         this.showPrev();
         if (this.objects[this.i + 1]) {
+            this.showMiddle();
             this.showNext();
             this.setCurrentDisable();
             this.currentObject = this.objects[this.i + 1];
@@ -165,6 +169,14 @@ export default class Filter {
 
     showPrev() {
         this.filterUi.querySelector(".prev").style.display = "block";
+    }
+
+    hideMiddle() {
+        this.filterUi.querySelector(".middle").style.display = "none";
+    }
+
+    showMiddle() {
+        this.filterUi.querySelector(".middle").style.display = "block";
     }
 
     hideNext() {

@@ -56,6 +56,7 @@ const StatesManager = {
                 if (order === "next") {
                     this.currentState = appStates.ENDINGWALK;
                     CameraManager.endingWalk();
+                    SceneManager.currentScene.removeVolumetric();
                     UIManager.hideNextPrev();
                     UIManager.displayMoral();
                     UIManager.hidePhoneText();

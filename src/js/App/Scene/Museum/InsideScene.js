@@ -89,7 +89,7 @@ export default class InsideScene {
         const hiddenObjects = [];
         hiddenObjects.push(this.handLeft);
         hiddenObjects.push(this.handRight);
-        ModuleManager.initHypersex(hiddenObjects, this.phone,this.hypersex);
+        ModuleManager.initHypersex(hiddenObjects, this.phone, this.hypersex);
 
         //Cube map
     }
@@ -115,13 +115,25 @@ export default class InsideScene {
         SplineManager.currentSpline.parent.visible = false;
     }
 
+    removeVolumetric(){
+        this.scene.remove(this.volumetric.volumetric);
+        this.scene.remove(this.volumetric.spot);
+        this.scene.remove(this.volumetric.spotTarget);
+    }
+
     addLights() {
 
         //Volumetric light
         const volumetricLight = new VolumetricLight().getMainSpotLight();
+        this.volumetric = volumetricLight;
         this.scene.add(volumetricLight.spot);
         this.scene.add(volumetricLight.volumetric);
         this.scene.add(volumetricLight.spotTarget);
+
+        let statue = new THREE.PointLight(0xff9b1c, 10, 500);
+        statue.name = "Dome light";
+        statue.position.set(0, 400, -200);
+        this._scene.add(statue);
 
 
         let flash4 = new THREE.SpotLight(0x310177, 2, 600);
