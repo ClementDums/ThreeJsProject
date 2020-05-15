@@ -136,9 +136,17 @@ const UIManager = {
         document.querySelector("#invitSection").classList.add('visible');
     },
 
-    toShareSection() {
+    toGallerySection() {
         StatesManager.nextState();
         document.querySelector("#invitSection").classList.remove('visible');
+        setTimeout(() => {
+            document.querySelector("#gallerySection").classList.add('visible');
+        }, 2000);
+    },
+
+    toShareSection() {
+        StatesManager.nextState();
+        document.querySelector("#gallerySection").classList.remove('visible');
         setTimeout(() => {
             document.querySelector("#shareSection").classList.add('visible');
         }, 2000);
