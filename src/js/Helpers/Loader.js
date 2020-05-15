@@ -15,7 +15,7 @@ const Loader = {
 
         };
         this.manager.onLoad = function () {
-            ScreenLoader.loadScreen(false);
+            // ScreenLoader.loadScreen(false);
             SceneManager.afterLoad();
         };
         this.manager.onProgress = function (url, itemsLoaded, itemsTotal) {
