@@ -17,9 +17,9 @@ const UIManager = {
         this.imageGallery = null;
     },
 
-    setLoadInfos(itemPercent){
-      document.getElementById("loadInfos").innerText = ""+itemPercent+"%";
-      document.getElementById("myBar").style.width = ""+itemPercent+"%";
+    setLoadInfos(itemPercent) {
+        document.getElementById("loadInfos").innerText = "" + itemPercent + "%";
+        document.getElementById("myBar").style.width = "" + itemPercent + "%";
     },
 
     newImageGallery() {
@@ -30,8 +30,8 @@ const UIManager = {
         this.imageGallery.hideGallery();
     },
 
-    animate(){
-      Cursor.animate();
+    animate() {
+        Cursor.animate();
     },
     phoneIconOn() {
         document.querySelector(".phoneOn").style.display = "block";
@@ -162,6 +162,33 @@ const UIManager = {
         document.querySelector("footer").classList.remove("up");
         document.querySelector("#about").classList.remove("visible");
         document.querySelector("footer").querySelector(".bottom").classList.add("visible");
+    },
+
+    openFullscreen() {
+        const elem = document.documentElement;
+
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) { /* Firefox */
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE/Edge */
+            elem.msRequestFullscreen();
+        }
+    },
+    closeFullscreen() {
+        const elem = document.documentElement;
+
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) { /* Firefox */
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { /* IE/Edge */
+            document.msExitFullscreen();
+        }
     }
 
 };

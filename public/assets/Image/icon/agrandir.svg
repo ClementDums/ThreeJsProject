@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="25px" viewBox="0 0 40 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>agrandir</title>
+    <desc>Created with Sketch.</desc>
+    <g id="agrandir" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="full_screen-copy" transform="translate(1.000000, 1.000000)" stroke="#FFFFFF" stroke-width="1.5">
+            <polyline id="Path-17" points="0 6 0 0 6 0"></polyline>
+            <polyline id="Path-17" transform="translate(35.000000, 3.000000) rotate(-270.000000) translate(-35.000000, -3.000000) " points="32 6 32 -1.10496945e-10 38 -1.105116e-10"></polyline>
+            <polyline id="Path-17" transform="translate(35.000000, 20.000000) rotate(-180.000000) translate(-35.000000, -20.000000) " points="32 23 32 17 38 17"></polyline>
+            <polyline id="Path-17" transform="translate(3.000000, 20.000000) rotate(-90.000000) translate(-3.000000, -20.000000) " points="2.32414088e-12 23 2.32414088e-12 17 6 17"></polyline>
+        </g>
+    </g>
+</svg>
