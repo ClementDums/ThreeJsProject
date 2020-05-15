@@ -20,7 +20,28 @@ const Cursor = {
                 this.clientX = e.clientX;
                 this.clientY = e.clientY;
             });
-        },
+        //     document.addEventListener('mousedown', e => {
+        //        new TWEEN.Tween(this.outFollow)
+        //             .to({width: 45}, 200)
+        //             .easing(TWEEN.Easing.Quadratic.Out)
+        //             .onUpdate(() => {
+        //                 this.outFollow.style.setProperty('width', '' + this.outFollow.width + 'px');
+        //                 this.outFollow.style.setProperty('height', '' + this.outFollow.width + 'px');
+        //             })
+        //             .start();
+        //     });
+        //
+        //     document.addEventListener('mouseup', e => {
+        //        new TWEEN.Tween(this.outFollow)
+        //             .to({width: 70}, 200)
+        //             .easing(TWEEN.Easing.Quadratic.Out)
+        //             .onUpdate(() => {
+        //                 this.outFollow.style.setProperty('width', '' + this.outFollow.width + 'px');
+        //                 this.outFollow.style.setProperty('height', '' + this.outFollow.width + 'px');
+        //             })
+        //             .start();
+        //     });
+        // },
 
         initParams() {
             this.outFollow.width = 70;
