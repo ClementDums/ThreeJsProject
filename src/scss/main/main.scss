@@ -32,6 +32,9 @@ html {
     font-family: Asul, sans-serif;
     color: #fff;
   }
+  a{
+    cursor: none;
+  }
   p.title {
     font-family: Calyces, sans-serif;
   }
@@ -59,15 +62,29 @@ html {
           margin: 0 auto;
           left: 0;
           right: 0;
-          bottom: 0;
+          bottom: 40px;
           .button {
             cursor: none;
             color: #fff;
             background: transparent;
             border-radius: 30px;
-            padding: 15px 35px 15px;
             font-size: 1.2em;
-            border: #fff solid 1px;
+            position: relative;
+            &:hover::after{
+              width:100%;
+            }
+            &::after {
+              transition: all 0.5s;
+              content: "";
+              position: absolute;
+              height: 1px;
+              left: 0;
+              right: 0;
+              width: 20%;
+              background-color: #fff;
+              margin: 0 auto;
+              bottom: -10px;
+            }
           }
         }
       }
