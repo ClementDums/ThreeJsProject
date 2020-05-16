@@ -189,8 +189,8 @@ export default class Carousel {
 
             let pContent = this.textArray[i].querySelectorAll("p");
             pContent.forEach((paragraph) => {
-
-                section.appendChild(paragraph);
+                 const paragraphCopy = paragraph.cloneNode(true);
+                section.appendChild(paragraphCopy);
 
             });
 

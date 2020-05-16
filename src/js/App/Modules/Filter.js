@@ -244,6 +244,12 @@ export default class Filter {
         this.currentObject = this.objects[0];
         this.setCurrentActive();
         this.setVignette();
+        this.resetCarousel();
+    }
+
+    resetCarousel(){
+        this.carouselPos = 25;
+        this.carousel.style.transform = "translateX(" + this.carouselPos + "%)";
     }
 };
 
