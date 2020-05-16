@@ -109,6 +109,7 @@ export default class Experience {
     render() {
         //Animate Scene
         SceneManager.animate();
+        UIManager.animate();
         this.currentObjectClicked = RaycasterManager.getTouchedElement(this._mouse, CameraManager.camera, this.scene);
         //Render
         //Phone camera render

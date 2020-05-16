@@ -56,6 +56,7 @@ const StatesManager = {
                 if (order === "next") {
                     this.currentState = appStates.ENDINGWALK;
                     CameraManager.endingWalk();
+                    SceneManager.currentScene.removeVolumetric();
                     UIManager.hideNextPrev();
                     UIManager.displayMoral();
                     UIManager.hidePhoneText();
@@ -69,14 +70,17 @@ const StatesManager = {
                 break;
 
             case appStates.ENDINGWALK:
-                this.currentState = appStates.IMAGEGALLERY;
+                this.currentState = appStates.INVITESECTION;
                 break;
 
-            case appStates.IMAGEGALLERY:
-                this.currentState = appStates.SHARESECTION;
-                UIManager.showMask();
+            case appStates.INVITESECTION:
+                this.currentState = appStates.IMAGEGALLERY;
                 UIManager.hideMoral();
                 UIManager.displayEndText();
+                break;
+
+                case appStates.IMAGEGALLERY:
+                this.currentState = appStates.SHARESECTION;
                 setTimeout(() => {
                     UIManager.newImageGallery();
                 }, 500);

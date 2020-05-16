@@ -31,13 +31,14 @@ footer {
       left: 0;
       right: 0;
       display: flex;
+      position: relative;
       justify-content: space-between;
       align-items: flex-end;
       #phoneIcon {
         position: absolute;
         right: 60px;
         display: flex;
-        bottom: 70px;
+        bottom: 0;
         width: 100px;
         align-items: center;
         justify-content: center;
@@ -79,7 +80,13 @@ footer {
 
       li {
         height: 20px;
-        margin-right: 10px;
+        margin-right: 15px;
+      }
+      .fullscreen {
+        display: none;
+        &.visible {
+          display: block;
+        }
       }
       .sound {
         display: none;

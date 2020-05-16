@@ -13,16 +13,19 @@ export default class Hypersex {
         this.removeFlash = false;
         this.light = null;
         this.isCompleted = false;
+        this.statue = null;
     }
 
     /**
      * Init hidden objects and interaction
      * @param objects
      * @param phone
+     * @param statue
      */
-    init(objects, phone) {
+    init(objects, phone, statue) {
         this.hiddenObjects = objects;
         this.phone = phone;
+        this.statue = statue;
         AudioHelpers.addSound("photo", './assets/Audio/photo.mp3', false);
         AudioHelpers.addSound("flashbass", './assets/Audio/flash_bass_3.mp3', false);
         this.initInteraction();
@@ -46,6 +49,7 @@ export default class Hypersex {
     enableModuleClick() {
         RaycasterManager.isActive = true;
         RaycasterManager.identifiers.push("toHypersex");
+        PostProcessingManager.setOutlineObject(this.statue._object.children[0], 5);
     }
 
     /**
@@ -55,6 +59,7 @@ export default class Hypersex {
     clickedModule(name) {
         if (name === "toHypersex") {
             RaycasterManager.identifiers.splice("toHypersex");
+            PostProcessingManager.setOutlineObject(null, 0);
             this.hypersexModule();
         }
     }
@@ -95,28 +100,32 @@ export default class Hypersex {
      * Flash effect with colorify shader.0
      */
     flashPhoto() {
-        this.flashColor = 0.5;
         PostProcessingManager.colorifyPass.uniforms["color"].value.setRGB(this.flashColor, this.flashColor, this.flashColor);
     }
 
     takePhoto() {
+        this.flashColor = 0.2;
+
         this.flashPhoto();
         setTimeout(() => {
             this.removeFlash = true;
-            this.showObjects();
             AudioHelpers.playSound("flashbass");
+            AudioHelpers.playSound("photo");
             PostProcessingManager.setVignette(1.0);
             setTimeout(() => {
+                this.flashColor = 0.5;
                 this.flashPhoto();
-                AudioHelpers.playSound("photo");
-                this.hideObjects()
-            }, 600);
-        }, 600);
+                this.showObjects();
+                setTimeout(() => {
+                    this.hideObjects();
+                    this.removeFlash = false;
+                    PostProcessingManager.easeColorify();
+                    PostProcessingManager.setVignette(0);
+                }, 400)
+            }, 400);
+        }, 800);
 
         setTimeout(() => {
-            this.removeFlash = false;
-            PostProcessingManager.easeColorify();
-            PostProcessingManager.setVignette(0);
 
         }, 3000);
     }

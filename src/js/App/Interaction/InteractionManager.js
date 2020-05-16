@@ -17,6 +17,7 @@ const InteractionManager = {
         this.initSound();
         this.initEndButtons();
         this.initAbout();
+        this.initFullScreen();
     },
 
     /**
@@ -65,9 +66,34 @@ const InteractionManager = {
             this.el.querySelector("#soundOn").classList.add("visible");
         });
     },
+    /**
+     * Fullscreen control
+     */
+    initFullScreen() {
+        this.el.querySelector("#fullscreenOn").addEventListener("click", () => {
+            UIManager.openFullscreen();
+            this.el.querySelector("#fullscreenOff").classList.add("visible");
+            this.el.querySelector("#fullscreenOn").classList.remove("visible");
+        });
+
+        this.el.querySelector("#fullscreenOff").addEventListener("click", () => {
+            UIManager.closeFullscreen();
+            this.el.querySelector("#fullscreenOff").classList.remove("visible");
+            this.el.querySelector("#fullscreenOn").classList.add("visible");
+        });
+        document.addEventListener('fullscreenchange', e => {
+            if (!document.fullscreenElement) {
+                this.el.querySelector("#fullscreenOff").classList.remove("visible");
+                this.el.querySelector("#fullscreenOn").classList.add("visible");
+            }
+        });
+
+
+    },
 
 
     initEndButtons() {
+        this.el.querySelector("#toGallerySection").addEventListener("click", UIManager.toGallerySection);
         this.el.querySelector("#toShareSection").addEventListener("click", UIManager.toShareSection);
     },
     initAbout() {

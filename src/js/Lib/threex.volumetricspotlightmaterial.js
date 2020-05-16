@@ -69,7 +69,7 @@ export default function(){
 			},
 			lightColor	: {
 				type	: "c",
-				value	: new THREE.Color('orange')
+				value	: new THREE.Color(0xC93E02)
 			},
 		},
 		vertexShader	: vertexShader,
