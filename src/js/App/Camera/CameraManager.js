@@ -92,7 +92,7 @@ const CameraManager = {
         },
 
         toDiversity() {
-            this.cameraMovementManager.moveTo(-440, -5100)
+            this.cameraMovementManager.moveTo(-330, -5200)
         },
 
         hallWalk() {

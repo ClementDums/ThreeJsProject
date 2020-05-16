@@ -14,6 +14,7 @@ import HeartAnimation from "../../3D/WorkOfArt/Filter/HeartAnimation";
 import ModuleManager from "../../Modules/ModuleManager";
 import HandRight from "../../3D/WorkOfArt/Hypersex/HandRight";
 import VolumetricLight from "../../Light/VolumetricLight";
+import DiversityWorkOfArt from "../../3D/WorkOfArt/Diversity/DiversityWorkOfArt";
 
 
 export default class InsideScene {
@@ -49,6 +50,8 @@ export default class InsideScene {
         //Hypersex
         this.hypersex = new HypersexWorkOfArt(new THREE.Vector3(-530, 0, -4500), "toHypersex");
 
+        //Diversity
+        this.diversity = new DiversityWorkOfArt(new THREE.Vector3(-530,0,-5200), "toDiversity");
 
         this.handLeft = new HandLeft(new THREE.Vector3(-650, 138, -4400), "handLeft");
         this.handRight = new HandRight(new THREE.Vector3(-650, 275, -4620), "handRight");
@@ -86,6 +89,10 @@ export default class InsideScene {
         this.objects.push(this.handLeft);
         this.objects.push(this.handRight);
 
+        //Diversity
+        ModuleManager.initDiversity(this.phone, this.diversity);
+        this.objects.push(this.diversity);
+
         const hiddenObjects = [];
         hiddenObjects.push(this.handLeft);
         hiddenObjects.push(this.handRight);
@@ -115,7 +122,7 @@ export default class InsideScene {
         SplineManager.currentSpline.parent.visible = false;
     }
 
-    removeVolumetric(){
+    removeVolumetric() {
         this.scene.remove(this.volumetric.volumetric);
         this.scene.remove(this.volumetric.spot);
         this.scene.remove(this.volumetric.spotTarget);
@@ -155,6 +162,16 @@ export default class InsideScene {
         this._scene.add(hypersex.target);
         ModuleManager.setHypersexLight(hypersex);
 
+        let diversity = new THREE.SpotLight(0x310177, 2, 600);
+        diversity.name = "Diversity light";
+        diversity.target.position.set(-530, 200, -5200);
+        diversity.position.set(-450, 0, -5200);
+
+        diversity.visible = false;
+        this._scene.add(diversity);
+        this._scene.add(diversity.target);
+        ModuleManager.setDiversityLight(diversity);
+
 
         // //Purple light
         let purpleLight = new THREE.PointLight(0x310177, 1.2);
@@ -171,10 +188,10 @@ export default class InsideScene {
         var light = new THREE.HemisphereLight(0xffffff, 0xffffff, 1);
         this._scene.add(light);
 
-        // let purpleLight2 = new THREE.PointLight(0x310177, 0.5);
-        // purpleLight2.name = "galleryBottom";
-        // purpleLight2.position.set(0, 300, -4000);
-        // this._scene.add(purpleLight2);
+        let purpleLight2 = new THREE.PointLight(0x310177, 0.5);
+        purpleLight2.name = "galleryBottom";
+        purpleLight2.position.set(0, 300, -4000);
+        this._scene.add(purpleLight2);
     }
 
     addSkybox() {

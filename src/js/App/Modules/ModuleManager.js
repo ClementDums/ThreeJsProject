@@ -1,6 +1,7 @@
 import appStates from '../../Helpers/ExperienceStates';
 import Filter from "./Filter";
 import Hypersex from "./Hypersex";
+import Diversity from "./Diversity";
 import UIManager from "../UI/UIManager";
 
 const ModuleManager = {
@@ -8,6 +9,7 @@ const ModuleManager = {
         this.currentModule = null;
         this.filter = new Filter();
         this.hypersex = new Hypersex();
+        this.diversity = new Diversity();
         this.modules = [];
         this.phone = null;
         this.isOnPhone = false;
@@ -27,12 +29,23 @@ const ModuleManager = {
         this.modules.push(this.hypersex);
     },
 
+    initDiversity(phone, diversity) {
+        this.diversity.init(phone, diversity);
+        this.modules.push(this.diversity);
+    },
+
     setFilterLight(light) {
         this.filter.setLight(light);
     },
+
     setHypersexLight(light) {
         this.hypersex.setLight(light);
     },
+
+    setDiversityLight(light) {
+        this.diversity.setLight(light);
+    },
+
     showPhone() {
         this.phone.show();
         this.phone.setCameraScreenTexture();
@@ -86,6 +99,9 @@ const ModuleManager = {
 
             case appStates.HYPERSEX :
                 this.currentModule = this.hypersex;
+                break;
+            case appStates.DIVERSITY :
+                this.currentModule = this.diversity;
                 break;
         }
         this.startModule()
