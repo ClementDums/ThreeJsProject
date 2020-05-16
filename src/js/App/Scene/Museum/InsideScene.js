@@ -14,6 +14,8 @@ import HeartAnimation from "../../3D/WorkOfArt/Filter/HeartAnimation";
 import ModuleManager from "../../Modules/ModuleManager";
 import HandRight from "../../3D/WorkOfArt/Hypersex/HandRight";
 import VolumetricLight from "../../Light/VolumetricLight";
+import ParticlesObject from "../../3D/ParticlesObject";
+import ParticlesManager from "../../Particles/ParticlesManager";
 
 
 export default class InsideScene {
@@ -49,6 +51,17 @@ export default class InsideScene {
         //Hypersex
         this.hypersex = new HypersexWorkOfArt(new THREE.Vector3(-530, 0, -4500), "toHypersex");
 
+        //Particles
+        this.bear = new ParticlesObject(new THREE.Vector3(0, 190, 2000), './assets/3DModels/Particles/bear.obj')
+        this.heel = new ParticlesObject(new THREE.Vector3(0, 190, 2000), './assets/3DModels/Particles/heel.obj')
+        this.lollipop = new ParticlesObject(new THREE.Vector3(0, 190, 2000), './assets/3DModels/Particles/lollipop.obj')
+        this.mirror = new ParticlesObject(new THREE.Vector3(0, 190, 2000), './assets/3DModels/Particles/mirror.obj')
+        this.pills = new ParticlesObject(new THREE.Vector3(0, 190, 2000), './assets/3DModels/Particles/pills.obj')
+        this.syringe = new ParticlesObject(new THREE.Vector3(0, 190, 2000), './assets/3DModels/Particles/syringe.obj')
+
+        //Particles system
+        this.particlesExperience1 = new ParticlesManager();
+        this.particlesExperience2 = new ParticlesManager();
 
         this.handLeft = new HandLeft(new THREE.Vector3(-650, 138, -4400), "handLeft");
         this.handRight = new HandRight(new THREE.Vector3(-650, 275, -4620), "handRight");
@@ -63,6 +76,15 @@ export default class InsideScene {
         this.addSounds();
 
         this._scene.fog = this.fog;
+
+        //Particles
+        this.objects.push(this.bear);
+        this.objects.push(this.heel);
+        this.objects.push(this.lollipop);
+        this.objects.push(this.mirror);
+        this.objects.push(this.pills);
+        this.objects.push(this.syringe);
+
 
         //Pantheon
         this.objects.push(this.pantheon);
@@ -92,6 +114,56 @@ export default class InsideScene {
         ModuleManager.initHypersex(hiddenObjects, this.phone);
 
         //Cube map
+    }
+
+    addParticlesObject() {
+        let particlesDataExperience1 = {
+            scale: 5,
+            size: 2,
+            position: {x: -500, y: 200, z: -4080},
+            objects: [
+                {
+                    object: this.mirror._object,
+                    name: 'mirror_particle_object',
+                    points: null
+                },
+                {
+                    object: this.pills._object,
+                    name: 'pills_particle_object',
+                    points: null
+                },
+                {
+                    object: this.syringe._object,
+                    name: 'syringe_particle_object',
+                    points: null
+                }
+            ]
+        };
+        this.particlesExperience1.init(particlesDataExperience1)
+
+        let particlesDataExperience2 = {
+            scale: 5,
+            size: 2,
+            position: {x: -500, y: 200, z: -4320},
+            objects: [
+                {
+                    object: this.bear._object,
+                        name: 'bear_particle_object',
+                    points: null
+                },
+                {
+                    object: this.heel._object,
+                        name: 'heel_particle_object',
+                    points: null
+                },
+                {
+                    object: this.lollipop._object,
+                        name: 'lollipop_particle_object',
+                    points: null
+                },
+            ]
+        };
+        this.particlesExperience2.init(particlesDataExperience2)
     }
 
     addSounds() {

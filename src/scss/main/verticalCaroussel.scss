@@ -80,6 +80,12 @@
       width: 100%;
       position: absolute;
       section {
+
+
+        &.half {
+          width: 50%;
+        }
+
         height: 100%;
         width: 100%;
         font-size: 2em;
@@ -91,18 +97,29 @@
         p {
           width: 70%;
           margin: 0 auto;
-          text-align: center;
           transform: translate(0, 30px);
           transition: opacity 3s, transform 1.5s;
           opacity: 0;
+
+          &.primary {
+            margin-bottom: 1.5em;
+            font-size: 1.5em;
+            display: inline-block;
+            position: relative;
+            color: white;
+            font-weight: bold;
+          }
+
 
           &.title {
             letter-spacing: 3px;
             margin-bottom: 30px;
           }
           &.secondary {
-            font-size: 0.5em;
+            font-size: 0.6em;
             letter-spacing: 1px;
+            margin-bottom: 1.6em;
+            line-height: 1.5em;
           }
           &.intro {
             font-size: 0.5em;
