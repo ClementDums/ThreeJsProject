@@ -62,8 +62,8 @@ export default class Diversity {
 
 
         let firstBubble = new CSS3DObject(element1);
-        firstBubble.position.x = -10000;
-        firstBubble.position.y = 3000;
+        firstBubble.position.x = -12000;
+        firstBubble.position.y = 3030;
         firstBubble.position.z = -4550;
         firstBubble.rotation.y = Math.PI / 2;
         SceneManager.cssScene.add(firstBubble);
@@ -74,9 +74,9 @@ export default class Diversity {
         this.likeBubbles.push(element2);
 
         let secondBubble = new CSS3DObject(element2);
-        secondBubble.position.x = -530;
-        secondBubble.position.y = 245;
-        secondBubble.position.z = -5165;
+        secondBubble.position.x = -12000;
+        secondBubble.position.y = 3550;
+        secondBubble.position.z = -2930;
         secondBubble.rotation.y = Math.PI / 2;
         SceneManager.cssScene.add(secondBubble);
 
@@ -87,9 +87,9 @@ export default class Diversity {
 
 
         let thirdBubble = new CSS3DObject(element3);
-        thirdBubble.position.x = -530;
-        thirdBubble.position.y = 245;
-        thirdBubble.position.z = -5218;
+        thirdBubble.position.x = -12000;
+        thirdBubble.position.y = 3550;
+        thirdBubble.position.z = -6200;
         thirdBubble.rotation.y = Math.PI / 2;
         SceneManager.cssScene.add(thirdBubble);
 
@@ -101,9 +101,9 @@ export default class Diversity {
 
         SceneManager.cssScene.add(firstBubble);
         let fourthBubble = new CSS3DObject(element4);
-        fourthBubble.position.x = -530;
-        fourthBubble.position.y = 263;
-        fourthBubble.position.z = -5171;
+        fourthBubble.position.x = -12000;
+        fourthBubble.position.y = 4220;
+        fourthBubble.position.z = -4085;
         fourthBubble.rotation.y = Math.PI / 2;
         SceneManager.cssScene.add(fourthBubble);
 
@@ -114,9 +114,9 @@ export default class Diversity {
 
         SceneManager.cssScene.add(firstBubble);
         let fifthBubble = new CSS3DObject(element5);
-        fifthBubble.position.x = -530;
-        fifthBubble.position.y = 263;
-        fifthBubble.position.z = -5236;
+        fifthBubble.position.x = -12000;
+        fifthBubble.position.y = 4220;
+        fifthBubble.position.z = -7480;
         fifthBubble.rotation.y = Math.PI / 2;
         SceneManager.cssScene.add(fifthBubble);
         this.addBubbleContent();

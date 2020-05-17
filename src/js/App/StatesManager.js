@@ -3,6 +3,7 @@ import SceneManager from './Scene/SceneManager'
 import CameraManager from "./Camera/CameraManager";
 import UIManager from "./UI/UIManager";
 import ModuleManager from "./Modules/ModuleManager";
+import PostProcessingManager from "./PostProcessing/PostProcessingManager";
 
 const StatesManager = {
 
@@ -19,11 +20,25 @@ const StatesManager = {
     },
 
     newAction(order) {
+        //TODO: Clean this function
         switch (this.currentState) {
             case appStates.LANDING:
                 this.currentState = appStates.HALLWALK;
-                CameraManager.hallWalk();
-                UIManager.displayHomeText();
+                setTimeout(() => {
+                    UIManager.setBlackFade();
+                    setTimeout(() => {
+                        CameraManager.mainCamera.isRotating = false;
+                        CameraManager.mainCamera.setupHallPosition();
+
+                        setTimeout(() => {
+                            CameraManager.camera.rotation.set(0, 0, 0);
+                            UIManager.removeBlackFade();
+                            CameraManager.hallWalk();
+                            UIManager.displayHomeText();
+                        }, 1500)
+
+                    }, 700);
+                }, 1500);
                 break;
 
             case appStates.HALLWALK:
@@ -80,7 +95,7 @@ const StatesManager = {
                 UIManager.displayEndText();
                 break;
 
-                case appStates.IMAGEGALLERY:
+            case appStates.IMAGEGALLERY:
                 this.currentState = appStates.SHARESECTION;
                 setTimeout(() => {
                     UIManager.newImageGallery();

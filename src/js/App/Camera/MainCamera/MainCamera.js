@@ -6,13 +6,9 @@ export default class MainCamera {
     constructor() {
         this._camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10000);
         this._camera.position.x = 0;
-        this._camera.position.y = 190;
-        this._camera.position.z = 2400;
-
-        // this._camera.position.x = 0;
-        // this._camera.position.y = 190;
-        // this._camera.position.z = -5508;
-
+        this._camera.position.y = 350;
+        this._camera.position.z = 1100;
+        this.isRotating = true;
         this._camera.layers.enable(1);
         this.flashlight = new Flashlight();
         this.init();
@@ -21,6 +17,11 @@ export default class MainCamera {
 
     init() {
         this._camera.layers.disable(3);
+    }
+
+    setupHallPosition() {
+        this._camera.position.y = 190;
+        this._camera.position.z = 2400;
     }
 
     setLeft() {

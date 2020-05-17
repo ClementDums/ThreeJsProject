@@ -25,8 +25,7 @@ const InteractionManager = {
      */
     landingClick() {
         this.el.querySelector("#startButton").addEventListener("click", () => {
-            this.el.querySelector("#buttonContainer").style.display = "none";
-            this.el.querySelector("#buttonContainer").style.display = "none";
+            this.el.querySelector("#buttonContainer").classList.remove("visible");
             StatesManager.nextState();
         })
     },

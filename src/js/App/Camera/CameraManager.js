@@ -14,6 +14,7 @@ const CameraManager = {
             this.mainCamera = new MainCamera();
             this._camera = this.mainCamera.camera;
 
+
             this._phoneCamera = new PhoneCamera();
             this.cameraMovementManager = new CameraMovement(this.mainCamera.camera, this);
             this.cameraLockManager = new CameraLock(this);
