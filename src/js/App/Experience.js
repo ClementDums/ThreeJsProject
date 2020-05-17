@@ -61,7 +61,6 @@ export default class Experience {
 
         //------------------------------------TEST
 
-
         this.gui = new GUI();
         this.guiParams = {freeCamera: false};
         //hide / show free camera
@@ -103,6 +102,11 @@ export default class Experience {
         this.render();
         requestAnimationFrame(this._animate.bind(this));
         TWEEN.update()
+        if (CameraManager.mainCamera.isRotating) {
+            this.camera.position.x = this.camera.position.x * Math.cos(0.002) - this.camera.position.z * Math.sin(0.002);
+            this.camera.position.z = this.camera.position.z * Math.cos(0.002) + this.camera.position.x * Math.sin(0.002);
+            this.camera.lookAt(new THREE.Vector3(0, 350, 0))
+        }
     }
 
     render() {

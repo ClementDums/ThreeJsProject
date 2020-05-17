@@ -22,6 +22,14 @@ const UIManager = {
         document.getElementById("myBar").style.width = "" + itemPercent + "%";
     },
 
+    setBlackFade() {
+        document.getElementById("blackMask").classList.add("visible");
+    },
+
+    removeBlackFade() {
+        document.getElementById("blackMask").classList.remove("visible");
+    },
+
     newImageGallery() {
         this.imageGallery = new ImageGallery();
     },
