@@ -25,6 +25,11 @@ export default class Carousel {
                 1: 'heel',
                 2: 'bear',
                 3: 'lollipop',
+            },
+            'diversityStory': {
+                1: 'male',
+                2: 'like',
+                3: 'diamond',
             }
         }
     }
@@ -133,6 +138,9 @@ export default class Carousel {
         }
         else if(this.textTemplate.id === 'hypersexStory') {
             return SceneManager.currentScene.particlesExperience2;
+        }
+        else if(this.textTemplate.id === 'diversityStory') {
+            return SceneManager.currentScene.particlesExperience3;
         }
         else {
             return SceneManager.currentScene.particlesExperience1;

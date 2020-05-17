@@ -93,8 +93,8 @@
           opacity: 0;
 
           &.primary {
-            margin-bottom: 1.5em;
-            font-size: 1.5em;
+            margin-bottom: 30px;
+            font-size: 2vw;
             display: inline-block;
             position: relative;
             color: white;
@@ -113,9 +113,10 @@
             line-height: 1.5em;
           }
           &.intro {
-            font-size: 0.5em;
+            font-size: 2vw;
             letter-spacing: 1px;
             margin-bottom: 30px;
+            text-align: center;
           }
           &.visible {
             opacity: 1;
