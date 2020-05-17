@@ -13,6 +13,7 @@ const SceneManager = {
     setupScene() {
 
         this._threeScene = this.currentScene.scene;
+        this.cssScene = new THREE.Scene();
         this._sceneObjects = this.currentScene.objects;
         this.mixers = [];
         this.clock = new THREE.Clock();
@@ -21,7 +22,7 @@ const SceneManager = {
         this.loadScene();
         this.isAnimated = false;
         this._threeScene.add(CameraManager.camera);
-        this.cssScene = new THREE.Scene();
+        this.isCssRendering = true;
 
     },
 

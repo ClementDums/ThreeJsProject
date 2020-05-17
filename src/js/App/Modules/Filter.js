@@ -161,22 +161,6 @@ export default class Filter {
         }
     }
 
-    /**
-     * Go to next filter
-     */
-    setNext() {
-        if (this.objects[this.i + 1]) {
-            this.setCurrentDisable();
-            this.currentObject = this.objects[this.i + 1];
-            this.setCurrentActive();
-            this.i += 1;
-            this.heartAnim();
-            this.setVignette();
-
-        }
-    }
-
-
     heartAnim() {
         if (this.i !== 0) {
             this.currentObject.heartAnim.show();
@@ -244,6 +228,12 @@ export default class Filter {
         this.currentObject = this.objects[0];
         this.setCurrentActive();
         this.setVignette();
+        this.resetCarousel();
+    }
+
+    resetCarousel(){
+        this.carouselPos = 25;
+        this.carousel.style.transform = "translateX(" + this.carouselPos + "%)";
     }
 };
 

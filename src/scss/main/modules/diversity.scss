@@ -1,0 +1,60 @@
+#diversity {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  #like {
+    width: 110px;
+    height: 110px;
+    display: flex;
+    justify-content: center;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 50%;
+    border: 2px solid #fff;
+    bottom: 0;
+    transition: transform .5s, opacity .5s, z-index .5s;
+    img {
+      width: 60px;
+    }
+  }
+}
+
+.likeBubble {
+  border-radius: 0.4em;
+  background: #FF004E;
+  color: #fff;
+  position: relative;
+  padding: 2px 4px;
+  font-size: 0.4em;
+  transition: all 1.5s;
+  opacity: 0;
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.9);
+  transform: translateY(-15px);
+  display: flex;
+  i {
+    margin-right: 2px;
+    margin-left: 1px;
+  }
+  p {
+    margin: 0
+  }
+  &.visible {
+    opacity: 1;
+  }
+  &:after {
+    content:"";
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 0;
+    height: 0;
+    border: 4px solid transparent;
+    border-top-color: #FF004E;
+  }
+}

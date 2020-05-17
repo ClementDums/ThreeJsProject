@@ -13,6 +13,8 @@ export default class Phone {
         this._isHud = true;
         this.screen = null;
         this.isZoomed = false;
+        this.texture = null;
+
     }
 
     load() {
@@ -30,6 +32,8 @@ export default class Phone {
         this.setBlackScreenTexture();
         this._object.layers.set(1);
         this._object.visible = false;
+        this.texture = new THREE.TextureLoader().load('./assets/Image/404error.jpg');
+        console.log(this.texture);
     }
 
     /**
@@ -84,7 +88,7 @@ export default class Phone {
      * @param x
      */
     zoomPhone(x) {
-        this.isZoomed= true;
+        this.isZoomed = true;
         CameraManager.phoneCamera.zoomInFilter(x)
     }
 
@@ -120,5 +124,21 @@ export default class Phone {
             metalness: 0.5,
         });
         this.screen.material = material2;
+    }
+
+    /**
+     * Set 404 screen
+     */
+    set404Texture() {
+        this._object.traverse((child) => {
+            child.layers.set(1);
+            if (child.name === "ECRAN") {
+                this.screen = child.children[0];
+            }
+        });
+
+        let material = new THREE.MeshBasicMaterial( { map: this.texture } );
+
+        this.screen.material = material;
     }
 }

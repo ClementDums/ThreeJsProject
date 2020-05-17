@@ -32,7 +32,7 @@ html {
     font-family: Asul, sans-serif;
     color: #fff;
   }
-  a,button{
+  a, button {
     cursor: none;
   }
   p.title {
@@ -70,9 +70,14 @@ html {
             border-radius: 30px;
             font-size: 1.2em;
             position: relative;
-            padding:8px;
-            &:hover::after{
-              width:100%;
+            padding: 8px;
+            opacity: 0.9;
+            transition: all 0.5s;
+            &:hover::after {
+              width: 100%;
+            }
+            &:hover {
+              opacity: 1;
             }
             &::after {
               transition: all 0.5s;

@@ -4,7 +4,7 @@ import PerfHelper from "../../../Helpers/Performance/PerfHelper";
 export default class Pantheon {
     constructor(position) {
         this._position = position;
-        this._path = './assets/3DModels/Pantheon/Pantheon_V16.glb';
+        this._path = './assets/3DModels/Pantheon/Pantheon_V18.glb';
         this._object = null;
         this._isAnimated = false;
         this.hasPerf = true;
@@ -16,9 +16,9 @@ export default class Pantheon {
 
     setup() {
         this._object.name = "Pantheon";
-
         this._object.position.set(this._position.x, this._position.y, this._position.z);
-        const material = this._object.children[0].material;
+                //this.perf()
+
     }
 
     perf() {

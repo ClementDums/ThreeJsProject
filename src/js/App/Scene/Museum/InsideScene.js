@@ -14,8 +14,10 @@ import HeartAnimation from "../../3D/WorkOfArt/Filter/HeartAnimation";
 import ModuleManager from "../../Modules/ModuleManager";
 import HandRight from "../../3D/WorkOfArt/Hypersex/HandRight";
 import VolumetricLight from "../../Light/VolumetricLight";
+import DiversityWorkOfArt from "../../3D/WorkOfArt/Diversity/DiversityWorkOfArt";
 import ParticlesObject from "../../3D/ParticlesObject";
 import ParticlesManager from "../../Particles/ParticlesManager";
+
 
 
 export default class InsideScene {
@@ -50,6 +52,15 @@ export default class InsideScene {
 
         //Hypersex
         this.hypersex = new HypersexWorkOfArt(new THREE.Vector3(-530, 0, -4500), "toHypersex");
+
+        //Diversity
+        this.diversity = new DiversityWorkOfArt(new THREE.Vector3(-530, 0, -5200), "toDiversity",true,0);
+
+        this.diversity1 = new DiversityWorkOfArt(new THREE.Vector3(-550, 0, -5172), "1",false,3);
+        this.diversity2 = new DiversityWorkOfArt(new THREE.Vector3(-550, 0, -5235), "2",false,3);
+        this.diversity3 = new DiversityWorkOfArt(new THREE.Vector3(-635, 36, -5165), "3",false,3);
+        this.diversity4 = new DiversityWorkOfArt(new THREE.Vector3(-610, 36, -5215), "4",false,3);
+        this.diversity5 = new DiversityWorkOfArt(new THREE.Vector3(-610, 36, -5265), "5",false,3);
 
         //Particles
         this.bear = new ParticlesObject(new THREE.Vector3(0, 190, 2000), './assets/3DModels/Particles/bear.obj')
@@ -107,6 +118,17 @@ export default class InsideScene {
         this.objects.push(this.hypersex);
         this.objects.push(this.handLeft);
         this.objects.push(this.handRight);
+
+        //Diversity
+        const hiddenDiversity = [this.diversity1, this.diversity2, this.diversity3, this.diversity4, this.diversity5];
+
+        ModuleManager.initDiversity(this.phone, this.diversity, hiddenDiversity);
+        this.objects.push(this.diversity);
+        this.objects.push(this.diversity1);
+        this.objects.push(this.diversity2);
+        this.objects.push(this.diversity3);
+        this.objects.push(this.diversity4);
+        this.objects.push(this.diversity5);
 
         const hiddenObjects = [];
         hiddenObjects.push(this.handLeft);
@@ -187,7 +209,7 @@ export default class InsideScene {
         SplineManager.currentSpline.parent.visible = false;
     }
 
-    removeVolumetric(){
+    removeVolumetric() {
         this.scene.remove(this.volumetric.volumetric);
         this.scene.remove(this.volumetric.spot);
         this.scene.remove(this.volumetric.spotTarget);
@@ -227,6 +249,16 @@ export default class InsideScene {
         this._scene.add(hypersex.target);
         ModuleManager.setHypersexLight(hypersex);
 
+        let diversity = new THREE.SpotLight(0x310177, 2, 600);
+        diversity.name = "Diversity light";
+        diversity.target.position.set(-530, 200, -5200);
+        diversity.position.set(-450, 0, -5200);
+
+        diversity.visible = false;
+        this._scene.add(diversity);
+        this._scene.add(diversity.target);
+        ModuleManager.setDiversityLight(diversity);
+
 
         // //Purple light
         let purpleLight = new THREE.PointLight(0x310177, 1.2);
@@ -243,10 +275,10 @@ export default class InsideScene {
         var light = new THREE.HemisphereLight(0xffffff, 0xffffff, 1);
         this._scene.add(light);
 
-        // let purpleLight2 = new THREE.PointLight(0x310177, 0.5);
-        // purpleLight2.name = "galleryBottom";
-        // purpleLight2.position.set(0, 300, -4000);
-        // this._scene.add(purpleLight2);
+        let purpleLight2 = new THREE.PointLight(0x310177, 0.5);
+        purpleLight2.name = "galleryBottom";
+        purpleLight2.position.set(0, 300, -4000);
+        this._scene.add(purpleLight2);
     }
 
     addSkybox() {

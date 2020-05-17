@@ -112,6 +112,9 @@ const InteractionManager = {
             if (name === "toHypersex") {
                 ModuleManager.moduleClick(name);
             }
+            if (name === "toDiversity") {
+                ModuleManager.moduleClick(name);
+            }
         }
     }
 

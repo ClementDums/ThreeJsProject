@@ -3,7 +3,7 @@ import PostProcessingManager from '../PostProcessing/PostProcessingManager'
 
 const RaycasterManager = {
     _raycaster: new THREE.Raycaster(),
-    isActive: true,
+    isActive: false,
     identifiers: [],
     INTERSECTED: null,
 
@@ -16,7 +16,7 @@ const RaycasterManager = {
                 if (this.INTERSECTED !== intersects[0].object) {
                     this.INTERSECTED = intersects[0].object;
                     if (this.identifiers.includes(this.INTERSECTED.name)) {
-                        PostProcessingManager.setOutlineObject(this.INTERSECTED,10)
+                        PostProcessingManager.setOutlineObject(this.INTERSECTED, 10)
 
                     }
                     else {

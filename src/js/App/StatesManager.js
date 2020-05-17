@@ -55,6 +55,7 @@ const StatesManager = {
             case appStates.DIVERSITY:
                 if (order === "next") {
                     this.currentState = appStates.ENDINGWALK;
+                    ModuleManager.endModule();
                     CameraManager.endingWalk();
                     SceneManager.currentScene.removeVolumetric();
                     UIManager.hideNextPrev();

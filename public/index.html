@@ -14,6 +14,7 @@
 <body>
 
 <div id="game">
+    <div id="css_renderer" style="pointer-events: none; position: absolute;"></div>
     <div id="image_gallery" style="pointer-events: none; position: absolute;"></div>
     <div id="loader">
         <div class="image">
@@ -138,6 +139,9 @@
                 <div id="hypersex" class="module">
                     <span id="photo"></span>
                 </div>
+                <div id="diversity" class="module">
+                    <span id="like"><img src="assets/Image/icon/heart.svg" alt="Like"></span>
+                </div>
                 <div id="buttonContainer" class="centered">
                     <p id="startButton" class="button hover">Entrer dans l'expérience</p>
                 </div>
@@ -154,8 +158,10 @@
                             <img id="soundOff" class="sound" src="assets/Image/icon/sound-off.svg" alt=""></li>
                         <li class="hover"><a target="_blank" href="https://www.instagram.com/pour_elles_galerie/?hl=fr"><img
                                 src="assets/Image/icon/instagram.svg" alt="instagram icon"></a></li>
-                        <li class="hover"><img id="fullscreenOn" class="fullscreen visible" src="assets/Image/icon/agrandir.svg" alt="Set full screen">
-                        <img id="fullscreenOff" class="fullscreen" src="assets/Image/icon/reduire.svg" alt="Set small screen"></li>
+                        <li class="hover"><img id="fullscreenOn" class="fullscreen visible"
+                                               src="assets/Image/icon/agrandir.svg" alt="Set full screen">
+                            <img id="fullscreenOff" class="fullscreen" src="assets/Image/icon/reduire.svg"
+                                 alt="Set small screen"></li>
                     </ul>
                     <div id="phoneIcon" class="hover">
                         <div><p class="outPhone">Prendre le téléphone</p>
@@ -292,6 +298,54 @@
         </div>
     </div>
 
+    <div id="diversityStory">
+        <div class="section">
+            <p class="intro">De nombreux mouvements féministes prônant la diversité et mettant en avant la beauté dans
+                la différence des corps ont trouvé une voix au travers des réseaux sociaux. C’est le cas du
+                #loveyourself (utilisé 55M de fois sur Instagram) ou le #bodypositive (12M), qui existaient depuis
+                plusieurs années mais qui trouvent aujourd’hui un vrai tremplin dans les réseaux sociaux.</p>
+            <p class="secondary">Ces mouvement crient aux femmes du monde entier “Cessez de vous comparer aux autres !”
+                et nous permettent de prendre du recul sur les centaines de corps et visages parfaits que nous voyons
+                chaque jour. </p>
+        </div>
+        <div class="section">
+            <p class="primary">L’impact du patriarcat</p>
+            <p class="secondary">Nous vivons dans une société patriarcale, régie par des idéaux de beauté imposant aux
+                femmes d’êtres désirables par les hommes selon les canons de beauté en vigueur. Les réseaux sociaux
+                fonctionnent par nombre de vues et de likes, le but est donc d'avoir un contenu qu'un maximum de
+                personnes vont apprécier. Il est donc plus logique de suivre les "normes" sociales de beauté pour avoir
+                un contenu universel. Les femmes vont alors subir sur les réseaux sociaux, la même injonction que dans
+                la société.
+            </p>
+        </div>
+        <div class="section">
+            <p class="primary">Algorithmes</p>
+            <p class="secondary">Bien sûr, les réseaux sociaux ont bien compris la tendance et disposent d’algorithmes
+                permettant de mettre en avant les contenus susceptibles de buzzer. Il mettent donc en avant d’abord les
+                compte ayant beaucoup de visibilité, les plus likés. À terme, cela donne l’impression que toutes les
+                personnes postant des photos en ligne sont des mannequins.<br>
+
+                Lorsqu’un contenu est un peu différent, il est beaucoup exposé à la critique puisqu’il ne rentre pas
+                dans le moule imposé par les influenceurs et les réseaux sociaux.
+                À force, cela créer un gros manque de diversité.
+
+            </p>
+        </div>
+        <div class="section">
+            <p class="primary">Culte du superficiel</p>
+            <p class="secondary">
+                ¨Pour qu’un contenu soit partagé , il faut donner envie, créer du rêve et de l’admiration comme pour une
+                publicité.
+                Pour vous en mettre plein les yeux les influences n’hésitent pas à se mettre en scène dans du contenu
+                superficiel et utopique : forme physique parfaite, voyage sur des île paradisiaques dans des hôtels de
+                luxe, dépassement de soi… On en oublierait presque qu’elles sont humaines comme nous.
+                Sous couvert de motivation, cela a pour conséquence de tuer l’estime de soi en imposant comme normal un
+                mode de vie superficiel.
+            </p>
+
+        </div>
+    </div>
+
 </div>
 
 <script>
@@ -309,6 +363,7 @@
         document.head.appendChild(script);
     })()
 </script>
+<script src="https://kit.fontawesome.com/af1673584a.js" crossorigin="anonymous"></script>
 <script src="build/runtime.js"></script>
 <script src="build/app.js"></script>
 </body>
