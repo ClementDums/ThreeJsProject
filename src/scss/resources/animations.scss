@@ -1,0 +1,25 @@
+
+
+@keyframes expend_height {
+  0% {
+    height: 2px;
+  }
+  50% {
+    height: 20px;
+  }
+  100% {
+    height: 2px;
+  }
+}
+
+@keyframes expend_width_enter_experience {
+  0% {
+    width: 2%;
+  }
+  50% {
+    width: 30%;
+  }
+  100% {
+    width: 2%;
+  }
+}

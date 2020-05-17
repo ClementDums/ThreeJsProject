@@ -65,6 +65,7 @@ const SceneManager = {
         this.animateCamera();
         this.currentScene.particlesExperience1.animate();
         this.currentScene.particlesExperience2.animate();
+        this.currentScene.particlesExperience3.animate();
         ModuleManager.animateModule();
     },
 

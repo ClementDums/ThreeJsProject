@@ -196,7 +196,7 @@ export default class ParticlesManager {
             let that = this
             setTimeout(function() {
                 that.formObjectCall(objectName);
-            }, 1000)
+            }, 2000)
         }
         else {
             this.formObjectCall(objectName);
