@@ -2,6 +2,7 @@ import StatesManager from "../StatesManager"
 import AudioHelpers from "../../Helpers/Audio/AudioHelpers";
 import ModuleManager from "../Modules/ModuleManager";
 import UIManager from "../UI/UIManager";
+import CameraManager from "../Camera/CameraManager";
 
 const InteractionManager = {
 
@@ -18,6 +19,11 @@ const InteractionManager = {
         this.initEndButtons();
         this.initAbout();
         this.initFullScreen();
+        this.initLock();
+    },
+
+    initLock(){
+        document.addEventListener("click",CameraManager.cameraLockManager.checkLock)
     },
 
     /**

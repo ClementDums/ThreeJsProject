@@ -13,12 +13,10 @@ const CameraManager = {
         init() {
             this.mainCamera = new MainCamera();
             this._camera = this.mainCamera.camera;
-
-
             this._phoneCamera = new PhoneCamera();
             this.cameraMovementManager = new CameraMovement(this.mainCamera.camera, this);
             this.cameraLockManager = new CameraLock(this);
-            this.isLock = true;
+            this.isLock = false;
             this.isCameraMoving = false;
             this.cameraLockManager.init();
             this.controls = this.cameraLockManager.controls;
@@ -55,6 +53,7 @@ const CameraManager = {
         },
 
         endMove(state) {
+            this.isCameraMoving = false;
             AudioHelpers.pauseSound("walk");
             StatesManager.nextState();
             switch (state) {
