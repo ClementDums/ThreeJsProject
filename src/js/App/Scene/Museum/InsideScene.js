@@ -166,7 +166,7 @@ export default class InsideScene {
         let particlesDataExperience2 = {
             scale: 5,
             size: 2,
-            position: {x: -500, y: 200, z: -4320},
+            position: {x: -500, y: 200, z: -4365},
             objects: [
                 {
                     object: this.bear._object,

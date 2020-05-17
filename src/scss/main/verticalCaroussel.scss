@@ -23,29 +23,6 @@
     position: relative;
     cursor: none;
   }
-  .scrollContinue {
-    text-align: center;
-    position: relative;
-    opacity: 0;
-    transition: transform 2s, opacity 5s;
-    transform: translate(0, 20px);
-    &.visible {
-      opacity: 1;
-      transform: translate(0, 0);
-    }
-    &::after {
-      position: absolute;
-      height: 20px;
-      left: 0;
-      width: 1px;
-      bottom: -24px;
-      background: #fff;
-      margin: 0 auto;
-      content: "";
-      right: 0;
-      display: block;
-    }
-  }
   .mask {
     height: 90%;
     width: 100%;
@@ -92,9 +69,17 @@
           width: 50%;
         }
 
+        &.left {
+          left: 0;
+        }
+
+        &.right {
+          right: 0;
+        }
+
         height: 100%;
         width: 100%;
-        font-size: 2em;
+        font-size: 1.5vw;
         display: flex;
         position: absolute;
         align-items: center;

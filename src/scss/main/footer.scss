@@ -1,7 +1,61 @@
-footer {
-  height: 14%;
-  transition: all 1.5s;
 
+
+@keyframes expend {
+  0% {
+    height: 2px;
+  }
+  50% {
+    height: 20px;
+  }
+  100% {
+    height: 2px;
+  }
+}
+
+footer {
+  transition: all 1.5s;
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+
+  .footer-light-text {
+    color: #988DA1;
+    font-weight: bold;
+  }
+
+  .scrollContinue {
+    text-align: center;
+    position: relative;
+    opacity: 0;
+    transition: transform 2s, opacity 5s;
+    transform: translate(0, 20px);
+    &.visible {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+
+    &::after {
+      position: absolute;
+      height: 20px;
+      left: 0;
+      width: 1px;
+      background: #fff;
+      margin: 0 auto;
+      content: "";
+      right: 0;
+      display: block;
+      animation: 1.5s expend infinite ease-out;
+      top: 30px;
+    }
+  }
+
+  #footer-border {
+    width: 100%;
+    height: 2px;
+    background-color: $grey;
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
   &.up {
     transform: translateY(-270px);
   }
@@ -16,7 +70,6 @@ footer {
       padding-inline-start: 0;
       margin: 0;
       li {
-        color: #fff;
         display: inline-block;
         margin-right: 20px;
         a {
@@ -26,7 +79,7 @@ footer {
       }
     }
     .top {
-      width: 95%;
+      width: 98%;
       margin: 0 auto;
       left: 0;
       right: 0;
@@ -36,7 +89,7 @@ footer {
       align-items: flex-end;
       #phoneIcon {
         position: absolute;
-        right: 60px;
+        right: 0px;
         display: flex;
         bottom: 0;
         width: 100px;
@@ -74,7 +127,7 @@ footer {
           opacity: 0.2;
         }
         img {
-          height: 80px;
+          height: 150px;
         }
       }
 

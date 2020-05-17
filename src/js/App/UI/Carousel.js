@@ -124,7 +124,7 @@ export default class Carousel {
         setTimeout(() => {
             this.scroll.classList.add("visible")
             this.list.classList.add("visible")
-        }, 6000)
+        }, 2000)
     }
 
     getActiveParticlesSystem() {
@@ -199,7 +199,8 @@ export default class Carousel {
         scrollP.innerHTML = "Scroller pour continuer";
         scrollP.classList.add("scrollContinue");
         this.scroll = scrollP;
-        this.container.appendChild(scrollP);
+        let footer = document.getElementsByTagName('footer')[0];
+        footer.insertBefore(scrollP, footer.firstChild);
     }
 
 
@@ -240,10 +241,19 @@ export default class Carousel {
             }
 
             let pContent = this.textArray[i].querySelectorAll("p");
-
             if(pContent[0]) {
-                if(pContent[0].className === "half")
-                    section.className = "half";
+                if(pContent[0].className === "half") {
+                    console.log('half')
+                    if(this.textTemplate.id === "filterStory") {
+                        section.classList.add("half", "left");
+                    }
+                    if(this.textTemplate.id === "hypersexStory") {
+                        section.classList.add("half", "right");
+                    }
+                    if(this.textTemplate.id === "diversityStory") {
+                        section.classList.add("half", "left");
+                    }
+                }
             }
 
             pContent.forEach((paragraph) => {
