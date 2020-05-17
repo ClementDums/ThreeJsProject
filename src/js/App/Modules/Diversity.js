@@ -62,9 +62,9 @@ export default class Diversity {
 
 
         let firstBubble = new CSS3DObject(element1);
-        firstBubble.position.x = -530;
-        firstBubble.position.y = 240;
-        firstBubble.position.z = -5190;
+        firstBubble.position.x = -10000;
+        firstBubble.position.y = 3000;
+        firstBubble.position.z = -4550;
         firstBubble.rotation.y = Math.PI / 2;
         SceneManager.cssScene.add(firstBubble);
 

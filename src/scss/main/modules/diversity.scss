@@ -32,15 +32,15 @@
   background: #FF004E;
   color: #fff;
   position: relative;
-  padding: 2px 4px;
-  font-size: 0.4em;
+  padding: 67px 200px;
+  font-size: 20em;
   transition: all 1.5s;
   opacity: 0;
   box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.9);
   transform: translateY(-15px);
   display: flex;
   i {
-    margin-right: 2px;
+    margin-right: 82px;
     margin-left: 1px;
   }
   p {
@@ -52,13 +52,13 @@
   &:after {
     content: "";
     position: absolute;
-    bottom: -6px;
+    bottom: -250px;
     left: 0;
     right: 0;
     margin: 0 auto;
     width: 0;
     height: 0;
-    border: 4px solid transparent;
+    border: 135px solid transparent;
     border-top-color: #FF004E;
   }
 }
