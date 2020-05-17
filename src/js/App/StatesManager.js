@@ -29,7 +29,6 @@ const StatesManager = {
                     setTimeout(() => {
                         CameraManager.mainCamera.isRotating = false;
                         CameraManager.mainCamera.setupHallPosition();
-
                         setTimeout(() => {
                             CameraManager.camera.rotation.set(0, 0, 0);
                             UIManager.removeBlackFade();
@@ -37,7 +36,7 @@ const StatesManager = {
                             UIManager.displayHomeText();
                         }, 1500)
 
-                    }, 700);
+                    }, 1000);
                 }, 1500);
                 break;
 

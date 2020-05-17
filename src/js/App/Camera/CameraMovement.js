@@ -28,7 +28,7 @@ export default class CameraMovement {
         this.currentMovingSpline = spline;
         this.tubeGeometry = spline.tubeGeometry;
         this.params = spline.params;
-        CameraManager.lockCamera();
+        // CameraManager.lockCamera();
         this.isMoving = true;
     }
 
