@@ -1,4 +1,7 @@
 import UIManager from "./UIManager";
+import ParticlesManager from "../Particles/ParticlesManager";
+import CameraManager from "../Camera/CameraManager";
+import SceneManager from "../Scene/SceneManager";
 
 export default class Carousel {
     constructor(template) {
@@ -11,6 +14,19 @@ export default class Carousel {
         this.isScrolling = false;
         this.activeSection = 0;
         this.init();
+
+        this.particlesData = {
+            'filterStory': {
+                1: 'mirror',
+                2: 'syringe',
+                3: 'pills',
+            },
+            'hypersexStory': {
+                1: 'heel',
+                2: 'bear',
+                3: 'lollipop',
+            }
+        }
     }
 
     init() {
@@ -30,24 +46,6 @@ export default class Carousel {
      */
     createTextArray() {
         this.textArray = this.textTemplate.querySelectorAll(".section");
-    }
-
-    /**
-     * Display intro
-     */
-    displayIntro() {
-        let introSec = this.container.querySelector(".introSection");
-        let introP = introSec.querySelectorAll("p");
-        introP.forEach((p, i) => {
-            setTimeout(() => {
-                p.classList.add('visible')
-            }, 1800 * (i + 1))
-
-        });
-        setTimeout(() => {
-            this.scroll.classList.add("visible")
-            this.list.classList.add("visible")
-        }, 6000)
     }
 
     scrolled(e) {
@@ -106,11 +104,65 @@ export default class Carousel {
     }
 
     /**
+     * Display intro
+     */
+    displayIntro() {
+
+        //back off camera
+        CameraManager.cameraMovementManager.moveTo(-150 , CameraManager.mainCamera.camera.position.z);
+
+        let introSec = this.container.querySelector(".introSection");
+        let introP = introSec.querySelectorAll("p");
+
+        introP.forEach((p, i) => {
+            setTimeout(() => {
+                p.classList.add('visible')
+            }, 1800 * (i + 1))
+
+        });
+
+        setTimeout(() => {
+            this.scroll.classList.add("visible")
+            this.list.classList.add("visible")
+        }, 6000)
+    }
+
+    getActiveParticlesSystem() {
+        if(this.textTemplate.id === 'filterStory') {
+            return SceneManager.currentScene.particlesExperience1;
+        }
+        else if(this.textTemplate.id === 'hypersexStory') {
+            return SceneManager.currentScene.particlesExperience2;
+        }
+        else {
+            return SceneManager.currentScene.particlesExperience1;
+        }
+    }
+    /**
      * Show current carousel section
      * @param i
      */
     showSection(i) {
+
+        //get active particles system
+        let particlesSystem = this.getActiveParticlesSystem();
+
+        //particles animation
+        if (this.particlesData[this.textTemplate.id][i]) {
+            if(particlesSystem.parent.visible === false) {
+                particlesSystem.showParticles();
+            }
+
+            if (this.activeSection === 1) {
+                particlesSystem.showObject(this.particlesData[this.textTemplate.id][i], false);
+            }
+            else {
+                particlesSystem.showObject(this.particlesData[this.textTemplate.id][i], true);
+            }
+        }
+
         let sections = this.sectionContainer.querySelectorAll("section");
+
         sections.forEach((item) => {
             item.style.visibility = "hidden";
             const attr = item.getAttribute('data-section');
@@ -188,10 +240,15 @@ export default class Carousel {
             }
 
             let pContent = this.textArray[i].querySelectorAll("p");
-            pContent.forEach((paragraph) => {
-                 const paragraphCopy = paragraph.cloneNode(true);
-                section.appendChild(paragraphCopy);
 
+            if(pContent[0]) {
+                if(pContent[0].className === "half")
+                    section.className = "half";
+            }
+
+            pContent.forEach((paragraph) => {
+                const paragraphCopy = paragraph.cloneNode(true);
+                section.appendChild(paragraphCopy);
             });
 
             this.sectionContainer.appendChild(section);
@@ -221,6 +278,9 @@ export default class Carousel {
      * Destroy carousel
      */
     destroy() {
+
+        //remove particles
+        this.getActiveParticlesSystem().hideParticles();
 
         if (this.container) {
             this.container.style.display = "none";

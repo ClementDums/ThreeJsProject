@@ -32,7 +32,7 @@ const SceneManager = {
             item.load().then((obj) => {
                 item._object = obj;
                 item.setup();
-                if (!item._isHud) {
+                if (!item._isHud && !item._isParticle) {
                     this._threeScene.add(obj);
                     if (item._isAnimated) {
                         let mixer = new THREE.AnimationMixer(obj);
@@ -63,6 +63,8 @@ const SceneManager = {
     animate() {
         this.animateSceneModels();
         this.animateCamera();
+        this.currentScene.particlesExperience1.animate();
+        this.currentScene.particlesExperience2.animate();
         ModuleManager.animateModule();
     },
 
