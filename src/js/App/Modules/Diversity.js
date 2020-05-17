@@ -42,18 +42,23 @@ export default class Diversity {
         })
     }
 
+    addBubbleContent() {
+        this.likeBubbles.forEach(item => {
+            let img = document.createElement("i");
+            img.classList.add("fa");
+            img.classList.add("fa-heart");
+            item.appendChild(img);
+            let p = document.createElement("p");
+            item.appendChild(p);
+        });
+    }
+
     createLikeText() {
 
         //FIRST BUBBLE
         let element1 = document.createElement('div');
+        this.likeBubbles.push(element1);
         this.likeTextAttributes(element1);
-        let img = document.createElement("i");
-        img.classList.add("fa");
-        img.classList.add("fa-heart");
-        element1.appendChild(img);
-        let p = document.createElement("p");
-        p.innerText = "1";
-        element1.appendChild(p);
 
 
         let firstBubble = new CSS3DObject(element1);
@@ -61,38 +66,24 @@ export default class Diversity {
         firstBubble.position.y = 240;
         firstBubble.position.z = -5190;
         firstBubble.rotation.y = Math.PI / 2;
-        this.likeBubbles.push(element1);
         SceneManager.cssScene.add(firstBubble);
 
         //SECOND BUBBLE
         let element2 = document.createElement('div');
         this.likeTextAttributes(element2);
-        let img2 = img.cloneNode(true);
-        element2.appendChild(img2);
-
-        let p2 = document.createElement("p");
-        p2.innerText = "125";
-        element2.appendChild(p2);
+        this.likeBubbles.push(element2);
 
         let secondBubble = new CSS3DObject(element2);
         secondBubble.position.x = -530;
         secondBubble.position.y = 245;
         secondBubble.position.z = -5165;
         secondBubble.rotation.y = Math.PI / 2;
-        this.likeBubbles.push(element2);
         SceneManager.cssScene.add(secondBubble);
 
         //THIRD BUBBLE
         let element3 = document.createElement('div');
         this.likeTextAttributes(element3);
-        let img3 = document.createElement("i");
-        img3.classList.add("fa");
-        img3.classList.add("fa-heart");
-        element3.appendChild(img3);
-
-        let p3 = document.createElement("p");
-        p3.innerText = "240";
-        element3.appendChild(p3);
+        this.likeBubbles.push(element3);
 
 
         let thirdBubble = new CSS3DObject(element3);
@@ -100,20 +91,12 @@ export default class Diversity {
         thirdBubble.position.y = 245;
         thirdBubble.position.z = -5218;
         thirdBubble.rotation.y = Math.PI / 2;
-        this.likeBubbles.push(element3);
         SceneManager.cssScene.add(thirdBubble);
 
         //FOURTH BUBBLE
         let element4 = document.createElement('div');
         this.likeTextAttributes(element4);
-        let img4 = document.createElement("i");
-        img4.classList.add("fa");
-        img4.classList.add("fa-heart");
-        element4.appendChild(img4);
-
-        let p4 = document.createElement("p");
-        p4.innerText = "13456";
-        element4.appendChild(p4);
+        this.likeBubbles.push(element4);
 
 
         SceneManager.cssScene.add(firstBubble);
@@ -122,20 +105,12 @@ export default class Diversity {
         fourthBubble.position.y = 263;
         fourthBubble.position.z = -5171;
         fourthBubble.rotation.y = Math.PI / 2;
-        this.likeBubbles.push(element4);
         SceneManager.cssScene.add(fourthBubble);
 
         //FIFTH BUBBLE
         let element5 = document.createElement('div');
         this.likeTextAttributes(element5);
-        let img5 = document.createElement("i");
-        img5.classList.add("fa");
-        img5.classList.add("fa-heart");
-        element5.appendChild(img5);
-
-        let p5 = document.createElement("p");
-        p5.innerText = "88904";
-        element5.appendChild(p5);
+        this.likeBubbles.push(element5);
 
         SceneManager.cssScene.add(firstBubble);
         let fifthBubble = new CSS3DObject(element5);
@@ -143,8 +118,8 @@ export default class Diversity {
         fifthBubble.position.y = 263;
         fifthBubble.position.z = -5236;
         fifthBubble.rotation.y = Math.PI / 2;
-        this.likeBubbles.push(element5);
         SceneManager.cssScene.add(fifthBubble);
+        this.addBubbleContent();
     }
 
 
@@ -190,13 +165,19 @@ export default class Diversity {
         phone.setFullscreen();
         phone.zoomPhone(40);
         document.getElementById("diversity").style.display = "block";
-        this.diversityUi.querySelector("#like").style.display = "block";
+        this.diversityUi.querySelector("#like").style.display = "flex";
     }
 
     like() {
         this.clickCounter++;
+        this.diversityUi.querySelector("#like").classList.add("active");
+        setTimeout(() => {
+            this.diversityUi.querySelector("#like").classList.remove("active");
+        }, 500);
+
 
         if (this.clickCounter === 1) {
+            this.likeBubbles[0].querySelector('p').innerText = "1";
             this.likeBubbles[0].classList.add("visible");
         }
         if (this.clickCounter === 2) {
@@ -204,6 +185,9 @@ export default class Diversity {
             this.likeBubbles[1].classList.add("visible");
             this.likeBubbles[2].classList.add("visible");
             this.likeBubbles[0].querySelector('p').innerText = "53";
+            this.likeBubbles[1].querySelector('p').innerText = "74";
+            this.likeBubbles[2].querySelector('p').innerText = "93";
+
 
         }
         if (this.clickCounter === 3) {
@@ -216,6 +200,9 @@ export default class Diversity {
             this.showSecondRow();
             this.likeBubbles[3].classList.add("visible");
             this.likeBubbles[4].classList.add("visible");
+            this.likeBubbles[3].querySelector('p').innerText = "7805";
+            this.likeBubbles[4].querySelector('p').innerText = "3645";
+
 
             this.likeBubbles[0].querySelector('p').innerText = "95000";
             this.likeBubbles[1].querySelector('p').innerText = "33564";
@@ -253,7 +240,6 @@ export default class Diversity {
         UIManager.phoneIconOn();
         UIManager.phoneTextIn();
         this.likeBubbles.forEach((obj) => {
-            obj.innerHTML = "";
             obj.classList.remove("visible");
         });
         SceneManager.isCssRendering = false;
