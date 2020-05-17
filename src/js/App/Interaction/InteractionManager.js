@@ -20,10 +20,11 @@ const InteractionManager = {
         this.initAbout();
         this.initFullScreen();
         this.initLock();
+        this.started = false;
     },
 
-    initLock(){
-        document.addEventListener("click",CameraManager.cameraLockManager.checkLock)
+    initLock() {
+        document.addEventListener("click", CameraManager.cameraLockManager.checkLock)
     },
 
     /**
@@ -31,8 +32,12 @@ const InteractionManager = {
      */
     landingClick() {
         this.el.querySelector("#startButton").addEventListener("click", () => {
-            this.el.querySelector("#buttonContainer").classList.remove("visible");
-            StatesManager.nextState();
+            if (!this.started) {
+                this.started =true;
+                this.el.querySelector("#buttonContainer").classList.remove("visible");
+                StatesManager.nextState();
+            }
+
         })
     },
 

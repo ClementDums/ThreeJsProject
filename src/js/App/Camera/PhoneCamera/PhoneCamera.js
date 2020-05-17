@@ -11,7 +11,7 @@ export default class PhoneCamera {
 
     init() {
         this._camera.position.x = -270;
-        this._camera.position.y = CameraManager.camera.position.y - 30;
+        this._camera.position.y = 160;
         this._camera.position.z = -3900;
         this._camera.name = "PhoneCamera";
         this._camera.layers.disable(1);

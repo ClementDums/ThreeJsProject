@@ -27,6 +27,7 @@ const StatesManager = {
                 setTimeout(() => {
                     UIManager.setBlackFade();
                     setTimeout(() => {
+                        document.getElementById("landing").style.display = "none";
                         CameraManager.mainCamera.isRotating = false;
                         CameraManager.mainCamera.setupHallPosition();
                         setTimeout(() => {
