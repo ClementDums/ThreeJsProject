@@ -57,7 +57,7 @@ export default class Experience {
 
         this.cssRenderer = new CSS3DRenderer();
         this.cssRenderer.setSize(window.innerWidth, window.innerHeight);
-        document.getElementById('image_gallery').appendChild(this.cssRenderer.domElement);
+        document.getElementById('css_renderer').appendChild(this.cssRenderer.domElement);
 
         //------------------------------------TEST
 
@@ -79,7 +79,6 @@ export default class Experience {
         window.addEventListener('mousemove', this.onDocumentMouseMove.bind(this), false);
         document.addEventListener('click', this.onDocumentMouseClick.bind(this))
     }
-
 
 
     postProcessing() {
@@ -122,8 +121,9 @@ export default class Experience {
         // this.renderer.setRenderTarget(null);
         // this.renderer.clear();
         // this.renderer.render(SceneManager.scene, this.camera);
-
-        this.cssRenderer.render(SceneManager.cssScene, this.camera);
+        if (SceneManager.isCssRendering) {
+            this.cssRenderer.render(SceneManager.cssScene, this.camera);
+        }
 
         // //Main camera render
         this.renderer.setRenderTarget(null);

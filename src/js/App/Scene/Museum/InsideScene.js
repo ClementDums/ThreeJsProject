@@ -51,7 +51,14 @@ export default class InsideScene {
         this.hypersex = new HypersexWorkOfArt(new THREE.Vector3(-530, 0, -4500), "toHypersex");
 
         //Diversity
-        this.diversity = new DiversityWorkOfArt(new THREE.Vector3(-530,0,-5200), "toDiversity");
+        this.diversity = new DiversityWorkOfArt(new THREE.Vector3(-530, 0, -5200), "toDiversity",true,0);
+
+        this.diversity1 = new DiversityWorkOfArt(new THREE.Vector3(-550, 0, -5172), "1",false,3);
+        this.diversity2 = new DiversityWorkOfArt(new THREE.Vector3(-550, 0, -5235), "2",false,3);
+        this.diversity3 = new DiversityWorkOfArt(new THREE.Vector3(-635, 36, -5165), "3",false,3);
+        this.diversity4 = new DiversityWorkOfArt(new THREE.Vector3(-610, 36, -5215), "4",false,3);
+        this.diversity5 = new DiversityWorkOfArt(new THREE.Vector3(-610, 36, -5265), "5",false,3);
+
 
         this.handLeft = new HandLeft(new THREE.Vector3(-650, 138, -4400), "handLeft");
         this.handRight = new HandRight(new THREE.Vector3(-650, 275, -4620), "handRight");
@@ -90,8 +97,15 @@ export default class InsideScene {
         this.objects.push(this.handRight);
 
         //Diversity
-        ModuleManager.initDiversity(this.phone, this.diversity);
+        const hiddenDiversity = [this.diversity1, this.diversity2, this.diversity3, this.diversity4, this.diversity5];
+
+        ModuleManager.initDiversity(this.phone, this.diversity, hiddenDiversity);
         this.objects.push(this.diversity);
+        this.objects.push(this.diversity1);
+        this.objects.push(this.diversity2);
+        this.objects.push(this.diversity3);
+        this.objects.push(this.diversity4);
+        this.objects.push(this.diversity5);
 
         const hiddenObjects = [];
         hiddenObjects.push(this.handLeft);

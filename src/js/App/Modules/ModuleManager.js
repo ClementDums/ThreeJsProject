@@ -29,8 +29,8 @@ const ModuleManager = {
         this.modules.push(this.hypersex);
     },
 
-    initDiversity(phone, diversity) {
-        this.diversity.init(phone, diversity);
+    initDiversity(phone, diversity, hidden) {
+        this.diversity.init(phone, diversity, hidden);
         this.modules.push(this.diversity);
     },
 

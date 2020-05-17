@@ -16,9 +16,9 @@ export default class Pantheon {
 
     setup() {
         this._object.name = "Pantheon";
-
         this._object.position.set(this._position.x, this._position.y, this._position.z);
-        const material = this._object.children[0].material;
+                //this.perf()
+
     }
 
     perf() {

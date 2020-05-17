@@ -24,6 +24,7 @@
     "sass-loader": "^7.0.1"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
     "@tweenjs/tween.js": "^18.5.0",
     "fs": "0.0.1-security",
     "three": "^0.115.0",

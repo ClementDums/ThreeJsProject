@@ -58,10 +58,12 @@ export default class ImageGallery {
         this.transform(this.targets.hide, 1000);
         setTimeout(function () {
             document.getElementById('image_gallery').style.display = "none";
+            SceneManager.isCssRendering = false;
         }, 1000)
     }
 
     showGallery() {
+        SceneManager.isCssRendering = true;
         document.getElementById('image_gallery').style.display = "block";
         this.transform(this.targets.grid, 1000)
     }

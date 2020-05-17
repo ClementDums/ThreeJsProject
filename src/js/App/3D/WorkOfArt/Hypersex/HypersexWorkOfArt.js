@@ -3,7 +3,7 @@ import Loader from '../../../../Helpers/Loader'
 export default class HypersexWorkOfArt {
     constructor(position, name) {
         this._position = position;
-        this._path = './assets/3DModels/Hypersex/Hypersex.glb';
+        this._path = './assets/3DModels/Hypersex/h.glb';
         this._object = null;
         this._isAnimated = false;
         this.name = name;

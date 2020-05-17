@@ -161,22 +161,6 @@ export default class Filter {
         }
     }
 
-    /**
-     * Go to next filter
-     */
-    setNext() {
-        if (this.objects[this.i + 1]) {
-            this.setCurrentDisable();
-            this.currentObject = this.objects[this.i + 1];
-            this.setCurrentActive();
-            this.i += 1;
-            this.heartAnim();
-            this.setVignette();
-
-        }
-    }
-
-
     heartAnim() {
         if (this.i !== 0) {
             this.currentObject.heartAnim.show();
