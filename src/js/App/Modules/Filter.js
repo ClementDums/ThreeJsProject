@@ -143,6 +143,7 @@ export default class Filter {
      * Start story
      */
     startStory() {
+        this.currentObject.heartAnim.hide();
         UIManager.newCarousel(document.getElementById("filterStory"));
     }
 

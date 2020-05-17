@@ -69,10 +69,14 @@ export default class InsideScene {
         this.mirror = new ParticlesObject(new THREE.Vector3(0, 190, 2000), './assets/3DModels/Particles/mirror.obj')
         this.pills = new ParticlesObject(new THREE.Vector3(0, 190, 2000), './assets/3DModels/Particles/pills.obj')
         this.syringe = new ParticlesObject(new THREE.Vector3(0, 190, 2000), './assets/3DModels/Particles/syringe.obj')
+        this.diamond = new ParticlesObject(new THREE.Vector3(0, 190, 2000), './assets/3DModels/Particles/diamond.obj')
+        this.like = new ParticlesObject(new THREE.Vector3(0, 190, 2000), './assets/3DModels/Particles/like.obj')
+        this.male = new ParticlesObject(new THREE.Vector3(0, 190, 2000), './assets/3DModels/Particles/male.obj')
 
         //Particles system
         this.particlesExperience1 = new ParticlesManager();
         this.particlesExperience2 = new ParticlesManager();
+        this.particlesExperience3 = new ParticlesManager();
 
         this.handLeft = new HandLeft(new THREE.Vector3(-650, 138, -4400), "handLeft");
         this.handRight = new HandRight(new THREE.Vector3(-650, 275, -4620), "handRight");
@@ -88,14 +92,21 @@ export default class InsideScene {
 
         this._scene.fog = this.fog;
 
-        //Particles
-        this.objects.push(this.bear);
-        this.objects.push(this.heel);
-        this.objects.push(this.lollipop);
+
+        //particles experience 1
         this.objects.push(this.mirror);
         this.objects.push(this.pills);
         this.objects.push(this.syringe);
 
+        //particles experience 2
+        this.objects.push(this.bear);
+        this.objects.push(this.heel);
+        this.objects.push(this.lollipop);
+
+        //particles experience 3
+        this.objects.push(this.diamond);
+        this.objects.push(this.like);
+        this.objects.push(this.male);
 
         //Pantheon
         this.objects.push(this.pantheon);
@@ -139,6 +150,7 @@ export default class InsideScene {
     }
 
     addParticlesObject() {
+
         let particlesDataExperience1 = {
             scale: 5,
             size: 2,
@@ -166,7 +178,7 @@ export default class InsideScene {
         let particlesDataExperience2 = {
             scale: 5,
             size: 2,
-            position: {x: -500, y: 200, z: -4320},
+            position: {x: -500, y: 200, z: -4365},
             objects: [
                 {
                     object: this.bear._object,
@@ -186,6 +198,30 @@ export default class InsideScene {
             ]
         };
         this.particlesExperience2.init(particlesDataExperience2)
+
+        let particlesDataExperience3 = {
+            scale: 5,
+            size: 2,
+            position: {x: -500, y: 200, z: -5380},
+            objects: [
+                {
+                    object: this.male._object,
+                    name: 'male_particle_object',
+                    points: null
+                },
+                {
+                    object: this.like._object,
+                    name: 'like_particle_object',
+                    points: null
+                },
+                {
+                    object: this.diamond._object,
+                    name: 'diamond_particle_object',
+                    points: null
+                },
+            ]
+        };
+        this.particlesExperience3.init(particlesDataExperience3)
     }
 
     addSounds() {

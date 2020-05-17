@@ -16,11 +16,11 @@ export default class ImageGallery {
 
         let linesCount = 10;
 
-        for (let i = 0; i < 40; i++) {
+        for (let i = 0; i < 25; i++) {
 
             let element = document.createElement('div');
             element.className = 'image_gallery_element';
-            element.style.backgroundImage = "url('./assets/Image/test1.jpg')";
+            element.style.backgroundImage = "url('./assets/Image/instagram/" + (i + 1) + ".png')";
 
             let object = new CSS3DObject(element);
             object.position.x = -10000;
@@ -34,7 +34,7 @@ export default class ImageGallery {
             let gridObj = new THREE.Object3D();
 
             gridObj.position.x = ((i % linesCount) * (300 + 300)) - 2750;
-            gridObj.position.y = ((Math.floor(i / linesCount) % linesCount) * -800) + 1500;
+            gridObj.position.y = ((Math.floor(i / linesCount) % linesCount) * -800) + 1300;
             gridObj.position.z = -10000;
             gridObj.lookAt(CameraManager.camera.position);
             this.targets.grid.push(gridObj);
