@@ -112,9 +112,7 @@ html {
             padding: 8px;
             opacity: 0.9;
             transition: all 0.5s;
-            &:hover::after {
-              width: 100%;
-            }
+
             &:hover {
               opacity: 1;
             }
@@ -129,6 +127,7 @@ html {
               background-color: #fff;
               margin: 0 auto;
               bottom: -3px;
+              animation: 1.5s expend_width_enter_experience infinite ease-out;
             }
           }
         }
@@ -142,7 +141,7 @@ html {
         height: 100%;
         text-align: center;
         margin: 0 auto;
-        font-size: 2em;
+        font-size: 3vw;
         p {
           position: absolute;
           left: 0;
