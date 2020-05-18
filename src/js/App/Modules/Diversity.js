@@ -40,6 +40,7 @@ export default class Diversity {
         this.diversityUi.querySelector("#like").addEventListener("click", () => {
             this.like();
         })
+        this.tuto = document.querySelector(".tutoDiversity");
     }
 
     addBubbleContent() {
@@ -166,6 +167,9 @@ export default class Diversity {
         phone.zoomPhone(40);
         document.getElementById("diversity").style.display = "block";
         this.diversityUi.querySelector("#like").style.display = "flex";
+        setTimeout(() => {
+            this.showTuto();
+        }, 400);
     }
 
     like() {
@@ -252,6 +256,10 @@ export default class Diversity {
         UIManager.newCarousel(document.getElementById("diversityStory"));
     }
 
+    showTuto() {
+        this.tuto.classList.add('visible');
+    }
+
     stopPhone() {
         this.isCompleted = true;
         this.phone.hide();
@@ -266,6 +274,7 @@ export default class Diversity {
             obj.hide();
         });
         this.clickCounter = 0;
+        this.tuto.classList.remove('visible');
     }
 
     animate() {

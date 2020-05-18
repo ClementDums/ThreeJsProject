@@ -42,11 +42,12 @@ const StatesManager = {
                 break;
 
             case appStates.HALLWALK:
+                UIManager.hideCursorLock();
+                UIManager.showCursor();
                 CameraManager.toFilter();
                 UIManager.displayNextPrev();
                 this.currentState = appStates.FILTER;
                 ModuleManager.changeModule(appStates.FILTER);
-
                 break;
 
             case appStates.FILTER:
@@ -91,6 +92,8 @@ const StatesManager = {
 
             case appStates.INVITESECTION:
                 this.currentState = appStates.IMAGEGALLERY;
+                UIManager.hideCursorLock();
+                UIManager.showCursor();
                 UIManager.hideMoral();
                 UIManager.displayEndText();
                 break;

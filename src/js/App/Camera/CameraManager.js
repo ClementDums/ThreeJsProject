@@ -49,6 +49,7 @@ const CameraManager = {
             this.phoneTexture = false;
             this.cameraMovementManager.moveSpline(state);
             this.isCameraMoving = true;
+            UIManager.showCursorLock();
             AudioHelpers.playSound("walk");
         },
 

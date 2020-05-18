@@ -36,6 +36,7 @@ export default class Hypersex {
      */
     initInteraction() {
         this.hypersexUi = document.querySelector("#hypersex");
+        this.tuto = document.querySelector(".tutoHypersex");
         this.photoClick();
     }
 
@@ -64,6 +65,10 @@ export default class Hypersex {
         }
     }
 
+    showTuto() {
+        this.tuto.classList.add('visible');
+    }
+
     hypersexModule() {
         if (!this.isActive) {
             this.startHypersex(this.phone)
@@ -75,6 +80,9 @@ export default class Hypersex {
         phone.setFullscreen();
         phone.zoomPhone(40);
         document.getElementById("hypersex").style.display = "block"
+        setTimeout(() => {
+            this.showTuto();
+        }, 400);
     }
 
 
@@ -168,5 +176,6 @@ export default class Hypersex {
         this.removeFlash = false;
         this.light.visible = false;
         RaycasterManager.identifiers.splice("toHypersex");
+        this.tuto.classList.remove('visible');
     }
 };
