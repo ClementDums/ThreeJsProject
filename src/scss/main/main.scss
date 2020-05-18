@@ -20,6 +20,70 @@
   src: url("../fonts/Asul-Bold.ttf");
 }
 
+//responsive
+
+#mobile_message {
+  font-family: Calyces, sans-serif;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 10000000;
+  background: rgb(49,1,119);
+  background: linear-gradient(-135deg, rgba(49,1,119,1) 14%, rgba(128,42,255,1) 100%);
+  background: -moz-linear-gradient(-135deg, rgba(49,1,119,1) 14%, rgba(128,42,255,1) 100%);
+  background: -webkit-linear-gradient(-135deg, rgba(49,1,119,1) 14%, rgba(128,42,255,1) 100%);
+
+  #mobile_pour_elles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw;
+  }
+
+  #mobile_instagram {
+    width: 8vw;
+    position: absolute;
+    bottom: 10vw;
+    left: calc(50% - 4vw);
+  }
+
+  h1 {
+    color: white;
+    font-size: 11vw;
+    top: 15%;
+    font-weight: initial;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -15%);
+    font-family: Calyces, sans-serif;
+    width: 90%;
+    text-align: center;
+  }
+
+  h3 {
+    top: 75%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -75%);
+    color: white;
+    font-weight: lighter;
+    font-size: 4vw;
+    font-family: Calyces, sans-serif;
+    width: 80%;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 1024px) {
+  #mobile_message {
+    display: block;
+  }
+}
+
 html {
   cursor: none;
   body {
@@ -120,34 +184,6 @@ html {
             opacity: 1;
             visibility: visible;
           }
-          .button {
-            cursor: none;
-            color: #fff;
-            background: transparent;
-            border-radius: 30px;
-            font-size: 1.2em;
-            position: relative;
-            padding: 8px;
-            opacity: 0.9;
-            transition: all 0.5s;
-
-            &:hover {
-              opacity: 1;
-            }
-            &::after {
-              transition: all 0.5s;
-              content: "";
-              position: absolute;
-              height: 1px;
-              left: 0;
-              right: 0;
-              width: 20%;
-              background-color: #fff;
-              margin: 0 auto;
-              bottom: -3px;
-              animation: 1.5s expend_width_enter_experience infinite ease-out;
-            }
-          }
         }
       }
       #introText {
@@ -155,11 +191,11 @@ html {
         position: relative;
         justify-content: center;
         align-items: center;
-        width: 80%;
+        width: 50%;
         height: 100%;
         text-align: center;
         margin: 0 auto;
-        font-size: 3vw;
+        font-size: 1.6vw;
         p {
           position: absolute;
           left: 0;
@@ -167,6 +203,7 @@ html {
           margin: 0 auto;
           opacity: 0;
           transition: opacity 1.5s;
+          font-family: Calyces, serif;
           &.visible {
             opacity: 1;
           }

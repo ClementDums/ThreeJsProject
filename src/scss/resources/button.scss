@@ -1,0 +1,32 @@
+
+.main_button {
+  cursor: none;
+  color: #fff;
+  background: transparent;
+  border-radius: 30px;
+  font-size: 1vw;
+  position: relative;
+  padding: 8px;
+  opacity: 0.9;
+  transition: all 0.5s;
+  text-decoration: navajowhite;
+  border: navajowhite;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &::after {
+    transition: all 0.5s;
+    content: "";
+    position: absolute;
+    height: 1px;
+    left: 0;
+    right: 0;
+    width: 20%;
+    background-color: #fff;
+    margin: 0 auto;
+    bottom: -3px;
+    animation: 1.5s expend_width_enter_experience infinite ease-out;
+  }
+}

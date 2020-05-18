@@ -1,30 +1,68 @@
 #about {
-  background-color: #412770;
-  height: 270px;
-  visibility: hidden;
+  background: rgb(49,1,119);
+  background: linear-gradient(-135deg, rgba(49,1,119,1) 14%, rgba(128,42,255,1) 100%);
+  background: -moz-linear-gradient(-135deg, rgba(49,1,119,1) 14%, rgba(128,42,255,1) 100%);
+  background: -webkit-linear-gradient(-135deg, rgba(49,1,119,1) 14%, rgba(128,42,255,1) 100%);
   position: absolute;
   display: flex;
   transition: all 1.5s;
+  bottom: -1000px;
   .title {
     text-align: center;
+    position: absolute;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2vw;
+    font-family: Calyces, serif;
   }
+
+  #about_logo {
+    #about_logo_gobelins {
+      position: absolute;
+      bottom: 20px;
+      right: calc(40px + 2vw);
+      width: 1.5vw;
+      height: 2.6vw;
+    }
+    #about_logo_pe {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 1.5vw;
+    }
+  }
+
   div:first-child {
     width: 30%;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
   }
   div:last-child {
-    margin-top: 20px;
-    width: 60%;
+    position: relative;
+    width: 70%;
     img {
       width: 50px;
       margin-left: 100px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+
+    p {
+      margin: 50px;
+      font-size: 0.8vw;
+    }
+    .about_image {
+      position: relative;
+      width: 5vw;
     }
   }
-  &.visible {
-    visibility: visible;
-    transform: translateY(-270px);
 
+  &.show {
+    bottom: 0;
   }
 }

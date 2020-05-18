@@ -10,8 +10,18 @@
 
     <link rel="icon" href="favicon.ico"/>
     <link rel="stylesheet" href="build/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+
+<div id="mobile_message">
+    <h1>Pour Elles</h1>
+    <h3>Pour vivre l'expérience, merci d'utiliser un ordinateur.</h3>
+    <img id="mobile_pour_elles" src="assets/Animation/logo.gif" alt="Pour Elles"/>
+    <a target="_blank" href="https://www.instagram.com/pour_elles_galerie/?hl=fr">
+        <img id="mobile_instagram" src="assets/Image/icon/instagram.svg" alt="Instagram"/>
+    </a>
+</div>
 
 <div id="game">
     <div id="css_renderer" style="pointer-events: none; position: absolute;"></div>
@@ -102,7 +112,7 @@
                             </div>
 
                             <div>
-                                <button id="toGallerySection" class="endNextBtn">Suivant</button>
+                                <button id="toGallerySection" class="main_button endNextBtn">Suivant</button>
                             </div>
                         </section>
 
@@ -111,20 +121,41 @@
                             </div>
 
                             <div>
-                                <button id="toShareSection" class="endNextBtn">Suivant</button>
+                                <button id="toShareSection" class="main_button endNextBtn">Suivant</button>
                             </div>
                         </section>
 
                         <section id="shareSection">
-                            <div>
-                                <p>Si cette expérience vous a parlé, voici une liste de comptes instagram qui redonnent
-                                    le
-                                    sourire et qui nous font nous sentir bien !<br> Vous pouvez aussi la partager autour
-                                    de
-                                    vous
-                                    à
-                                    qui serait susceptible d’en bénéficier ! </p>
-                                <button class="share">Partager</button>
+                            <div class="share_title">Pour aller plus loin...</div>
+                            <div class="share_description">
+                                Voici une liste de comptes Instagram qui redonnent le sourire et qui nous font nous sentir bien !<br/>
+                                Merci de la partager cette expérience de vous, faisons d'elle une prise de conscience collective.
+                            </div>
+                            <div class="share_list">
+                                <div class="share_col">
+                                    <a target="_blank" href="https://www.instagram.com/onveutduvrai/?hl=fr">@onveutduvrai</a>
+                                    <a target="_blank" href="https://www.instagram.com/ely_killeuse/?hl=fr">@ely_killeuse</a>
+                                    <a target="_blank" href="https://www.instagram.com/thebirdspapaya/?hl=fr">@thebirdspapaya</a>
+                                    <a target="_blank" href="https://www.instagram.com/thecurltalkproject/?hl=fr">@thecurltalkproject</a>
+                                    <a target="_blank" href="https://www.instagram.com/studiomucci/?hl=fr">@studiomucci</a>
+                                    <a target="_blank" href="https://www.instagram.com/me_versus_me_/?hl=fr">@me_versus_me_</a>
+                                </div>
+                                <div class="share_col">
+                                    <a target="_blank" href="https://www.instagram.com/saggysara/?hl=fr">@saggysara</a>
+                                    <a target="_blank" href="https://www.instagram.com/bodysgang/?hl=fr">@bodysgang</a>
+                                    <a target="_blank" href="https://www.instagram.com/iskra/?hl=fr">@iskra</a>
+                                    <a target="_blank" href="https://www.instagram.com/plume_positive/?hl=fr">@plume_positive</a>
+                                    <a target="_blank" href="https://www.instagram.com/pausitiveworld/?hl=fr">@pausitiveworld</a>
+                                    <a target="_blank" href="https://www.instagram.com/bodyposipanda/?hl=fr">@bodyposipanda</a>
+                                </div>
+                                <div class="share_col">
+                                    <a target="_blank" href="https://www.instagram.com/nonairedbrushedme/?hl=fr">@nonairedbrushedme</a>
+                                    <a target="_blank" href="https://www.instagram.com/celestebarber/?hl=fr">@celestebarber</a>
+                                    <a target="_blank" href="https://www.instagram.com/gaelleprundencio/?hl=fr">@gaelleprundencio</a>
+                                    <a target="_blank" href="https://www.instagram.com/girlgaze/?hl=fr">@girlgaze</a>
+                                    <a target="_blank" href="https://www.instagram.com/douzefevrier/?hl=fr">@douzefevrier</a>
+                                    <a target="_blank" href="https://www.instagram.com/livelife_unfiltered/?hl=fr">@livelife_unfiltered</a>
+                                </div>
                             </div>
                         </section>
                     </div>
@@ -165,7 +196,7 @@
                     <p class="subtitle">Un regard sur notre utilisation des réseaux sociaux et son impact sur les jeunes
                         filles</p>
                     <div id="buttonContainer" class="centered visible">
-                        <p id="startButton" class="button hover">Entrer dans l'expérience</p>
+                        <p id="startButton" class="main_button hover">Entrer dans l'expérience</p>
                     </div>
                 </div>
             </div>
@@ -209,6 +240,10 @@
         <!--ABOUT-->
         <div id="about">
             <div><p class="title">À propos</p></div>
+            <div id="about_logo">
+                <img id="about_logo_gobelins" src="assets/Image/icon/gobelins.png" alt="Gobelins école de l'image"/>
+                <img id="about_logo_pe" src="assets/Image/icon/logo_blanc.svg" alt="Pour Elles"/>
+            </div>
             <div><img id="quitAboutBtn" src="assets/Image/icon/quit.svg" alt="">
                 <p>Pour Elles est une expérience interactive qui a pour but de mettre en lumière certains usages actuels
                     des réseaux
@@ -220,6 +255,11 @@
                     deux développeurs, Clément Dumas et Pierre Brelaud. </p>
                 <p>Design : Antoine Fouilloux et Léah Rolin.
                     Développement : Pierre Brelaud et Clément Dumas</p>
+
+                <img class="about_image" src="assets/Image/about/antoine.png"/>
+                <img class="about_image" src="assets/Image/about/leah.png"/>
+                <img class="about_image" src="assets/Image/about/pierre.png"/>
+                <img class="about_image" src="assets/Image/about/clement.png"/>
             </div>
         </div>
     </div>
@@ -236,7 +276,7 @@
         </div>
         <div class="section">
             <p class="half" style="display: none"></p>
-            <p class="primary">DYSMORPHIE CORPORELLE</p>
+            <p class="primary">Dysmorphie corporelle</p>
 
             <p class="secondary leftText">Les gens qui en sont atteints se focalisent jusqu’à l’obsession sur
                 tout
@@ -255,7 +295,7 @@
         </div>
         <div class="section">
             <p class="half" style="display: none"></p>
-            <p class="primary">DES FILTRES RÉELS</p>
+            <p class="primary">Des filtres réels</p>
             <p class="secondary">Cela ne s’arrête pas là. De nombreux chirurgiens plastiques observent de nouveaux
                 phénomènes inquiétants. De plus en plus de patients viennent en consultation avec une photo d’eux
                 filtrée et demandent à ressembler à cette image… en vrai.
@@ -266,7 +306,7 @@
         </div>
         <div class="section">
             <p class="half" style="display: none"></p>
-            <p class="primary">UNE GÉNÉRATION DÉPRESSIVE - SANTÉ MENTALE EN DANGER</p>
+            <p class="primary">Une génération dépressive</p>
             <p class="secondary">95 millions de photos et vidéos sont postées sur Instagram chaque jour, les plus
                 belles, les plus réussies sont misent en avant. Instagram nous pousse à nous comparer, or plus on se
                 compare aux autres, plus on se créer des complexes. Aujourd’hui c’est 9 filles sur 10 qui se disent
@@ -287,7 +327,7 @@
         </div>
         <div class="section">
             <p class="half" style="display: none"></p>
-            <p class="primary">SEXY IS THE NEW CUTE</p>
+            <p class="primary">Sexy is the new cute</p>
             <p class="secondary">Bien que Tik Tok soit vendu comme une application mettant en avant la créativité et
                 l’humour, le fait est que l’immense majorité des vidéos sont à caractères sexy, aux tenues légères, aux
                 danses suggestives et au langage explicite. En scrollant on en arrive même à se demander si cette appli
@@ -296,7 +336,7 @@
         </div>
         <div class="section">
             <p class="half" style="display: none"></p>
-            <p class="primary">DE PLUS EN PLUS JEUNES</p>
+            <p class="primary">De plus en plus jeunes</p>
             <p class="secondary">Même si TikTok demande à ses utilisateurs d’avoir au moins 13 ans, des millions
                 d’enfants à travers le monde possèdent un compte sur la plateforme. Le plus inquiétant, 80% des ces
                 jeunes postent eux-mêmes des vidéos. Ces millions de jeunes créatrices (70% de filles) se
@@ -306,7 +346,7 @@
         </div>
         <div class="section">
             <p class="half" style="display: none"></p>
-            <p class="primary">PÉDOPHILES - @Lucas_2005</p>
+            <p class="primary">Pédophiles - @Lucas_2005</p>
             <p class="secondary">
                 Savez-vous à quel type de contenu sont exposées les filles de 8 à 13 ans sur Tik Tok ? Savez-vous ce
                 qu’elles postent ? Savez-vous qui voit ces vidéos ? Savez-vous qui les like ? Savez-vous qui les

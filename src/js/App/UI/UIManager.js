@@ -177,15 +177,17 @@ const UIManager = {
     },
 
     showAbout() {
-        document.querySelector("footer").classList.add("up");
-        document.querySelector("#about").classList.add("visible");
-        document.querySelector("footer").querySelector(".bottom").classList.remove("visible");
+        document.querySelector("#about").classList.add("show");
+        // document.querySelector("footer").classList.add("up");
+        // document.querySelector("#about").classList.add("visible");
+        // document.querySelector("footer").querySelector(".bottom").classList.remove("visible");
     },
 
     hideAbout() {
-        document.querySelector("footer").classList.remove("up");
-        document.querySelector("#about").classList.remove("visible");
-        document.querySelector("footer").querySelector(".bottom").classList.add("visible");
+        document.querySelector("#about").classList.remove("show");
+        // document.querySelector("footer").classList.remove("up");
+        // document.querySelector("#about").classList.remove("visible");
+        // document.querySelector("footer").querySelector(".bottom").classList.add("visible");
     },
 
     openFullscreen() {
