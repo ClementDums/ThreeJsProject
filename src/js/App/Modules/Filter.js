@@ -42,6 +42,10 @@ export default class Filter {
         PostProcessingManager.setOutlineObject(this.objects[0]._object.children[0], 5);
     }
 
+    showTuto() {
+        this.tuto.classList.add('visible');
+    }
+
     /**
      * Handle filter click
      * @param namer
@@ -59,6 +63,7 @@ export default class Filter {
      */
     initInteraction() {
         this.filterUi = document.querySelector("#filter");
+        this.tuto = document.querySelector(".tutoFilter");
         this.carousel = this.filterUi.querySelector(".carousel");
         this.filterBtn = this.filterUi.querySelectorAll(".filterBtn");
         this.filterBtn.forEach((btn) => {
@@ -77,7 +82,7 @@ export default class Filter {
 
     getIndexAttribute(btn) {
         const ind = btn.getAttribute("data-ind");
-        this.previousI= parseInt(this.i);
+        this.previousI = parseInt(this.i);
         this.i = parseInt(ind);
         this.scroll();
     }
@@ -125,6 +130,9 @@ export default class Filter {
         //Animate
         SceneManager.isAnimated = true;
         document.getElementById("filter").style.display = "block"
+        setTimeout(() => {
+            this.showTuto();
+        }, 400);
     }
 
     animate() {
@@ -217,6 +225,7 @@ export default class Filter {
         this.light.visible = false;
         RaycasterManager.identifiers.splice("toFilter");
         SceneManager.isAnimated = false;
+        this.tuto.classList.remove('visible');
     }
 
 
@@ -232,7 +241,7 @@ export default class Filter {
         this.resetCarousel();
     }
 
-    resetCarousel(){
+    resetCarousel() {
         this.carouselPos = 25;
         this.carousel.style.transform = "translateX(" + this.carouselPos + "%)";
     }

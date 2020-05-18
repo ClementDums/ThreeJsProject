@@ -1,5 +1,6 @@
 import {PointerLockControls} from 'three/examples/jsm/controls/PointerLockControls.js';
 import CameraManager from "./CameraManager";
+import UIManager from "../UI/UIManager";
 
 export default class CameraLock {
     constructor(cameraManager) {
@@ -16,6 +17,9 @@ export default class CameraLock {
 
         this.controls.addEventListener('unlock', function () {
             CameraManager.isLock = false;
+            if (CameraManager.isCameraMoving) {
+                UIManager.showCursorLock();
+            }
         });
     }
 
@@ -27,6 +31,7 @@ export default class CameraLock {
 
     lock() {
         this.controls.lock();
+        UIManager.hideCursorLock();
     }
 
     unlock() {

@@ -134,6 +134,22 @@ const UIManager = {
         }
     },
 
+    showCursorLock() {
+        document.getElementById("lockCursor").style.display = "flex";
+        document.querySelector(".follow").classList.add("visible");
+        document.querySelector(".outFollow").classList.add("visible");
+    },
+    hideCursorLock() {
+        document.getElementById("lockCursor").style.display = "none";
+        document.querySelector(".follow").classList.remove("visible");
+        document.querySelector(".outFollow").classList.remove("visible");
+    },
+
+    showCursor() {
+        document.querySelector(".follow").classList.add("visible");
+        document.querySelector(".outFollow").classList.add("visible");
+    },
+
     displayEndText() {
         document.querySelector("#endText").style.display = "block";
         this.toInvitSection();

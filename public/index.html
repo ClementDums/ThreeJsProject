@@ -32,11 +32,14 @@
     </div>
     <div id="maskText" style="display: none"></div>
 
-    <div class="follow"></div>
-    <div class="outFollow"></div>
+    <div class="follow visible"></div>
+    <div class="outFollow visible"></div>
 
     <div id="ui">
         <div id="blackMask"></div>
+        <div id="lockCursor">
+            <p>Cliquer pour bouger la caméra</p>
+        </div>
         <header>
             <div class="container">
                 <div class="nextprev hover">
@@ -128,6 +131,9 @@
                 </div>
 
                 <div id="filter" class="module">
+                    <div class="tutoFilter tuto"><p>Aidez-la à mettre son visage en valeur en lui appliquant des filtres
+                        avec votre
+                        téléphone.</p></div>
                     <div class="carousel-wrapper">
                         <span class="strokeBtn"></span>
                         <div class="carousel">
@@ -145,9 +151,13 @@
                     </div>
                 </div>
                 <div id="hypersex" class="module">
+                    <div class="tutoHypersex tuto"><p>Aidez cette jeune fille à se prendre en photo pour ses
+                        réseaux.</p></div>
                     <span id="photo"></span>
                 </div>
                 <div id="diversity" class="module">
+                    <div class="tutoDiversity tuto"><p>Et maintenant, mesure l'impact de tes likes sur ton feed !</p>
+                    </div>
                     <span id="like"><img src="assets/Image/icon/heart.svg" alt="Like"></span>
                 </div>
                 <div id="landing">
@@ -171,8 +181,10 @@
                             <img id="soundOff" class="sound" src="assets/Image/icon/sound-off.svg" alt=""></li>
                         <li class="hover"><a target="_blank" href="https://www.instagram.com/pour_elles_galerie/?hl=fr"><img
                                 src="assets/Image/icon/instagram.svg" alt="instagram icon"></a></li>
-                        <li class="hover"><img id="fullscreenOn" class="fullscreen visible" src="assets/Image/icon/agrandir.svg" alt="Set full screen">
-                            <img id="fullscreenOff" class="fullscreen" src="assets/Image/icon/reduire.svg" alt="Set small screen"></li>
+                        <li class="hover"><img id="fullscreenOn" class="fullscreen visible"
+                                               src="assets/Image/icon/agrandir.svg" alt="Set full screen">
+                            <img id="fullscreenOff" class="fullscreen" src="assets/Image/icon/reduire.svg"
+                                 alt="Set small screen"></li>
                     </ul>
                     <div id="phoneIcon" class="hover">
                         <div><p class="outPhone">Prendre le téléphone</p>
@@ -181,7 +193,7 @@
                         <img class="phoneOn" src="assets/Image/icon/phone_on.svg" alt="">
                     </div>
                 </div>
-                <div id="footer-border">  </div>
+                <div id="footer-border"></div>
                 <div class="bottom visible">
                     <nav>
                         <ul>

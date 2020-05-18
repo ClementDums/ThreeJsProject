@@ -57,7 +57,7 @@ export default function(){
 		uniforms: {
 			attenuation	: {
 				type	: "f",
-				value	: 1000.0
+				value	: 10000.0
 			},
 			anglePower	: {
 				type	: "f",
