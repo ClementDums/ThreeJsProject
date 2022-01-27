@@ -27,7 +27,7 @@
     "@fortawesome/fontawesome-free": "^5.13.0",
     "@tweenjs/tween.js": "^18.5.0",
     "fs": "0.0.1-security",
-    "three": "^0.115.0",
+    "three": "^0.137.0",
     "three-fbx-loader": "^1.0.3",
     "zlib": "^1.0.5"
   }
